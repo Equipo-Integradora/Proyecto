@@ -76,7 +76,7 @@ include "../templates/header.php";
                       <a href="#" class="bi bi-share"></a>
                     </div>
                     <div class="card-text">
-                      <h3>Paleta de Sombras Cooky BT21</h3>
+                      <a style="text-decoration: none;" href="../views/verproducto.php"><h3>Paleta de Sombras Cooky BT21</h3></a>
                       <div class="price">
                           $369.00 <span>$410.00</span>
                     </div>
