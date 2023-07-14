@@ -78,13 +78,13 @@
                 echo "<div class='alert alert-succes'>";
                 echo "<h2 align='center'> Bienvenido ".$_SESSION["usuario"]."</h2>";
                 echo "</div>";
-                header("refresh:2, /INTEGRADORA/views/home.php");
+                header("refresh:2, ../views/home.php");
             }else
             {
                 echo "<div class='alert alert-danger'>";
                 echo "<h2 aling='center'>Usuario o Password incorrectos</h2>";
                 echo "</div>";
-                header("refresh:2, /INTEGRADORA/views/login.php");
+                header("refresh:2, ../views/login.php");
             }
 
         }catch(PDOException $e)
