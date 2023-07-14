@@ -1,6 +1,7 @@
 <?php
 include "../templates/header.php";
 ?>
+
       <!-- BANNER -->
       <section class="banner">
         <div class="container">
