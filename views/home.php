@@ -88,7 +88,7 @@ include "../templates/header.php";
 
           <div class="item">
             <div class="card">
-                <img src="../img/home/es1.jpg" class="card-img-top" alt="...">
+            <a href="../views/verproducto.php"><img src="../img/home/es1.jpg" class="card-img-top" alt="..."></a>
                 <div class="card-body text-center">
                   <div class="icons card-title">
                     <a href="#" class="bi bi-suit-heart-fill"></a>
@@ -96,7 +96,7 @@ include "../templates/header.php";
                     <a href="#" class="bi bi-share"></a>
                   </div>
                   <div class="card-text">
-                    <h3>Esmalte H&M rosa</h3>
+                  <a href="../views/verproducto.php">Esmalte H&M rosa</a>
                     <div class="price">
                       $45.00
                   </div>
@@ -108,7 +108,7 @@ include "../templates/header.php";
 
         <div class="item">
           <div class="card">
-              <img src="../img/home/es2.jpg" class="card-img-top" alt="...">
+          <a href="../views/verproducto.php"><img src="../img/home/es2.jpg" class="card-img-top" alt="..."></a>
               <div class="card-body text-center">
                 <div class="icons card-title">
                   <a href="#" class="bi bi-suit-heart-fill"></a>
@@ -116,7 +116,7 @@ include "../templates/header.php";
                   <a href="#" class="bi bi-share"></a>
                 </div>
                 <div class="card-text">
-                  <h3>Esmalte H&M Morado</h3>
+                <a href="../views/verproducto.php">Esmalte H&M Morado</a>
                   <div class="price">
                     $45.00
                 </div>
@@ -128,7 +128,7 @@ include "../templates/header.php";
 
       <div class="item">
         <div class="card">
-            <img src="../img/home/es3.jpg" class="card-img-top" alt="...">
+        <a href="../views/verproducto.php"><img src="../img/home/es3.jpg" class="card-img-top" alt="..."></a>
             <div class="card-body text-center">
               <div class="icons card-title">
                 <a href="#" class="bi bi-suit-heart-fill"></a>
@@ -136,7 +136,7 @@ include "../templates/header.php";
                 <a href="#" class="bi bi-share"></a>
               </div>
               <div class="card-text">
-                <h3>Esmalte H&M naranja</h3>
+              <a href="../views/verproducto.php">Esmalte H&M naranja</a>
                 <div class="price">
                   $45.00
               </div>
@@ -149,7 +149,7 @@ include "../templates/header.php";
     <div class="item">
       <div class="card">
         <span class="aviso">-10%</span>
-          <img src="../img/home/es4.jpg" class="card-img-top" alt="...">
+        <a href="../views/verproducto.php"><img src="../img/home/es4.jpg" class="card-img-top" alt="..."></a>
           <div class="card-body text-center">
             <div class="icons card-title">
               <a href="#" class="bi bi-suit-heart-fill"></a>
@@ -157,7 +157,7 @@ include "../templates/header.php";
               <a href="#" class="bi bi-share"></a>
             </div>
             <div class="card-text">
-              <h3>Esmalte H&M rosa palido</h3>
+            <a href="../views/verproducto.php">Esmalte H&M rosa palido</a>
               <div class="price">
                 $40.50 <span>$45.00</span>
             </div>
@@ -169,7 +169,7 @@ include "../templates/header.php";
 
   <div class="item">
     <div class="card">
-        <img src="../img/home/es5.jpg" class="card-img-top" alt="...">
+    <a href="../views/verproducto.php"><img src="../img/home/es5.jpg" class="card-img-top" alt="..."></a>
         <div class="card-body text-center">
           <div class="icons card-title">
             <a href="#" class="bi bi-suit-heart-fill"></a>
@@ -177,7 +177,7 @@ include "../templates/header.php";
             <a href="#" class="bi bi-share"></a>
           </div>
           <div class="card-text">
-            <h3>Esmalte H&M dorado</h3>
+          <a href="../views/verproducto.php">Esmalte H&M dorado</a>
             <div class="price">
               $45.00
           </div>
