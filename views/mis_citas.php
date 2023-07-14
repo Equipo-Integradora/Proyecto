@@ -9,6 +9,19 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Aquí saldra el producto que seleccionaste</h2>
+<?php
+    session_start();
+    if(isset($_SESSION["usuario"]))
+    {
+        ?>
+    <h2>Aqui el usuario verá sus citas</h2>
+    <?php
+    
+    }
+    else
+    {
+        header("Location: ../views/login.php");
+    }
+    ?>
 </body>
 </html>

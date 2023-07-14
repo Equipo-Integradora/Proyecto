@@ -39,7 +39,7 @@
                   <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Agendar cita</a>
+                    <a class="nav-link" href="../views/Agendar_cita.php">Agendar cita</a>
                   </li>
                   <li class="nav-item mx-2">
                     <a class="nav-link" href="../scripts/verproductos.php">Productos</a>

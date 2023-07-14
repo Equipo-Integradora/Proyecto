@@ -8,8 +8,8 @@
                         <h2>Acceso rápido</h2>
                     <ul>
                         <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Agendar cita</a></li>
-                        <li><a href="#">Productos</a></li>
+                        <li><a href="../views/Agendar_cita.php">Agendar cita</a></li>
+                        <li><a href="../scripts/verproductos.php">Productos</a></li>
                         <li><a href="#">Contacto</a></li>
                     </ul>
                     </div>                    
@@ -19,8 +19,8 @@
                         <h2>Extra links</h2>
                     <ul>
                         <li><a href="../views/perfil.php">Mi cuenta</a></li>
-                        <li><a href="#">Mis ordenes</a></li>
-                        <li><a href="#">Mis citas</a></li>
+                        <li><a href="../views/mis_ordenes.php">Mis ordenes</a></li>
+                        <li><a href="../views/mis_citas.php">Mis citas</a></li>
                     </ul>
                     </div>                    
                 </div>
