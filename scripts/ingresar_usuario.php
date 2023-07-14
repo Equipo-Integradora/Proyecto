@@ -24,7 +24,7 @@
         $db->desconectarDB();
 
         echo "<div class='alert alert-success'>Usuario Registrado</div>";
-        header("refresh:2 ; /INTEGRADORA/views/login.php")
+        header("refresh:2 ; ../views/login.php")
         ?>
     </div>
 </body>
