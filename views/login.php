@@ -22,7 +22,7 @@
                 <div class="col-md-6 right">
                      <div class="input-box">
                         <header>Iniciar Sesión</header>
-                        <form action="/INTEGRADORA/scripts/verificar_login.php" method="post">
+                        <form action="../scripts/verificar_login.php" method="post">
 
                         <div class="input-field">
                             <input type="text" class="input" name="usuario" required autocomplete="off">
