@@ -294,12 +294,15 @@ input:hover {
   margin-top: -15px;
 }
 
-.card h3 {
+.card .card-text a {
   font-weight: bold;
   font-size: 1.5rem;
   color: #333;
+  text-decoration: none;
 }
-
+.card .card-text a:hover {
+  color: var(--pink);
+}
 .price {
   font-size: 1.5rem;
   color: var(--pink);
