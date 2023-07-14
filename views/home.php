@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
         <!-- LOGO -->
-        <!-- HOLAAAAAA -->
+        <!-- DURAAAANNNNNNNNNNNNNn -->
           <a class="navbar-brand logo fs-2" href="#"><span>Sweet </span>Beauty</a>
         <!-- Toggle btn-->
           <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
