@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+    session_start();
+    if(isset($_SESSION["usuario"]))
+    {
+        ?>
     <h2>Aqui veremos el perfil</h2>
+    <?php
+    
+    }
+    else
+    {
+        header("Location: ../views/login.php");
+    }
+    ?>
 </body>
 </html>

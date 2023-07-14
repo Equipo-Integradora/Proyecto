@@ -18,7 +18,7 @@
                     <div class="single-box">
                         <h2>Extra links</h2>
                     <ul>
-                        <li><a href="#">Mi cuenta</a></li>
+                        <li><a href="../views/perfil.php">Mi cuenta</a></li>
                         <li><a href="#">Mis ordenes</a></li>
                         <li><a href="#">Mis citas</a></li>
                     </ul>
