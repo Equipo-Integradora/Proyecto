@@ -101,7 +101,7 @@ i {
 
 .input-box .input-field label {
   position: absolute;
-  top: 0px;
+  top: 10px;
   left: 10px;
   pointer-events: none;
   transition: 0.5s;
