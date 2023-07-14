@@ -1,0 +1,38 @@
+:root
+{
+    --pink:#e84393;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container
+{
+    max-width: 650px;
+    padding: 28px;
+    margin: 0 28px;
+    box-shadow: 0 15px 20px rgba(0,0,0,0.2);
+}
+
+.container h2
+{
+    font-weight: bold;
+}
+
+.container h4
+{
+    font-weight: bold;
+}
