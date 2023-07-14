@@ -23,7 +23,6 @@
                      <div class="input-box">
                         <header>Iniciar Sesión</header>
                         <form action="../scripts/verificar_login.php" method="post">
-
                         <div class="input-field">
                             <input type="text" class="input" name="usuario" required autocomplete="off">
                             <label for="usuario">Usuario</label>
@@ -33,12 +32,9 @@
                             <label for="contra">Contraseña</label>
                         </div>
                         <div class="input-field">
-                            <input type="submit" class="submit" value="Iniciar sesión">
-                            
+                            <input type="submit" class="submit" value="Iniciar sesión">      
                         </div>
-
                         </form>
-                        
                         <div class="registro">
                             <span>No tienes cuenta? <a href="../views/registrarse.php">registrate aqui</a></span>
                         </div>
