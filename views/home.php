@@ -68,7 +68,7 @@ include "../templates/header.php";
             <div class="item">
               <div class="card">
                 <span class="aviso">-10%</span>
-                  <img src="../img/home/m1.jpg" class="card-img-top" alt="...">
+                  <a href="../views/verproducto.php"><img src="../img/home/m1.jpg" class="card-img-top" alt="..."></a> 
                   <div class="card-body text-center">
                     <div class="icons card-title">
                       <a href="#" class="bi bi-suit-heart-fill"></a>
@@ -76,7 +76,7 @@ include "../templates/header.php";
                       <a href="#" class="bi bi-share"></a>
                     </div>
                     <div class="card-text">
-                      <a style="text-decoration: none;" href="../views/verproducto.php"><h3>Paleta de Sombras Cooky BT21</h3></a>
+                      <a href="../views/verproducto.php">Paleta de Sombras Cooky BT21</a>
                       <div class="price">
                           $369.00 <span>$410.00</span>
                     </div>
