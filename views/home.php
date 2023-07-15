@@ -62,137 +62,70 @@ include "../templates/header.php";
     <section class="products section-padding">
         <h1 class="heading m-5"><span>Últimos </span>Productos</h1>
         <div class="container">
-          <div class="owl-carousel owl-theme">
-            <!-- CARDS DE LOS PRODUCTOS -->
-
-            <div class="item">
-              <div class="card">
-                <span class="aviso">-10%</span>
-                  <a href="../views/verproducto.php"><img src="../img/home/m1.jpg" class="card-img-top" alt="..."></a> 
-                  <div class="card-body text-center">
-                    <div class="icons card-title">
-                      <a href="#" class="bi bi-suit-heart-fill"></a>
-                      <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-                      <a href="#" class="bi bi-share"></a>
-                    </div>
-                    <div class="card-text">
-                      <a href="../views/verproducto.php">Paleta de Sombras Cooky BT21</a>
-                      <div class="price">
-                          $369.00 <span>$410.00</span>
-                    </div>
-                    </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <!-- INICIO ITEM-->
+                <div class="card h-100">
+                    <a href="../views/verproducto.php"><img src="../img/home/es5.jpg" class="card-img-top" alt="..."></a>
+                        <div class="card-body text-center">
+                          <div class="icons card-title">
+                            <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
+                          </div>
+                          <div class="card-text">
+                          <a href="../views/verproducto.php">Esmalte H&M dorado</a>
+                            <div class="price">
+                              $45.00
+                          </div>
+                          </div>
+                        </div>
                   </div>
             </div>
-          </div>
-          <!-- END ITEM -->
+                  <!-- END ITEM -->
 
-          <div class="item">
-            <div class="card">
-            <a href="../views/verproducto.php"><img src="../img/home/es1.jpg" class="card-img-top" alt="..."></a>
-                <div class="card-body text-center">
-                  <div class="icons card-title">
-                    <a href="#" class="bi bi-suit-heart-fill"></a>
-                    <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-                    <a href="#" class="bi bi-share"></a>
-                  </div>
-                  <div class="card-text">
-                  <a href="../views/verproducto.php">Esmalte H&M rosa</a>
-                    <div class="price">
-                      $45.00
-                  </div>
-                  </div>
-                </div>
-          </div>
-        </div>
-        <!-- END ITEM -->
-
-        <div class="item">
-          <div class="card">
-          <a href="../views/verproducto.php"><img src="../img/home/es2.jpg" class="card-img-top" alt="..."></a>
-              <div class="card-body text-center">
-                <div class="icons card-title">
-                  <a href="#" class="bi bi-suit-heart-fill"></a>
-                  <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-                  <a href="#" class="bi bi-share"></a>
-                </div>
-                <div class="card-text">
-                <a href="../views/verproducto.php">Esmalte H&M Morado</a>
-                  <div class="price">
-                    $45.00
-                </div>
+                <div class="col">
+                <div class="card h-100">
+                    <span class="aviso">-10%</span>
+                      <a href="../views/verproducto.php"><img src="../img/home/m1.jpg" class="card-img-top" alt="..."></a> 
+                      <div class="card-body text-center">
+                        <div class="icons card-title">
+                          <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
+                        </div>
+                        <div class="card-text">
+                          <a href="../views/verproducto.php">Paleta de Sombras Cooky BT21</a>
+                          <div class="price">
+                              $369.00 <span>$410.00</span>
+                        </div>
+                        </div>
+                      </div>
                 </div>
               </div>
-        </div>
-      </div>
-      <!-- END ITEM -->
+              <!-- END ITEM -->
 
-      <div class="item">
-        <div class="card">
-        <a href="../views/verproducto.php"><img src="../img/home/es3.jpg" class="card-img-top" alt="..."></a>
-            <div class="card-body text-center">
-              <div class="icons card-title">
-                <a href="#" class="bi bi-suit-heart-fill"></a>
-                <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-                <a href="#" class="bi bi-share"></a>
-              </div>
-              <div class="card-text">
-              <a href="../views/verproducto.php">Esmalte H&M naranja</a>
-                <div class="price">
-                  $45.00
-              </div>
+              <div class="col">
+              <div class="card h-100">
+                <a href="../views/verproducto.php"><img src="../img/home/es1.jpg" class="card-img-top" alt="..."></a>
+                    <div class="card-body text-center">
+                      <div class="icons card-title">
+                        <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
+                      </div>
+                      <div class="card-text">
+                      <a href="../views/verproducto.php">Esmalte H&M rosa</a>
+                        <div class="price">
+                          $45.00
+                      </div>
+                      </div>
+                    </div>
               </div>
             </div>
-      </div>
+            <!-- END ITEM -->
+
+            </div>
+        </div>
     </div>
-    <!-- END ITEM -->
-
-    <div class="item">
-      <div class="card">
-        <span class="aviso">-10%</span>
-        <a href="../views/verproducto.php"><img src="../img/home/es4.jpg" class="card-img-top" alt="..."></a>
-          <div class="card-body text-center">
-            <div class="icons card-title">
-              <a href="#" class="bi bi-suit-heart-fill"></a>
-              <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-              <a href="#" class="bi bi-share"></a>
-            </div>
-            <div class="card-text">
-            <a href="../views/verproducto.php">Esmalte H&M rosa palido</a>
-              <div class="price">
-                $40.50 <span>$45.00</span>
-            </div>
-            </div>
-          </div>
-    </div>
-  </div>
-  <!-- END ITEM -->
-
-  <div class="item">
-    <div class="card">
-    <a href="../views/verproducto.php"><img src="../img/home/es5.jpg" class="card-img-top" alt="..."></a>
-        <div class="card-body text-center">
-          <div class="icons card-title">
-            <a href="#" class="bi bi-suit-heart-fill"></a>
-            <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-            <a href="#" class="bi bi-share"></a>
-          </div>
-          <div class="card-text">
-          <a href="../views/verproducto.php">Esmalte H&M dorado</a>
-            <div class="price">
-              $45.00
-          </div>
-          </div>
-        </div>
-  </div>
-</div>
-          <!-- END ITEM -->
-      <!-- FIN CARDS DE LOS PRODUCTOS -->
-        </div>
         </section>
       <!-- FIN DE PRODUCTOS -->
 
-      <!-- CONTACTANOS -->
-      <!-- FIN DE CONTACTANOS -->
+      <!-- FOOTER -->
 <?php
 include "../templates/footer.php"
 ?>
