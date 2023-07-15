@@ -25,40 +25,42 @@
                     <div class="content">
                         <div class="form-group">
                             <label for="nombre">Nombre completo</label>
-                            <input type="text" class="form-control" name="nombre" required autocomplete="off">
+                            <input type="text" class="input" name="nombre" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="correo">Correo</label>
-                            <input type="email" class="form-control" name="correo" required autocomplete="off">
+                            <input type="email" class="input" name="correo" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Telefono</label>
-                            <input type="tel" class="form-control" name="telefono" required autocomplete="off">
+                            <input type="tel" class="input" name="telefono" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="pass">Contraseña</label>
-                            <input type="password" class="form-control" name="pass" required autocomplete="off">
+                            <input type="password" class="input" name="pass" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="passconf">Confirmar contraseña</label>
-                            <input type="password" class="form-control" name="passconf" required autocomplete="off">
+                            <input type="password" class="input" name="passconf" required autocomplete="off">
                         </div>
-                        <div class="form-group">
-                            <span class="genero-titulo">Género</span>
-                            <div class="genero-categoria">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="genero" value="1">
-                                    <label class="form-check-label" for="genero">Masculino</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="genero" value="2">
-                                    <label class="form-check-label" for="genero">Femenino</label>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <span class="genero-titulo">Género</span>
+                                <div class="genero-categoria">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="genero" value="1">
+                                        <label class="form-check-label" for="genero">Masculino</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="genero" value="2">
+                                        <label class="form-check-label" for="genero">Femenino</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="date" class="form-control" name="fecha">
-                            <label for="fecha">Fecha de nacimiento</label>
+                            <div class="form-group col-md-6">
+                                <label for="fecha">Fecha de nacimiento</label>
+                                <input type="date" class="form-control" name="fecha">
+                            </div>
                         </div>
                         <div class="alert">
                             <p>¿Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aquí</a></p>

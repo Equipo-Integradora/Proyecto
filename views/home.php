@@ -9,7 +9,7 @@ include "../templates/header.php";
                     <h3>Sweet Beauty</h3>
                     <span>Maquillaje & peinados</span>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum sapiente hic provident quae minima fuga libero ut et aliquid reprehenderit. Ex adipisci fuga architecto minus nemo repellendus soluta amet molestiae.</p>
-                    <a href="#" class="boton btn-sm">Agendar cita</a>
+                    <a href="../views/Agendar_cita.php" class="boton btn-sm">Agendar cita</a>
                 </div>
             </div>
         </div>

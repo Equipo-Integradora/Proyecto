@@ -9,6 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Aquí saldra el producto que seleccionaste</h2>
+    <h2>Aquí será la pestaña de agendar cita</h2>
 </body>
 </html>

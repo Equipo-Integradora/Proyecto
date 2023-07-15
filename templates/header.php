@@ -20,7 +20,7 @@
         <div class="container">
         <!-- LOGO -->
         <!-- DURAAAANNNNNNNNNNNNNn -->
-          <a class="navbar-brand logo fs-2" href="#"><span>Sweet </span>Beauty</a>
+          <a class="navbar-brand logo fs-2 " href="../views/home.php"><span>Sweet </span>Beauty</a>
         <!-- Toggle btn-->
           <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,10 +36,10 @@
             <div class="offcanvas-body d-flex flex-column flex-lg-row">
               <ul class="navbar-nav justify-content-center flex-grow-0 pe-3 align-items-center fa-bars">
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="#">Inicio</a>
+                  <a class="nav-link" href="../views/home.php">Inicio</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Agendar cita</a>
+                    <a class="nav-link" href="../views/Agendar_cita.php">Agendar cita</a>
                   </li>
                   <li class="nav-item mx-2">
                     <a class="nav-link" href="../scripts/verproductos.php">Productos</a>
@@ -72,7 +72,7 @@
                           <li><?php
                                  if(isset($_SESSION["usuario"]))
                                  {
-                                     echo "<a class='dropdown-item fs-6' href='#'>".$_SESSION["usuario"]."</a>";
+                                     echo "<a class='dropdown-item fs-6' href='../views/perfil.php'>".$_SESSION["usuario"]."</a>";
                                  }
                               ?>
                         </li>
@@ -80,10 +80,11 @@
                             <?php
                                 if(isset($_SESSION["usuario"]))
                                 {
-                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'>[Cerrar Sesión]</a>";
+                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'>Cerrar Sesión</a>";
                                 }
                               ?>
                       </li>
+                      
                         </ul>
                       </div>
               </div>
