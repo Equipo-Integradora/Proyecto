@@ -108,6 +108,18 @@
 <!-- SCRIPTS -->
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script>
+     function validarCamposLlenos() {
+        var nombre = document.getElementById('nombre').value;
+        var correo = document.getElementById('correo').value;
+        var telefono = document.getElementById('telefono').value;
+        
+        if (nombre === '' || correo === '' || telefono === '') {
+            alert("Por favor, complete todos los campos requeridos.");
+            return false;
+        }
+        
+        return true;
+    }
     function mostrarCamposContraseña() {
         document.getElementById('nombre').classList.add('hidden');
         document.getElementById('nombreText').classList.add('hidden');
