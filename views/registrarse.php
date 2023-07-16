@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-6 image">
                 <div class="text">
-                    <p class="logo"><span>Sweet</span> Beauty</p>
+                    <p class="logo fs-1 m-auto"><span>Sweet</span> Beauty</p>
                     <p>Maquillaje y peinados</p>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                             <input type="date" class="form-control" name="fecha">
                         </div>
                         <div class="input-field">
-                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="mostrarCamposContraseña(); cambiarTextoBoton();">
+                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="mostrarCamposContraseña(); cambiarTextoBoton(); validarCamposLlenos();">
                         </div>
                         <div class="alert">
                             <p>¿Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aquí</a></p>
