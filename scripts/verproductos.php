@@ -40,7 +40,7 @@
                 echo "<td> $reg->precio_producto</td>";
                 echo "<td> $reg->nombre_tipo_categoria</td>";
                 echo "<td> $reg->existencias_detalle_producto</td>";
-                echo "<td> <img style='height: auto; width: 5rem;' src='/INTEGRADORA/img/productos/".$reg->imagen_detalle_producto."' alt=".$reg->imagen_detalle_producto."></td>";
+                echo "<td> <img style='height: auto; width: 5rem;' src='../img/productos/".$reg->imagen_detalle_producto."' alt=".$reg->imagen_detalle_producto."></td>";
                 echo "</tr>";
             }
             echo "</tbody>";
