@@ -1,0 +1,26 @@
+h1.titu
+{
+    margin-top: 70px;
+}
+
+img.pro
+{
+    margin: auto;
+    width: 80px;
+    height: auto;
+}
+
+.product-title 
+{
+    max-height: 3.6em;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: normal; 
+}
+
+.cont-pro
+{
+    height: 500px;
+}
+
+
