@@ -103,6 +103,63 @@
 
        
     }
+    function cate($consulta1)
+        {
+            try
+            {
+                $resultado = $this->PDOLocal->query($consulta1);
+                $fila = $resultado->fetchAll(PDO::FETCH_OBJ);
+                return $fila;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
 
+        function cate_pro($consulta1)
+        {
+            try
+            {
+                $resultado = $this->PDOLocal->query($consulta1);
+                $fila = $resultado->fetchAll(PDO::FETCH_OBJ);
+                return $fila;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
+
+        function cat_tip($consulta2)
+        {
+            try
+            {
+                $resultado = $this->PDOLocal->query($consulta2);
+                $fila = $resultado->fetchAll(PDO::FETCH_OBJ);
+                return $fila;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
+
+        function busca($consulta)
+        {
+            try
+            {
+                $resultado = $this->PDOLocal->query($consulta);
+                $fila = $resultado->fetchAll(PDO::FETCH_OBJ);
+                return $fila;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
+
+
+    
     }
 ?>
