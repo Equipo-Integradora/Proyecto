@@ -60,5 +60,21 @@
     }
 })
 </script>
+<script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún puedes hacer más cosas");
+        });
+    </script>
 </body>
 </html>
