@@ -62,7 +62,7 @@
                     <?php
 foreach ($tabla as $reg) {
     echo "<div class='col-lg-4 d-flex flex-fill'>";
-    echo "<div class='card mar'>";
+    echo "<div class='card'>";
     echo "<img class='card-img-top pro' src='../img/productos/".$reg->imagen_detalle_producto."' alt='...'>";
     echo "<div class='card-body text-center'>";
     echo "<div class='icons card-title'>"; echo "</div>";
@@ -88,6 +88,26 @@ $conexion->desconectarDB();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/listas.js"></script>
+
+    <script>
+  // JavaScript para cambiar el título de la pestaña
+  // Asegúrate de que este código se encuentre dentro del <head> o antes del cierre del </body>
+
+  // Función que cambia el título de la pestaña
+  function cambiarTituloPestana(nuevoTitulo) {
+    document.title = nuevoTitulo;
+  }
+
+  // Evento para cuando el usuario está en la página (foco en la página)
+  window.addEventListener("focus", function() {
+    cambiarTituloPestana("Sweet Beauty");
+  });
+
+  // Evento para cuando el usuario abandona la página (pierde el foco)
+  window.addEventListener("blur", function() {
+    cambiarTituloPestana("Apoco shi tilin");
+  });
+</script>
 
 </body>
 </html>
