@@ -5,9 +5,9 @@ h1.titu
 
 img.pro
 {
-    margin: auto;
-    width: 80px;
-    height: auto;
+    margin:auto; 
+    width: 100px;
+    height: 150px;
 }
 
 .product-title 
@@ -18,9 +18,16 @@ img.pro
     white-space: normal; 
 }
 
-.cont-pro
+
+div.cont
 {
-    height: 500px;
+    margin: 500px;
 }
 
-
+div.precio
+{
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translate(-50%, 0);
+}
