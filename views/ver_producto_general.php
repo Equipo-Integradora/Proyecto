@@ -5,7 +5,7 @@
 
     $conexion = new database();
     $conexion->conectarDB();
-
+    
     $consulta = "SELECT productos.nombre_producto, productos.precio_producto, tipo_categorias.nombre_tipo_categoria, detalle_productos.existencias_detalle_producto, detalle_productos.imagen_detalle_producto
     FROM detalle_productos INNER JOIN productos ON productos.id_producto = detalle_productos.detalle_producto_detalle_producto_FK
     INNER JOIN tipo_categorias ON tipo_categorias.id_tipo_categoria = productos.categoria_producto_FK;";
@@ -36,7 +36,7 @@
                 <ul class='list-group'>
                 <?php
                 foreach ($cat as $index => $ca) { ?>
-                    <li class="list-group-item" data-toggle="collapse" data-target="#subtemas<?php echo $index?>">
+                    <li class="categoria list-group-item" data-toggle="collapse" data-target="#subtemas<?php echo $index?>">
                      <?php echo $ca->nombre_categoria ?>
                     </li>
                     <?php
@@ -48,19 +48,25 @@
                     <div id="subtemas<?php echo $index ?>" class="collapse">
                         <ul class="list-group">
                    <?php foreach ($cat_ti as $c) { ?>
-                      <li class="list-group-item" style="color: red;"><?php echo $c->nombre_tipo_categoria?></li>
+                    <form action="../scripts/verproductos_cat.php" method="post">
+                       <li class="list-group-item">
+                           <?php echo "<a class='tcategoria'>".$c->nombre_tipo_categoria."</a>" ?>
+                       </li>
+                    </form>
+
+                      
                    <?php } ?>                   
                         </ul>
                     </div>
                     <?php
                 }
                 ?>
+                
                 </ul>
             </div>
         </div>
 
             <div class="col-9" style="width: 80%;">
-
                 <div class="row">  
                 <?php
 foreach ($tabla as $reg) { ?>
@@ -96,26 +102,28 @@ $conexion->desconectarDB();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/listas.js"></script>
-
     <script>
-  // JavaScript para cambiar el título de la pestaña
-  // Asegúrate de que este código se encuentre dentro del <head> o antes del cierre del </body>
+    const enlaces = document.querySelectorAll(".tcategoria");
 
-  // Función que cambia el título de la pestaña
-  function cambiarTituloPestana(nuevoTitulo) {
-    document.title = nuevoTitulo;
-  }
+    enlaces.forEach(enlace => {
+        enlace.addEventListener("click", function(event) {
+            event.preventDefault();
+            const valor = this.innerText;
+            const form = document.createElement("form");
+            form.action = "../scripts/verproductos_cat.php";
+            form.method = "post";
 
-  // Evento para cuando el usuario está en la página (foco en la página)
-  window.addEventListener("focus", function() {
-    cambiarTituloPestana("Sweet Beauty");
-  });
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "tip_cater";
+            input.value = valor;
+            form.appendChild(input);
 
-  // Evento para cuando el usuario abandona la página (pierde el foco)
-  window.addEventListener("blur", function() {
-    cambiarTituloPestana("sweet beauty");
-  });
+            document.body.appendChild(form);
+            form.submit();
+        });
+    });
 </script>
-
-</body>
-</html>
+    <?php
+        include "../templates/footer.php"
+    ?>
