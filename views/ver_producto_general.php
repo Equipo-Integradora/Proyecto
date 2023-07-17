@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Generales</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/productos_gene.css">
-</head>
-<body>
+
     <?php
     include "../templates/header.php";
     include "../class/database.php";
@@ -70,14 +61,14 @@
                     
                     <?php
 foreach ($tabla as $reg) {
-    echo "<div class='col-lg-4 '>";
+    echo "<div class='col-lg-4 d-flex flex-fill'>";
     echo "<div class='card'>";
-    echo "<img class='card-img-top pro' src='../img/productos/" . $reg->imagen_detalle_producto . "' alt='...'>";
+    echo "<img class='card-img-top pro' src='../img/productos/".$reg->imagen_detalle_producto."' alt='...'>";
     echo "<div class='card-body text-center'>";
     echo "<div class='icons card-title'>"; echo "</div>";
     echo "<div class='card-text'>";
-    echo "<h3 class='product-title'>" . $reg->nombre_producto . "</h3>";
-    echo "<div class='price'>";
+    echo "<h3 class='product-title'>".$reg->nombre_producto . "</h3>";
+    echo "<div class='price precio'>";
     echo "$".$reg->precio_producto;
     echo "</div>";
     echo "</div>";
