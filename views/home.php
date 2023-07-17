@@ -100,7 +100,7 @@ include "../templates/header.php";
                 </div>
               </div>
               <!-- END ITEM -->
-
+                <!--Este es un comentario de ejemplo borra esto fer-->
               <div class="col">
               <div class="card h-100">
                 <a href="../views/verproducto.php"><img src="../img/home/es1.jpg" class="card-img-top" alt="..."></a>
