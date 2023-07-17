@@ -1,3 +1,7 @@
+:root {
+    --pink: #ff00ff; /* o cualquier otro valor de color que desees */
+  }
+
 h1.titu
 {
     margin-top: 70px;
@@ -36,4 +40,16 @@ div.mar
 {
     margin-bottom: 3rem;
     border: 0;
+}
+
+.tcategoria
+{
+    text-decoration: none;
+    color: var(--pink);
+}
+
+.categoria
+{
+    color: #333;
+    font-weight: bolder;
 }
