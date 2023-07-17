@@ -62,7 +62,7 @@
                     <?php
 foreach ($tabla as $reg) {
     echo "<div class='col-lg-4 d-flex flex-fill'>";
-    echo "<div class='card'>";
+    echo "<div class='card mar'>";
     echo "<img class='card-img-top pro' src='../img/productos/".$reg->imagen_detalle_producto."' alt='...'>";
     echo "<div class='card-body text-center'>";
     echo "<div class='icons card-title'>"; echo "</div>";
