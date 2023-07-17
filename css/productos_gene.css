@@ -31,3 +31,9 @@ div.precio
     left: 50%; 
     transform: translate(-50%, 0);
 }
+
+div.mar
+{
+    margin-bottom: 3rem;
+    border: 0;
+}
