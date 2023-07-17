@@ -8,5 +8,3 @@
             $('.collapse:not(' + target + ')').collapse('hide');
         });
     });
-
-    
