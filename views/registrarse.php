@@ -78,6 +78,10 @@
                                     <input class="form-check-input" type="radio" name="genero" value="2">
                                     <label class="form-check-label" for="genero">Femenino</label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genero" value="3">
+                                    <label class="form-check-label" for="genero">Otro</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group" id="fecha-group">
