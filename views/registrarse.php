@@ -80,6 +80,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group" id="fecha-group">
+                            <label for="fecha">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" name="fecha" id="fecha" required>
+                        </div>
+
                         <div class="form-group hidden input-field" id="pass-group">
                             <label for="pass">Contraseña</label>
                             <input type="password" class="input" name="pass" id="pass" required autocomplete="off">
@@ -88,15 +93,11 @@
                             <label for="passconf">Confirmar contraseña</label>
                             <input type="password" class="input" name="passconf" id="passconf" required autocomplete="off">
                         </div>
-                        <div class="form-group" id="fecha-group">
-                            <label for="fecha">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" name="fecha" id="fecha">
-                        </div>
                         <div class="input-field">
                             <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();">
                         </div>
-                        <div class="alert">
-                            <p>¿Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aquí</a></p>
+                        <div class="registro" style="margin-bottom:1rem;">
+                            <span>Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aqui</a></span>
                         </div>
                     </div>
                 </form>
@@ -113,8 +114,18 @@
         var correo = document.getElementById('correo').value;
         var telefono = document.getElementById('telefono').value;
         
-        if (nombre === '' || correo === '' || telefono === '') {
-            alert("Por favor, complete todos los campos requeridos.");
+        if (nombre === '') {
+            alert("Ingrese su nombre.");
+            return false;
+        }
+        
+        if (correo === '') {
+            alert("Ingrese un correo.");
+            return false;
+        }
+
+        if (telefono === '') {
+            alert("Ingrese su telefono.");
             return false;
         }
         
@@ -125,16 +136,21 @@
             return false;
         }
 
-        // Validar fecha y género
+        const expresionTelefono = /^[0-9]{10}$/;
+        const isValidTelefono = expresionTelefono.test(telefono);
+        if (!isValidTelefono) {
+            alert("Por favor, ingrese un número de teléfono de 10 dígitos.");
+            return false;
+        }
+        
         const isValidFechaGenero = validarFechaGenero();
         if (!isValidFechaGenero) {
+            alert
             return false;
         }
 
-        // Si todos los campos están completos y el correo, fecha y género son válidos, mostrar campos de contraseña
         mostrarCamposContraseña();
 
-        // Cambiar el texto del botón solo si es necesario mostrar los campos de contraseña
         if (document.getElementById('pass-group').classList.contains('hidden')) {
             cambiarTextoBoton();
         }
@@ -143,16 +159,33 @@
     }
 
     function validarFechaGenero() {
-        var fecha = document.getElementById('fecha').value;
-        var genero = document.querySelector('input[name="genero"]:checked');
+        var fecha = new Date(document.getElementById('fecha').value);
 
         if (!fecha) {
             alert("Por favor, seleccione una fecha de nacimiento.");
             return false;
         }
 
+        
+        var fechaActual = new Date();
+
+        
+        var fechaLimite = new Date(fechaActual);
+        fechaLimite.setFullYear(fechaActual.getFullYear() - 18);
+        if(fecha === '')
+        {
+            alert("Ingrese una fecha")
+        }
+        
+        if (fecha > fechaLimite) {
+            alert("Solo se permiten mayores de edad.");
+            return false;
+        }
+
+        var genero = document.querySelector('input[name="genero"]:checked');
+
         if (!genero) {
-            alert("Por favor, seleccione un género.");
+            alert("Defina su género.");
             return false;
         }
 
