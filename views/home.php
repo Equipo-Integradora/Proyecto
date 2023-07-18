@@ -7,8 +7,8 @@ include "../templates/header.php";
             <div class="row">
                 <div class="col-lg-6 col-sm-auto">
                     <h3>Sweet Beauty</h3>
-                    <span>Maquillaje & peinados</span>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum sapiente hic provident quae minima fuga libero ut et aliquid reprehenderit. Ex adipisci fuga architecto minus nemo repellendus soluta amet molestiae.</p>
+                    <span>Maquillaje & servicios</span>
+                    <p>Sweet Beauty es un local de venta de productos y realización de servicios de belleza, que busca realzar la belleza natural de sus clientes. Ofrece una amplia gama de productos de calidad y citas para tratamientos de cuidado personal, todo con un enfoque en la satisfacción del cliente y la seguridad. ¡Encuentra tu belleza dulce con Sweet Beauty!</p>
                     <a href="../views/Agendar_cita.php" class="boton btn-sm">Agendar cita</a>
                 </div>
             </div>
