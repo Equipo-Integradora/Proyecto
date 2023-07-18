@@ -96,7 +96,7 @@
                         <div class="input-field">
                             <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();">
                         </div>
-                        <div class="registro" style="margin-left:0; padding-left:0; margin-bottom:1rem;">
+                        <div class="alert" style="margin-bottom:1rem;">
                             <span>Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aqui</a></span>
                         </div>
                     </div>
