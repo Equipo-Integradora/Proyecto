@@ -75,14 +75,11 @@
             {
                 session_start();
                 $_SESSION["usuario"] = $usuario;
-                echo "<div class='alert alert-succes'>";
-                echo "<h2 align='center'> Bienvenido ".$_SESSION["usuario"]."</h2>";
-                echo "</div>";
                 header("refresh:2, ../views/home.php");
             }else
             {
                 echo "<div class='alert alert-danger'>";
-                echo "<h2 aling='center'>Usuario o Password incorrectos</h2>";
+                echo "<h2 aling='center'>Un dato o ambos se ha ingresado incorrectamente</h2>";
                 echo "</div>";
                 header("refresh:2, ../views/login.php");
             }
