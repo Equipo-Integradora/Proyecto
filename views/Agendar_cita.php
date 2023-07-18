@@ -9,6 +9,19 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+    session_start();
+    if(isset($_SESSION["usuario"]))
+    {
+        ?>
     <h2>Aquí será la pestaña de agendar cita</h2>
+    <?php
+    
+    }
+    else
+    {
+        header("Location: ../views/login.php");
+    }
+    ?>
 </body>
 </html>
