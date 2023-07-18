@@ -27,5 +27,6 @@
         header("refresh:2 ; ../views/login.php")
         ?>
     </div>
+    
 </body>
 </html>
