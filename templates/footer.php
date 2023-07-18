@@ -27,9 +27,15 @@
                 <div class="col-lg-3 col-sm-3 mx-auto">
                     <div class="single-box">
                         <h2>Información de contacto</h2>
-                        <p>8713719607</p>
-                        <p>SweetBeauty@gmail.com </a>
-                        <p>Torreón Coahuila México - 27000</p>
+                        <ul>
+                        <li><a href="https://api.whatsapp.com/send?phone=8713719607">8713719607</a></li>
+                        <li><a href="mailto:sweetbeautyutt@gmail.com">SweetBeautyUtt@gmail.com</a></li>
+                        <li><a href="#">Torreón Coahuila México - 27000</a></li>
+                    </ul>
+                        <p></p>
+                        <a href=""></a>
+                        <p> </a>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -76,5 +82,30 @@
           cambiarTituloPestana("Aún puedes hacer más cosas");
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/listas.js"></script>
+    <script>
+    const enlaces = document.querySelectorAll(".tcategoria");
+
+    enlaces.forEach(enlace => {
+        enlace.addEventListener("click", function(event) {
+            event.preventDefault();
+            const valor = this.innerText;
+            const form = document.createElement("form");
+            form.action = "../scripts/verproductos_cat.php";
+            form.method = "post";
+
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "tip_cater";
+            input.value = valor;
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+        });
+    });
+</script>
 </body>
 </html>
