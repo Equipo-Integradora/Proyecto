@@ -30,7 +30,7 @@
                         <ul>
                         <li><a href="https://api.whatsapp.com/send?phone=8713719607">WhatsApp</a></li>
                         <li><a href="mailto:sweetbeautyutt@gmail.com">SweetBeautyUtt@gmail.com</a></li>
-                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Torreón Coahuila México - 27000</a></li>
+                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Ubicación del local</a></li>
                     </ul>
                         <p></p>
                         <a href=""></a>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="credit m-5 text-center">Creado por <span>Charly, José, Erick, Lizeth, Fernando</span> | all rigth reserve.</div>
+        <div class="credit m-5 text-center">Creado por <span>Carlos, José, Erick, Lizeth, Fernando</span> | all rigth reserve.</div>
     </footer>
       <!-- FIN DE FOOTER -->
 
