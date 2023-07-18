@@ -98,32 +98,6 @@ $conexion->desconectarDB();
 
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/listas.js"></script>
-    <script>
-    const enlaces = document.querySelectorAll(".tcategoria");
-
-    enlaces.forEach(enlace => {
-        enlace.addEventListener("click", function(event) {
-            event.preventDefault();
-            const valor = this.innerText;
-            const form = document.createElement("form");
-            form.action = "../scripts/verproductos_cat.php";
-            form.method = "post";
-
-            const input = document.createElement("input");
-            input.type = "hidden";
-            input.name = "tip_cater";
-            input.value = valor;
-            form.appendChild(input);
-
-            document.body.appendChild(form);
-            form.submit();
-        });
-    });
-</script>
     <?php
         include "../templates/footer.php"
     ?>
