@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="col-md-6 right">
-                <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarContraseña(); cambiarTextoBoton()">
+            <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarCamposLlenos(); cambiarTextoBoton();">
                     <header style="text-align: center;font-size: 25px;">Registrarse</header>
                     <div class="content">
                         <div class="form-group input-field">
@@ -64,7 +64,7 @@
                             <input type="email" class="input" id="correo" name="correo" required autocomplete="off">
                         </div>
                         <div class="form-group input-field">
-                            <label for="correo" id="telefonoText">Telefono</label>
+                            <label for="correo" id="telefonoText">Teléfono</label>
                             <input type="tel" class="input" id="telefono" name="telefono" required autocomplete="off">
                         </div>
                         <div class="form-group " id="genero-group">
@@ -90,10 +90,10 @@
                         </div>
                         <div class="form-group" id="fecha-group">
                             <label for="fecha">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" name="fecha">
+                            <input type="date" class="form-control" name="fecha" id="fecha">
                         </div>
                         <div class="input-field">
-                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="mostrarCamposContraseña(); cambiarTextoBoton(); validarCamposLlenos();">
+                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();">
                         </div>
                         <div class="alert">
                             <p>¿Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aquí</a></p>
@@ -108,7 +108,7 @@
 <!-- SCRIPTS -->
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script>
-     function validarCamposLlenos() {
+    function validarCamposLlenos() {
         var nombre = document.getElementById('nombre').value;
         var correo = document.getElementById('correo').value;
         var telefono = document.getElementById('telefono').value;
@@ -118,8 +118,47 @@
             return false;
         }
         
+        const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
+        const isValid = expresion.test(correo);
+        if (!isValid) {
+            alert("Por favor, ingrese un correo válido.");
+            return false;
+        }
+
+        // Validar fecha y género
+        const isValidFechaGenero = validarFechaGenero();
+        if (!isValidFechaGenero) {
+            return false;
+        }
+
+        // Si todos los campos están completos y el correo, fecha y género son válidos, mostrar campos de contraseña
+        mostrarCamposContraseña();
+
+        // Cambiar el texto del botón solo si es necesario mostrar los campos de contraseña
+        if (document.getElementById('pass-group').classList.contains('hidden')) {
+            cambiarTextoBoton();
+        }
+
         return true;
     }
+
+    function validarFechaGenero() {
+        var fecha = document.getElementById('fecha').value;
+        var genero = document.querySelector('input[name="genero"]:checked');
+
+        if (!fecha) {
+            alert("Por favor, seleccione una fecha de nacimiento.");
+            return false;
+        }
+
+        if (!genero) {
+            alert("Por favor, seleccione un género.");
+            return false;
+        }
+
+        return true;
+    }
+
     function mostrarCamposContraseña() {
         document.getElementById('nombre').classList.add('hidden');
         document.getElementById('nombreText').classList.add('hidden');
@@ -149,5 +188,6 @@
         document.getElementById('submitButton').value = 'Registrarse';
     }
 </script>
+    
 </body>
 </html>
