@@ -30,7 +30,7 @@
                         <ul>
                         <li><a href="https://api.whatsapp.com/send?phone=8713719607">8713719607</a></li>
                         <li><a href="mailto:sweetbeautyutt@gmail.com">SweetBeautyUtt@gmail.com</a></li>
-                        <li><a href="#">Torreón Coahuila México - 27000</a></li>
+                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Torreón Coahuila México - 27000</a></li>
                     </ul>
                         <p></p>
                         <a href=""></a>
