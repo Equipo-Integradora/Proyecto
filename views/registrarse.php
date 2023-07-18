@@ -170,14 +170,17 @@
         var fechaActual = new Date();
 
         
-        var fechaLimite = new Date(fechaActual);
-        fechaLimite.setFullYear(fechaActual.getFullYear() - 18);
+        var fechaMin = new Date(fechaActual);
+        fechaMin.setFullYear(fechaActual.getFullYear() - 18);
+
+        
         if(fecha === '')
         {
-            alert("Ingrese una fecha")
+            alert("Ingrese una fecha");
         }
         
-        if (fecha > fechaLimite) {
+
+        if (fecha > fechaMin) {
             alert("Solo se permiten mayores de edad.");
             return false;
         }
