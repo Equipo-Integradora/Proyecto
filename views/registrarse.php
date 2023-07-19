@@ -152,7 +152,7 @@
         }
 
         // Validación de fecha de nacimiento
-        if (!validarFechaNacimiento(fecha)) {
+        if (!validarFechaNacimiento(!fecha)) {
             return false;
         }
 
