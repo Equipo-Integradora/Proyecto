@@ -30,7 +30,7 @@
                         <ul>
                         <li><a href="https://api.whatsapp.com/send?phone=8713719607">WhatsApp</a></li>
                         <li><a href="mailto:sweetbeautyutt@gmail.com">SweetBeautyUtt@gmail.com</a></li>
-                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Ubicación del local</a></li>
+                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Ubicacion</a></li>
                     </ul>
                         <p></p>
                         <a href=""></a>

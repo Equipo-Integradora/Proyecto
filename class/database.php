@@ -58,9 +58,8 @@
     {
         try
         {
-
             $pase = false;
-            $query = "SELECT * FROM usuarios WHERE nombre_usuario = '$usuario' OR email_usuario = '$usuario' OR telefono_usuario  = '$usuario';";
+            $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario' OR telefono_usuario  = '$usuario';";
             $consulta = $this->PDOLocal->query($query);
 
             while($renglon = $consulta->fetch(PDO::FETCH_ASSOC))
@@ -68,14 +67,29 @@
                 if(password_verify($contra, $renglon['contraseña_usuario']))
                 {
                     $pase = true;
+                    $datos=$renglon;
                 }
             }
 
             if($pase)
             {
-                session_start();
-                $_SESSION["usuario"] = $usuario;
+                session_start();         
+                $_SESSION["usuario"] = $datos['nombre_usuario'];
+                $_SESSION["id"] = $datos['id_usuario'];
+                if ($_SESSION["id"]=0) {
+                    $_SESSION["admin"] = true;
+                }
+                $_SESSION["admin"] = false;
+                echo "<div class='alert alert-succes'>";
+                echo "<h2 align='center'> Bienvenido ".$_SESSION["usuario"]."</h2>";
+                echo "</div>";
+                if(!$_SESSION["admin"])
+                {
                 header("refresh:2, ../views/home.php");
+                }else
+                {
+                    header("../views/admin.php");
+                }
             }else
             {
                 echo "<div class='alert alert-danger'>";
@@ -88,16 +102,6 @@
         {
             echo $e->getMessage();
         }
-       
-    }
-    
-    function CerrarSesion()
-    {
-        
-            session_start();
-            session_destroy();
-            header("Location: ../views/home.php");
-
        
     }
     function cate($consulta1)
@@ -142,10 +146,22 @@
             }
         }
 
+
+        function CerrarSesion()
+        {
+            
+             session_start();
+             session_destroy();
+              header("Location: ../views/home.php");
+
+        }    
+
+
         function busca($consulta)
         {
             try
             {
+                
                 $resultado = $this->PDOLocal->query($consulta);
                 $fila = $resultado->fetchAll(PDO::FETCH_OBJ);
                 return $fila;
@@ -155,6 +171,8 @@
                 echo $e->getMessage();
             }
         }
+
+       
 
 
     
