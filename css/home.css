@@ -1,6 +1,7 @@
-:root {
-    --pink: #e84393;
-  }
+:root 
+{
+  --rosaa: #e84393;
+}
   
   .icons a {
     text-decoration: none;
@@ -8,7 +9,7 @@
   }
   
   .icons a:hover {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .icons #toggler {
@@ -23,7 +24,7 @@
   }
   
   .fa-bars a:hover {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   section {
@@ -58,7 +59,7 @@
   }
   
   nav .logo span {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   nav .navbar a {
@@ -73,7 +74,7 @@
   }
   
   .icono1:hover {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .icono2 {
@@ -81,11 +82,11 @@
   }
   
   .icono2:hover {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .offcanvas-title span {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .group {
@@ -117,7 +118,7 @@
   .input:focus,
   input:hover {
     outline: none;
-    border-color: var(--pink);
+    border-color: var( --rosaa);
     background-color: #fff;
     box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
   }
@@ -150,7 +151,7 @@
   
   .banner span {
     font-size: 2rem;
-    color: var(--pink);
+    color: var( --rosaa);
     padding: 1rem 0;
     line-height: 1.5;
   }
@@ -179,7 +180,7 @@
   }
   
   .banner .boton:hover {
-    background: var(--pink);
+    background: var( --rosaa);
   }
   
   /* PORTAFOLIO */
@@ -198,7 +199,7 @@
   }
   
   .heading span {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .content {
@@ -238,7 +239,7 @@
   
   .portafolio .content .boton:hover 
   {
-    background: var(--pink);
+    background: var( --rosaa);
   }
   
   .imagenes {
@@ -303,7 +304,7 @@
     padding: 0.7rem 1rem;
     font-size: 1rem;
     font-weight: bold;
-    color: var(--pink);
+    color: var( --rosaa);
     background: rgba(255, 51, 153, 0.05);
     z-index: 1;
     border-radius: 0.5rem;
@@ -322,11 +323,11 @@
   }
 
   .card .card-text a:hover {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   .price {
     font-size: 1.5rem;
-    color: var(--pink);
+    color: var( --rosaa);
     font-weight: bolder;
     padding-top: 1rem;
   }
@@ -348,7 +349,7 @@
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .card .icons a:hover {
@@ -393,7 +394,7 @@
   
   .single-box ul li a:hover {
     text-decoration: underline;
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   .single-box h2 {
@@ -403,7 +404,7 @@
   }
   
   #basic-addon2 {
-    background: var(--pink);
+    background: var( --rosaa);
     color: #333;
   }
   
@@ -423,7 +424,7 @@
   }
   
   .credit span {
-    color: var(--pink);
+    color: var( --rosaa);
   }
   
   /* RESPONSIVE */
@@ -446,7 +447,7 @@
 
     .products .card .price {
       font-size: 1.2rem;
-      color: var(--pink);
+      color: var( --rosaa);
       font-weight: bolder;
       padding-top: 1rem;
     }
@@ -464,7 +465,7 @@
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: bold;
-      color: var(--pink);
+      color: var( --rosaa);
     }
   }
   
@@ -534,7 +535,7 @@
     .input:focus,
     input:hover {
       outline: none;
-      border-color: var(--pink);
+      border-color: var( --rosaa);
       background-color: #fff;
       box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
     }
