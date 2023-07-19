@@ -60,18 +60,25 @@
         {
 
             $pase = false;
-            $query = "SELECT * FROM usuarios WHERE nombre_usuario = '$usuario' OR email_usuario = '$usuario' OR telefono_usuario  = '$usuario';";
+            $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario';";
             $consulta = $this->PDOLocal->query($query);
 
             while($renglon = $consulta->fetch(PDO::FETCH_ASSOC))
             {
                 if(password_verify($contra, $renglon['contraseña_usuario']))
                 {
-                    $pase = true;
+                    if ($renglon['id_usuario'] == 0)
+                        {
+                            $pase_adm = true;
+                        }
+                        else
+                        {
+                            $pase = true;
+                        }
                 }
             }
 
-            if($pase)
+            if($pase OR $pase_adm)
             {
                 session_start();
                 $_SESSION["usuario"] = $usuario;
@@ -146,9 +153,28 @@
         {
             try
             {
+                
                 $resultado = $this->PDOLocal->query($consulta);
                 $fila = $resultado->fetchAll(PDO::FETCH_OBJ);
                 return $fila;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
+
+        function admin()
+        {
+            try
+            {                
+                $consulta = "SELECT * FROM usuarios WHERE email_usuario = '{$_SESSION['usuario']}';";
+                $resultado = $this->PDOLocal->query($consulta);
+                while($ren = $resultado->fetch(PDO::FETCH_ASSOC))
+                {
+                $res = $ren['id_usuario'];
+                }
+                return $res;
             }
             catch(PDOException $e)
             {
