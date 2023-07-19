@@ -264,6 +264,14 @@
   }
   
   /* PRODUCTOS */
+  .imgprod
+  {
+    margin-top: 3rem;
+    margin-left: 20%;
+    height: 23rem;
+    width: 18rem;
+  }
+
   .products .card-img-top 
   {
     padding: 20px;
@@ -272,6 +280,7 @@
   .products .card .card-img-top img 
   {
     height: 25rem;
+    width: 20rem;
   }
   
   .products .card:hover img
