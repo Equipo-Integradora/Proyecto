@@ -117,17 +117,14 @@
         var nombre = document.getElementById('nombre').value;
         var correo = document.getElementById('correo').value;
         var telefono = document.getElementById('telefono').value;
-        
         if (nombre === '') {
             alert("Ingrese su nombre.");
             return false;
         }
-        
         if (correo === '') {
             alert("Ingrese un correo.");
             return false;
         }
-
         if (telefono === '') {
             alert("Ingrese su telefono.");
             return false;
