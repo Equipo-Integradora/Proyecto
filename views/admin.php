@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="../css/admins.css" />
     <title>Administrar</title>
+    <?php
+    include "../class/database.php";
+    $conexion = new database();
+    $conexion->conectarDB();
+    ?>
 </head>
 
 <body>
@@ -56,6 +61,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-fill me-2"></i>Editar perfil</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill me-2"></i> Configuracion</a></li>
+                                <!-- <li><hr class="drowpwon-divider"></li> -->
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-person-x-fill me-2"></i> cerrar sesion</a></li>
                             </ul>
                         </li>
@@ -78,26 +84,101 @@
 
                 <!-- CITAS RECIENTEMENTE AGENDADAS -->
                 <div class="row my-5">
-                    <h3 class="fs-4 mb-3">Citas recientemente agendadas</h3>
+                    <h3 class="fs-4 mb-3 fw-bold">Citas recientemente agendadas</h3>
                     <div class="col">
-                        AQUI VA LA TABLA
                         <!-- TABLA -->
+                        <?php
+                         $consulta = "SELECT * FROM sweet_beauty.`citas recientes`;";
+
+                         $tablacitas = $conexion->seleccionar($consulta);
+
+                         echo "<table class='table shadow-sm table-hover'>
+                             <thead>
+                               <tr>
+                                 <th>Cliente</th>
+                                 <th>Tipo de servicio</th>
+                                 <th>Fecha de la cita</th>
+                                 <th>Estatus</th>
+                               </tr>
+                             </thead>
+                             <tbody class='table-border-bottom-0'>";
+
+                             foreach($tablacitas as $reg)
+                             {
+                                echo "<tr>";
+                                echo "<td> $reg->Cliente</td>";
+                                echo "<td> $reg->Tipo_de_servicio</td>";
+                                echo "<td> $reg->Fecha_de_la_cita</td>";
+                                if ($reg->Estatus == "Aceptada")
+                                {
+                                    echo "<td><span class='badge text-bg-success'>$reg->Estatus</span></td>";
+                                }
+                                else if ($reg->Estatus == "Cancelada")
+                                {
+                                    echo "<td><span class='badge text-bg-danger'>$reg->Estatus</span></td>";
+                                }
+                                else if ($reg->Estatus == "Pendiente")
+                                {
+                                    echo "<td><span class='badge text-bg-secondary'>$reg->Estatus</span></td>";
+                                }
+                             }
+                             echo "</tbody>
+                             </table>";
+                        ?>
+                        <!-- FIN TABLA -->
                     </div>
                 </div>
 
                 <!-- ORDENES RECIENTES -->
-                <div class="row my-5">
-                    <h3 class="fs-4 mb-3">Ordenes recientes</h3>
+                <div class="row my-2">
+                    <h3 class="fs-4 mb-3 fw-bold">Ordenes recientes</h3>
                     <div class="col">
-                        AQUI VA LA TABLA
                         <!-- TABLA -->
+                        <?php
+                         $consulta = "SELECT * FROM sweet_beauty.`ventas recientes`;";
+
+                         $tablaventas = $conexion->seleccionar($consulta);
+
+                         echo "<table class='table shadow-sm table-hover'>
+                             <thead>
+                               <tr>
+                                 <th>ID orden</th>
+                                 <th>Cliente</th>
+                                 <th>Fecha de entrega</th>
+                                 <th>Estatus</th>
+                               </tr>
+                             </thead>
+                             <tbody class='table-border-bottom-0'>";
+
+                             foreach($tablaventas as $reg)
+                             {
+                                echo "<tr>";
+                                echo "<td> $reg->ID_venta</td>";
+                                echo "<td> $reg->Cliente</td>";
+                                echo "<td> $reg->fecha_entrega</td>";
+                                if ($reg->estatus == "Pagado")
+                                {
+                                    echo "<td><span class='badge text-bg-success'>$reg->estatus</span></td>";
+                                }
+                                else if ($reg->estatus == "Cancelado")
+                                {
+                                    echo "<td><span class='badge text-bg-danger'>$reg->estatus</span></td>";
+                                }
+                                else if ($reg->estatus == "Pendiente")
+                                {
+                                    echo "<td><span class='badge text-bg-secondary'>$reg->estatus</span></td>";
+                                }
+                             }
+                             echo "</tbody>
+                             </table>";
+                        ?>
+                        <!-- FIN DE LA TABLA -->
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
     </div>
 
     <!-- SCRIPTS -->
