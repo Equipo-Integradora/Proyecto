@@ -146,6 +146,17 @@
             }
         }
 
+
+        function CerrarSesion()
+        {
+            
+             session_start();
+             session_destroy();
+              header("Location: ../views/home.php");
+
+        }    
+
+
         function busca($consulta)
         {
             try
