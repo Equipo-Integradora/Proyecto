@@ -25,7 +25,7 @@
                         <form action="../scripts/verificar_login.php" method="post">
                         <div class="input-field">
                             <input type="text" class="input" name="usuario" required autocomplete="off">
-                            <label for="usuario">Usuario, Correo ó Número</label>
+                            <label for="usuario">Correo</label>
                         </div>
                         <div class="input-field">
                             <input type="password" class="input" name="contra" required>
