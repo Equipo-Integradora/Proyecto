@@ -17,7 +17,9 @@
 
         extract($_POST);
 
-        $db->verifica($usuario, $contra);
+        $consulta2 ="SELECT * FROM usuarios WHERE email_usuario = '$usuario';";
+
+        $db->verifica($usuario, $contra, $consulta2);
         $db->desconectarDB();
 
         ?>
