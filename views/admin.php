@@ -25,9 +25,9 @@
             <div class="list-group list-group-flush my-3">
                 <a href="#" class="list-group-item list-group-item-action second-text active"><i class="bi bi-house-heart-fill me-2"></i>Inicio</a>
                 
-                <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Citas</span></a>
+                <a href="#citas" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Citas</span></a>
 
-                <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Ordenes</span></a>
+                <a href="#ordenes" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Ordenes</span></a>
 
                 <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box2-heart-fill me-2"></i><span>Inventario</span></a>
 
@@ -85,7 +85,7 @@
 
                 <!-- CITAS RECIENTEMENTE AGENDADAS -->
                 <div class="row my-5">
-                    <h3 class="fs-4 mb-3 fw-bold">Citas recientemente agendadas</h3>
+                    <h3 id="citas" class="fs-4 mb-3 fw-bold">Citas recientemente agendadas</h3>
                     <div class="col">
                         <!-- TABLA -->
                         <?php
@@ -132,7 +132,7 @@
 
                 <!-- ORDENES RECIENTES -->
                 <div class="row my-2">
-                    <h3 class="fs-4 mb-3 fw-bold">Ordenes recientes</h3>
+                    <h3 id="ordenes" class="fs-4 mb-3 fw-bold">Ordenes recientes</h3>
                     <div class="col">
                         <!-- TABLA -->
                         <?php
