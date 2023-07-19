@@ -1,5 +1,19 @@
 <?php
 include "../templates/header.php";
+include "../class/database.php";
+
+    $conexion = new database();
+    $conexion->conectarDB();
+    
+    $consulta = "SELECT productos.nombre_producto, productos.precio_producto, detalle_productos.imagen_detalle_producto
+    FROM orden_venta INNER JOIN detalle_orden_venta ON orden_venta.id_venta = detalle_orden_venta.orden_venta_detalle_orden_FK
+    INNER JOIN detalle_productos ON detalle_productos.id_detalle_producto = detalle_orden_venta.producto_orden_venta_FK
+    INNER JOIN productos ON detalle_productos.detalle_producto_detalle_producto_FK = productos.id_producto
+    GROUP BY productos.nombre_producto, productos.precio_producto
+    ORDER BY detalle_orden_venta.cantidad_producto_orden_venta DESC
+    LIMIT 3;";
+
+    $tabla = $conexion->seleccionar($consulta);
 ?>
       <!-- BANNER -->
       <section class="banner">
@@ -60,69 +74,56 @@ include "../templates/header.php";
 
       <!-- PRODUCTOS -->
     <section class="products section-padding">
-        <h1 class="heading m-5"><span>Últimos </span>Productos</h1>
+        <h1 class="heading m-5">Lo más <span>Vendido </span></h1>
         <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
               <!-- INICIO ITEM-->
-                <div class="card h-100">
-                    <a href="../views/verproducto.php"><img src="../img/home/es5.jpg" class="card-img-top" alt="..."></a>
+              <?php
+              foreach ($tabla as $reg) 
+              { ?>
+
+              <!-- INICIO ITEM-->
+              
+            <div class="col">
+              <div class="card h-100">
+                    <a style="height: 500px; width:350px;" href="../views/verproducto.php"><img src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" class="imgprod card-img-top" alt="..."></a>
                         <div class="card-body text-center">
                           <div class="icons card-title">
                             <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
                           </div>
                           <div class="card-text">
-                          <a href="../views/verproducto.php">Esmalte H&M dorado</a>
+                          <a href="../views/verproducto.php">
+                            <?php
+                            $max_caracteres = 20;
+                            $nombre_producto = $reg->nombre_producto;
+
+                            
+                             if (strlen($nombre_producto) > $max_caracteres) {
+                                 echo substr($nombre_producto, 0, $max_caracteres) . '...';
+                             } else {
+                                 echo $nombre_producto;
+                            }
+                           ?>    
+                          </a>
                             <div class="price">
-                              $45.00
+                            <?php echo'$'.$reg->precio_producto; ?>
                           </div>
                           </div>
                         </div>
                   </div>
             </div>
                   <!-- END ITEM -->
-
-                <div class="col">
-                <div class="card h-100">
-                    <span class="aviso">-10%</span>
-                      <a href="../views/verproducto.php"><img src="../img/home/m1.jpg" class="card-img-top" alt="..."></a> 
-                      <div class="card-body text-center">
-                        <div class="icons card-title">
-                          <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-                        </div>
-                        <div class="card-text">
-                          <a href="../views/verproducto.php">Paleta de Sombras Cooky BT21</a>
-                          <div class="price">
-                              $369.00 <span>$410.00</span>
-                        </div>
-                        </div>
-                      </div>
-                </div>
-              </div>
-              <!-- END ITEM -->
-              <div class="col">
-              <div class="card h-100">
-                <a href="../views/verproducto.php"><img src="../img/home/es1.jpg" class="card-img-top" alt="..."></a>
-                    <div class="card-body text-center">
-                      <div class="icons card-title">
-                        <a href="#" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
-                      </div>
-                      <div class="card-text">
-                      <a href="../views/verproducto.php">Esmalte H&M rosa</a>
-                        <div class="price">
-                          $45.00
-                      </div>
-                      </div>
-                    </div>
-              </div>
-            </div>
-            <!-- END ITEM -->
+                <?php
+              }
+                  $conexion->desconectarDB();
+                  ?>
 
             </div>
         </div>
     </div>
         </section>
       <!-- FIN DE PRODUCTOS -->
+   
 
       <!-- FOOTER -->
 <?php
