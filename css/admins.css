@@ -1,0 +1,168 @@
+:root 
+{
+  --main-bg-color: #e84393;
+  --main-text-color: #e84393;
+  --second-text-color: #333;
+  --second-bg-color: #c1efde;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
+}
+
+.primary-text 
+{
+  color: var(--main-text-color);
+}
+
+.second-text 
+{
+  color: var(--second-text-color);
+}
+
+.primary-bg 
+{
+  background-color: var(--main-bg-color);
+}
+
+.secondary-bg 
+{
+  background-color: var(--second-bg-color);
+}
+
+.rounded-full 
+{
+  border-radius: 100%;
+}
+
+#wrapper 
+{
+  overflow-x: hidden;
+  background-color: #f5f5f9;
+}
+
+#sidebar-wrapper 
+{
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading 
+{
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .sidebar-heading span
+{
+  color: #e84393;
+}
+
+#sidebar-wrapper .sidebar-heading h3
+{
+  color:#333;
+	font-size: 1.5rem;
+	margin:0px;
+	transition:all 0.5s ease;
+	font-weight: bold;
+}
+
+#sidebar-wrapper .list-group 
+{
+  width: 15rem;
+}
+
+#page-content-wrapper 
+{
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper 
+{
+  margin-left: 0;
+}
+
+#menu-toggle 
+{
+  cursor: pointer;
+}
+
+.list-group-item 
+{
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group a:hover
+{
+  color: var(--main-text-color);
+}
+
+.text-center h3
+{
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.list-group-item.active 
+{
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+.dropdown-menu a:hover
+{
+  color: var(--main-text-color);
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) 
+{
+  #sidebar-wrapper 
+  {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper 
+  {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper 
+  {
+    margin-left: -15rem;
+  }
+}
+
+/* RELOJ */
+.container-clock 
+{
+  text-align: center;
+}
+
+.container-clock h1 
+{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.container-clock p 
+{
+  font-size: 1rem;
+}
