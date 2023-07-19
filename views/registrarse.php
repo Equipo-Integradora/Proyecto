@@ -117,7 +117,7 @@
         var nombre = document.getElementById('nombre').value;
         var correo = document.getElementById('correo').value;
         var telefono = document.getElementById('telefono').value;
-        var fecha = new Date(document.getElementById('fecha').value);
+        var fecha = document.getElementById('fecha').value;
 
         // Validación de campos vacíos
         if (nombre === '') {
@@ -152,7 +152,7 @@
         }
 
         // Validación de fecha de nacimiento
-        if (!validarFechaNacimiento(!fecha)) {
+        if (!validarFechaNacimiento(fecha)) {
             return false;
         }
 
