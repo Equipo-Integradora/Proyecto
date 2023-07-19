@@ -193,7 +193,7 @@
         }
         
       }else{
-          alert("Apoco chi tilin?");
+          alert("Ingrese una fecha adecuada.");
           return false;
         }
 
