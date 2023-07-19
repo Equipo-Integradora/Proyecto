@@ -1,7 +1,7 @@
 const time = document.getElementById('time');
 const date = document.getElementById('date');
 
-const monthNames = ["Enero", "Febreri", "Marzo", "Abril", "Mayo", "Junio",
+const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre"
 ];
 
