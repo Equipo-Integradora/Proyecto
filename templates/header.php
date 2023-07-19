@@ -16,16 +16,6 @@
 <body>
     <?php
     session_start();
-    if(isset($_SESSION["usuario"]))
-    {
-      include '../class/database.php';
-      $db = new Database();
-      $db->conectarDB();
-  
-      $admin = $db->admin();
-      echo $admin;
-    }
-    
     ?>
     <!-- INICIO DE LA BARRA DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -98,12 +88,9 @@
                       </li>
                       <li>
                             <?php
-                            if(isset($_SESSION["usuario"]))
+                            if(isset($_SESSION["admin"]))
                             {
-                              if ($admin == 0)
-                              {
                                   echo "<a class='dropdown-item fs-6 ' href='../views/admin.php'>Administrar</a>";
-                              }
                             }
                                 
                             ?>
