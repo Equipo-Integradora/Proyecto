@@ -76,24 +76,25 @@
                 session_start();         
                 $_SESSION["usuario"] = $datos['nombre_usuario'];
                 $_SESSION["id"] = $datos['id_usuario'];
-                if ($_SESSION["id"]=0) {
+                $_SESSION["admin"] = false;
+                if ($_SESSION["id"]=="0") {
                     $_SESSION["admin"] = true;
                 }
-                $_SESSION["admin"] = false;
                 echo "<div class='alert alert-succes'>";
                 echo "<h2 align='center'> Bienvenido ".$_SESSION["usuario"]."</h2>";
                 echo "</div>";
-                if(!$_SESSION["admin"])
+                if($_SESSION["admin"])
                 {
-                header("refresh:2, ../views/home.php");
+                    header("refresh:2, ../views/admin.php");
                 }else
                 {
-                    header("../views/admin.php");
+                    unset($_SESSION["admin"]);
+                    header("refresh:2, ../views/home.php");
                 }
             }else
             {
                 echo "<div class='alert alert-danger'>";
-                echo "<h2 aling='center'>Un dato o ambos se ha ingresado incorrectamente</h2>";
+                echo "<h2 aling='center'>Correo ó Contraseña incorrecto</h2>";
                 echo "</div>";
                 header("refresh:2, ../views/login.php");
             }
@@ -171,6 +172,8 @@
                 echo $e->getMessage();
             }
         }
+
+        
 
        
 
