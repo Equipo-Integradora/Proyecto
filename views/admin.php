@@ -59,10 +59,11 @@
                                 <i class="fas fa-user me-2"></i>Username
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-fill me-2"></i>Editar perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-fill me-2"></i>Editar Perfil</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill me-2"></i> Configuracion</a></li>
+                                <li><a class="dropdown-item" href="../views/home.php"><i class="bi bi-house-heart me-2"></i> Home</a></li>
                                 <!-- <li><hr class="drowpwon-divider"></li> -->
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person-x-fill me-2"></i> cerrar sesion</a></li>
+                                <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="bi bi-person-x-fill me-2"></i> Cerrar Sesion</a></li>
                             </ul>
                         </li>
                     </ul>
