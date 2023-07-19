@@ -98,7 +98,7 @@
                             <input type="password" class="input" name="passconf" id="passconf" required autocomplete="off">
                         </div>
                         <div class="input-field">
-                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();">
+                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();cambiarTextoBoton();validarFechaGenero();">
                         </div>
                         <div class="alert" style="margin-bottom:1rem;">
                             <span>Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aqui</a></span>
@@ -113,10 +113,13 @@
 <!-- SCRIPTS -->
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script>
-    function validarCamposLlenos() {
+          function validarCamposLlenos() {
         var nombre = document.getElementById('nombre').value;
         var correo = document.getElementById('correo').value;
         var telefono = document.getElementById('telefono').value;
+        var fecha = new Date(document.getElementById('fecha').value);
+
+        // Validación de campos vacíos
         if (nombre === '') {
             alert("Ingrese su nombre.");
             return false;
@@ -126,10 +129,14 @@
             return false;
         }
         if (telefono === '') {
-            alert("Ingrese su telefono.");
+            alert("Ingrese su teléfono.");
             return false;
         }
-        
+        if (fecha === '') {
+            alert("Ingrese la fecha de nacimiento")
+            return false;
+        }
+
         const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
         const isValid = expresion.test(correo);
         if (!isValid) {
@@ -143,43 +150,32 @@
             alert("Por favor, ingrese un número de teléfono de 10 dígitos.");
             return false;
         }
-        
-        const isValidFechaGenero = validarFechaGenero();
-        if (!isValidFechaGenero) {
-            alert
+
+        // Validación de fecha de nacimiento
+        if (!validarFechaNacimiento(fecha)) {
+            return false;
+        }
+
+        // Validación de contraseñas
+        if (!validarContrasenaIgual()) {
             return false;
         }
 
         mostrarCamposContraseña();
-
-        if (document.getElementById('pass-group').classList.contains('hidden')) {
-            cambiarTextoBoton();
-        }
+        cambiarTextoBoton();
 
         return true;
     }
 
-    function validarFechaGenero() {
-        var fecha = new Date(document.getElementById('fecha').value);
-
+    function validarFechaNacimiento(fecha) {
         if (!fecha) {
             alert("Por favor, seleccione una fecha de nacimiento.");
             return false;
         }
 
-        
         var fechaActual = new Date();
-
-        
         var fechaMin = new Date(fechaActual);
         fechaMin.setFullYear(fechaActual.getFullYear() - 18);
-
-        
-        if(fecha === '')
-        {
-            alert("Ingrese una fecha");
-        }
-        
 
         if (fecha > fechaMin) {
             alert("Solo se permiten mayores de edad.");
@@ -196,6 +192,18 @@
         return true;
     }
 
+    function validarContrasenaIgual() {
+        var pass = document.getElementById('pass').value;
+        var passconf = document.getElementById('passconf').value;
+        
+        if (pass !== passconf) {
+            alert("Las contraseñas no coinciden");
+            return false;
+        }
+        
+        return true;
+    }
+
     function mostrarCamposContraseña() {
         document.getElementById('nombre').classList.add('hidden');
         document.getElementById('nombreText').classList.add('hidden');
@@ -209,18 +217,6 @@
         document.getElementById('passconf-group').classList.remove('hidden');
     }
 
-    function validarContraseña() {
-        var pass = document.getElementById('pass').value;
-        var passconf = document.getElementById('passconf').value;
-        
-        if (pass !== passconf) {
-            alert("Las contraseñas no coinciden");
-            return false;
-        }
-        
-        return true;
-    }
-    
     function cambiarTextoBoton() {
         document.getElementById('submitButton').value = 'Registrarse';
     }
