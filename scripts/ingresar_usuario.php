@@ -15,8 +15,7 @@
 
         extract($_POST);
 
-        $hash = password_hash($pass, PASSWORD_DEFAULT);
-
+        $hash = password_hash($pass, PASSWORD_DEFAULT);        
         $query  = "Insert Into usuarios(nombre_usuario, contraseña_usuario, email_usuario, telefono_usuario, fecha_nacimiento_usuario, sexo_usuario) 
         Values ('$nombre', '$hash', '$correo', '$telefono', '$fecha', '$genero')";
 
