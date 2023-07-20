@@ -12,12 +12,15 @@ include "../templates/sidebar.php";
         <label  class="form-label"><h3 class="fw-bold">Buscar por cliente</h3></label>
         <input type="text" name="nombre_usuario" class="form-control mt-2">
     </div>
+
+
         <div class="col-12">
+        <label  class="form-label"><h3 class="fw-bold">Filtrar por</h3></label>
         <table class="table">
             <thead>
                <tr>
                <th>
-                   <h3 class="fw-bold">Estado</h3>
+                   <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2" >
                    <option value="">Seleccionar...</option>
                     <option value="Aceptada">Aceptadas</option>
@@ -26,11 +29,11 @@ include "../templates/sidebar.php";
                     </select>
                 </th>
                 <th>
-                    <h3 class="fw-bold">Fecha Desde</h3>
+                    <p class="fw-bold">Fecha Desde</p>
                     <input type="date" name="fecha_desde" class="form-control mt-2">
                 </th>
                 <th>
-                    <h3 class="fw-bold">Fecha Hasta</h3>
+                    <p class="fw-bold">Fecha Hasta</p>
                     <input type="date" name="fecha_hasta" class="form-control mt-2">
                 </th>
                 <th>
