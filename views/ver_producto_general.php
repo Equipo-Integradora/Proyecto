@@ -73,13 +73,17 @@
 foreach ($tabla as $reg) { ?>
     <div class="col-4" style="margin-top: 5px;margin-bottom:5px;">
     <div class="card" style="height: 400px;">
-    <img class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" 
+    <a style="margin: auto;" href="../views/verproducto.php"><img href class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" 
     
-    alt="...">
+    alt="..."></a>
     <div class="card-body text-center">
     <div class="icons card-title"> </div>
     <div class="card-text">
-    <h4 class="product-title"><?php echo $reg->nombre_producto; ?> </h4>
+    
+    <a href="../views/verproducto.php?id=' . $reg->id_producto . '"><h4 class="product-title"><?php echo $reg->nombre_producto; ?> </h4></a>
+
+
+
     <div class="price precio">
    <?php echo'$'.$reg->precio_producto; ?>
     </div>

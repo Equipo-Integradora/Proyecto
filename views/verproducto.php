@@ -9,6 +9,18 @@
     <title>Document</title>
 </head>
 <body>
+
+<?php
+    include "../templates/header.php";
+    include "../class/database.php";
+
+    $conexion = new database();
+    $conexion->conectarDB();
+    ?>
+
+
     <h2>Aquí saldra el producto que seleccionaste</h2>
+   
+   
 </body>
 </html>
