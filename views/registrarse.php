@@ -119,7 +119,7 @@
         var telefono = document.getElementById('telefono').value;
         var fecha = document.getElementById('fecha').value;
 
-        // Validación de campos vacíos
+
         if (nombre === '') {
             alert("Ingrese su nombre.");
             return false;
@@ -140,18 +140,18 @@
         const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
         const isValid = expresion.test(correo);
         if (!isValid) {
-            alert("Por favor, ingrese un correo válido.");
+            alert("Ingrese un correo válido.");
             return false;
         }
 
         const expresionTelefono = /^[0-9]{10}$/;
         const isValidTelefono = expresionTelefono.test(telefono);
         if (!isValidTelefono) {
-            alert("Por favor, ingrese un número de teléfono de 10 dígitos.");
+            alert("Ingrese un número de teléfono de 10 dígitos.");
             return false;
         }
 
-        // Validación de fecha de nacimiento
+      
         if (!validarFechaNacimiento(fecha)) {
             return false;
         }
@@ -166,20 +166,35 @@
 
         return true;
     }
-
+        
     function validarFechaNacimiento(fecha) {
         if (!fecha) {
-            alert("Por favor, seleccione una fecha de nacimiento.");
+            alert("Seleccione una fecha de nacimiento.");
             return false;
         }
 
+        
+        var fechaSeleccionada = new Date(fecha);
         var fechaActual = new Date();
-        var fechaMin = new Date(fechaActual);
-        fechaMin.setFullYear(fechaActual.getFullYear() - 18);
 
-        if (fecha > fechaMin) {
-            alert("Solo se permiten mayores de edad.");
-            return false;
+      
+      var fechaMin = new Date();
+      var fechaMax = new Date();
+      fechaMin.setFullYear(fechaActual.getFullYear() - 18);
+      fechaMax.setFullYear(fechaActual.getFullYear() - 100);
+
+      
+      if (fechaSeleccionada >= fechaMax) 
+      {;
+          if (fechaSeleccionada >= fechaMin) 
+        {;
+          alert("Solo se permiten mayores de edad.");
+          return false;
+        }
+        
+      }else{
+          alert("Ingrese una fecha adecuada.");
+          return false;
         }
 
         var genero = document.querySelector('input[name="genero"]:checked');

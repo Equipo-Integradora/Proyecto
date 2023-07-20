@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php
+<?php
+include "../templates/header.php";
+?>
+
+<div class="container">
+<?php
     session_start();
     if(isset($_SESSION["usuario"]))
     {
         ?>
-    <h2>Aquí será la pestaña de agendar cita</h2>
+    <h2>Aquí será la pestaña de agendar cita <i class="bi bi-archive"></i></h2>
+
+
+
+
+
+
+        <div id="calendar"></div>
+
     <?php
     
     }
@@ -23,5 +25,10 @@
         header("Location: ../views/login.php");
     }
     ?>
-</body>
-</html>
+</div>
+
+
+
+<?php
+include "../templates/footer.php";
+?>
