@@ -29,7 +29,7 @@
                 
                 <a href="../scripts/admincita.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Citas</span></a>
 
-                <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-tags-fill me-2"></i><span>Ordenes</span></a>
+                <a href="../scripts/adminordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-tags-fill me-2"></i><span>Ordenes</span></a>
 
                 <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box2-heart-fill me-2"></i><span>Inventario</span></a>
 
