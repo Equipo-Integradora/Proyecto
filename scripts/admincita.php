@@ -120,7 +120,7 @@ include "../templates/sidebar.php";
                                 echo '</ul>';
                                 echo '</div>';
                                 echo '</td>';
-                                echo "<td> $reg->precio_total_cita</td>";
+                                echo "<td> $$reg->precio_total_cita</td>";
                                 echo "<td> $reg->fecha_creacion_registro_cita</td>";
                                 echo "<td> $reg->fecha_cita_registro_cita</td>";
                                 echo "<td> $reg->hora_registro_cita</td>";
