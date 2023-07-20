@@ -56,7 +56,7 @@ include "../templates/sidebar.php";
     $citas = "SELECT registros_cita.id_registro_cita, 
     usuarios.nombre_usuario, 
     GROUP_CONCAT(tipos_servicio.nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-    SUM(detalles_registros_cita.precio_registro_cita) AS precio_total_cita,
+    SUM(detalles_registros_cita.precio_registro_cita + tipos_servicio.precio_tipo_servicio) AS precio_total_cita,
     registros_cita.fecha_creacion_registro_cita,
     registros_cita.fecha_cita_registro_cita,
     registros_cita.hora_registro_cita,
@@ -81,8 +81,8 @@ include "../templates/sidebar.php";
     $citas .= " GROUP BY registros_cita.id_registro_cita";
     $tablac = $conexion->seleccionar($citas);
     ?>
-                    <div class="table-responsive container">
-                    <table class="table table-hover table-borderless align-middle">
+                    <div class="table-responsive container-fluid">
+                    <table class="table shadow-sm table-hover">
                         <thead>
                         <tr>
                                <th>ID cita</th>
@@ -96,7 +96,7 @@ include "../templates/sidebar.php";
                                <th>Opciones</th>
                                </tr>
                         </thead>
-                        <tbody class="">
+                        <tbody class="table-border-bottom-0">
                             <?php
                             if (empty($tablac)) 
                             {
