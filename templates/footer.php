@@ -28,9 +28,10 @@
                     <div class="single-box">
                         <h2>Información de contacto</h2>
                         <ul>
-                        <li><a href="https://api.whatsapp.com/send?phone=8713719607">WhatsApp</a></li>
-                        <li><a href="mailto:sweetbeautyutt@gmail.com">SweetBeautyUtt@gmail.com</a></li>
-                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Ubicacion</a></li>
+                        <li><a href="https://www.facebook.com/Dulcsalon?mibextid=ZbWKwL">Facebook <i class="bi bi-facebook"></i></a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=8713719607">WhatsApp <i class="bi bi-whatsapp"></i></a></li>
+                        <li><a href="mailto:sweetbeautyutt@gmail.com">SweetBeautyUtt@gmail.com <i class="bi bi-envelope-heart"></i></a></li>
+                        <li><a href="https://www.google.com/maps?q=25.602931834354884,-103.37203726085112">Ubicacion <i class="bi bi-geo-alt"></i></a></li>
                     </ul>
                         <p></p>
                         <a href=""></a>
@@ -40,7 +41,8 @@
                 </div>
             </div>
         </div>
-        <div class="credit m-5 text-center">Creado por <span>Carlos, José, Erick, Lizeth, Fernando</span> | all rigth reserve.</div>
+        <div class="credit text-center">Creado por <span>Carlos, José, Erick, Lizeth, Fernando</span> | all rigth reserve.</div>
+        <div style="font-size: 9px;" class="m-1 text-center"><i class="bi bi-c-circle"></i>2023-2023, SweetBeauty.com, Inc. o sus afiliados.</div>
     </footer>
       <!-- FIN DE FOOTER -->
 
