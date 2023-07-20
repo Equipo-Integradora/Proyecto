@@ -1,0 +1,64 @@
+/* Estilos para el calendario */
+#calendar {
+  max-width: 600px;
+  margin: 0 auto left;
+}
+
+/* Estilo para el encabezado del calendario */
+.fc-toolbar {
+  background-color: #f5f5f5;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para el título del calendario */
+.fc-toolbar-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Estilo para los botones de navegación */
+.fc-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.fc-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para los botones de navegación cuando están deshabilitados */
+.fc-button-disabled {
+  background-color: #ddd;
+  color: #888;
+  cursor: default;
+}
+
+/* Estilo para los días del calendario */
+.fc-daygrid-day {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f5f5f5;
+}
+
+/* Estilo para el día seleccionado */
+.fc-daygrid-day.fc-day-today {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Estilo para el fondo de los días fuera del mes actual */
+.fc-daygrid-day.fc-day-other {
+  background-color: #f5f5f5;
+  color: #ccc;
+}
