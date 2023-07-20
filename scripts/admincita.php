@@ -53,11 +53,18 @@ include "../templates/sidebar.php";
     if ($_POST)
     { ?>
     <?php
-    $citas = "SELECT * FROM tipos_servicio INNER JOIN detalles_registros_cita 
-    ON detalles_registros_cita.tipo_servicio_registro_cita_FK = tipos_servicio.id_tipo_servicio 
-    INNER JOIN registros_cita 
-    ON detalles_registros_cita.registro_cita_detalle_registro_FK = registros_cita.id_registro_cita
+    $citas = "SELECT registros_cita.id_registro_cita, 
+    usuarios.nombre_usuario, 
+    GROUP_CONCAT(tipos_servicio.nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
+    SUM(detalles_registros_cita.precio_registro_cita) AS precio_total_cita,
+    registros_cita.fecha_creacion_registro_cita,
+    registros_cita.fecha_cita_registro_cita,
+    registros_cita.hora_registro_cita,
+    registros_cita.estado_registro_cita
+    FROM registros_cita 
     INNER JOIN usuarios ON usuarios.id_usuario = registros_cita.cliente_registro_cita_FK 
+    LEFT JOIN detalles_registros_cita ON detalles_registros_cita.registro_cita_detalle_registro_FK = registros_cita.id_registro_cita
+    LEFT JOIN tipos_servicio ON detalles_registros_cita.tipo_servicio_registro_cita_FK = tipos_servicio.id_tipo_servicio 
     WHERE 1 = 1";
 
     if (!empty($estado)) {
@@ -71,7 +78,7 @@ include "../templates/sidebar.php";
     if (!empty($nombre_usuario)) {
         $citas .= " AND usuarios.nombre_usuario LIKE '%$nombre_usuario%'";
     }
-
+    $citas .= " GROUP BY registros_cita.id_registro_cita";
     $tablac = $conexion->seleccionar($citas);
     ?>
                     <div class="table-responsive container">
@@ -102,8 +109,18 @@ include "../templates/sidebar.php";
                                 echo "<tr>";
                                 echo "<td> $reg->id_registro_cita</td>";
                                 echo "<td> $reg->nombre_usuario</td>";
-                                echo "<td> $reg->nombre_tipo_servicio</td>";
-                                echo "<td> $reg->precio_registro_cita</td>";
+                                echo '<td>';
+                                echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
+                                echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
+                                $servicios = explode(', ', $reg->tipos_servicio);
+                                echo '<ul>';
+                                foreach ($servicios as $servicio) {
+                                    echo '<li>' . $servicio . '</li>';
+                                }
+                                echo '</ul>';
+                                echo '</div>';
+                                echo '</td>';
+                                echo "<td> $reg->precio_total_cita</td>";
                                 echo "<td> $reg->fecha_creacion_registro_cita</td>";
                                 echo "<td> $reg->fecha_cita_registro_cita</td>";
                                 echo "<td> $reg->hora_registro_cita</td>";
