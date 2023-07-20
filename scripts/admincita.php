@@ -37,8 +37,8 @@ include "../templates/sidebar.php";
                     <input type="date" name="fecha_hasta" class="form-control mt-2">
                 </th>
                 <th>
-                    <div class="d-grid gap-2 col-2 mx-auto">
-                    <button class="btn btn-primary btn-lg" type="submit">Ver</button>
+                    <div class="d-grid gap-2 mx-auto">
+                    <button class="btn boton" type="submit">Ver</button>
                     </div>
                 </th>
                </tr>

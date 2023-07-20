@@ -166,3 +166,20 @@
 {
   font-size: 1rem;
 }
+
+.boton
+{
+  display: inline-block;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.boton:hover 
+{
+  background: var(--main-bg-color);
+  color: #fff;
+}
