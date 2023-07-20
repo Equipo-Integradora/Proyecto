@@ -53,32 +53,29 @@ include "../templates/sidebar.php";
     if ($_POST)
     { ?>
     <?php
-    $citas = "SELECT registros_cita.id_registro_cita, 
-    usuarios.nombre_usuario, 
-    GROUP_CONCAT(tipos_servicio.nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-    SUM(detalles_registros_cita.precio_registro_cita + tipos_servicio.precio_tipo_servicio) AS precio_total_cita,
-    registros_cita.fecha_creacion_registro_cita,
-    registros_cita.fecha_cita_registro_cita,
-    registros_cita.hora_registro_cita,
-    registros_cita.estado_registro_cita
-    FROM registros_cita 
-    INNER JOIN usuarios ON usuarios.id_usuario = registros_cita.cliente_registro_cita_FK 
-    LEFT JOIN detalles_registros_cita ON detalles_registros_cita.registro_cita_detalle_registro_FK = registros_cita.id_registro_cita
-    LEFT JOIN tipos_servicio ON detalles_registros_cita.tipo_servicio_registro_cita_FK = tipos_servicio.id_tipo_servicio 
+    $citas = "SELECT id_registro_cita, 
+    nombre_usuario, 
+    GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
+    SUM(precio_registro_cita + precio_tipo_servicio) AS precio_total_cita,
+    fecha_creacion_registro_cita,
+    fecha_cita_registro_cita,
+    hora_registro_cita,
+    estado_registro_cita
+    FROM sweet_beauty.`todas las citas`
     WHERE 1 = 1";
 
     if (!empty($estado)) {
-        $citas .= " AND registros_cita.estado_registro_cita = '$estado'";
+        $citas .= " AND estado_registro_cita = '$estado'";
     }
 
     if (!empty($fecha_desde) && !empty($fecha_hasta)) {
-        $citas .= " AND registros_cita.fecha_creacion_registro_cita BETWEEN '$fecha_desde' AND '$fecha_hasta'";
+        $citas .= " AND fecha_creacion_registro_cita BETWEEN '$fecha_desde' AND '$fecha_hasta'";
     }
 
     if (!empty($nombre_usuario)) {
-        $citas .= " AND usuarios.nombre_usuario LIKE '%$nombre_usuario%'";
+        $citas .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
     }
-    $citas .= " GROUP BY registros_cita.id_registro_cita";
+    $citas .= " GROUP BY id_registro_cita";
     $tablac = $conexion->seleccionar($citas);
     ?>
                     <div class="table-responsive container-fluid">
