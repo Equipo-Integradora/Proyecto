@@ -141,7 +141,7 @@ include "../templates/sidebar.php";
                                     echo "<td> $$reg->precio_total</td>";
                                 }
                                 echo "<td> $reg->fecha_creacion_orden_venta</td>";
-                                if ($reg->fecha_entrega_orden_venta == '' or $reg->fecha_entrega_orden_venta == "0000-00-00")
+                                if ($reg->fecha_entrega_orden_venta == "" OR $reg->fecha_entrega_orden_venta == "0000-00-00")
                                 {
                                     echo "<td>Sin especificar fecha</td>";
                                 }
