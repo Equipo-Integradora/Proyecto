@@ -78,6 +78,7 @@ include "../templates/sidebar.php";
     if (!empty($nombre_usuario)) {
         $citas .= " AND usuarios.nombre_usuario LIKE '%$nombre_usuario%'";
     }
+
     $citas .= " GROUP BY registros_cita.id_registro_cita";
     $tablac = $conexion->seleccionar($citas);
     ?>
