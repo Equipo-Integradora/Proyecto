@@ -6,7 +6,7 @@ include "../templates/sidebar.php";
         <h3 class="m-0">Citas</h3>
     </div>
     
-    <div class="container-fluid px-4">
+    <div class="container-fluid px-4 p-3">
     <form method="post">
     <div class="mb-3 col-6">
         <label  class="form-label"><h3 class="fw-bold">Buscar por cliente</h3></label>
@@ -22,7 +22,6 @@ include "../templates/sidebar.php";
                <th>
                    <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2" >
-                   <option value="">Seleccionar...</option>
                     <option value="Aceptada">Aceptadas</option>
                     <option value="Cancelada">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>

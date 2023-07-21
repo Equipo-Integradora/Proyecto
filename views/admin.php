@@ -67,7 +67,7 @@ include "../templates/sidebar.php"
                     <div class="table-responsive">
                         <!-- TABLA -->
                         <?php
-                         $consulta = "SELECT * FROM sweet_beauty.`ventas recientes`;";
+                         $consulta = "SELECT * FROM sweet_beauty.`ventas recientes`";
 
                          $tablaventas = $conexion->seleccionar($consulta);
 

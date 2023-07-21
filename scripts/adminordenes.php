@@ -6,7 +6,7 @@ include "../templates/sidebar.php";
         <h3 class="m-0">Ordenes de venta</h3>
     </div>
     
-    <div class="container-fluid px-4">
+    <div class="container-fluid px-4 p-3">
     <form method="post">
     <div class="mb-3 col-6">
         <label  class="form-label"><h3 class="fw-bold">Buscar por cliente</h3></label>
@@ -22,7 +22,6 @@ include "../templates/sidebar.php";
                <th>
                    <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2" >
-                   <option value="">Seleccionar...</option>
                     <option value="Pagado">Pagadas</option>
                     <option value="Cancelado">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>
@@ -54,7 +53,7 @@ include "../templates/sidebar.php";
     if ($_POST)
     { ?>
     <?php
-    $citas = "SELECT
+    $ordenes = "SELECT
     id_venta,
     nombre_usuario,
     GROUP_CONCAT(nombre_producto SEPARATOR ', ') AS productos,
@@ -67,18 +66,18 @@ include "../templates/sidebar.php";
     WHERE 1 = 1";
 
     if (!empty($estado)) {
-        $citas .= " AND estado_orden_venta = '$estado'";
+        $ordenes .= " AND estado_orden_venta = '$estado'";
     }
 
     if (!empty($fecha_desde) && !empty($fecha_hasta)) {
-        $citas .= " AND fecha_creacion_orden_venta BETWEEN '$fecha_desde' AND '$fecha_hasta'";
+        $ordenes .= " AND fecha_creacion_orden_venta BETWEEN '$fecha_desde' AND '$fecha_hasta'";
     }
 
     if (!empty($nombre_usuario)) {
-        $citas .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
+        $ordenes .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
     }
-    $citas .= " GROUP BY id_venta";
-    $tablac = $conexion->seleccionar($citas);
+    $ordenes .= " GROUP BY id_venta";
+    $tablac = $conexion->seleccionar($ordenes);
     ?>
                     <div class="table-responsive container-fluid">
                     <table class="table shadow-sm table-hover">

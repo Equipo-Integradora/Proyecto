@@ -31,11 +31,9 @@
 
                 <a href="../scripts/adminordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-tags-fill me-2"></i><span>Ordenes</span></a>
 
-                <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-search-heart-fill me-2"></i><span>Consultar orden</span></a>
+                <a href="../scripts/consultarordenesa.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-search-heart-fill me-2"></i><span>Consultar orden</span></a>
 
                 <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box2-heart-fill me-2"></i><span>Inventario</span></a>
-
-                <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-people-fill me-2"></i><span>Clientes</span></a>
                 
                 <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Reportes</span></a>
             </div>
