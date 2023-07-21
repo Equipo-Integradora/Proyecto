@@ -57,7 +57,7 @@ include "../templates/sidebar.php";
     id_venta,
     nombre_usuario,
     GROUP_CONCAT(nombre_producto SEPARATOR ', ') AS productos,
-    cantidad_producto_orden_venta,
+    SUM(cantidad_producto_orden_venta) AS cantidad_total,
     SUM(precio_producto * cantidad_producto_orden_venta) AS precio_total,
     fecha_creacion_orden_venta,
     fecha_entrega_orden_venta,
@@ -123,13 +123,13 @@ include "../templates/sidebar.php";
                                 echo '</ul>';
                                 echo '</div>';
                                 echo '</td>';
-                                if ($reg->cantidad_producto_orden_venta == 0 OR $reg->cantidad_producto_orden_venta == "")
+                                if ($reg->cantidad_total == 0 OR $reg->cantidad_total == "")
                                 {
                                     echo "<td class='text-center'> Sin cantidad </td>";
                                 }
                                 else
                                 {
-                                    echo "<td class='text-center'> $reg->cantidad_producto_orden_venta</td>";
+                                    echo "<td class='text-center'> $reg->cantidad_total</td>";
                                 }
                                 if ($reg->precio_total == 0 OR $reg->precio_total == "")
                                 {
