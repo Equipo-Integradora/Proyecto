@@ -3,7 +3,7 @@ include "../templates/sidebar.php";
 ?>
 
     <div class="text-center">
-        <h3 class="m-0">Citas</h3>
+        <h3 class="m-0">Ordenes de venta</h3>
     </div>
     
     <div class="container-fluid px-4">
@@ -23,9 +23,10 @@ include "../templates/sidebar.php";
                    <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2" >
                    <option value="">Seleccionar...</option>
-                    <option value="Aceptada">Aceptadas</option>
-                    <option value="Cancelada">Canceladas</option>
+                    <option value="Pagado">Pagadas</option>
+                    <option value="Cancelado">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>
+                    <option value="Caducado">Caducadas</option>
                     </select>
                 </th>
                 <th>
@@ -53,42 +54,43 @@ include "../templates/sidebar.php";
     if ($_POST)
     { ?>
     <?php
-    $citas = "SELECT id_registro_cita, 
-    nombre_usuario, 
-    GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-    SUM(precio_registro_cita + precio_tipo_servicio) AS precio_total_cita,
-    fecha_creacion_registro_cita,
-    fecha_cita_registro_cita,
-    hora_registro_cita,
-    estado_registro_cita
-    FROM sweet_beauty.`todas las citas`
+    $citas = "SELECT
+    id_venta,
+    nombre_usuario,
+    GROUP_CONCAT(nombre_producto SEPARATOR ', ') AS productos,
+    cantidad_producto_orden_venta,
+    SUM(precio_producto * cantidad_producto_orden_venta) AS precio_total,
+    fecha_creacion_orden_venta,
+    fecha_entrega_orden_venta,
+    estado_orden_venta
+    FROM sweet_beauty.`todas las ordenes`
     WHERE 1 = 1";
 
     if (!empty($estado)) {
-        $citas .= " AND estado_registro_cita = '$estado'";
+        $citas .= " AND estado_orden_venta = '$estado'";
     }
 
     if (!empty($fecha_desde) && !empty($fecha_hasta)) {
-        $citas .= " AND fecha_creacion_registro_cita BETWEEN '$fecha_desde' AND '$fecha_hasta'";
+        $citas .= " AND fecha_creacion_orden_venta BETWEEN '$fecha_desde' AND '$fecha_hasta'";
     }
 
     if (!empty($nombre_usuario)) {
         $citas .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
     }
-    $citas .= " GROUP BY id_registro_cita";
+    $citas .= " GROUP BY id_venta";
     $tablac = $conexion->seleccionar($citas);
     ?>
                     <div class="table-responsive container-fluid">
                     <table class="table shadow-sm table-hover">
                         <thead>
                         <tr>
-                               <th>ID cita</th>
+                               <th>ID venta</th>
                                <th>Cliente</th>
-                               <th>Tipo de servicio</th>
-                               <th>Precio</th>
-                               <th>Fecha de registro</th>
-                               <th>Fecha de la cita</th>
-                               <th>Hora de la cita</th>
+                               <th>Productos</th>
+                               <th>Cantidad</th>
+                               <th>Precio total</th>
+                               <th>Fecha de compra</th>
+                               <th>Fecha de entrega</th>
                                <th>Estado</th>
                                <th>Opciones</th>
                                </tr>
@@ -104,34 +106,64 @@ include "../templates/sidebar.php";
                                 foreach($tablac as $reg)
                             {
                                 echo "<tr>";
-                                echo "<td> $reg->id_registro_cita</td>";
+                                echo "<td> $reg->id_venta</td>";
                                 echo "<td> $reg->nombre_usuario</td>";
                                 echo '<td>';
-                                echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
-                                echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
-                                $servicios = explode(', ', $reg->tipos_servicio);
+                                echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#productos-' . $reg->id_venta . '">Ver productos</button>';
+                                echo '<div class="collapse" id="productos-' . $reg->id_venta . '">';
+                                $productos = explode(', ', $reg->productos);
                                 echo '<ul>';
-                                foreach ($servicios as $servicio) {
-                                    echo '<li>' . $servicio . '</li>';
+                                foreach ($productos as $producto) 
+                                {
+                                    if (empty($reg->productos)) {
+                                        echo "No hay productos";
+                                    } else {
+                                        echo '<li>' . $producto . '</li>';
+                                    }
                                 }
                                 echo '</ul>';
                                 echo '</div>';
                                 echo '</td>';
-                                echo "<td> $$reg->precio_total_cita</td>";
-                                echo "<td> $reg->fecha_creacion_registro_cita</td>";
-                                echo "<td> $reg->fecha_cita_registro_cita</td>";
-                                echo "<td> $reg->hora_registro_cita</td>";
-                                if ($reg->estado_registro_cita == "Aceptada")
+                                if ($reg->cantidad_producto_orden_venta == 0 OR $reg->cantidad_producto_orden_venta == "")
                                 {
-                                    echo "<td><span class='badge text-bg-success'>$reg->estado_registro_cita</span></td>";
+                                    echo "<td class='text-center'> Sin cantidad </td>";
                                 }
-                                else if ($reg->estado_registro_cita == "Cancelada")
+                                else
                                 {
-                                    echo "<td><span class='badge text-bg-danger'>$reg->estado_registro_cita</span></td>";
+                                    echo "<td class='text-center'> $reg->cantidad_producto_orden_venta</td>";
                                 }
-                                else if ($reg->estado_registro_cita == "Pendiente")
+                                if ($reg->precio_total == 0 OR $reg->precio_total == "")
                                 {
-                                    echo "<td><span class='badge text-bg-secondary'>$reg->estado_registro_cita</span></td>";
+                                    echo "<td> Sin calcular </td>";
+                                }
+                                else 
+                                {
+                                    echo "<td> $$reg->precio_total</td>";
+                                }
+                                echo "<td> $reg->fecha_creacion_orden_venta</td>";
+                                if ($reg->fecha_entrega_orden_venta == "" OR $reg->fecha_entrega_orden_venta == "0000-00-00")
+                                {
+                                    echo "<td>Sin especificar fecha</td>";
+                                }
+                                else
+                                {
+                                    echo "<td> $reg->fecha_entrega_orden_venta</td>";
+                                }
+                                if ($reg->estado_orden_venta == "Pagado")
+                                {
+                                    echo "<td><span class='badge text-bg-success'>$reg->estado_orden_venta</span></td>";
+                                }
+                                else if ($reg->estado_orden_venta == "Cancelado")
+                                {
+                                    echo "<td><span class='badge text-bg-danger'>$reg->estado_orden_venta</span></td>";
+                                }
+                                else if ($reg->estado_orden_venta == "Pendiente")
+                                {
+                                    echo "<td><span class='badge text-bg-secondary'>$reg->estado_orden_venta</span></td>";
+                                }
+                                else if ($reg->estado_orden_venta == "Caducado")
+                                {
+                                    echo "<td><span class='badge text-bg-warning'>$reg->estado_orden_venta</span></td>";
                                 }
                                 echo "<td>
                                 <div class='dropdown'>

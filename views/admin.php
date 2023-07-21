@@ -87,7 +87,15 @@ include "../templates/sidebar.php"
                                 echo "<tr>";
                                 echo "<td> $reg->ID_venta</td>";
                                 echo "<td> $reg->Cliente</td>";
-                                echo "<td> $reg->fecha_entrega</td>";
+                                
+                                if ($reg->fecha_entrega == "0000-00-00" OR $reg->fecha_entrega == "")
+                                {
+                                    echo "<td>Sin especificar fecha</td>";
+                                }
+                                else
+                                {
+                                    echo "<td> $reg->fecha_entrega</td>";
+                                }
                                 if ($reg->estatus == "Pagado")
                                 {
                                     echo "<td><span class='badge text-bg-success'>$reg->estatus</span></td>";
@@ -99,6 +107,10 @@ include "../templates/sidebar.php"
                                 else if ($reg->estatus == "Pendiente")
                                 {
                                     echo "<td><span class='badge text-bg-secondary'>$reg->estatus</span></td>";
+                                }
+                                else if ($reg->estatus == "Caducado")
+                                {
+                                    echo "<td><span class='badge text-bg-warning'>$reg->estatus</span></td>";
                                 }
                              }
                              echo "</tbody>
