@@ -3,7 +3,7 @@ include "../templates/sidebar.php";
 ?>
 
 <div class="text-center">
-    <h3 class="m-0">Ordenes de venta</h3>
+    <h3 class="m-0">Consultar ordenes de venta</h3>
 </div>
 
 <div class="container-fluid px-4 p-3">
