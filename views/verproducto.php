@@ -53,7 +53,7 @@ if(!empty($pro->nombre_color)){
 
 
 <?php
-$con="select *
+$con="select distinct id, imagen, nombre_producto, precio_producto, colorn
 FROM suge inner join
 (SELECT * FROM productos inner join detalle_productos 
 on productos.id_producto=detalle_productos.detalle_producto_detalle_producto_FK left join  colores
@@ -62,6 +62,13 @@ where detalle_productos.id_detalle_producto='$idpro') as uno
 on suge.fk=uno.detalle_producto_detalle_producto_FK
 where suge.id != '$idpro'";
     $si=$conexion->ejecuta($con);
+
+    //if ($si->con>0)
+    //{
+foreach($si as $no)
+{
+       
+
 ?>
 
 <div class="col-4" style="margin-top: 5px;margin-bottom:5px;">
@@ -73,19 +80,21 @@ where suge.id != '$idpro'";
     <div class="icons card-title"> </div>
     <div class="card-text">
     
-    <a href="../views/verproducto.php?id=<?php echo $si->id ?>"><h4 class="product-title"><?php echo $pro->nombre_producto; ?> </h4></a>
+    <a href="../views/verproducto.php?id=<?php echo $si->id ?>"><h4 class="product-title"><?php echo $si->nombre_producto; ?> </h4></a>
 
 
 
     <div class="price precio">
-   <?php echo'$'.$pro->precio_producto; ?>
+   <?php echo'$'.$si->precio_producto; ?>
     </div>
     </div>
     </div>
     </div>
     </div>
-
-
+    <?php
+}
+//}
+?>
 </div> 
 </div>
 
