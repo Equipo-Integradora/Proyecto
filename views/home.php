@@ -86,7 +86,9 @@ include "../class/database.php";
               
             <div class="col">
               <div class="card h-100">
-                    <a style="height: 500px; width:350px;" href="../views/verproducto.php"><img src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" class="imgprod card-img-top" alt="..."></a>
+                <div   style=" display: flex; align-content:center; align-items: center; padding-right:15%; padding-left: 15%">
+                <a style="height: 500px; width:350px;" href="../views/verproducto.php"><img src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" class="imgprod card-img-top" alt="..."></a>
+                </div>
                         <div class="card-body text-center">
                           <div class="icons card-title">
                             <a href="../views/carrito.php" class="bi bi-bag-heart-fill"> Agregar al carrito</a>

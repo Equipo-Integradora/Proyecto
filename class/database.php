@@ -47,7 +47,9 @@
     {
         try
         {
-            $this->PDOLocal->query($cadena);
+           $result= $this->PDOLocal->query($cadena);
+           return $result->fetch(PDO::FETCH_OBJ);
+            
         }catch(PDOException $e)
         {
             echo $e->getMessage();

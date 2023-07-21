@@ -1,0 +1,66 @@
+/* Estilo para los días del calendario */
+.fc-daygrid-day {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f5f5f5;
+}
+
+/* Estilo para el día seleccionado */
+.fc-daygrid-day.fc-day-today {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Estilo para el fondo de los días fuera del mes actual */
+.fc-daygrid-day.fc-day-other {
+  background-color: #f5f5f5;
+  color: #ccc;
+}
+
+/* Estilos para las opciones de checkbox y tarjetas */
+.checkbox-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-option {
+  margin: 10px;
+  padding: 15px; /* Aumenta el padding para hacer el checkbox más grande */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+  background-color: #ffb6b6;
+}
+
+/* Estilo para el texto principal del servicio */
+.service-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Estilo para el texto de la descripción */
+.description {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333; /* Cambia el color del texto de la descripción */
+}
+
+.price {
+  font-weight: bold;
+}
+.custom-card-style {
+  /* Agrega aquí tus estilos personalizados para los cards */
+  background-color: #ffcaca;
+  border: 1px solid #c28d8d;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 80px;
+  width: 100px;
+  /* Agrega más propiedades CSS según tus preferencias */
+}

@@ -266,11 +266,12 @@
   
   /* PRODUCTOS */
   .imgprod
-  {
-    margin-top: 3rem;
-    margin: 2rem;
-    height: 23rem;
-    width: 18rem;
+  { 
+    object-fit: contain;
+    width: 70%;
+    height: 90%;
+    display: block;
+    margin: auto;
   }
 
   .products .card-img-top 
