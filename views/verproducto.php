@@ -23,7 +23,7 @@ include "../templates/header.php";
 <?php 
 if(!empty($pro->nombre_color)){
 ?>
-<h2><?php echo $pro->nombre_color?></h2>
+<h2>Color: <?php echo $pro->nombre_color?></h2>
 <?php
 }
 ?>
@@ -50,6 +50,42 @@ if(!empty($pro->nombre_color)){
 <p>
     <?php echo $pro->descripcion_producto?>
 </p>
+
+
+<?php
+$con="select *
+FROM suge inner join
+(SELECT * FROM productos inner join detalle_productos 
+on productos.id_producto=detalle_productos.detalle_producto_detalle_producto_FK left join  colores
+on colores.id_color=detalle_productos.color_detalle_producto_FK
+where detalle_productos.id_detalle_producto='$idpro') as uno
+on suge.fk=uno.detalle_producto_detalle_producto_FK
+where suge.id != '$idpro'";
+    $si=$conexion->ejecuta($con);
+?>
+
+<div class="col-4" style="margin-top: 5px;margin-bottom:5px;">
+    <div class="card" style="height: 400px;">
+    <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $si->id ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $si->imagen; ?>" 
+    
+    alt="..."></a>
+    <div class="card-body text-center">
+    <div class="icons card-title"> </div>
+    <div class="card-text">
+    
+    <a href="../views/verproducto.php?id=<?php echo $si->id ?>"><h4 class="product-title"><?php echo $pro->nombre_producto; ?> </h4></a>
+
+
+
+    <div class="price precio">
+   <?php echo'$'.$pro->precio_producto; ?>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
 </div> 
 </div>
 
