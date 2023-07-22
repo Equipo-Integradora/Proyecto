@@ -32,8 +32,8 @@ if(!empty($pro->nombre_color)){
 <h2><?php echo '$'.$pro->precio_producto?></h2>
 <br>
 <div class="row" style="text-align: center;">
-<div class="col-4"><h4>Existencias(<?php echo $pro->existencias_detalle_producto ?>)</h4></div>
-<div class="col-3"> <form method="post" action="#">
+<div class="col-xl-4 col-xs-12"><h4>Existencias(<?php echo $pro->existencias_detalle_producto ?>)</h4></div>
+<div class="col-xl-3 col-xs-12"> <form method="post" action="#">
         <!-- Input oculto para almacenar la cantidad actual -->
         <input type="hidden" name="cantidad" id="cantidad" value="1">
         <!--para que no pueda tomar mas de lo que hay-->
