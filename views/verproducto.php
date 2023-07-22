@@ -66,7 +66,8 @@ FROM suge inner join
 on productos.id_producto=detalle_productos.detalle_producto_detalle_producto_FK left join  colores
 on colores.id_color=detalle_productos.color_detalle_producto_FK
 where detalle_productos.id_detalle_producto='$idpro') as uno
-on suge.fk=uno.detalle_producto_detalle_producto_FK";
+on suge.fk=uno.detalle_producto_detalle_producto_FK
+where suge.id != '$idpro'";
     $si=$conexion->ejecuta($con);
 
     if ($si->colorn !=null)
@@ -90,7 +91,7 @@ on suge.fk=uno.detalle_producto_detalle_producto_FK";
         {
        
 
-         ?>
+?>
 
             <div class="col-4" style="margin-top: 5px;margin-bottom:5px; ">
                 <div class="card" style="height: 450px;">
