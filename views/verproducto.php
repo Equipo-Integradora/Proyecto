@@ -18,7 +18,7 @@ include "../templates/header.php";
 <div class="container" style="margin-top: 100px ; width: 100%;">
 <div class="row">
 
-<img class="col-4" style="height: 40%;" src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
+<img class="col-4" style="height: 700px;" src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
 <div class="col-8"><h1><?php echo $pro->nombre_producto?></h1>
 <?php 
 if(!empty($pro->nombre_color)){
@@ -52,7 +52,14 @@ if(!empty($pro->nombre_color)){
 </p>
 
 
+
+</div> 
+</div>
+
+
+<div class="row">
 <?php
+//Consulta para que cheque si hay varios productos iguales y sugerirlos
 $con="select distinct id, imagen, nombre_producto, precio_producto, colorn
 FROM suge inner join
 (SELECT * FROM productos inner join detalle_productos 
@@ -71,48 +78,52 @@ on suge.fk=uno.detalle_producto_detalle_producto_FK";
         on colores.id_color=detalle_productos.color_detalle_producto_FK
         where detalle_productos.id_detalle_producto='$idpro') as uno
         on suge.fk=uno.detalle_producto_detalle_producto_FK
-        where suge.id != '$idpro'
-        group by colorn";
-            $va=$conexion->ejecuta($sub);
+        where suge.id != '$idpro'";
+            $va=$conexion->seleccionar($sub);
 
+?>
+        <h1 class="heading m-5">Podría <span>interesarte </span></h1>
 
+<?php
+            
         foreach($va as $am)
         {
        
 
          ?>
 
-            <div class="col-4" style="margin-top: 5px;margin-bottom:5px;">
+            <div class="col-4" style="margin-top: 5px;margin-bottom:5px; ">
                 <div class="card" style="height: 450px;">
-                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $si->id ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $si->imagen; ?>" 
+                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $am->id ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $am->imagen; ?>" 
                 
                 alt="..."></a>
                 <div class="card-body text-center">
                 <div class="icons card-title"> </div>
                 <div class="card-text">
                 
-                <a href="../views/verproducto.php?id=<?php echo $si->id ?>"><h4 class="product-title"><?php echo $si->nombre_producto; ?> </h4></a>
-                <a href="../views/verproducto.php?id=<?php echo $si->id ?>"><h4 class="product-title">Color <?php echo $si->colorn; ?> </h4></a>
-
+                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title"><?php echo $am->nombre_producto;?></h4></a>
+                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title">Color <?php echo $am->colorn;?></h4></a>
+                
 
 
                 <div class="price precio">
-            <?php echo'$'.$si->precio_producto; ?>
+            <?php echo'$'.$am->precio_producto; ?>
                 </div>
                 </div>
                 </div>
                 </div>
                 </div>
+                
                 <?php
         }
     }
 ?>
-</div> 
-</div>
 
 </div>
 
+</div>
 
+<br> <br>
 <div >
 
 
@@ -151,6 +162,8 @@ on suge.fk=uno.detalle_producto_detalle_producto_FK";
             document.getElementById("cantidad_actual").textContent = cantidad;
             }
         }
+
+
     </script>
 </body>
 
