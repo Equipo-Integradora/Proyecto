@@ -36,8 +36,33 @@ include "../templates/header.php";
     padding-bottom: 2px;
     size: 80px;
 }
-</style>
+/* Estilo para el calendario */
+#calendarioo {
+    max-width: 600px;
+    margin: 0 auto;
+}
 
+/* Estilo para el componente timeGrid */
+.fc-time-grid {
+    min-height: 100px;
+}
+
+/* Estilo para el botón "Guardar citas" */
+#guardar-citas {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#guardar-citas:hover {
+    background-color: #ff6aa1;
+}
+</style>
 <link rel="stylesheet" href="../css/calendario copy 3.css">
 <div class="container">
     <?php
@@ -56,10 +81,8 @@ include "../templates/header.php";
                     <div class="servicio">Paquete diseño y planchado de cejas</div>
                     <div class="descripcion">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat necessitatibus nostrum repellendus illum asperiores, sapiente incidunt impedit atque maxime tempore odit in id rerum tenetur obcaecati velit harum corrupti hic?</div>
                     <div class="price">$100.00</div>
-                    <div class="check">
                     <input type="checkbox" name="opcion1" value="Opción 1" id="opcion1" autocomplete="off" class="d-none">
                     <label for="opcion1" class="card-title btn btn-outline-primary">Seleccionar</label>
-                    </div>
                 </div>
             </div>
 
@@ -124,50 +147,59 @@ include "../templates/header.php";
     <?php
     } else {
     ?>
-    <h2>Aquí será la pestaña de agendar cita <i class="bi bi-archive"></i></h2>
-    <div id="calendarioo">
-        <div id="calendar" style="height: 25%;"></div>
+<div id="calendarioo">
+    <div id="calendar"></div>
 
-        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.0/main.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.10.0/main.min.js"></script>
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var calendarEl = document.getElementById("calendar");
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ["dayGrid", "timeGrid"], // Agrega el componente timeGrid
-                selectable: true,
-                select: function (info) {
-                    // Fecha seleccionada en el calendario
-                    var selectedDate = info.startStr;
-                    var startDate = info.startStr;
-                    var endDate = info.endStr;
-
-                    // Muestra una ventana emergente para elegir la hora
-                    var selectedHour = prompt("Elige la hora (formato HH:mm)", "09:00");
-
-                    // Verifica si se seleccionó una hora válida
-                    if (selectedHour !== null) {
-                        // Concatena la hora seleccionada a las fechas de inicio y fin
-                        startDate = startDate + "T" + selectedHour;
-                        endDate = endDate + "T" + selectedHour;
-
-                        // Aquí puedes realizar las acciones que desees con las fechas y horas seleccionadas
-                        // Por ejemplo, enviarlas a través de un formulario o hacer una solicitud AJAX
-
-                        // Alerta con las fechas y hora seleccionadas (para demostración)
-                        alert(
-                            "Fecha y hora seleccionadas:\nInicio: " +
-                            startDate +
-                            "\nFin: " +
-                            endDate
-                        );
-                    }
-                },
-            });
-            calendar.render();
-        });
-        </script>
+    <div id="citas-container">
+        <h3>Fecha(s) seleccionada(s):</h3>
+        <ul id="citas-list"></ul>
+        <button id="guardar-citas">Guardar citas</button>
+        <div id="mensaje"></div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.10.0/main.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ["dayGrid", "timeGrid"],
+            header: {
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay",
+            },
+            height: "auto", // Ajustar automáticamente el alto del calendario
+            defaultView: "timeGridWeek", // Vista predeterminada
+            selectable: true,
+            select: function (info) {
+                var selectedDate = info.startStr; // Fecha seleccionada en el calendario
+                var selectedDateTime = prompt("Elige la hora (formato HH:mm)", "09:00");
+
+                if (selectedDateTime !== null) {
+                    var li = document.createElement("li");
+                    li.textContent = selectedDate + "T" + selectedDateTime;
+                    document.getElementById("citas-list").appendChild(li);
+                    document.getElementById("mensaje").textContent = "";
+                    calendar.unselect();
+                }
+            },
+        });
+        calendar.render();
+
+        document.getElementById("guardar-citas").addEventListener("click", function () {
+            var citas = document.getElementById("citas-list").getElementsByTagName("li");
+            if (citas.length > 0) {
+                // Aquí puedes realizar acciones para guardar las citas en el servidor o en una base de datos
+                alert("Citas guardadas correctamente.");
+            } else {
+                document.getElementById("mensaje").textContent = "Sin citas agendadas.";
+            }
+        });
+    });
+    </script>
+</div>
+
     <?php
     }
     ?>
