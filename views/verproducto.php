@@ -18,21 +18,21 @@ include "../templates/header.php";
 <div class="container" style="margin-top: 100px ; width: 100%;">
 <div class="row">
 
-<img class="col-4" style="height: 700px;" src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
-<div class="col-8"><h1><?php echo $pro->nombre_producto?></h1>
+<img class="col-xl-4 col-lg-4 col-md-4 col-sm-6  col-xs-1 " style="height: 700px;" src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
+<div class="col-8 .offset-sm-4 .offset-xs-11 "><h1><?php echo $pro->nombre_producto?></h1>
 <?php 
 if(!empty($pro->nombre_color)){
 ?>
-<h2>Color: <?php echo $pro->nombre_color?></h2>
+<div class="col-12"><h2>Color: <?php echo $pro->nombre_color?></h2></div>
 <?php
 }
 ?>
 <br>
-<br>
 <h2><?php echo '$'.$pro->precio_producto?></h2>
 <br>
-<div class="row" style="text-align: center;">
+<div class="row" >
 <div class="col-xl-4 col-xs-12"><h4>Existencias(<?php echo $pro->existencias_detalle_producto ?>)</h4></div>
+
 <div class="col-xl-3 col-xs-12"> <form method="post" action="#">
         <!-- Input oculto para almacenar la cantidad actual -->
         <input type="hidden" name="cantidad" id="cantidad" value="1">
@@ -42,8 +42,8 @@ if(!empty($pro->nombre_color)){
         <span id="cantidad_actual" style="width: 30%;" >1</span>
         <button type="button" class="btn btn-outline-success"style="width: 30%;"  onclick="incrementarCantidad()">+</button>
         </div>
-        <br>
-        <button type="submit"  class="btn btn-outline-warning">Agregar al carrito</button>
+        <br><br><br>
+         <button type="submit"  class=" btn btn-outline-warning">Agregar al carrito</button>
     </form>
 </div>
 <br>
@@ -57,7 +57,7 @@ if(!empty($pro->nombre_color)){
 </div>
 
 
-<div class="row">
+<div class="row justify-content-center">
 <?php
 //Consulta para que cheque si hay varios productos iguales y sugerirlos
 $con="select distinct id, imagen, nombre_producto, precio_producto, colorn
@@ -83,7 +83,7 @@ where suge.id != '$idpro'";
             $va=$conexion->seleccionar($sub);
 
 ?>
-        <h1 class="heading m-5">Podría <span>interesarte </span></h1>
+        <div class="col-12"><h1 class="heading m-5">Podría <span>interesarte </span></h1></div>
 
 <?php
             
@@ -93,7 +93,7 @@ where suge.id != '$idpro'";
 
 ?>
 
-            <div class="col-4" style="margin-top: 5px;margin-bottom:5px; ">
+            <div class="col-6 col-lg-4 col-xl-4"  style="margin-top: 5px;margin-bottom:5px; ">
                 <div class="card" style="height: 450px;">
                 <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $am->id ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $am->imagen; ?>" 
                 
