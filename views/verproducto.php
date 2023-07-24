@@ -60,17 +60,14 @@ if(!empty($pro->nombre_color)){
 <div class="row justify-content-center">
 <?php
 //Consulta para que cheque si hay varios productos iguales y sugerirlos
-$con="select distinct id, imagen, nombre_producto, precio_producto, colorn
-FROM suge inner join
-(SELECT * FROM productos inner join detalle_productos 
-on productos.id_producto=detalle_productos.detalle_producto_detalle_producto_FK left join  colores
-on colores.id_color=detalle_productos.color_detalle_producto_FK
-where detalle_productos.id_detalle_producto='$idpro') as uno
-on suge.fk=uno.detalle_producto_detalle_producto_FK
-where suge.id != '$idpro'";
+$con="select productos.nombre_producto as 'producto',count(detalle_productos.detalle_producto_detalle_producto_FK) as 'variaciones'
+from detalle_productos inner join productos on
+productos.id_producto=detalle_productos.detalle_producto_detalle_producto_FK
+where productos.nombre_producto='$pro->nombre_producto'
+group by productos.nombre_producto;";
     $si=$conexion->ejecuta($con);
 
-    if ($si->colorn !=null)
+    if ($si->variaciones>1)
     {
         $sub="select distinct id, imagen, nombre_producto, precio_producto, colorn
         FROM suge inner join
