@@ -62,6 +62,39 @@ include "../templates/header.php";
 #guardar-citas:hover {
     background-color: #ff6aa1;
 }
+/* Estilos para la opción de selección */
+.date-input-container,
+.time-input-container {
+    margin-bottom: 10px;
+}
+
+.date-input-label,
+.time-input-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.date-input,
+.time-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+}
+
+.date-input:focus,
+.time-input:focus {
+    outline: none;
+    border-color: #ff69b4;
+}
+
+/* Ajusta los estilos de acuerdo a tus preferencias */
+
 </style>
 <link rel="stylesheet" href="../css/calendario copy 3.css">
 <div class="container">
@@ -145,65 +178,30 @@ include "../templates/header.php";
         <input type="submit" name="mostrar_calendario" value="Mostrar calendario">
     </form>
     <?php
-    } else {
-    ?>
-<div id="calendarioo">
-    <div id="calendar"></div>
-
-    <div id="citas-container">
-        <h3>Fecha(s) seleccionada(s):</h3>
-        <ul id="citas-list"></ul>
-        <button id="guardar-citas">Guardar citas</button>
-        <div id="mensaje"></div>
+} else {
+?>
+<div class="col-md-4" style="padding: 2%;">
+    <div class="card custom-card">
+        <h2>Opción de Selección</h2>
+        <div class="date-input-container">
+            <label class="date-input-label" for="selectedDate">Seleccionar fecha:</label>
+            <input class="date-input" type="date" id="selectedDate">
+        </div>
+        <br>
+        <br>
+        <div class="time-input-container">
+            <label class="time-input-label" for="selectedTime">Seleccionar hora:</label>
+            <input class="time-input" type="time" id="selectedTime">
+        </div>
+        <input type="submit" name="mostrar_calendario" value="Mostrar calendario">
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.10.0/main.min.js"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ["dayGrid", "timeGrid"],
-            header: {
-                left: "prev,next today",
-                center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay",
-            },
-            height: "auto", // Ajustar automáticamente el alto del calendario
-            defaultView: "timeGridWeek", // Vista predeterminada
-            selectable: true,
-            select: function (info) {
-                var selectedDate = info.startStr; // Fecha seleccionada en el calendario
-                var selectedDateTime = prompt("Elige la hora (formato HH:mm)", "09:00");
-
-                if (selectedDateTime !== null) {
-                    var li = document.createElement("li");
-                    li.textContent = selectedDate + "T" + selectedDateTime;
-                    document.getElementById("citas-list").appendChild(li);
-                    document.getElementById("mensaje").textContent = "";
-                    calendar.unselect();
-                }
-            },
-        });
-        calendar.render();
-
-        document.getElementById("guardar-citas").addEventListener("click", function () {
-            var citas = document.getElementById("citas-list").getElementsByTagName("li");
-            if (citas.length > 0) {
-                // Aquí puedes realizar acciones para guardar las citas en el servidor o en una base de datos
-                alert("Citas guardadas correctamente.");
-            } else {
-                document.getElementById("mensaje").textContent = "Sin citas agendadas.";
-            }
-        });
-    });
-    </script>
 </div>
-
-    <?php
-    }
-    ?>
-
+<!-- Fin de la opción de selección de fecha y hora -->
+</div>
+</div>
+<?php
+}
+?>
     <?php
     } else {
         header("Location: ../views/login.php");
