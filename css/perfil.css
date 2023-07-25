@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .ima {
   width: 150px; /* Ancho de la imagen circular */
   height: 150px; /* Altura de la imagen circular */
@@ -11,3 +12,22 @@
   height: 100%; /* Asegura que la imagen ocupe todo el espacio del contenedor circular */
   object-fit: cover; /* Ajusta la imagen para que cubra todo el contenedor sin deformarse */
 }
+=======
+.iconperfil
+{
+    border-radius: 1000px;
+    width: 200px;
+    height: auto;
+}
+
+.conteperfil
+{
+    width: 200px;
+    height: auto;
+}
+
+p
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+>>>>>>> Stashed changes

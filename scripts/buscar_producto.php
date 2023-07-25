@@ -1,4 +1,5 @@
 <?php
+$perfil = false;
     include "../templates/header.php";
     include "../class/database.php";
 
