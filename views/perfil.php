@@ -26,7 +26,11 @@ if(isset($_SESSION["usuario"]))
     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Editar perfil</button>
     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Datos de la cuenta</button>
     <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+
+    
   </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
     <div class="container">
     <div class="row">
         <div class="col-md-6 col-lg-3">
@@ -66,7 +70,7 @@ if(isset($_SESSION["usuario"]))
         ?>
     </div>
 <!--Fin de imagenes-->
-
+<!--Fin del perfil-->
         </div>
       </div>
     </div>
@@ -74,7 +78,14 @@ if(isset($_SESSION["usuario"]))
     </div>
     </div>
 </div>
-<!--Fin del perfil-->
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
+  </div>
+    
+
 
 <!--Inicio de PHP y links-->
 <link rel="stylesheet" href="../css/perfil.css">
