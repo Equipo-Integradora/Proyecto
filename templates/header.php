@@ -92,12 +92,11 @@
                           <li><?php
                                  if(isset($_SESSION["usuario"]))
                                  {
-                                  if($perfil)
-                                  {
-                                    echo "<a class='dropdown-item fs-6' href='../views/editar_perfil.php'>Editar Perfil</a>";;
-                                  }else
+                                  if(!$perfil)
                                   {
                                     echo "<a class='dropdown-item fs-6' href='../views/perfil.php'>Mi Perfil</a>";
+                                  }else
+                                  {
                                   }
                                  }
                               ?>
