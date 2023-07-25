@@ -80,7 +80,15 @@ if(isset($_SESSION["usuario"]))
 </div>
 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">...</div>
     <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+    <a href="" style="text-decoration:none"><div style="width: 450px; color:black" class="p-3 bg-secondary bg-opacity-10 border border-black rounded">Editar contraseña</div></a>
+                <br>
+                <a href="" style="text-decoration:none"><div style="width: 450px; color:black" class="p-3 bg-secondary bg-opacity-10 border border-black rounded">Editar correo</div></a>
+                <br>
+                <a href="" style="text-decoration:none"><div style="width: 450px; color:black" class="p-3 bg-secondary bg-opacity-10 border border-black rounded">Editar telefono</div></a>
+                <br>
+
+    </div>
     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
   
     </div>
