@@ -21,7 +21,7 @@ include "../templates/sidebar.php";
                <tr>
                <th>
                    <p class="fw-bold">Estado</p>
-                   <select name="estado" class="form-control mt-2" >
+                   <select name="estado" class="form-control mt-2">
                     <option value="Aceptada">Aceptadas</option>
                     <option value="Cancelada">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>
@@ -54,6 +54,7 @@ include "../templates/sidebar.php";
     <?php
     $citas = "SELECT id_registro_cita, 
     nombre_usuario, 
+    precio_registro_cita,
     GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
     SUM(precio_registro_cita + precio_tipo_servicio) AS precio_total_cita,
     fecha_creacion_registro_cita,
@@ -135,12 +136,18 @@ include "../templates/sidebar.php";
                                 echo "<td>
                                 <div class='dropdown'>
                                   <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
-                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                    <i class='bi bi-three-dots-vertical'></i>
                                   </button>
                                   <div class='dropdown-menu'>
-                                    <a class='dropdown-item'>
-                                      <i class='bx bx-edit-alt me-1'></i> Editar</a>
-                                    <a class='dropdown-item'><i class='bx bx-trash me-1'></i> Eliminar</a
+                                  <a class='dropdown-item btn-editar' href='#' 
+                            data-registro-id='$reg->id_registro_cita' 
+                            data-precio-registro-cita='$reg->precio_registro_cita' 
+                            data-estado-registro-cita='$reg->estado_registro_cita' 
+                            data-bs-toggle='modal' 
+                            data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
+                            <i class='bi bi-pencil-square me-1'></i> Editar
+                        </a>
+                                    <a class='dropdown-item'><i class='bi bi-trash3-fill me-1'></i> Eliminar</a
                                     >
                                   </div>
                                 </div>
@@ -154,7 +161,44 @@ include "../templates/sidebar.php";
                 </div>
                 <?php } ?>
 
+            <!-- Modal de Edición -->
+            <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="">
+                                <input type="hidden" name="id_registro_cita" id="id_registro_cita">
+                                <div class="mb-3">
+                                    <label for="edit_precio_registro_cita" class="form-label">Precio de la cita</label>
+                                    <input type="number" step="0.01" name="precio_registro_cita" id="precio_registro_cita" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit_estado_registro_cita" class="form-label">Cambiar estado de la cita</label>
+                                    <select name="estado_registro_cita" id="estado_registro_cita" class="form-control">
+                                        <option value="Aceptada">Aceptada</option>
+                                        <option value="Cancelada">Cancelada</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn boton">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
 <!-- SCRIPTS -->
+<script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
 <script src="../prueba/js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -165,4 +209,58 @@ include "../templates/sidebar.php";
             el.classList.toggle("toggled");
         };
     </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- NO BORRAR XD -->
+<script>
+    $(document).ready(function () {
+        $('.btn-editar').on('click', function () {
+            var id_registro_cita = $(this).data('registro-id');
+            var precio_registro_cita = $(this).data('precio-registro-cita');
+            var estado_registro_cita = $(this).data('estado-registro-cita');
+
+            $('#id_registro_cita').val(id_registro_cita);
+            $('#precio_registro_cita').val(precio_registro_cita);
+            $('#estado_registro_cita').val(estado_registro_cita);
+
+            $('#modalEditar').modal('show');
+        });
+
+        $('#modalEditar form').submit(function (event) {
+            event.preventDefault(); 
+
+            var id_registro_cita = $('#id_registro_cita').val();
+            var precio_registro_cita = $('#precio_registro_cita').val();
+            var estado_registro_cita = $('#estado_registro_cita').val();
+
+            $('#modalEditar').modal('hide');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Deseas guardar los cambios?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('update_cita.php', {
+                        id_registro_cita: id_registro_cita,
+                        precio_registro_cita: precio_registro_cita,
+                        estado_registro_cita: estado_registro_cita
+                    }, function (data) {
+                        Swal.fire({
+                            title: '¡Cita actualizada!',
+                            text: 'Los datos se han actualizado exitosamente.',
+                            icon: 'success',
+                            didClose: () => 
+                            {
+                                window.location.reload();
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    });
+</script>
 </body>
