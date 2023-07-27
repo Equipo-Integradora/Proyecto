@@ -21,7 +21,7 @@ if(isset($_SESSION["usuario"]))
 
 
 <div class="d-flex align-items-start">
-  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width: 200px;">
+  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width: 200px; height:400px">
   <div class="row">
   <div style="text-align: center;" class="col-12">
   <?php
@@ -304,7 +304,7 @@ if(isset($_SESSION["usuario"]))
         Tema
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <strong><div class="form-check form-switch">
   <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
