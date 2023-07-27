@@ -175,11 +175,21 @@
             }
         }
 
+        function usr($cadena)
+        {
+            try
+            {
+                $result = $this->PDOLocal->query($cadena);
+                return $result->fetchAll(PDO::FETCH_OBJ);
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
         
+}
+
 
        
-
-
-    
-    }
 ?>

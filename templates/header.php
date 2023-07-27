@@ -32,6 +32,7 @@
 </head>
 <body>
     <?php
+    ini_set('session.gc_maxlifetime', 1440);
     session_start();
     ?>
     <!-- INICIO DE LA BARRA DE NAVEGACION -->
@@ -91,7 +92,12 @@
                           <li><?php
                                  if(isset($_SESSION["usuario"]))
                                  {
-                                     echo "<a class='dropdown-item fs-6' href='../views/perfil.php'>Mi Perfil</a>";
+                                  if(!$perfil)
+                                  {
+                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'>Mi Perfil</a>";
+                                  }else
+                                  {
+                                  }
                                  }
                               ?>
                         </li>

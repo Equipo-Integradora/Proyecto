@@ -1,0 +1,31 @@
+.ima {
+  width: 150px; /* Ancho de la imagen circular */
+  height: 150px; /* Altura de la imagen circular */
+  border-radius: 50%; /* Hace que la imagen tenga bordes redondeados para formar un círculo */
+  overflow: hidden; /* Oculta cualquier contenido que se desborde del círculo */
+  border: 2px solid #6e6e6e; /* Agrega un borde de 2px sólido con color #333 (puedes cambiar el color) */
+}
+
+.imacon img {
+  width: 100%; /* Asegura que la imagen ocupe todo el espacio del contenedor circular */
+  height: 100%; /* Asegura que la imagen ocupe todo el espacio del contenedor circular */
+  object-fit: cover; /* Ajusta la imagen para que cubra todo el contenedor sin deformarse */
+}
+.iconperfil
+{
+    border-radius: 1000px;
+    width: 140px;
+    height: auto;
+    margin-right: 30px;
+}
+
+.conteperfil
+{
+    width: 200px;
+    height: auto;
+}
+
+p
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
