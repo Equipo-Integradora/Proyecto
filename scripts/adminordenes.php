@@ -14,7 +14,7 @@ include "../templates/sidebar.php";
     </div>
 
 
-        <div class="col-12">
+        <div class="col-12 table-responsive">
         <label  class="form-label"><h3 class="fw-bold">Filtrar por</h3></label>
         <table class="table">
             <thead>
@@ -167,12 +167,18 @@ include "../templates/sidebar.php";
                                 echo "<td>
                                 <div class='dropdown'>
                                   <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
-                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                    <i class='bi bi-three-dots-vertical'></i>
                                   </button>
                                   <div class='dropdown-menu'>
-                                    <a class='dropdown-item'>
-                                      <i class='bx bx-edit-alt me-1'></i> Editar</a>
-                                    <a class='dropdown-item'><i class='bx bx-trash me-1'></i> Eliminar</a
+                                  <a class='dropdown-item btn-editar' href='#' 
+                                        data-registro-id='$reg->id_venta' 
+                                        data-fecha-entrega-orden='$reg->fecha_entrega_orden_venta' 
+                                        data-estado-orden-venta='$reg->estado_orden_venta' 
+                                        data-bs-toggle='modal' 
+                                        data-bs-target='#modalEditar-$reg->id_venta'> <!-- ID único para el modal -->
+                                        <i class='bi bi-pencil-square me-1'></i> Editar
+                                    </a>
+                                    <a class='dropdown-item'><i class='bi bi-trash3-fill me-1'></i> Eliminar</a
                                     >
                                   </div>
                                 </div>
@@ -186,7 +192,43 @@ include "../templates/sidebar.php";
                 </div>
                 <?php } ?>
 
+                
+            <!-- Modal de Edición -->
+            <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="">
+                                <input type="hidden" name="id_venta" id="id_venta">
+                                <div class="mb-3">
+                                    <label for="edit_fecha_entrega_orden_venta" class="form-label">Fecha de entrega</label>
+                                    <input type="date" step="0.01" name="fecha_entrega_orden_venta" id="fecha_entrega_orden_venta" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit_estado_orden_venta" class="form-label">Cambiar estado de la cita</label>
+                                    <select name="estado_orden_venta" id="estado_orden_venta" class="form-control">
+                                    <option value="Pagado">Pagada</option>
+                                    <option value="Cancelado">Cancelada</option>
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="Caducado">Caducada</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn boton">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 <!-- SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="../prueba/js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -197,4 +239,66 @@ include "../templates/sidebar.php";
             el.classList.toggle("toggled");
         };
     </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        $('.btn-editar').on('click', function () {
+            var id_venta = $(this).data('registro-id');
+            var fecha_entrega_orden_venta = $(this).data('fecha-entrega-orden');
+            var estado_orden_venta = $(this).data('estado-orden-venta');
+
+            $('#id_venta').val(id_venta);
+            $('#fecha_entrega_orden_venta').val(fecha_entrega_orden_venta);
+            $('#estado_orden_venta').val(estado_orden_venta);
+
+            $('#modalEditar').modal('show');
+        });
+
+        $('#modalEditar form').submit(function (event) {
+            event.preventDefault(); 
+
+            var id_venta = $('#id_venta').val();
+            var fecha_entrega_orden_venta = $('#fecha_entrega_orden_venta').val();
+            var estado_orden_venta = $('#estado_orden_venta').val();
+
+            $('#modalEditar').modal('hide');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Deseas guardar los cambios?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('update_ordenes.php', {
+                        id_venta: id_venta,
+                        fecha_entrega_orden_venta: fecha_entrega_orden_venta,
+                        estado_orden_venta: estado_orden_venta
+                    }, function (data) {
+                        Swal.fire({
+                            title: '¡Cita actualizada!',
+                            text: 'Los datos se han actualizado exitosamente.',
+                            icon: 'success',
+                            didClose: () => 
+                            {
+                                window.location.reload();
+                            }
+                        });
+                    });
+                }
+                else 
+                {
+                    Swal.fire({
+                        title: '¡Error!',
+                        text: 'Ha ocurrido un error al procesar la solicitud.',
+                        icon: 'error',
+                    });
+                }
+            });
+        });
+        
+    });
+</script>
 </body>
