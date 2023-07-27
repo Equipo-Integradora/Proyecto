@@ -48,35 +48,11 @@
             cursor: pointer;
         }
 
-        /* Estilos para el input */
-        .date-input-container {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .date-input-label {
-            margin-right: 10px;
-        }
-
-        .date-input {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+       
     </style>
 </head>
 <body>
-        <div>
-            <div class="calendar-card">
-                <h2>Opción de Selección</h2>
-                <div class="date-input-container">
-                    <label class="date-input-label" for="selectedDate">Seleccionar fecha:</label>
-                    <input class="date-input" type="date" id="selectedDate">
-                </div>
-            </div>
-        </div>
-    </div>
+        
 
 </body>
 </html>
