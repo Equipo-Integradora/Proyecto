@@ -174,7 +174,7 @@ $conexion->conectarDB();
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                   </div>
                                                   <div class="modal-body">
-                                                    <form action="../scripts/actualizar_producto.php" method="post">
+                                                    <form action="../scripts/actualizar_producto.php" method="post" enctype="multipart/form-data">
                                                                 <input type="hidden" name="producto" value="<?php echo "$reg->id_producto"?>">
                                                                 <input type="hidden" name="detallproducto" value="<?php echo "$reg->id_detalle_producto"?>">
                                                                 <div class="input-field">
@@ -288,10 +288,34 @@ $conexion->conectarDB();
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                   </div>
                                                   <div class="modal-body">
-                                                    <form action="../scripts/actualizar_producto.php" method="post">
+                                                  <form action="../scripts/actualizar_producto.php" method="post" enctype="multipart/form-data">
+                                                                <input type="hidden" name="producto" value="<?php echo "$reg->id_producto"?>">
+                                                                <input type="hidden" name="detallproducto" value="<?php echo "$reg->id_detalle_producto"?>">
                                                                 <div class="input-field">
-                                                                    <label for="precio">Nombre del producto</label>
-                                                                    <input type="text" class="input" name="precio" required>
+                                                                    <label for="nombre">Nombre del producto</label>
+                                                                    <input type="text" class="input" name="nombre">
+                                                                </div>
+                                                                <div class="input-field">
+                                                                     <label for="descripcion">Descripción del Producto</label>
+                                                                     <textarea name="descripcion" class="sexarea" id="miTextarea" cols="30" rows="5"></textarea> 
+                                                                 </div>
+                                                                <div class="input-field">
+                                                                    <label for="precio">Precio del producto</label>
+                                                                    <input type="number" class="input" name="precio">
+                                                                </div>
+                                                                <div class="input-field">
+                                                                    <label for="categoria">Tipo de Categoria</label>
+                                                                    <?php
+                                                                    $cat = "SELECT * FROM sweet_beauty.tipo_categorias;";
+                                                                    $tabla = $conexion->seleccionar($cat);
+                                                                    ?>
+
+                                                                        <select class="form-select form-select-md" name="categoria" id="categoria">
+                                                                            <option value="" disabled selected>Selecciona una opción</option>
+                                                                            <?php foreach ($tabla as $cate) { ?>
+                                                                            <option value="<?php echo $cate->id_tipo_categoria ?>"> <?php echo $cate->nombre_tipo_categoria ?></option>
+                                                                            <?php } ?>
+                                                                        </select><br>
                                                                 </div>
                                                                 <div class="input-field">
                                                                     <label for="color">Color</label>
@@ -306,32 +330,13 @@ $conexion->conectarDB();
                                                                             <option value="<?php echo $cate->id_color ?>"> <?php echo $cate->nombre_color ?></option>
                                                                             <?php } ?>
                                                                         </select><br>
+                                                                </div>                                                                
+                                                                <div class="input-field">
+                                                                    <label for="existencias">Existencias</label>
+                                                                    <input type="number" class="input" name="existencias">
                                                                 </div>
                                                                 <div class="input-field">
-                                                                    <label for="precio">Precio</label>
-                                                                    <input type="number" class="input" name="precio" required>
-                                                                </div>
-                                                                <div class="input-field">
-                                                                    <label for="color">Tipo de Categoria</label>
-                                                                    <?php
-                                                                    $cat = "SELECT * FROM sweet_beauty.tipo_categorias;";
-                                                                    $tabla = $conexion->seleccionar($cat);
-                                                                    ?>
-
-                                                                        <select class="form-select form-select-md" name="color" id="color">
-                                                                            <option value="" disabled selected>Selecciona una opción</option>
-                                                                            <?php foreach ($tabla as $cate) { ?>
-                                                                            <option value="<?php echo $cate->id_tipo_categoria ?>"> <?php echo $cate->nombre_tipo_categoria ?></option>
-                                                                            <?php } ?>
-                                                                        </select><br>
-                                                                </div>
-                                                                
-                                                                <div class="input-field">
-                                                                    <label for="precio">Existencias</label>
-                                                                    <input type="number" class="input" name="precio" required>
-                                                                </div>
-                                                                <div class="input-field">
-                                                                    <label for="precio">Imagen</label>
+                                                                    <label for="ima">Imagen</label>
                                                                     <input type="file" name="ima" id="ima">
                                                                 </div>
                                                                 <div class="input-field" style="margin-top: 1rem;">
