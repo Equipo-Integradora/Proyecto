@@ -70,6 +70,7 @@
                 {
                     $pase = true;
                     $datos=$renglon;
+                    
                 }
             }
 
@@ -187,7 +188,61 @@
                 echo $e->getMessage();
             }
         }
-        
+        function perfil()
+        {
+            session_start();
+            $_SESSION["correo"] = 0;
+            $_SESSION["contra"] = 0;
+            $_SESSION["nombre"] = 0;
+            $_SESSION["telfon"] = 0;
+            $_SESSION["nacimi"] = 0;
+            $_SESSION["sexo"] = 0;
+
+        }
+        function cambio( $passn, $usuario,$contra)
+    {
+        try
+        {
+            $pase=false;
+            $query="SELECT * FROM usuarios WHERE id_usuario = '{$_SESSION["id"]}';";
+            $consulta=$this->PDOLocal->query($query);
+
+            while($renglon = $consulta->fetch(PDO::FETCH_ASSOC))
+            {
+                if(password_verify($contra,$renglon['contraseña_usuario']))
+                {
+                    $pase =true;
+                }
+            }
+            if($pase)
+            {
+                $hash = password_hash($passn, PASSWORD_DEFAULT); 
+                $con ="update usuarios 
+                set
+                contraseña_usuario='$hash'
+                WHERE id_usuario = '{$_SESSION["id"]}';";
+                $resultado = $this->ejecuta($con);
+
+                echo "<div class='alert alert-success'>";
+                echo"<h2 align='center'>Contraseña modificada</h2>";
+                echo"</div>";
+                header("refresh:2; ../views/perfil.php");
+            }
+            else
+            {
+                echo "<div class='alert alert-danger'>";
+                echo"<h2 align='center'>Datos incorrectos...</h2>";
+                echo"</div>";
+            }
+
+
+
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 }
 
 
