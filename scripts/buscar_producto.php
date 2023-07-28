@@ -10,7 +10,7 @@ $perfil = false;
     $consulta = "
     SELECT productos.nombre_producto, productos.precio_producto, detalle_productos.existencias_detalle_producto, detalle_productos.imagen_detalle_producto
 FROM detalle_productos INNER JOIN productos ON productos.id_producto = detalle_productos.detalle_producto_detalle_producto_FK
-INNER JOIN colores ON colores.id_color = detalle_productos.color_detalle_producto_FK
+LEFT JOIN colores ON colores.id_color = detalle_productos.color_detalle_producto_FK
 INNER JOIN tipo_categorias ON tipo_categorias.id_tipo_categoria = productos.categoria_producto_FK
 Where productos.nombre_producto LIKE '%$buscar%' OR colores.nombre_color LIKE '%$buscar%';
     ";
