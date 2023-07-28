@@ -10,7 +10,6 @@
                         <li><a href="#">Inicio</a></li>
                         <li><a href="../views/Agendar_cita.php">Agendar cita</a></li>
                         <li><a href="../views/ver_producto_general.php">Productos</a></li>
-                        <li><a href="#">Contacto</a></li>
                     </ul>
                     </div>                    
                 </div>

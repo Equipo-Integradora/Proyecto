@@ -31,10 +31,6 @@
     <title>Sweet Beauty</title>
 </head>
 <body>
-    <?php
-    ini_set('session.gc_maxlifetime', 1440);
-    session_start();
-    ?>
     <!-- INICIO DE LA BARRA DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">

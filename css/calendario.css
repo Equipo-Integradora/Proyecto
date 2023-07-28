@@ -1,0 +1,182 @@
+.custom-card-style {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+/* Estilo para el checkbox cuando está seleccionado */
+.custom-card-style input[type="checkbox"]:checked + label {
+  background-color: #ff69b4; /* Cambia el color a rosa (#ff69b4) cuando está seleccionado */
+  color: #fff; /* Cambia el color del texto a blanco cuando está seleccionado */
+}
+
+/* Estilo para el elemento con la clase "servicio" */
+.custom-card-style .servicio {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333; /* Cambia el color del texto del servicio */
+}
+
+/* Estilo para el elemento con la clase "descripcion" */
+.custom-card-style .descripcion {
+  font-size: 14px;
+  color: #777; /* Cambia el color del texto de la descripción */
+}
+.check {
+  margin: auto;
+  padding-bottom: 2px;
+  size: 80px;
+}
+/* Estilo para el calendario */
+#calendarioo {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Estilo para el componente timeGrid */
+.fc-time-grid {
+  min-height: 100px;
+}
+
+/* Estilo para el botón "Guardar citas" */
+#guardar-citas {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#guardar-citas:hover {
+  background-color: #ff6aa1;
+}
+/* Estilos para la opción de selección */
+.date-input-container,
+.time-input-container {
+  margin-bottom: 10px;
+}
+
+.date-input-label,
+.time-input-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.date-input,
+.time-input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  width: 100%;
+}
+
+.date-input:focus,
+.time-input:focus {
+  outline: none;
+  border-color: #ff69b4;
+}
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.col-md-4 {
+  width: 33.33%;
+  float: left;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+/* Estilos para la sección de fecha */
+.date-input-container {
+  margin-bottom: 15px;
+}
+
+.date-input-label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+}
+
+.date-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Estilos para la sección de hora */
+.time-input-container {
+  margin-bottom: 15px;
+}
+
+.time-input-label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+}
+
+.time-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Estilos para el botón */
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button:focus {
+  outline: none;
+}
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button:focus {
+  outline: none;
+}

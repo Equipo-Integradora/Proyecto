@@ -3,101 +3,7 @@ $perfil = false;
 include "../templates/header.php";
 ?>
 
-<style>
-/* Estilo personalizado para los cards */
-.custom-card-style {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-}
-
-/* Estilo para el checkbox cuando está seleccionado */
-.custom-card-style input[type="checkbox"]:checked + label {
-    background-color: #ff69b4; /* Cambia el color a rosa (#ff69b4) cuando está seleccionado */
-    color: #fff; /* Cambia el color del texto a blanco cuando está seleccionado */
-}
-
-/* Estilo para el elemento con la clase "servicio" */
-.custom-card-style .servicio {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333; /* Cambia el color del texto del servicio */
-}
-
-/* Estilo para el elemento con la clase "descripcion" */
-.custom-card-style .descripcion {
-    font-size: 14px;
-    color: #777; /* Cambia el color del texto de la descripción */
-}
-.check
-{
-    margin: auto;
-    padding-bottom: 2px;
-    size: 80px;
-}
-/* Estilo para el calendario */
-#calendarioo {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Estilo para el componente timeGrid */
-.fc-time-grid {
-    min-height: 100px;
-}
-
-/* Estilo para el botón "Guardar citas" */
-#guardar-citas {
-    display: block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #ff69b4;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#guardar-citas:hover {
-    background-color: #ff6aa1;
-}
-/* Estilos para la opción de selección */
-.date-input-container,
-.time-input-container {
-    margin-bottom: 10px;
-}
-
-.date-input-label,
-.time-input-label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.date-input,
-.time-input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-    width: 100%;
-}
-
-.date-input:focus,
-.time-input:focus {
-    outline: none;
-    border-color: #ff69b4;
-}
-
-/* Ajusta los estilos de acuerdo a tus preferencias */
-
-</style>
-<link rel="stylesheet" href="../css/calendario copy 3.css">
+<link rel="stylesheet" href="../css/calendario.css">
 <div class="container">
     <?php
     session_start();
@@ -176,27 +82,27 @@ include "../templates/header.php";
             </div>
             <!-- Agrega más tarjetas si lo necesitas -->
         </div>
-        <input type="submit" name="mostrar_calendario" value="Mostrar calendario">
+        <input class="submit-button" type="submit" name="mostrar_calendario" value="Mostrar calendario" style="align-items: center;">
     </form>
     <?php
 } else {
 ?>
 <div class="col-md-4" style="padding: 2%;">
     <div class="card custom-card">
-        <h2>Opción de Selección</h2>
+        <h2>Selecciona la fecha y la hora</h2>
         <div class="date-input-container">
             <label class="date-input-label" for="selectedDate">Seleccionar fecha:</label>
             <input class="date-input" type="date" id="selectedDate">
         </div>
         <br>
-        <br>
         <div class="time-input-container">
             <label class="time-input-label" for="selectedTime">Seleccionar hora:</label>
             <input class="time-input" type="time" id="selectedTime">
         </div>
-        <input type="submit" name="mostrar_calendario" value="Mostrar calendario">
+        <input class="submit-button" type="submit" name="mostrar_calendario" value="Mostrar calendario">
     </div>
 </div>
+
 <!-- Fin de la opción de selección de fecha y hora -->
 </div>
 </div>
