@@ -23,7 +23,7 @@ if(isset($_SESSION["usuario"]))
 <div class="d-flex align-items-start">
   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width: 200px; height:400px">
   <div class="row">
-  <div style="text-align: center;" class="col-12">
+  <div style="text-align: center; margin:1rem;" class="col-12">
   <?php
             if($reg->sexo_usuario == "Femenino")
             {
@@ -45,12 +45,12 @@ if(isset($_SESSION["usuario"]))
   </div>
   <div class="col-12" style="text-align: center;"><?php echo $reg->nombre_usuario ?></div>
   </div>
-  <div style="text-align: left;">
+  <div style="text-align: left; width:100%;">
     
-    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button>
-    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Editar perfil</button>
-    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Datos de la cuenta</button>
-    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+    <button style="width: 100%;" class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button>
+    <button style="width: 100%;" class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Editar perfil</button>
+    <button style="width: 100%;" class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Datos de la cuenta</button>
+    <button style="width: 100%;" class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
   
     </div>
 </div>
@@ -58,31 +58,10 @@ if(isset($_SESSION["usuario"]))
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
             <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-3">
-<!--Inicio de imagenes-->
-        <?php
-            if($reg->sexo_usuario == "Femenino")
-            {
-                ?>
-                <img class="iconperfil" src="../img/productos/icono_mujer.png" alt="mujer foto">
-                <?php
-            }if($reg->sexo_usuario == "Masculino")
-            {
-                ?>
-                <img class="iconperfil" src="../img/productos/icono_hombre.webp" alt="hombre foto">
-                <?php
-            }if($reg->sexo_usuario == "Otro")
-            {
-                ?>
-                <img class="iconperfil" src="../img/productos/icono_otro.jpg" alt="otro foto">
-                <?php
-            }
-        ?>
-<!--Fin de imagenes-->
+        
 
 <!--Inicio de los datos-->
-        </div>
-        <div  class="col-md-6 offset-lg-1 col-lg-8">
+        <div style="margin: 3rem;" class="col-md-6 offset-lg-1 col-lg-8">
         <div>
         <?php
         foreach($pro as $re)

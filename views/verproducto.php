@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $perfil = false;
 include "../templates/header.php";
 ?>
@@ -164,6 +165,6 @@ group by productos.nombre_producto;";
 
 
     </script>
-</body>
-
-</html>
+<?php
+    include "../templates/footer.php";
+?>
