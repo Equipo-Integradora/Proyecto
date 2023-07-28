@@ -1,21 +1,21 @@
 <!--Inicio de consultas e incluciones-->
 <?php 
-$perfil = true;
-include "../templates/header.php";
-
+session_start();
 if(isset($_SESSION["usuario"]))
 {
-    include "../class/database.php";
-    $conexion = new database();
-    $conexion->conectarDB();
-    $conexion->perfil();
-    $query = "SELECT * FROM usuarios WHERE id_usuario = '{$_SESSION["id"]}'";
-    $pro=$conexion->usr($query);
-    ?>
-    <div class="container" style="margin-top: 80px;">
-    <?php
-    foreach($pro as $reg)
-    ?>
+  $perfil = true;
+  include "../templates/header.php";
+  include "../class/database.php";
+  $conexion = new database();
+  $conexion->conectarDB();
+  $conexion->perfil();
+  $query = "SELECT * FROM usuarios WHERE id_usuario = '{$_SESSION["id"]}'";
+  $pro=$conexion->usr($query);
+  ?>
+  <div class="container" style="margin-top: 80px;">
+  <?php
+  foreach($pro as $reg)
+?>
     
 <!--Fin de consultas e incluciones-->
 
@@ -157,15 +157,14 @@ if(isset($_SESSION["usuario"]))
     </div>
     <div class="col-12" style="margin-bottom: 20px;">
     <!--class="btn btn-primary" -->
-        <button type="button" style="width: 450px; color:black; height:60px" class="row p-3 bg-secondary bg-opacity-10 border border-black rounded" data-bs-toggle="modal" data-bs-target="#correo">
-        <div class="col-lg-5">
-                    <p>Editar correo</p>
-                </div>
-                <div class="offset-lg-5 col-lg-2">
-                    <img style="float:left; width: 30px; width:30px" src="../img/perfil/pencil-square.svg" alt="">
-                </div>
-        </button>
-           
+    <button type="button" style="width: 450px; color:black; height:60px" class="row p-3 bg-secondary bg-opacity-10 border border-black rounded" data-bs-toggle="modal" data-bs-target="#exampleModalM">
+      <div class="col-lg-5">
+        <p>Editar correo</p>
+      </div>
+      <div class="offset-lg-5 col-lg-2">
+        <img style="float:left; width: 30px; width:30px" src="../img/perfil/pencil-square.svg" alt="">
+      </div>
+    </button>
     </div>
     <br>
     <div class="col-12" style="margin-bottom: 20px;">
@@ -200,7 +199,7 @@ if(isset($_SESSION["usuario"]))
 
 
     <!-- Modal Coreo-->
-<!--<div class="modal fade" id="correo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="correo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div  class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -223,7 +222,7 @@ if(isset($_SESSION["usuario"]))
       
       </div>
       
-    </div>-->
+    </div>
     <!--Fin modal-->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

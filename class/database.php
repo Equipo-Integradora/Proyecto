@@ -190,7 +190,6 @@
         }
         function perfil()
         {
-            session_start();
             $_SESSION["correo"] = 0;
             $_SESSION["contra"] = 0;
             $_SESSION["nombre"] = 0;
