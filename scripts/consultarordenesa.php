@@ -31,74 +31,48 @@ include "../templates/sidebar.php";
 extract($_POST);
 if ($_POST && !empty($id_venta)) {
     $consultaordenes = "SELECT
+    imagen_detalle_producto,
     id_venta,
-    nombre_usuario,
-    GROUP_CONCAT(nombre_producto SEPARATOR ', ') AS productos,
-    SUM(cantidad_producto_orden_venta) AS cantidad_total,
-    SUM(precio_producto * cantidad_producto_orden_venta) AS precio_total,
+    nombre_producto AS productos,
+    cantidad_producto_orden_venta,
+    precio_producto,
     estado_orden_venta
     FROM sweet_beauty.`todas las ordenes`
-    WHERE id_venta LIKE '%$id_venta%' 
-    GROUP BY id_venta";
-    
+    WHERE id_venta LIKE '%$id_venta%' and estado_orden_venta = 'Pendiente'
+    ORDER BY id_venta";
+
     $tablac = $conexion->seleccionar($consultaordenes);
     ?>
     <div class="table-responsive container-fluid">
         <table class="table shadow-sm table-hover">
             <thead>
             <tr>
-                <th>Cliente</th>
-                <th>Productos</th>
-                <th>Cantidad total</th>
-                <th>Precio total</th>
-                <th>Estado</th>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
             </tr>
             </thead>
             <tbody class="table-border-bottom-0">
             <?php
             if (empty($tablac)) {
-                echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                echo "<tr><td colspan='5'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
             } else {
                 foreach ($tablac as $reg) {
-                    echo "<tr>";
-                    echo "<td> $reg->nombre_usuario</td>";
-                    echo '<td>';
-                    echo '<div class="collapse show">';
+                    $imagenes = explode(', ', $reg->imagen_detalle_producto);
                     $productos = explode(', ', $reg->productos);
-                    echo '<ul style="list-style-type: none;">';
-                    foreach ($productos as $producto) 
-                    {
-                        if (empty($reg->productos)) 
-                        {
-                            echo "<li>No hay productos</li>";
-                        } else 
-                        {
-                            echo '<li>' . $producto . '</li>';
-                        }
+                    $cantidades = explode(', ', $reg->cantidad_producto_orden_venta);
+                    $precios = explode(', ', $reg->precio_producto);
+                    $num_productos = count($productos);
+
+                    for ($i = 0; $i < $num_productos; $i++) {
+                        echo "<tr>";
+                        echo "<td class='text-center'><img class='w-25' src='../img/productos/" . $imagenes[$i] . "'></td>";
+                        echo "<td>" . $productos[$i] . "</td>";
+                        echo "<td>" . $cantidades[$i] . "</td>";
+                        echo "<td>$" . $precios[$i] . "</td>";
+                        echo "</tr>";
                     }
-                    echo '</ul>';
-                    echo '</div>';
-                    echo '</td>';
-                    if ($reg->cantidad_total == 0 OR $reg->cantidad_total == "") {
-                        echo "<td class='text-center'> Sin cantidad </td>";
-                    } else {
-                        echo "<td class='text-center'> $reg->cantidad_total</td>";
-                    }
-                    if ($reg->precio_total == 0 OR $reg->precio_total == "") {
-                        echo "<td> Sin calcular </td>";
-                    } else {
-                        echo "<td> $$reg->precio_total</td>";
-                    }
-                    if ($reg->estado_orden_venta == "Pagado") {
-                        echo "<td><span class='badge text-bg-success'>$reg->estado_orden_venta</span></td>";
-                    } else if ($reg->estado_orden_venta == "Cancelado") {
-                        echo "<td><span class='badge text-bg-danger'>$reg->estado_orden_venta</span></td>";
-                    } else if ($reg->estado_orden_venta == "Pendiente") {
-                        echo "<td><span class='badge text-bg-secondary'>$reg->estado_orden_venta</span></td>";
-                    } else if ($reg->estado_orden_venta == "Caducado") {
-                        echo "<td><span class='badge text-bg-warning'>$reg->estado_orden_venta</span></td>";
-                    }
-                    echo "</tr>";
                 }
             }
             ?>

@@ -23,9 +23,9 @@ include "../templates/sidebar.php";
                    <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2" >
                     <option value="Pagado">Pagadas</option>
-                    <option value="Cancelado">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>
                     <option value="Caducado">Caducadas</option>
+                    <option value="Cancelado">Canceladas</option>
                     </select>
                 </th>
                 <th>
