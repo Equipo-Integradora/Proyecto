@@ -177,7 +177,7 @@ if(isset($_SESSION["usuario"]))
     </div>
 
 
-    <!-- Modal Coreo-->
+    <!-- Modal Coreo
 <div class="modal fade" id="correo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div  class="modal-dialog">
     <div class="modal-content">
@@ -202,7 +202,7 @@ if(isset($_SESSION["usuario"]))
       </div>
       
     </div>
-    <!--Fin modal-->
+    Fin modal-->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -211,21 +211,21 @@ if(isset($_SESSION["usuario"]))
         <h1 class="modal-title fs-5" id="exampleModalLabel">Editar contraseña</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="../scripts/editardatos.php" method="post">  
-      <div class="modal-body">
+      <form action="../scripts/editardatos.php" method="post" onsubmit="return validarContrasenaIgual();">
+  <div class="modal-body">
+    <label for="usuario">Contraseña actual</label>
+    <input type="password" class="input" name="pass" required>
+    <label for="usuario">Contraseña nueva</label>
+    <input type="password" class="input" name="passn" id="passn" required>
+    <label for="usuario">Confirmar Contraseña</label>
+    <input type="password" class="input" name="passcn" id="passcn" required>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+  </div>
+</form>
 
-      <label for="usuario">Contraseña actual</label>
-      <input type="password" class="input" name="pass" required>
-      <label for="usuario">Contraseña nueva</label>
-      <input type="password" class="input" name="passn" required>
-      <label for="usuario">Confirmar Contraseña</label>
-      <input type="password" class="input" name="passcn" required>
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" onclick="return validarContrasenaIgual();">Guardar cambios</button>
-        </form>
       </div>
     </div>
   </div>
@@ -317,23 +317,18 @@ if(isset($_SESSION["usuario"]))
 
 
 <script>
-    
-    
-    function validarContrasenaIgual() {
-        var passn = document.getElementById('passn').value;
-        var passcn = document.getElementById('passcn').value;
-        
-        if (passn !== passc) {
-            alert("Las contraseñas no coinciden");
-            return false;
-        }
-        
-        return true;
+  function validarContrasenaIgual() {
+    var passnueva = document.getElementById('passn').value;
+    var confirmarContrasena = document.getElementById('passcn').value;
+
+    if (passnueva !== confirmarContrasena) {
+      alert("Las contraseñas no coinciden. Por favor, verifica y vuelve a intentarlo.");
+      return false; // Evita el envío del formulario si las contraseñas no coinciden
     }
 
-
+    return true; // Permite el envío del formulario si las contraseñas coinciden
+  }
 </script>
-
 
 
 
