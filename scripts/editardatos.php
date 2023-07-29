@@ -8,18 +8,18 @@
 <body>
     
 <div class="container">
-        <?php
-        
-        include '../class/database.php';
-        $db = new Database();
-        $db->conectarDB();
-        $db->perfil();
+<?php
+session_start();
+include '../class/database.php';
+$db = new Database();
+$db->conectarDB();
+$db->perfil();
 
-        $chec="select *
-        from usuarios
-        WHERE id_usuario = '{$_SESSION["id"]}';";
-        $vamo=$db->seleccionar($chec);
-        extract($_POST);
+$chec = "select *
+from usuarios
+WHERE id_usuario = '{$_SESSION["id"]}';";
+$vamo = $db->seleccionar($chec);
+extract($_POST);
 
         
         
