@@ -112,9 +112,7 @@ $c_p = $conexion->cate_pro($consulta3);
         foreach ($tabla as $reg) { ?>
             <div class="col-lg-3 col-sm-12 grande chico" style="margin-top: 5px; margin-top:2rem;">
                 <div class="card" style="height: 400px;">
-                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" 
-
-alt="..."></a>
+                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" alt="..."></a>
                     <div class="card-body text-center">
                         <div class="icons card-title"></div>
                         <div class="card-text">
