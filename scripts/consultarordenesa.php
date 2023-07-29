@@ -1,5 +1,6 @@
 <?php
 include "../templates/sidebar.php";
+$id_venta = isset($_POST['id_venta']) ? $_POST['id_venta'] : '';
 ?>
 
 <div class="text-center">
@@ -14,7 +15,7 @@ include "../templates/sidebar.php";
                 <tr>
                     <th class="col-8">
                         <input type="text" name="id_venta" class="form-control mt-2 form-control-sm"
-                               placeholder="Codigo...">
+                               placeholder="Codigo..."  required value="<?php echo htmlspecialchars($id_venta); ?>">
                     </th>
                     <th>
                         <div>
@@ -28,36 +29,38 @@ include "../templates/sidebar.php";
 </div>
 
 <?php
-extract($_POST);
-if ($_POST && !empty($id_venta)) {
+if ($_POST && !empty($id_venta)) 
+{
     $consultaordenes = "SELECT
-    imagen_detalle_producto,
-    id_venta,
-    nombre_producto AS productos,
-    cantidad_producto_orden_venta,
-    precio_producto,
-    estado_orden_venta
-    FROM sweet_beauty.`todas las ordenes`
-    WHERE id_venta LIKE '%$id_venta%' and estado_orden_venta = 'Pendiente'
-    ORDER BY id_venta";
+        imagen_detalle_producto,
+        id_venta,
+        nombre_producto AS productos,
+        cantidad_producto_orden_venta,
+        precio_producto,
+        nombre_usuario,
+        precio_detalle_orden,
+        estado_orden_venta
+        FROM sweet_beauty.`todas las ordenes`
+        WHERE id_venta LIKE '%$id_venta%' AND estado_orden_venta = 'Pendiente'
+        ORDER BY id_venta";
 
     $tablac = $conexion->seleccionar($consultaordenes);
-    ?>
-    <div class="table-responsive container-fluid">
-        <table class="table shadow-sm table-hover">
-            <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-            </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
-            <?php
-            if (empty($tablac)) {
-                echo "<tr><td colspan='5'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-            } else {
+
+    if (!empty($tablac)) {
+        $totalPrecioDetalleOrden = 0;
+        ?>
+        <div class="table-responsive container-fluid">
+            <table id="orden-venta-table" class="table shadow-sm table-hover text-center">
+                <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                <?php
                 foreach ($tablac as $reg) {
                     $imagenes = explode(', ', $reg->imagen_detalle_producto);
                     $productos = explode(', ', $reg->productos);
@@ -70,20 +73,53 @@ if ($_POST && !empty($id_venta)) {
                         echo "<td class='text-center'><img class='w-25' src='../img/productos/" . $imagenes[$i] . "'></td>";
                         echo "<td>" . $productos[$i] . "</td>";
                         echo "<td>" . $cantidades[$i] . "</td>";
-                        echo "<td>$" . $precios[$i] . "</td>";
+                        echo "<td>$" . $precios[$i] * $cantidades[$i] . "</td>";
                         echo "</tr>";
+
+                        $totalPrecioDetalleOrden += (float)$precios[$i] * $cantidades[$i];
                     }
                 }
+                echo "<h3 class='fw-bold text-center'>$reg->nombre_usuario</h3>";
+                ?>
+                </tbody>
+            </table>
+            <?php
+            $ordenPendienteEncontrada = false;
+            foreach ($tablac as $reg) {
+                if ($reg->estado_orden_venta === 'Pendiente') {
+                    $ordenPendienteEncontrada = true;
+                    break;
+                }
+            }
+            if ($ordenPendienteEncontrada) {
+                echo "<h3 class='fw-bold'>Precio total: <span class='badge text-bg-dark'>$$totalPrecioDetalleOrden</span></h3>";
+                echo "<form id='cambiarapagado'method='post' class='mb-3'>";
+                echo "<input type='hidden' name='id_venta' value='" . htmlspecialchars($id_venta) . "'>";
+                echo "<button class='btn btn-secondary' type='submit' name='marcar_pagado'>Marcar como Pagado</button>";
+                echo "</form>";
             }
             ?>
-            </tbody>
-        </table>
-    </div>
-<?php } ?>
+        </div>
+    <?php
+    } else {
+        echo "<p class='fw-bold text-center'>No se encontraron resultados.</p>";
+    }
+}
+if (isset($_POST['marcar_pagado'])) 
+{
+    $id_venta = $_POST['id_venta'];
+    $nuevo_estado = 'Pagado';
+
+    $actualizar_estado = "UPDATE orden_venta SET estado_orden_venta = '$nuevo_estado' WHERE id_venta = '$id_venta'";
+
+    $conexion->ejecuta($actualizar_estado);
+}
+?>
 
 <!-- SCRIPTS -->
 <script src="../prueba/js/clock.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script>
     var el = document.getElementById("wrapper");
     var toggleButton = document.getElementById("menu-toggle");
@@ -93,3 +129,4 @@ if ($_POST && !empty($id_venta)) {
     };
 </script>
 </body>
+</html>
