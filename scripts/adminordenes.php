@@ -316,8 +316,8 @@ include "../templates/sidebar.php";
                         id_venta: id_venta
                     }, function (data) {
                             Swal.fire({
-                                title: '¡Cita eliminada!',
-                                text: 'La cita ha sido eliminada correctamente.',
+                                title: '¡Orden eliminada!',
+                                text: 'La orden ha sido eliminada correctamente.',
                                 icon: 'success',
                                 didClose: () => {
                                     window.location.reload();
