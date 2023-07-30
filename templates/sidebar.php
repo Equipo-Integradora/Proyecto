@@ -74,7 +74,7 @@
                                 }
                                 ?>
                                 </li>
-                                <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="fas fa-user-xmark me-2"></i> cerrar sesion</a></li>
+                                <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="fas fa-user-xmark me-2"></i>Cerrar sesion</a></li>
                             </ul>
                         </li>
                     </ul>

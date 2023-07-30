@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.10.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@5.10.0/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -90,7 +91,7 @@
                                  {
                                   if(!$perfil)
                                   {
-                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'>Mi Perfil</a>";
+                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
                                   }else
                                   {
                                   }
@@ -101,7 +102,7 @@
                             <?php
                             if(isset($_SESSION["admin"]))
                             {
-                                  echo "<a class='dropdown-item fs-6 ' href='../views/admin.php'>Administrar</a>";
+                                  echo "<a class='dropdown-item fs-6 ' href='../views/admin.php'><i class='fa fa-gear me-2'></i>Administrar</a>";
                             }
                                 
                             ?>
@@ -110,7 +111,7 @@
                             <?php
                                 if(isset($_SESSION["usuario"]))
                                 {
-                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'>Cerrar Sesión</a>";
+                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Cerrar sesion</a>";
                                 }
                               ?>
                       </li>
