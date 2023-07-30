@@ -178,8 +178,9 @@ include "../templates/sidebar.php";
                                         data-bs-target='#modalEditar-$reg->id_venta'> <!-- ID único para el modal -->
                                         <i class='bi bi-pencil-square me-1'></i> Editar
                                     </a>
-                                    <a class='dropdown-item'><i class='bi bi-trash3-fill me-1'></i> Eliminar</a
-                                    >
+                                    <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_venta'>
+                                    <i class='bi bi-trash3-fill me-1'></i> Eliminar
+                                    </button>
                                   </div>
                                 </div>
                               </td>";
@@ -299,6 +300,33 @@ include "../templates/sidebar.php";
             });
         });
         
+        $('.btn-eliminar').on('click', function () {
+            var id_venta = $(this).data('registro-id');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Deseas eliminar esta cita?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('delete_orden.php', {
+                        id_venta: id_venta
+                    }, function (data) {
+                            Swal.fire({
+                                title: '¡Cita eliminada!',
+                                text: 'La cita ha sido eliminada correctamente.',
+                                icon: 'success',
+                                didClose: () => {
+                                    window.location.reload();
+                                }
+                            });
+                    });
+                }
+            });
+        });
     });
 </script>
 </body>

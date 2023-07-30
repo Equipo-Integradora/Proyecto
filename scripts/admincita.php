@@ -139,16 +139,17 @@ include "../templates/sidebar.php";
                                     <i class='bi bi-three-dots-vertical'></i>
                                   </button>
                                   <div class='dropdown-menu'>
-                                  <a class='dropdown-item btn-editar' href='#' 
-                            data-registro-id='$reg->id_registro_cita' 
-                            data-precio-registro-cita='$reg->precio_registro_cita' 
-                            data-estado-registro-cita='$reg->estado_registro_cita' 
-                            data-bs-toggle='modal' 
-                            data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
-                            <i class='bi bi-pencil-square me-1'></i> Editar
-                        </a>
-                                    <a class='dropdown-item'><i class='bi bi-trash3-fill me-1'></i> Eliminar</a
-                                    >
+                                    <a class='dropdown-item btn-editar' href='#' 
+                                        data-registro-id='$reg->id_registro_cita' 
+                                        data-precio-registro-cita='$reg->precio_registro_cita' 
+                                        data-estado-registro-cita='$reg->estado_registro_cita' 
+                                        data-bs-toggle='modal' 
+                                        data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
+                                        <i class='bi bi-pencil-square me-1'></i> Editar
+                                    </a>
+                                    <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_registro_cita'>
+                                    <i class='bi bi-trash3-fill me-1'></i> Eliminar
+                                    </button>
                                   </div>
                                 </div>
                               </td>";
@@ -210,7 +211,6 @@ include "../templates/sidebar.php";
         };
     </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- NO BORRAR XD -->
 <script>
     $(document).ready(function () {
         $('.btn-editar').on('click', function () {
@@ -257,6 +257,34 @@ include "../templates/sidebar.php";
                                 window.location.reload();
                             }
                         });
+                    });
+                }
+            });
+        });
+
+        $('.btn-eliminar').on('click', function () {
+            var id_registro_cita = $(this).data('registro-id');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Deseas eliminar esta cita?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('delete_cita.php', {
+                        id_registro_cita: id_registro_cita
+                    }, function (data) {
+                            Swal.fire({
+                                title: '¡Cita eliminada!',
+                                text: 'La cita ha sido eliminada correctamente.',
+                                icon: 'success',
+                                didClose: () => {
+                                    window.location.reload();
+                                }
+                            });
                     });
                 }
             });
