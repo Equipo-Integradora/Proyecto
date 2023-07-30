@@ -63,8 +63,7 @@
                                 <i class="fas fa-user me-2"></i><?php echo $_SESSION["usuario"]?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-fill me-2"></i>Editar perfil</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill me-2"></i> Configuracion</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2 me-2"></i>Mi perfil</a></li>
                                 <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="bi bi-person-x-fill me-2"></i> cerrar sesion</a></li>
                             </ul>
                         </li>
