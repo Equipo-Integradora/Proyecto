@@ -90,7 +90,7 @@
                                  {
                                   if(!$perfil)
                                   {
-                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'>Mi Perfil</a>";
+                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
                                   }else
                                   {
                                   }
@@ -99,20 +99,20 @@
                         </li>
                         <li>
                             <?php
-                                if(isset($_SESSION["usuario"]))
-                                {
-                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'>Cerrar Sesión</a>";
-                                }
-                              ?>
-                      </li>
-                      <li>
-                            <?php
                             if(isset($_SESSION["admin"]))
                             {
-                                  echo "<a class='dropdown-item fs-6 ' href='../views/admin.php'>Administrar</a>";
+                                  echo "<a class='dropdown-item fs-6 ' href='../views/admin.php'><i class='fa fa-gear me-2'></i>Administrar</a>";
                             }
                                 
                             ?>
+                      </li>
+                        <li>
+                            <?php
+                                if(isset($_SESSION["usuario"]))
+                                {
+                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Cerrar sesion</a>";
+                                }
+                              ?>
                       </li>
                                            
                         </ul>

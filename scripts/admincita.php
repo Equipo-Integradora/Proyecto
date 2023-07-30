@@ -22,6 +22,7 @@ include "../templates/sidebar.php";
                <th>
                    <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2">
+                   <option value="">Seleccionar</option>
                     <option value="Aceptada">Aceptadas</option>
                     <option value="Cancelada">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>
@@ -48,11 +49,12 @@ include "../templates/sidebar.php";
     </div>
 
     <?php
-    extract($_POST);
-    if ($_POST)
-    { ?>
-    <?php
-    $citas = "SELECT id_registro_cita, 
+extract($_POST);
+if ($_POST) {
+    if (empty($estado) && empty($fecha_desde) && empty($fecha_hasta) && empty($nombre_usuario)) {
+        echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
+    } else {
+        $citas = "SELECT id_registro_cita, 
     nombre_usuario, 
     precio_registro_cita,
     GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
@@ -139,16 +141,17 @@ include "../templates/sidebar.php";
                                     <i class='bi bi-three-dots-vertical'></i>
                                   </button>
                                   <div class='dropdown-menu'>
-                                  <a class='dropdown-item btn-editar' href='#' 
-                            data-registro-id='$reg->id_registro_cita' 
-                            data-precio-registro-cita='$reg->precio_registro_cita' 
-                            data-estado-registro-cita='$reg->estado_registro_cita' 
-                            data-bs-toggle='modal' 
-                            data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
-                            <i class='bi bi-pencil-square me-1'></i> Editar
-                        </a>
-                                    <a class='dropdown-item'><i class='bi bi-trash3-fill me-1'></i> Eliminar</a
-                                    >
+                                    <a class='dropdown-item btn-editar' href='#' 
+                                        data-registro-id='$reg->id_registro_cita' 
+                                        data-precio-registro-cita='$reg->precio_registro_cita' 
+                                        data-estado-registro-cita='$reg->estado_registro_cita' 
+                                        data-bs-toggle='modal' 
+                                        data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
+                                        <i class='bi bi-pencil-square me-1'></i> Editar
+                                    </a>
+                                    <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_registro_cita'>
+                                    <i class='bi bi-trash3-fill me-1'></i> Eliminar
+                                    </button>
                                   </div>
                                 </div>
                               </td>";
@@ -159,7 +162,10 @@ include "../templates/sidebar.php";
                         </tbody>
                     </table>
                 </div>
-                <?php } ?>
+    <?php
+    }
+}
+?>
 
             <!-- Modal de Edición -->
             <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
@@ -210,7 +216,6 @@ include "../templates/sidebar.php";
         };
     </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- NO BORRAR XD -->
 <script>
     $(document).ready(function () {
         $('.btn-editar').on('click', function () {
@@ -257,6 +262,34 @@ include "../templates/sidebar.php";
                                 window.location.reload();
                             }
                         });
+                    });
+                }
+            });
+        });
+
+        $('.btn-eliminar').on('click', function () {
+            var id_registro_cita = $(this).data('registro-id');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Deseas eliminar esta cita?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('delete_cita.php', {
+                        id_registro_cita: id_registro_cita
+                    }, function (data) {
+                            Swal.fire({
+                                title: '¡Cita eliminada!',
+                                text: 'La cita ha sido eliminada correctamente.',
+                                icon: 'success',
+                                didClose: () => {
+                                    window.location.reload();
+                                }
+                            });
                     });
                 }
             });

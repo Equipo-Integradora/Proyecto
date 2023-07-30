@@ -88,7 +88,8 @@ include "../templates/sidebar.php";
                 nombre_usuario,
                 fecha_entrega_orden_venta,
                 estado_orden_venta 
-                FROM sweet_beauty.`ventas recientes`";
+                FROM sweet_beauty.`ventas recientes`
+                WHERE estado_orden_venta = 'Pendiente'";
 
                 $consulta .= " GROUP BY id_venta";
                 $tablaventas = $conexion->seleccionar($consulta);
