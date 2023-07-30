@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="../css/admins.css">
     <title>Panel del administrador</title>
 
@@ -26,6 +26,9 @@
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom"><span>Sweet </span>Beauty</div>
             <div class="list-group list-group-flush my-3">
+
+                <a href="../views/home.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>página principal</a>
+
                 <a href="../views/admin.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-house-heart-fill me-2"></i>Inicio</a>
                 
                 <a href="../scripts/admincita.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Citas</span></a>
@@ -63,8 +66,15 @@
                                 <i class="fas fa-user me-2"></i><?php echo $_SESSION["usuario"]?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2 me-2"></i>Mi perfil</a></li>
-                                <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="bi bi-person-x-fill me-2"></i> cerrar sesion</a></li>
+                                <li>
+                                <?php
+                                if(isset($_SESSION["usuario"]))
+                                {
+                                    echo "<a class='dropdown-item' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
+                                }
+                                ?>
+                                </li>
+                                <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="fas fa-user-xmark me-2"></i> cerrar sesion</a></li>
                             </ul>
                         </li>
                     </ul>

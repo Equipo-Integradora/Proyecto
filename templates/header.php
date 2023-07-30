@@ -99,20 +99,20 @@
                         </li>
                         <li>
                             <?php
-                                if(isset($_SESSION["usuario"]))
-                                {
-                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'>Cerrar Sesión</a>";
-                                }
-                              ?>
-                      </li>
-                      <li>
-                            <?php
                             if(isset($_SESSION["admin"]))
                             {
                                   echo "<a class='dropdown-item fs-6 ' href='../views/admin.php'>Administrar</a>";
                             }
                                 
                             ?>
+                      </li>
+                        <li>
+                            <?php
+                                if(isset($_SESSION["usuario"]))
+                                {
+                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'>Cerrar Sesión</a>";
+                                }
+                              ?>
                       </li>
                                            
                         </ul>
