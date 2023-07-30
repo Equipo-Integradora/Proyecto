@@ -92,8 +92,10 @@ if ($_POST && !empty($id_venta))
                 }
             }
             if ($ordenPendienteEncontrada) {
+                echo "<div class='d-grid gap-2 d-md-flex justify-content-md-start'>";
                 echo "<h3 class='fw-bold'>Precio total: <span class='badge text-bg-dark'>$$totalPrecioDetalleOrden</span></h3>";
                 echo "<button class='fw-bold btn btn-secondary mb-3 btn-actualizar' href='#' data-registro-id='$reg->id_venta'>Marcar como Pagado</button>";
+                echo "</div>";
             }
             ?>
         </div>

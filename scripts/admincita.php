@@ -22,6 +22,7 @@ include "../templates/sidebar.php";
                <th>
                    <p class="fw-bold">Estado</p>
                    <select name="estado" class="form-control mt-2">
+                   <option value="">Seleccionar</option>
                     <option value="Aceptada">Aceptadas</option>
                     <option value="Cancelada">Canceladas</option>
                     <option value="Pendiente">Pendientes</option>
@@ -48,11 +49,12 @@ include "../templates/sidebar.php";
     </div>
 
     <?php
-    extract($_POST);
-    if ($_POST)
-    { ?>
-    <?php
-    $citas = "SELECT id_registro_cita, 
+extract($_POST);
+if ($_POST) {
+    if (empty($estado) && empty($fecha_desde) && empty($fecha_hasta) && empty($nombre_usuario)) {
+        echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
+    } else {
+        $citas = "SELECT id_registro_cita, 
     nombre_usuario, 
     precio_registro_cita,
     GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
@@ -160,7 +162,10 @@ include "../templates/sidebar.php";
                         </tbody>
                     </table>
                 </div>
-                <?php } ?>
+    <?php
+    }
+}
+?>
 
             <!-- Modal de Edición -->
             <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
