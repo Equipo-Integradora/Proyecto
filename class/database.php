@@ -242,6 +242,39 @@
             echo $e->getMessage();
         }
     }
+
+
+    function aleatorio() {
+        $longitudCodigo = 7;
+        $codigo = 'default';
+        $caracteresPermitidos = '0123456789';
+        $caracteresPermitidosLength = strlen($caracteresPermitidos);
+    
+        $consulta = "SELECT orden_venta.id_venta FROM orden_venta;";
+        $resultado = $this->PDOLocal->query($consulta);
+        $filas = $resultado->fetchAll(PDO::FETCH_OBJ);
+        
+        $codigoExistente = array();
+        foreach ($filas as $fila) {
+            $codigoExistente[] = $fila->id_venta;
+        }
+    
+        $diferente = false;
+        while (!$diferente) {
+            $codigoGenerado = 'ORD';
+            for ($i = 0; $i < $longitudCodigo; $i++) {
+                $codigoGenerado .= $caracteresPermitidos[rand(0, $caracteresPermitidosLength - 1)];
+            }
+    
+            if (!in_array($codigoGenerado, $codigoExistente) && $codigoGenerado !== 'default') {
+                $diferente = true;
+            }
+        }
+    
+        return $codigoGenerado;
+    }
+
+
 }
 
 
