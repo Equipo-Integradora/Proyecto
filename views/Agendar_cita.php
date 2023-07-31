@@ -10,12 +10,12 @@ if(isset($_SESSION["usuario"]))
 ?>
 <!--Contenido-->
 
-<div class="container mt-5">
-    <form action="../scripts/ingresar_cita.php" method="post">
         <!--Inicio Pagina 1-->
         <link rel="stylesheet" href="../css/calendario.css">
     <div class="container" style="margin-top: 73px;">
+                    <h1>Seleccione los servicios que quiere</h1>
     <!--Servicios-->
+    <form action="../scripts/ingresar_cita.php" method="post">
         <div class="accordion" id="accordionExample">
         <?php
         $consultas = "SELECT * FROM servicios;";
@@ -48,6 +48,7 @@ if(isset($_SESSION["usuario"]))
                                 <div class="servicio"><?php echo $ts->nombre_tipo_servicio?></div>
                                 <div class="descripcion"><?php echo $ts->descripcion_tipo_servicio?></div>
                                 <div class="price"><?php echo $ts->precio_tipo_servicio?> <span style="font-size: 10px; color:black; text-decoration:none; margin-left:2rem">Time aprox:<?php echo $ts->tiempo_aproximado_servicio?></span></div>
+                                <input type="hidden" name="precio" value="<?php echo $ts->precio_tipo_servicio?>">
                                 <input type="hidden" name="precio" value="<?php echo "$ts->precio_tipo_servicio"?>">
                                 <input type="checkbox" id="<?php echo $ts->id_tipo_servicio ?>" name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="d-none">
                                 <label for="<?php echo $ts->id_tipo_servicio ?>" class="card-title btn btn-outline-primary">Seleccionar</label>
@@ -68,22 +69,20 @@ if(isset($_SESSION["usuario"]))
         }
         ?>
         </div>
-    </div>
 
         
         <!--Fin Pagina 1-->
-    </div>
         <!--Inicio Fecha y Hora-->
         <?php
         $pdo = new PDO('mysql:host=localhost:3309;dbname=sweet_beauty', 'admin', '1234');
         $sql = "SELECT fecha_bloqueada FROM fechas_bloqueadas";
         $fechasBloqueadas = $conexion->cale($sql);
         ?>
-        <div class="col-md-12" style="padding: 2%;">
+        <div class="col-md-12" style="margin-top: 1rem;">
             <div class="card custom-card">
              <h2>Selecciona la fecha y la hora</h2>
              <div class="date-input-container">
-                <label class="date-input-label" for="selectedDate">Seleccione el icono del calendario en el recuadro:</label>
+                <label class="date-input-label" for="selectedDate">Seleccione el icono del calendario en el recuadro y seleecione la fecha:</label>
                 <input type="date" class="date-input" id="selectedDate" name="selectedDate" onkeydown="return false">
             </div>
             <br>
@@ -115,6 +114,7 @@ if(isset($_SESSION["usuario"]))
   
 </div>
 
+</div>
 
 <!--Fin Contenido-->
 <?php
