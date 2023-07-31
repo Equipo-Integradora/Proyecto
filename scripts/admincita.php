@@ -14,7 +14,7 @@ include "../templates/sidebar.php";
     </div>
 
 
-        <div class="col-12">
+        <div class="col-12 table-responsive">
         <label  class="form-label"><h3 class="fw-bold">Filtrar por</h3></label>
         <table class="table">
             <thead>
@@ -183,7 +183,7 @@ if ($_POST) {
                     <input type="hidden" name="id_registro_cita" id="id_registro_cita">
                     <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita">
                     <input type="hidden" name="servicios" id="servicios">
-                    <div id="servicios_inputs">
+                    <div id="servicios_inputs" class="servicios_inputs">
                         
                     </div>
                     <div class="mb-3">
@@ -233,15 +233,15 @@ $(document).ready(function () {
         $('#id_detalle_registro_cita').val(id_detalle_registro_cita);
         $('#estado_registro_cita').val(estado_registro_cita);
 
-        $('#servicios_inputs').empty();
+        $('.servicios_inputs').empty();
 
         tipos_servicio.forEach(function (servicio, index) 
         {
             var precio = precio_registro_cita[index];
-            $('#servicios_inputs').append(`
+            $('.servicios_inputs').append(`
                 <div class="mb-3">
                     <label for="edit_precio_${servicio}" class="form-label">${servicio}</label>
-                    <input type="number" name="precio_registro_cita[]" id="edit_precio_${servicio}" class="form-control" placeholder="${precio}" min="0" step="0.01">
+                    <input type="number" name="precio_registro_cita[]" id="edit_precio_${servicio}" class="form-control" value="${precio}" min="0" step="0.01">
                 </div>
             `);
         });
