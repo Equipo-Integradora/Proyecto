@@ -8,6 +8,7 @@
 <body>
 <div class="container">
         <?php
+        session_start();
         
         include '../class/database.php';
         $db = new Database();
