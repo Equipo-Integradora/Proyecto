@@ -76,7 +76,14 @@
                                 }
                                 ?>
                                 </li>
-                                <li><a class="dropdown-item" href="../scripts/cerrar_sesion.php"><i class="fas fa-user-xmark me-2"></i>Cerrar sesion</a></li>
+                                <li>
+                                <?php 
+                                if(isset($_SESSION["usuario"]))
+                                {    
+                                    echo "<a class='dropdown-item' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Cerrar sesion</a>";
+                                }
+                                ?>
+                                </li>
                             </ul>
                         </li>
                     </ul>
