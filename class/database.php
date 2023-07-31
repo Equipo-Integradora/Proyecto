@@ -273,21 +273,7 @@
     
         return $codigoGenerado;
     }
-    function cale($sql)
-        {
-            try
-            {
-                
-                $stmt = $this->PDOLocal->query($sql);
-                $stmt->execute();
-                $fechasBloqueadas = $stmt->fetchAll(PDO::FETCH_COLUMN);
-                return $fechasBloqueadas;
-            }
-            catch(PDOException $e)
-            {
-                echo $e->getMessage();
-            }
-        }
+
 
     function ultimaid()
     {

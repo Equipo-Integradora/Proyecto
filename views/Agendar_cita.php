@@ -75,8 +75,6 @@ if(isset($_SESSION["usuario"]))
         <!--Inicio Fecha y Hora-->
         <?php
         $pdo = new PDO('mysql:host=localhost:3309;dbname=sweet_beauty', 'admin', '1234');
-        $sql = "SELECT fecha_bloqueada FROM fechas_bloqueadas";
-        $fechasBloqueadas = $conexion->cale($sql);
         ?>
         <div class="col-md-12" style="margin-top: 1rem;">
             <div class="card custom-card">
@@ -128,15 +126,18 @@ include "../templates/footer.php";
     const selectedDate = document.getElementById('selectedDate').value;
     const checkboxes = document.querySelectorAll('input[name="servicio[]"]:checked');
 
-    if (selectedDate === '' && checkboxes.length === 0) {
-      event.preventDefault(); // Evitar el envío del formulario
-      alert('Por favor, complete la fecha y seleccione al menos un servicio.');
-    } else if (selectedDate === '') {
-      event.preventDefault(); // Evitar el envío del formulario
-      alert('Por favor, seleccione una fecha.');
-    } else if (checkboxes.length === 0) {
-      event.preventDefault(); // Evitar el envío del formulario
-      alert('Por favor, seleccione al menos un servicio.');
+    if (selectedDate === '' && checkboxes.length === 0) 
+    {
+      event.preventDefault(); 
+      alert('Ingrese todos los datos por favor.');
+    } else if (selectedDate === '') 
+    {
+      event.preventDefault(); 
+      alert('Seleccione una fecha.');
+    } else if (checkboxes.length === 0) 
+    {
+      event.preventDefault(); 
+      alert('Seleccione un servicio.');
     }
 
   });
@@ -163,7 +164,7 @@ include "../templates/footer.php";
   });
 
   
-  const fechasBloqueadas = <?php echo json_encode($fechasBloqueadas); ?>;
+  const fechasBloqueadas = <?php echo json_encode($_SESSION['dias']); ?>;
 
   document.getElementById('selectedDate').addEventListener('input', function() {
     const selectedDate = this.value;

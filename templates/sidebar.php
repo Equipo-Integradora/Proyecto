@@ -40,6 +40,8 @@
                 <a href="../scripts/inventario.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box2-heart-fill me-2"></i><span>Inventario</span></a>
                 
                 <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Reportes</span></a>
+
+                <a href="../views/calendario.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-week me-2"></i><span>Calendario</span></a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
