@@ -66,7 +66,6 @@ include "../class/database.php";
                 <div class="content col-lg-6">
                     <h3>Algunos de mis trabajos</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, maxime! Voluptate voluptatem sequi dolor modi nulla, quia accusantium iure est quo nemo dignissimos laudantium aspernatur repudiandae rerum minus ea atque.</p>
-                    <a href="#" class="boton link">Ver más</a>
                 </div>
                </div>
             </div>
