@@ -15,7 +15,7 @@ if(isset($_SESSION["usuario"]))
     <div class="container" style="margin-top: 73px;">
                     <h1>Seleccione los servicios que quiere</h1>
     <!--Servicios-->
-    <form action="../scripts/ingresar_cita.php" method="post">
+    <form action="../scripts/ingresar_cita.php" method="post" id="myForm">
         <div class="accordion" id="accordionExample">
         <?php
         $consultas = "SELECT * FROM servicios;";
@@ -122,6 +122,25 @@ include "../templates/footer.php";
 ?>
    
 <!--Scripts-->
+<script>
+  document.getElementById('myForm').addEventListener('submit', function(event) {
+    
+    const selectedDate = document.getElementById('selectedDate').value;
+    const checkboxes = document.querySelectorAll('input[name="servicio[]"]:checked');
+
+    if (selectedDate === '' && checkboxes.length === 0) {
+      event.preventDefault(); // Evitar el envío del formulario
+      alert('Por favor, complete la fecha y seleccione al menos un servicio.');
+    } else if (selectedDate === '') {
+      event.preventDefault(); // Evitar el envío del formulario
+      alert('Por favor, seleccione una fecha.');
+    } else if (checkboxes.length === 0) {
+      event.preventDefault(); // Evitar el envío del formulario
+      alert('Por favor, seleccione al menos un servicio.');
+    }
+
+  });
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   var fechaActual = new Date();
