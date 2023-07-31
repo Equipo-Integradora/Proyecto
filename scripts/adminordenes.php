@@ -159,9 +159,9 @@ if ($_POST) {
                                     data-bs-target='#modalEditar-$reg->id_venta'> <!-- ID único para el modal -->
                                     <i class='bi bi-pencil-square me-1'></i> Editar
                                 </a>
-                                <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_venta'>
-                                    <i class='bi bi-trash3-fill me-1'></i> Eliminar
-                                </button>
+                                <!-- <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_venta'>
+                                <i class='bi bi-trash3-fill me-1'></i> Eliminar
+                                </button> -->
                                   </div>
                                 </div>
                               </td>";

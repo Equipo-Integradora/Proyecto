@@ -48,7 +48,7 @@ include "../templates/sidebar.php";
     </form>
     </div>
 
-    <?php
+<?php
 extract($_POST);
 if ($_POST) {
     if (empty($estado) && empty($fecha_desde) && empty($fecha_hasta) && empty($nombre_usuario)) {
@@ -56,9 +56,10 @@ if ($_POST) {
     } else {
         $citas = "SELECT id_registro_cita, 
     nombre_usuario, 
+    id_detalle_registro_cita,
     precio_registro_cita,
     GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-    SUM(precio_registro_cita + precio_tipo_servicio) AS precio_total_cita,
+    SUM(precio_registro_cita) AS precio_total_cita,
     fecha_creacion_registro_cita,
     fecha_cita_registro_cita,
     hora_registro_cita,
@@ -142,16 +143,18 @@ if ($_POST) {
                                   </button>
                                   <div class='dropdown-menu'>
                                     <a class='dropdown-item btn-editar' href='#' 
+                                        data-tipos-servicio='$reg->tipos_servicio'
                                         data-registro-id='$reg->id_registro_cita' 
+                                        data-detalle-id='$reg->id_detalle_registro_cita'
                                         data-precio-registro-cita='$reg->precio_registro_cita' 
                                         data-estado-registro-cita='$reg->estado_registro_cita' 
                                         data-bs-toggle='modal' 
                                         data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
                                         <i class='bi bi-pencil-square me-1'></i> Editar
                                     </a>
-                                    <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_registro_cita'>
+                                    <!-- <button class='dropdown-item btn-eliminar' href='#' data-registro-id='$reg->id_registro_cita'>
                                     <i class='bi bi-trash3-fill me-1'></i> Eliminar
-                                    </button>
+                                    </button> -->
                                   </div>
                                 </div>
                               </td>";
@@ -167,38 +170,39 @@ if ($_POST) {
 }
 ?>
 
-            <!-- Modal de Edición -->
-            <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="">
-                                <input type="hidden" name="id_registro_cita" id="id_registro_cita">
-                                <div class="mb-3">
-                                    <label for="edit_precio_registro_cita" class="form-label">Precio de la cita</label>
-                                    <input type="number" step="0.01" name="precio_registro_cita" id="precio_registro_cita" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="edit_estado_registro_cita" class="form-label">Cambiar estado de la cita</label>
-                                    <select name="estado_registro_cita" id="estado_registro_cita" class="form-control">
-                                        <option value="Aceptada">Aceptada</option>
-                                        <option value="Cancelada">Cancelada</option>
-                                        <option value="Pendiente">Pendiente</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn boton">Guardar Cambios</button>
-                            </div>
-                        </form>
+<!-- Modal de Edición -->
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    <input type="hidden" name="id_registro_cita" id="id_registro_cita">
+                    <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita">
+                    <input type="hidden" name="servicios" id="servicios">
+                    <div id="servicios_inputs">
+                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_estado_registro_cita" class="form-label">Cambiar estado de la cita</label>
+                        <select name="estado_registro_cita" id="estado_registro_cita" class="form-control">
+                            <option value="Aceptada">Aceptada</option>
+                            <option value="Cancelada">Cancelada</option>
+                            <option value="Pendiente">Pendiente</option>
+                        </select>
                     </div>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn boton">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
             
 <!-- SCRIPTS -->
 <script
@@ -217,23 +221,38 @@ if ($_POST) {
     </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(document).ready(function () {
-        $('.btn-editar').on('click', function () {
-            var id_registro_cita = $(this).data('registro-id');
-            var precio_registro_cita = $(this).data('precio-registro-cita');
-            var estado_registro_cita = $(this).data('estado-registro-cita');
+$(document).ready(function () {
+    $('.btn-editar').on('click', function () {
+        var id_registro_cita = $(this).data('registro-id');
+        var id_detalle_cita= $(this).data('detalle-id');
+        var tipos_servicio = $(this).data('tipos-servicio').split(', ');
+        var precio_registro_cita = $(this).data('precio-registro-cita').split(', ');
+        var estado_registro_cita = $(this).data('estado-registro-cita');
 
-            $('#id_registro_cita').val(id_registro_cita);
-            $('#precio_registro_cita').val(precio_registro_cita);
-            $('#estado_registro_cita').val(estado_registro_cita);
+        $('#id_registro_cita').val(id_registro_cita);
+        $('#id_detalle_registro_cita').val(id_detalle_registro_cita);
+        $('#estado_registro_cita').val(estado_registro_cita);
 
-            $('#modalEditar').modal('show');
+        $('#servicios_inputs').empty();
+
+        tipos_servicio.forEach(function (servicio, index) 
+        {
+            var precio = precio_registro_cita[index];
+            $('#servicios_inputs').append(`
+                <div class="mb-3">
+                    <label for="edit_precio_${servicio}" class="form-label">${servicio}</label>
+                    <input type="number" name="precio_registro_cita[]" id="edit_precio_${servicio}" class="form-control" placeholder="${precio}" min="0" step="0.01">
+                </div>
+            `);
         });
+
+        $('#modalEditar').modal('show');
+    });
 
         $('#modalEditar form').submit(function (event) {
             event.preventDefault(); 
-
             var id_registro_cita = $('#id_registro_cita').val();
+            var id_detalle_registro_cita = $('#id_detalle_registro_cita').val();
             var precio_registro_cita = $('#precio_registro_cita').val();
             var estado_registro_cita = $('#estado_registro_cita').val();
 
@@ -250,6 +269,7 @@ if ($_POST) {
                 if (result.isConfirmed) {
                     $.post('update_cita.php', {
                         id_registro_cita: id_registro_cita,
+                        id_detalle_registro_cita:id_detalle_registro_cita,
                         precio_registro_cita: precio_registro_cita,
                         estado_registro_cita: estado_registro_cita
                     }, function (data) {
