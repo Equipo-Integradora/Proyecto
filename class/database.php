@@ -242,6 +242,67 @@
             echo $e->getMessage();
         }
     }
+
+
+    function aleatorio() {
+        $longitudCodigo = 7;
+        $codigo = 'default';
+        $caracteresPermitidos = '0123456789';
+        $caracteresPermitidosLength = strlen($caracteresPermitidos);
+    
+        $consulta = "SELECT orden_venta.id_venta FROM orden_venta;";
+        $resultado = $this->PDOLocal->query($consulta);
+        $filas = $resultado->fetchAll(PDO::FETCH_OBJ);
+        
+        $codigoExistente = array();
+        foreach ($filas as $fila) {
+            $codigoExistente[] = $fila->id_venta;
+        }
+    
+        $diferente = false;
+        while (!$diferente) {
+            $codigoGenerado = 'ORD';
+            for ($i = 0; $i < $longitudCodigo; $i++) {
+                $codigoGenerado .= $caracteresPermitidos[rand(0, $caracteresPermitidosLength - 1)];
+            }
+    
+            if (!in_array($codigoGenerado, $codigoExistente) && $codigoGenerado !== 'default') {
+                $diferente = true;
+            }
+        }
+    
+        return $codigoGenerado;
+    }
+    function cale($sql)
+        {
+            try
+            {
+                
+                $stmt = $this->PDOLocal->query($sql);
+                $stmt->execute();
+                $fechasBloqueadas = $stmt->fetchAll(PDO::FETCH_COLUMN);
+                return $fechasBloqueadas;
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+        }
+
+    function ultimaid()
+    {
+        try
+        {
+            return $this->PDOLocal->lastInsertId();
+
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+
 }
 
 

@@ -432,7 +432,7 @@ $conexion->conectarDB();
                                                                 
                                                                 </div>
                                                                         
-                                                                <div class="input-field" style="margin-top: 1rem;">
+                                                                <div class="input-field" style="margin-bottom: 1rem; margin-top: 1rem;">
                                                                     <input type="submit" class="submit" value="Ingresar Producto">      
                                                                 </div>
                                                     </form>
