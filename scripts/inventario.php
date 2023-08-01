@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../templates/sidebar.php";
 
 $conexion = new database();
@@ -223,7 +224,7 @@ $conexion->conectarDB();
                                                                 </div>
                                                                 <div class="input-field">
                                                                     <label for="ima">Imagen</label>
-                                                                    <input type="file" name="ima" id="ima">
+                                                                    <input type="file" name="ima" id="ima" accept="image/jpg" required>
                                                                 </div>
                                                                 <div class="input-field" style="margin-top: 1rem;">
                                                                     <input type="submit" class="submit" value="Ingresar Producto">      

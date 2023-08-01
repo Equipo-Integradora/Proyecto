@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../templates/sidebar.php";
 $id_venta = isset($_POST['id_venta']) ? $_POST['id_venta'] : '';
 ?>
