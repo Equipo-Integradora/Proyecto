@@ -1,10 +1,12 @@
 <?php 
 session_start();
-$perfil = false;
-include "../templates/header.php";
+    if(isset($_SESSION["usuario"]))
+    {
 ?>
 
 <?php 
+    $perfil = false;
+    include "../templates/header.php";
     include "../class/database.php";
     $conexion = new database();
     $conexion->conectarDB();
@@ -167,4 +169,8 @@ group by productos.nombre_producto;";
     </script>
 <?php
     include "../templates/footer.php";
+}else
+{
+    header("Location: ../views/login.php");
+}
 ?>
