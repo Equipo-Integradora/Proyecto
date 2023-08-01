@@ -7,9 +7,6 @@ if(isset($_SESSION["admin"]))
 include "../templates/sidebar.php";
 ?>
 
-<div class="container-fluid px-4">
-    <div class="row g-3 my-2">
-
     <div class="text-center">
         <h3 class="m-0">Reportes</h3>
     </div>
@@ -41,6 +38,8 @@ include "../templates/sidebar.php";
     </form>
     </div>
 
+    <div class="container-fluid px-4">
+    <div class="row g-3 my-2">
         <!-- TABLAS -->
     <ul class="nav nav-pills mb-3 container-fluid px-4" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
