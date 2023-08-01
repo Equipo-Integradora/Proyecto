@@ -55,17 +55,9 @@ if ($_POST) {
     if (empty($nombre_usuario) && empty($estado) && empty($fecha_desde) && empty($fecha_hasta)) {
         echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
     } else {
-        $ordenes = "SELECT
-            id_venta,
-            nombre_usuario,
-            GROUP_CONCAT(nombre_producto SEPARATOR ', ') AS productos,
-            SUM(cantidad_producto_orden_venta) AS cantidad_total,
-            SUM(precio_producto * cantidad_producto_orden_venta) AS precio_total,
-            fecha_creacion_orden_venta,
-            fecha_entrega_orden_venta,
-            estado_orden_venta
-            FROM sweet_beauty.`todas las ordenes`
-            WHERE 1 = 1";
+        $ordenes = "SELECT *
+        FROM sweet_beauty.`todas las ordenes`
+        WHERE 1 = 1";
 
         if (!empty($estado)) {
             $ordenes .= " AND estado_orden_venta = '$estado'";
@@ -109,12 +101,17 @@ if ($_POST) {
                             echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#productos-' . $reg->id_venta . '">Ver productos</button>';
                             echo '<div class="collapse" id="productos-' . $reg->id_venta . '">';
                             $productos = explode(', ', $reg->productos);
+                            $colorr = explode(', ', $reg->color);
                             echo '<ul>';
-                            foreach ($productos as $producto) {
-                                if (empty($reg->productos)) {
+                            for ($i = 0; $i < count($productos); $i++) {
+                                if (empty($productos[$i])) {
                                     echo "No hay productos";
                                 } else {
-                                    echo '<li>' . $producto . '</li>';
+                                    if (isset($colorr[$i])) {
+                                        echo '<li>' . $productos[$i] . ' <br> Color: <strong>' . $colorr[$i] .'</strong></li>';
+                                    } else {
+                                        echo '<li>' . $productos[$i] .'</li>';
+                                    }
                                 }
                             }
                             echo '</ul>';
@@ -177,7 +174,6 @@ if ($_POST) {
 }
 ?>
 
-                
             <!-- Modal de Edición -->
             <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">

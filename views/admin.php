@@ -21,16 +21,9 @@ include "../templates/sidebar.php";
             <div class="table-responsive">
                 <!-- TABLA -->
                 <?php
-                $consulta = "SELECT
-                id_registro_cita,
-                nombre_usuario,
-                GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-                fecha_cita_registro_cita,
-                estado_registro_cita
-                FROM sweet_beauty.`citas recientes`
-                WHERE estado_registro_cita = 'Aceptada'";
+                $consulta = "SELECT *
+                FROM sweet_beauty.`citas recientes`";
 
-                $consulta .= " GROUP BY id_registro_cita";
                 $tablacitas = $conexion->seleccionar($consulta);
 
                 if (!empty($tablacitas)) {

@@ -54,18 +54,9 @@ if ($_POST) {
     if (empty($estado) && empty($fecha_desde) && empty($fecha_hasta) && empty($nombre_usuario)) {
         echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
     } else {
-        $citas = "SELECT id_registro_cita, 
-    nombre_usuario, 
-    id_detalle_registro_cita,
-    precio_registro_cita,
-    GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-    SUM(precio_registro_cita) AS precio_total_cita,
-    fecha_creacion_registro_cita,
-    fecha_cita_registro_cita,
-    hora_registro_cita,
-    estado_registro_cita
-    FROM sweet_beauty.`todas las citas`
-    WHERE 1 = 1";
+        $citas = "SELECT *
+        FROM sweet_beauty.`todas las citas`
+        WHERE 1 = 1";
 
     if (!empty($estado)) {
         $citas .= " AND estado_registro_cita = '$estado'";
@@ -88,7 +79,7 @@ if ($_POST) {
                                <th>ID cita</th>
                                <th>Cliente</th>
                                <th>Tipo de servicio</th>
-                               <th>Precio</th>
+                               <th>Precio total</th>
                                <th>Fecha de registro</th>
                                <th>Fecha de la cita</th>
                                <th>Hora de la cita</th>
@@ -113,9 +104,15 @@ if ($_POST) {
                                 echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
                                 echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
                                 $servicios = explode(', ', $reg->tipos_servicio);
+                                $precios = explode(', ', $reg->precio_cita);
                                 echo '<ul>';
-                                foreach ($servicios as $servicio) {
-                                    echo '<li>' . $servicio . '</li>';
+                                for ($i = 0; $i < count($servicios); $i++) {
+                                    echo '<li>' . $servicios[$i];
+                                    if (!empty($precios[$i])) 
+                                    {
+                                        echo '<strong><br> $' . $precios[$i] . '</strong></li>'; 
+                                    }
+                                    echo '</li>';
                                 }
                                 echo '</ul>';
                                 echo '</div>';
@@ -144,9 +141,8 @@ if ($_POST) {
                                   <div class='dropdown-menu'>
                                     <a class='dropdown-item btn-editar' href='#' 
                                         data-tipos-servicio='$reg->tipos_servicio'
-                                        data-registro-id='$reg->id_registro_cita' 
-                                        data-detalle-id='$reg->id_detalle_registro_cita'
-                                        data-precio-registro-cita='$reg->precio_registro_cita' 
+                                        data-registro-id='$reg->id_registro_cita'
+                                        data-precio-registro-cita='$reg->precio_cita' 
                                         data-estado-registro-cita='$reg->estado_registro_cita' 
                                         data-bs-toggle='modal' 
                                         data-bs-target='#modalEditar-$reg->id_registro_cita'> <!-- ID único para el modal -->
@@ -181,10 +177,9 @@ if ($_POST) {
             <div class="modal-body">
                 <form method="post" action="">
                     <input type="hidden" name="id_registro_cita" id="id_registro_cita">
-                    <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita">
                     <input type="hidden" name="servicios" id="servicios">
                     <div id="servicios_inputs" class="servicios_inputs">
-                        
+                    <input type="hidden" name="precio_cita" id="precio_cita">
                     </div>
                     <div class="mb-3">
                         <label for="edit_estado_registro_cita" class="form-label">Cambiar estado de la cita</label>
@@ -224,24 +219,22 @@ if ($_POST) {
 $(document).ready(function () {
     $('.btn-editar').on('click', function () {
         var id_registro_cita = $(this).data('registro-id');
-        var id_detalle_cita= $(this).data('detalle-id');
         var tipos_servicio = $(this).data('tipos-servicio').split(', ');
         var precio_registro_cita = $(this).data('precio-registro-cita').split(', ');
         var estado_registro_cita = $(this).data('estado-registro-cita');
 
         $('#id_registro_cita').val(id_registro_cita);
-        $('#id_detalle_registro_cita').val(id_detalle_registro_cita);
         $('#estado_registro_cita').val(estado_registro_cita);
 
-        $('.servicios_inputs').empty();
+        $('#servicios_inputs').empty();
 
         tipos_servicio.forEach(function (servicio, index) 
         {
             var precio = precio_registro_cita[index];
-            $('.servicios_inputs').append(`
+            $('#servicios_inputs').append(`
                 <div class="mb-3">
                     <label for="edit_precio_${servicio}" class="form-label">${servicio}</label>
-                    <input type="number" name="precio_registro_cita[]" id="edit_precio_${servicio}" class="form-control" value="${precio}" min="0" step="0.01">
+                    <input type="number" name="precio_registro_cita[]" id="edit_precio_${servicio}" class="form-control" value="${precio}">
                 </div>
             `);
         });
@@ -252,7 +245,6 @@ $(document).ready(function () {
         $('#modalEditar form').submit(function (event) {
             event.preventDefault(); 
             var id_registro_cita = $('#id_registro_cita').val();
-            var id_detalle_registro_cita = $('#id_detalle_registro_cita').val();
             var precio_registro_cita = $('#precio_registro_cita').val();
             var estado_registro_cita = $('#estado_registro_cita').val();
 
@@ -269,7 +261,6 @@ $(document).ready(function () {
                 if (result.isConfirmed) {
                     $.post('update_cita.php', {
                         id_registro_cita: id_registro_cita,
-                        id_detalle_registro_cita:id_detalle_registro_cita,
                         precio_registro_cita: precio_registro_cita,
                         estado_registro_cita: estado_registro_cita
                     }, function (data) {
