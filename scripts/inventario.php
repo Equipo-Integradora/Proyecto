@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../templates/sidebar.php";
 
 $conexion = new database();
@@ -43,9 +44,9 @@ $conexion->conectarDB();
     <div class="text-center">
         <h3 class="m-0">Inventario</h3>
     </div>
-    <div class="mod">
+    <div class="mod px-4 p-3">
     <!-- Button trigger modal -->
-    <button type="button" class="bot" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn boton" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Ingresar Producto
     </button>
     </div>
@@ -223,7 +224,7 @@ $conexion->conectarDB();
                                                                 </div>
                                                                 <div class="input-field">
                                                                     <label for="ima">Imagen</label>
-                                                                    <input type="file" name="ima" id="ima">
+                                                                    <input type="file" name="ima" id="ima" accept="image/jpg" required>
                                                                 </div>
                                                                 <div class="input-field" style="margin-top: 1rem;">
                                                                     <input type="submit" class="submit" value="Ingresar Producto">      
@@ -432,7 +433,7 @@ $conexion->conectarDB();
                                                                 
                                                                 </div>
                                                                         
-                                                                <div class="input-field" style="margin-top: 1rem;">
+                                                                <div class="input-field" style="margin-bottom: 1rem; margin-top: 1rem;">
                                                                     <input type="submit" class="submit" value="Ingresar Producto">      
                                                                 </div>
                                                     </form>

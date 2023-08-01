@@ -21,15 +21,9 @@ include "../templates/sidebar.php";
             <div class="table-responsive">
                 <!-- TABLA -->
                 <?php
-                $consulta = "SELECT
-                id_registro_cita,
-                nombre_usuario,
-                GROUP_CONCAT(nombre_tipo_servicio SEPARATOR ', ') AS tipos_servicio,
-                fecha_cita_registro_cita,
-                estado_registro_cita
+                $consulta = "SELECT *
                 FROM sweet_beauty.`citas recientes`";
 
-                $consulta .= " GROUP BY id_registro_cita";
                 $tablacitas = $conexion->seleccionar($consulta);
 
                 if (!empty($tablacitas)) {
@@ -76,64 +70,6 @@ include "../templates/sidebar.php";
                 <!-- FIN TABLA -->
             </div>
         </div>
-
-        <!-- ORDENES RECIENTES -->
-        <div class="row my-2">
-            <h3 class="fs-4 mb-3 fw-bold">Ordenes recientes</h3>
-            <div class="table-responsive">
-                <!-- TABLA -->
-                <?php
-                $consulta = "SELECT
-                id_venta,
-                nombre_usuario,
-                fecha_entrega_orden_venta,
-                estado_orden_venta 
-                FROM sweet_beauty.`ventas recientes`";
-
-                $consulta .= " GROUP BY id_venta";
-                $tablaventas = $conexion->seleccionar($consulta);
-
-                if (!empty($tablaventas)) {
-                    echo "<table class='table shadow-sm table-hover'>
-                        <thead>
-                            <tr>
-                                <th>ID orden</th>
-                                <th>Cliente</th>
-                                <th>Fecha de entrega</th>
-                                <th>Estatus</th>
-                            </tr>
-                        </thead>
-                        <tbody class='table-border-bottom-0'>";
-
-                    foreach ($tablaventas as $reg) {
-                        echo "<tr>";
-                        echo "<td> $reg->id_venta</td>";
-                        echo "<td> $reg->nombre_usuario</td>";
-
-                        if ($reg->fecha_entrega_orden_venta == "0000-00-00" || empty($reg->fecha_entrega_orden_venta)) {
-                            echo "<td>Sin especificar fecha</td>";
-                        } else {
-                            echo "<td> $reg->fecha_entrega_orden_venta</td>";
-                        }
-                        if ($reg->estado_orden_venta == "Pagado") {
-                            echo "<td><span class='badge text-bg-success'>$reg->estado_orden_venta</span></td>";
-                        } else if ($reg->estado_orden_venta == "Cancelado") {
-                            echo "<td><span class='badge text-bg-danger'>$reg->estado_orden_venta</span></td>";
-                        } else if ($reg->estado_orden_venta == "Pendiente") {
-                            echo "<td><span class='badge text-bg-secondary'>$reg->estado_orden_venta</span></td>";
-                        } else if ($reg->estado_orden_venta == "Caducado") {
-                            echo "<td><span class='badge text-bg-warning'>$reg->estado_orden_venta</span></td>";
-                        }
-                    }
-                    echo "</tbody>
-                    </table>";
-                } else {
-                    echo "<p class='fw-bold text-center'>No se encontraron ordenes recientes.</p>";
-                }
-                ?>
-            </div>
-        </div>
-
     </div>
 </div>
 <!-- SCRIPTS -->

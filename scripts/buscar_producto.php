@@ -8,11 +8,11 @@ $perfil = false;
 
     extract($_POST);
     $consulta = "
-    SELECT productos.nombre_producto, productos.precio_producto, detalle_productos.existencias_detalle_producto, detalle_productos.imagen_detalle_producto
-FROM detalle_productos INNER JOIN productos ON productos.id_producto = detalle_productos.detalle_producto_detalle_producto_FK
-LEFT JOIN colores ON colores.id_color = detalle_productos.color_detalle_producto_FK
-INNER JOIN tipo_categorias ON tipo_categorias.id_tipo_categoria = productos.categoria_producto_FK
-Where detalle_productos.existencias_detalle_producto > 0 AND productos.nombre_producto LIKE '%$buscar%' OR colores.nombre_color LIKE '%$buscar%';
+    SELECT detalle_productos.id_detalle_producto, productos.nombre_producto, productos.precio_producto, detalle_productos.existencias_detalle_producto, detalle_productos.imagen_detalle_producto
+    FROM detalle_productos INNER JOIN productos ON productos.id_producto = detalle_productos.detalle_producto_detalle_producto_FK
+    LEFT JOIN colores ON colores.id_color = detalle_productos.color_detalle_producto_FK
+    INNER JOIN tipo_categorias ON tipo_categorias.id_tipo_categoria = productos.categoria_producto_FK
+    Where detalle_productos.existencias_detalle_producto > 0 AND productos.nombre_producto LIKE '%$buscar%' OR colores.nombre_color LIKE '%$buscar%';
     ";
 
     $tabla = $conexion->seleccionar($consulta);
@@ -117,9 +117,7 @@ Where detalle_productos.existencias_detalle_producto > 0 AND productos.nombre_pr
         foreach ($tabla as $reg) { ?>
             <div class="col-lg-3 col-sm-12 grande chico" style="margin-top: 5px; margin-top:2rem;">
                 <div class="card" style="height: 400px;">
-                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" 
-
-alt="..."></a>
+                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" alt="..."></a>
                     <div class="card-body text-center">
                         <div class="icons card-title"></div>
                         <div class="card-text">

@@ -7,7 +7,7 @@ include "../class/database.php";
     $conexion = new database();
     $conexion->conectarDB();
     
-    $consulta = "SELECT productos.nombre_producto, productos.precio_producto, detalle_productos.imagen_detalle_producto
+    $consulta = "SELECT productos.nombre_producto, productos.precio_producto, detalle_productos.imagen_detalle_producto, detalle_productos.id_detalle_producto
     FROM orden_venta INNER JOIN detalle_orden_venta ON orden_venta.id_venta = detalle_orden_venta.orden_venta_detalle_orden_FK
     INNER JOIN detalle_productos ON detalle_productos.id_detalle_producto = detalle_orden_venta.producto_orden_venta_FK
     INNER JOIN productos ON detalle_productos.detalle_producto_detalle_producto_FK = productos.id_producto
@@ -66,7 +66,6 @@ include "../class/database.php";
                 <div class="content col-lg-6">
                     <h3>Algunos de mis trabajos</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, maxime! Voluptate voluptatem sequi dolor modi nulla, quia accusantium iure est quo nemo dignissimos laudantium aspernatur repudiandae rerum minus ea atque.</p>
-                    <a href="#" class="boton link">Ver más</a>
                 </div>
                </div>
             </div>
@@ -89,14 +88,13 @@ include "../class/database.php";
             <div class="col">
               <div class="card h-100">
                 <div   style=" display: flex; align-content:center; align-items: center; padding-right:15%; padding-left: 15%">
-                <a style="height: 500px; width:350px;" href="../views/verproducto.php"><img src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" class="imgprod card-img-top" alt="..."></a>
+                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?>" id="<?php echo $reg->id_detalle_producto ?> "><img class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" alt="..."></a>
                 </div>
                         <div class="card-body text-center">
                           <div class="icons card-title">
-                            <a href="../views/carrito.php" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
                           </div>
                           <div class="card-text">
-                          <a href="../views/verproducto.php">
+                          <a href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?>">
                             <?php
                             $max_caracteres = 20;
                             $nombre_producto = $reg->nombre_producto;

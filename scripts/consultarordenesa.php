@@ -31,16 +31,8 @@ $id_venta = isset($_POST['id_venta']) ? $_POST['id_venta'] : '';
 <?php
 if ($_POST && !empty($id_venta)) 
 {
-    $consultaordenes = "SELECT
-        imagen_detalle_producto,
-        id_venta,
-        nombre_producto AS productos,
-        cantidad_producto_orden_venta,
-        precio_producto,
-        nombre_usuario,
-        precio_detalle_orden,
-        estado_orden_venta
-        FROM sweet_beauty.`todas las ordenes`
+    $consultaordenes = "SELECT *
+        FROM sweet_beauty.`consulta_ordenes`
         WHERE id_venta LIKE '%$id_venta%' AND estado_orden_venta = 'Pendiente'
         ORDER BY id_venta";
 
@@ -66,12 +58,18 @@ if ($_POST && !empty($id_venta))
                     $productos = explode(', ', $reg->productos);
                     $cantidades = explode(', ', $reg->cantidad_producto_orden_venta);
                     $precios = explode(', ', $reg->precio_producto);
+                    $colores = explode(', ', $reg->color);
                     $num_productos = count($productos);
 
                     for ($i = 0; $i < $num_productos; $i++) {
                         echo "<tr>";
                         echo "<td class='text-center'><img class='w-25' src='../img/productos/" . $imagenes[$i] . "'></td>";
-                        echo "<td>" . $productos[$i] . "</td>";
+                        echo '<td>' . $productos[$i] . ' <br> ';
+                        if (!empty($colores[$i])) 
+                        {
+                            echo 'Color: <strong>' . $colores[$i] . '</strong>';
+                        }
+                        echo '</td>';
                         echo "<td>" . $cantidades[$i] . "</td>";
                         echo "<td>$" . $precios[$i] * $cantidades[$i] . "</td>";
                         echo "</tr>";
@@ -92,11 +90,10 @@ if ($_POST && !empty($id_venta))
                 }
             }
             if ($ordenPendienteEncontrada) {
+                echo "<div class='d-grid gap-2 d-md-flex justify-content-md-start'>";
                 echo "<h3 class='fw-bold'>Precio total: <span class='badge text-bg-dark'>$$totalPrecioDetalleOrden</span></h3>";
-                echo "<form id='cambiarapagado'method='post' class='mb-3'>";
-                echo "<input type='hidden' name='id_venta' value='" . htmlspecialchars($id_venta) . "'>";
-                echo "<button class='btn btn-secondary' type='submit' name='marcar_pagado'>Marcar como Pagado</button>";
-                echo "</form>";
+                echo "<button class='fw-bold btn btn-secondary mb-3 btn-actualizar' href='#' data-registro-id='$reg->id_venta'>Marcar como Pagado</button>";
+                echo "</div>";
             }
             ?>
         </div>
@@ -105,19 +102,12 @@ if ($_POST && !empty($id_venta))
         echo "<p class='fw-bold text-center'>No se encontraron resultados.</p>";
     }
 }
-if (isset($_POST['marcar_pagado'])) 
-{
-    $id_venta = $_POST['id_venta'];
-    $nuevo_estado = 'Pagado';
 
-    $actualizar_estado = "UPDATE orden_venta SET estado_orden_venta = '$nuevo_estado' WHERE id_venta = '$id_venta'";
-
-    $conexion->ejecuta($actualizar_estado);
-}
 ?>
 
 <!-- SCRIPTS -->
 <script src="../prueba/js/clock.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script>
@@ -127,6 +117,37 @@ if (isset($_POST['marcar_pagado']))
     toggleButton.onclick = function () {
         el.classList.toggle("toggled");
     };
+</script>
+<script>
+    $(document).ready(function () {
+        $('.btn-actualizar').on('click', function () {
+            var id_venta = $(this).data('registro-id');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Deseas marcar la orden como pagada?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('actualizar_consulta.php', {
+                        id_venta: id_venta
+                    }, function (data) {
+                            Swal.fire({
+                                title: '¡Orden pagada!',
+                                text: 'La orden se ha actualizado correctamente.',
+                                icon: 'success',
+                                didClose: () => {
+                                    window.location.reload();
+                                }
+                            });
+                    });
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>
