@@ -43,13 +43,13 @@ include "../templates/sidebar.php";
         <!-- TABLAS -->
     <ul class="nav nav-pills mb-3 container-fluid px-4" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Productos con cambio de precio</button>
+    <button class="nav-link active fw-bold tabsbotones" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Productos con cambio de precio</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Servicios con cambio de precio</button>
+    <button class="nav-link fw-bold tabsbotones" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Servicios con cambio de precio</button>
   </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Actualizaciones de existencias</button>
+  <li class="nav-item fw-bold" role="presentation">
+    <button class="nav-link tabsbotones" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Actualizaciones de existencias</button>
   </li>
   <!-- <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>Disabled</button>

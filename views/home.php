@@ -92,7 +92,6 @@ include "../class/database.php";
                 </div>
                         <div class="card-body text-center">
                           <div class="icons card-title">
-                            <a href="../views/carrito.php" class="bi bi-bag-heart-fill"> Agregar al carrito</a>
                           </div>
                           <div class="card-text">
                           <a href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?>">

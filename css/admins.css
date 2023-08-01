@@ -183,3 +183,19 @@
   background: var(--main-bg-color);
   color: #fff;
 }
+
+.nav-pills .nav-link.active,
+.show>.nav-pills .nav-link
+{
+    background: var(--main-bg-color) !important
+}
+
+.tabsbotones
+{
+    color: #333;
+}
+
+.tabsbotones:hover
+{
+    color: #333;
+}
