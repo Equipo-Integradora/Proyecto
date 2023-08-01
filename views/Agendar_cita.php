@@ -97,7 +97,7 @@ if(isset($_SESSION["usuario"]))
                 </select>
             </div>
             <div class="date-input-container">
-                <label class="date-input-label" for="selectedDate">Detalles extras de su cita</label>
+                <label class="date-input-label" for="selectedDate">Puede ingreasar un comentario extra sobre su cita de su cita</label>
                 <textarea name="descripcion" id="descripcion" cols="" rows="" style="max-height: 9rem; width: 100%;"></textarea>
             </div>
             <input class="submit-button" type="submit" value="Agendar Cita">
@@ -144,36 +144,50 @@ include "../templates/footer.php";
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  var fechaActual = new Date();
-  var fechaMinima = new Date();
-  fechaMinima.setDate(fechaMinima.getDate() + 3);
-  var fechaMaxima = new Date();
-  fechaMaxima.setMonth(fechaMaxima.getMonth() + 6);
-  var fechaMinimaFormateada = fechaMinima.toISOString().slice(0, 10);
-  var fechaMaximaFormateada = fechaMaxima.toISOString().slice(0, 10);
-  
-  document.getElementById("selectedDate").setAttribute("min", fechaMinimaFormateada);
-  document.getElementById("selectedDate").setAttribute("max", fechaMaximaFormateada);
+    var fechaActual = new Date();
+    var fechaMinima = new Date();
+    fechaMinima.setDate(fechaActual.getDate() + 3);
+    var fechaMaxima = new Date();
+    fechaMaxima.setMonth(fechaActual.getMonth() + 6);
 
-  
-  document.getElementById("selectedDate").addEventListener("keydown", function(event) {
-    if (event.keyCode === 8) { 
-      event.preventDefault();
-      return false;
+    var fechaMinimaFormateada = formatDate(fechaMinima);
+    var fechaMaximaFormateada = formatDate(fechaMaxima);
+
+    document.getElementById("selectedDate").setAttribute("min", fechaMinimaFormateada);
+    document.getElementById("selectedDate").setAttribute("max", fechaMaximaFormateada);
+
+    document.getElementById("selectedDate").addEventListener("keydown", function(event) {
+      if (event.keyCode === 8) { 
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    const fechasBloqueadas = <?php echo json_encode($_SESSION['dias']); ?>;
+
+    document.getElementById('selectedDate').addEventListener('input', function() {
+      const selectedDate = new Date(this.value);
+
+      const fechaActualFormateada = formatDate(new Date());
+      
+      if (this.value < fechaActualFormateada) {
+        this.value = ''; 
+        alert('No puedes seleccionar fechas pasadas.');
+      } else if (this.value > fechaMaximaFormateada) {
+        this.value = ''; 
+        alert('Solo puedes seleccionar fechas dentro de los próximos 6 meses.');
+      } else if (fechasBloqueadas.includes(this.value)) {
+        this.value = ''; 
+        alert('Esta fecha está bloqueada. Por favor, selecciona otra fecha.');
+      }
+    });
+
+    function formatDate(date) {
+      var year = date.getFullYear();
+      var month = (date.getMonth() + 1).toString().padStart(2, '0');
+      var day = date.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
     }
-  });
-
-  
-  const fechasBloqueadas = <?php echo json_encode($_SESSION['dias']); ?>;
-
-  document.getElementById('selectedDate').addEventListener('input', function() {
-    const selectedDate = this.value;
-
-    if (fechasBloqueadas.includes(selectedDate)) {
-      this.value = ''; 
-      alert('Esta fecha está bloqueada. Por favor, selecciona otra fecha.');
-    }
-  });
 </script>
 <?php
 } else 

@@ -177,8 +177,8 @@ if(isset($_SESSION["usuario"]))
     </div>
 
 
-    <!-- Modal Coreo
-<div class="modal fade" id="correo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Coreo-->
+<div class="modal fade" id="exampleModalM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div  class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -188,21 +188,23 @@ if(isset($_SESSION["usuario"]))
       <form action="../scripts/editardatos.php" method="post">  
       <div class="modal-body">
 
-      <label for="usuario">Correo</label>
+      <label for="email">Correo</label>
       <input type="email" class="input" name="email" required>
 
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" onclick="cambiarcorreo()">Guardar cambios</button>
-        </form>
+        <button type="sumbit" class="btn btn-primary">Guardar cambios</button>
       </div>
       
+      </form>
       </div>
       
     </div>
-    Fin modal-->
+</div>
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
