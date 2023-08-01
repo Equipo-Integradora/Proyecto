@@ -35,7 +35,8 @@ if(!empty($pro->nombre_color)){
 <div class="row" >
 <div class="col-xl-4 col-xs-12"><h4>Existencias(<?php echo $pro->existencias_detalle_producto ?>)</h4></div>
 
-<div class="col-xl-3 col-xs-12"> <form method="post" action="#">
+<div class="col-xl-3 col-xs-12">
+    <form method="post" action="../views/carrito2.php">
         <!-- Input oculto para almacenar la cantidad actual -->
         <input type="hidden" name="cantidad" id="cantidad" value="1">
         <!--para que no pueda tomar mas de lo que hay-->
@@ -45,6 +46,12 @@ if(!empty($pro->nombre_color)){
         <button type="button" class="btn btn-outline-success"style="width: 30%;"  onclick="incrementarCantidad()">+</button>
         </div>
         <br><br><br>
+        <input type="hidden" name="si" value="<?php echo $pro->existencias_detalle_producto ?>">
+        <input type="hidden" name="id" value="<?php echo $pro->id_detalle_producto ?>">
+        <input type="hidden" name="nombre" value="<?php echo $pro->nombre_producto ?>">
+        <input type="hidden" name="precio" value="<?php echo $pro->precio_producto ?>">
+        <input type="hidden" name="color" value="<?php echo $pro->nombre_color ?>">
+        <input type="hidden" name="imagen" value="<?php echo $pro->imagen_detalle_producto ?>">
          <button type="submit"  class=" btn btn-outline-warning">Agregar al carrito</button>
     </form>
 </div>
@@ -101,8 +108,8 @@ group by productos.nombre_producto;";
                 <div class="icons card-title"> </div>
                 <div class="card-text">
                 
-                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title"><?php echo $am->nombre_producto;?></h4></a>
-                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title">Color <?php echo $am->colorn;?></h4></a>
+                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title"><p><?php echo $am->nombre_producto;?></p></h4><p>Color <?php echo $am->colorn;?></p></a>
+                <!--<a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title">Color <?php echo $am->colorn;?></h4></a>-->
                 
 
 

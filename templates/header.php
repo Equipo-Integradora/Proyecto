@@ -28,6 +28,41 @@
       });
 
     </script>
+
+<!--Cantidad de productos agregados al carrito-->
+<?php 
+if(isset($_SESSION['carrito'])){
+  $carrito_mio=$_SESSION['carrito'];
+}
+if(isset ($_SESSION ['carrito'])){
+
+  for($i=0;$i<=count ($carrito_mio)-1; $i++){
+    if(isset ($carrito_mio[$i])){
+      if($carrito_mio[$i]!=null){
+        if(!isset ($carrito_mio['cantidad'])){
+          $carrito_mio['cantidad']=0;
+        }else{
+          $carrito_mio['cantidad']= $carrito_mio['cantidad'];          ;
+        }
+        $total_cantidad=$carrito_mio['cantidad'];
+        $total_cantidad ++;
+        if(!isset($totalcantidad))
+        {
+          $totalcantidad='0';
+        }else{
+          $totalcantidad=$totalcantidad;
+        }
+        $totalcantidad+=$total_cantidad;
+      }
+    }
+  }
+}
+if(!isset($totalcantidad)){
+  $totalcantidad='';
+}else{
+  $totalcantidad=$totalcantidad;
+}
+?>
     <title>Sweet Beauty</title>
 </head>
 <body>
@@ -70,8 +105,25 @@
                 
               </div>
               <!-- BOTONES DE CARRITO E INICIO DE SESION/REGISTRO -->
+              
               <div class="d-flex justify-content-center align-items-center gap-lg-1 icons">
-                <a href="../views/carrito.php" class="bi bi-bag-heart-fill icono1"><a>
+                
+                <a href="../views/carrito2.php" class="bi bi-bag-heart-fill icono1">
+              
+                <span class="count">
+                  <?php
+                  if(isset($_SESSION['carrito'])){
+                    
+                    echo count($_SESSION['carrito']);
+                  }else{
+                    echo 0;
+                  }
+                  ?>
+                
+                </span>
+                <a>
+
+
                     <div class="dropdown">
                         <a class="bi bi-person-fill icono2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         </a>
