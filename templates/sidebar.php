@@ -41,7 +41,7 @@
 
                 <a href="../scripts/inventario.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box2-heart-fill me-2"></i><span>Inventario</span></a>
                 
-                <a href="#" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Reportes</span></a>
+                <a href="../scripts/admin_reportes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Reportes</span></a>
 
             </div>
         </div>
@@ -65,7 +65,6 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php session_start()?>
                                 <i class="fas fa-user me-2"></i><?php echo $_SESSION["usuario"]?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

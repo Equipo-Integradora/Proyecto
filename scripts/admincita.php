@@ -79,7 +79,7 @@ if ($_POST) {
                                <th>ID cita</th>
                                <th>Cliente</th>
                                <th>Tipo de servicio</th>
-                               <th>Precio total</th>
+                               <th>Precio</th>
                                <th>Fecha de registro</th>
                                <th>Fecha de la cita</th>
                                <th>Hora de la cita</th>
@@ -141,7 +141,8 @@ if ($_POST) {
                                   <div class='dropdown-menu'>
                                     <a class='dropdown-item btn-editar' href='#' 
                                         data-tipos-servicio='$reg->tipos_servicio'
-                                        data-registro-id='$reg->id_registro_cita'
+                                        data-registro-id='$reg->id_registro_cita' 
+                                        data-detalle-id='$reg->id_detalle_registro_cita'
                                         data-precio-registro-cita='$reg->precio_cita' 
                                         data-estado-registro-cita='$reg->estado_registro_cita' 
                                         data-bs-toggle='modal' 
@@ -177,6 +178,7 @@ if ($_POST) {
             <div class="modal-body">
                 <form method="post" action="">
                     <input type="hidden" name="id_registro_cita" id="id_registro_cita">
+                    <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita">
                     <input type="hidden" name="servicios" id="servicios">
                     <div id="servicios_inputs" class="servicios_inputs">
                     <input type="hidden" name="precio_cita" id="precio_cita">
@@ -219,11 +221,13 @@ if ($_POST) {
 $(document).ready(function () {
     $('.btn-editar').on('click', function () {
         var id_registro_cita = $(this).data('registro-id');
+        var id_detalle_cita= $(this).data('detalle-id');
         var tipos_servicio = $(this).data('tipos-servicio').split(', ');
         var precio_registro_cita = $(this).data('precio-registro-cita').split(', ');
         var estado_registro_cita = $(this).data('estado-registro-cita');
 
         $('#id_registro_cita').val(id_registro_cita);
+        $('#id_detalle_registro_cita').val(id_detalle_registro_cita);
         $('#estado_registro_cita').val(estado_registro_cita);
 
         $('#servicios_inputs').empty();
@@ -245,6 +249,7 @@ $(document).ready(function () {
         $('#modalEditar form').submit(function (event) {
             event.preventDefault(); 
             var id_registro_cita = $('#id_registro_cita').val();
+            var id_detalle_registro_cita = $('#id_detalle_registro_cita').val();
             var precio_registro_cita = $('#precio_registro_cita').val();
             var estado_registro_cita = $('#estado_registro_cita').val();
 
@@ -261,6 +266,7 @@ $(document).ready(function () {
                 if (result.isConfirmed) {
                     $.post('update_cita.php', {
                         id_registro_cita: id_registro_cita,
+                        id_detalle_registro_cita:id_detalle_registro_cita,
                         precio_registro_cita: precio_registro_cita,
                         estado_registro_cita: estado_registro_cita
                     }, function (data) {
