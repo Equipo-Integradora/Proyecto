@@ -198,7 +198,10 @@ include "../templates/header.php";
 
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
+                <form action="../scripts/generar_orden.php" method="post">
+    <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
+    <button class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
+</form>
                 </div>
             </div>
         </div>
