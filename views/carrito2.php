@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 include '../class/database.php';
 $db = new database();
@@ -116,7 +117,90 @@ include "../templates/header.php";
 
     <title>Document</title>
 </head>
-<body>
+<body style="background-color: #f4f4f4;">
+<div class="container" style="margin-top: 100px ; width: 100%;">
+<div class="row" style="background-color:aquamarine">
+    <div class="col-8" style="padding: 10px;">
+        <!--Ciclo-->
+        <?php
+                    $total = 0;
+
+        if(isset($_SESSION['carrito'])) {
+                $arregloCarrito=$_SESSION['carrito'];
+                for($i=0;$i<count($arregloCarrito);$i++){
+                    $total= $total+($arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad']);
+
+             ?>
+
+        <div class="row" style="background-color: white; padding: 10px;">
+            <div class="col-4" >
+            <img style="width: 180px; height: 180px" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no">
+            </div>
+            <div class="col">
+                <div class="row" >
+                    <div class="col-12"><?php echo $arregloCarrito[$i]['Nombre'] ?></div>
+                    <div class="col-12"><?php echo $arregloCarrito[$i]['Color'] ?></div>
+                    <div class="col-12"></div>
+                    <div class="col-3"><b>$MXN<?php echo $arregloCarrito[$i]['Precio'] ?></b></div>
+                    <div class="col-3 offset-3">
+                        <div class="input-group mb-3" style="max-width: 120px;">
+                            <input style="width: 50px;" 
+                            type="number" 
+                            min="1" 
+                            max="<?php echo $arregloCarrito[$i]['Maximo']?>"
+                            class="form-control text-center txtCantidad"
+                            data-precio="<?php echo $arregloCarrito[$i]['Precio']; ?>"
+                            data-id="<?php echo $arregloCarrito[$i]['Id']; ?>"                        
+                            value="<?php echo $arregloCarrito[$i]['Cantidad']; ?>"
+                            placeholder="" aria-label="" aria-describedby="button-addon1">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <a href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id'];?>">Borrar</a>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin-top: 5px;">
+        </div>
+        <?php
+        }
+    }
+        ?>
+    </div>
+    <div class="col-4" style=" padding: 10px">
+    <div class="container" style="background-color: white; width:300px;" >
+<div class="justify-contend-end" style="border-color: black; border:3px;">
+            <div class="row">
+                <div class="col-12 text-right border-bottom">
+                    <h3 class="text-black h4 text-upperccase">Total carrito</h3>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    <span class="text-black">Total</span>
+                </div>
+                <div class="col-6 text-right">
+                    <strong class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                <form action="../scripts/generar_orden.php" method="post">
+    <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
+    <button class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+
 <div class="table-responsive" style="margin-top: 100px ; width: 100%;">
     <table class="table shadow-sm table-hover">
         <thead>
@@ -192,7 +276,7 @@ include "../templates/header.php";
                     <span class="text-black">Total</span>
                 </div>
                 <div class="col-md-6 text-right">
-                    <strong class="text-black"><?php echo $total ?></strong>
+                    <strong class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>"><?php echo $total ?></strong>
                 </div>
             </div>
 
