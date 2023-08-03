@@ -65,7 +65,8 @@ include "../class/database.php";
                 <!-- FIN DEL CAROUSEL -->
                 <div class="content col-lg-6">
                     <h3>Algunos de mis trabajos</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, maxime! Voluptate voluptatem sequi dolor modi nulla, quia accusantium iure est quo nemo dignissimos laudantium aspernatur repudiandae rerum minus ea atque.</p>
+                    <p>Como esteticista profesional, mi objetivo es realzar la belleza única de cada cliente, brindando soluciones personalizadas y resultados excepcionales. A lo largo de mi carrera, he trabajado con personas de todas las edades y con diversas necesidades, lo que me ha permitido desarrollar un enfoque versátil y adaptable a cada situación.
+                      Mi formación constante y mi compromiso con las últimas tendencias en estética me han permitido dominar técnicas innovadoras y utilizar productos de la más alta calidad. La satisfacción de mis clientes es mi máxima prioridad, y siempre me esfuerzo por superar sus expectativas, proporcionando una experiencia relajante y enriquecedora.</p>
                 </div>
                </div>
             </div>
