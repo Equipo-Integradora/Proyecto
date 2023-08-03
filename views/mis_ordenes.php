@@ -11,6 +11,11 @@
 <body>
 <?php
     session_start();
+include '../class/database.php';
+$db = new database();
+$db->conectarDB();
+include "../templates/header.php";
+
     if(isset($_SESSION["usuario"]))
     {
         ?>

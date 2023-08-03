@@ -199,7 +199,7 @@ include "../templates/header.php";
                 <br> 
                 <form action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
-    <button class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
+    <button id="si" class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
 </form>
                 </div>
             </div>
@@ -216,6 +216,14 @@ include "../templates/header.php";
 
 <script>
     
+    document.getElementById("si").addEventListener("click", function() {
+  // Código que se ejecuta cuando se hace clic en el botón
+  alert("¡Hola! Has hecho clic en el botón.");
+  
+  $_SESSION['arregloCarrito']=array();
+        $_SESSION['carrito']=array();
+    
+});
 
    $(document).ready(function(){
         $(".btnEliminar").click(function(event){
@@ -230,7 +238,6 @@ include "../templates/header.php";
                 }
             }).done(function(respuesta){
                 boton.parent('a').parent('div').parent('div').remove();
-                document.getElementById('mensaje').innerText = "El producto se eliminó del  carrito.";
                 location.reload();
                 //window.location.href = '../views/carrito2.php';
 
@@ -270,7 +277,11 @@ include "../templates/header.php";
         });
     }
     });
+    function si(){
+        alert(hola);
 
+
+    }
     function actualizarTotall() {
         var total = 0;
         // Recorre todos los elementos del carrito y suma los totales de cada producto
