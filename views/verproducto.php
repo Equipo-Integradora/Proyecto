@@ -54,7 +54,18 @@ if(!empty($pro->nombre_color)){
         <input type="hidden" name="precio" value="<?php echo $pro->precio_producto ?>">
         <input type="hidden" name="color" value="<?php echo $pro->nombre_color ?>">
         <input type="hidden" name="imagen" value="<?php echo $pro->imagen_detalle_producto ?>">
-         <button type="submit"  class=" btn btn-outline-warning">Agregar al carrito</button>
+        <?php 
+        $color="warning";
+        $desactivar="";
+        $empty="Agregar al carrito";
+        if($pro->existencias_detalle_producto==0)
+        {
+            $color="danger";
+            $desactivar="disabled";
+            $empty="Sin existencias";
+        }
+        ?>
+         <button type="submit" <?php echo $desactivar ?> class=" btn btn-outline-<?php echo $color ?>"><?php echo $empty ?></button>
     </form>
 </div>
 <br>

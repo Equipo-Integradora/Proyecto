@@ -10,7 +10,9 @@ for($i=0;$i<count($arreglo); $i++)
             'Nombre'=>$arreglo[$i]['Nombre'],
             'Precio'=>$arreglo[$i]['Precio'],
             'Imagen'=>$arreglo[$i]['Imagen'],
-            'Cantidad'=>$arreglo[$i]['Cantidad']
+            'Cantidad'=>$arreglo[$i]['Cantidad'],
+            'Color'=>$arreglo[$i]['Color'],
+            'Maximo'=>$arreglo[$i]['Maximo']
         );
     }
 }
