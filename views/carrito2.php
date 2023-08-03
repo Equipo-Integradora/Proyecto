@@ -119,7 +119,7 @@ include "../templates/header.php";
 </head>
 <body style="background-color: #f4f4f4;">
 <div class="container" style="margin-top: 100px ; width: 100%;">
-<div class="row" style="background-color:aquamarine">
+<div class="row" >
     <div class="col-8" style="padding: 10px;">
         <!--Ciclo-->
         <?php
@@ -141,8 +141,9 @@ include "../templates/header.php";
                     <div class="col-12"><?php echo $arregloCarrito[$i]['Nombre'] ?></div>
                     <div class="col-12"><?php echo $arregloCarrito[$i]['Color'] ?></div>
                     <div class="col-12"></div>
-                    <div class="col-3"><b>$MXN<?php echo $arregloCarrito[$i]['Precio'] ?></b></div>
-                    <div class="col-3 offset-3">
+                    <div class="col-12"><b>$MXN<?php echo $arregloCarrito[$i]['Precio'] ?></b></div>
+                    <div class="col-8 cant<?php echo $arregloCarrito[$i]['Id']; ?>">Total por cantidad $<?php echo $arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad'] ?></div>
+                    <div class="col-4 ">
                         <div class="input-group mb-3" style="max-width: 120px;">
                             <input style="width: 50px;" 
                             type="number" 
@@ -155,8 +156,8 @@ include "../templates/header.php";
                             placeholder="" aria-label="" aria-describedby="button-addon1">
                         </div>
                     </div>
-                    <div class="col-3">
-                        <a href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id'];?>">Borrar</a>
+                    <div class="col-12">
+                        <a id="mensaje" href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id'];?>">Borrar</a>
                     </div>
                 </div>
             </div>
@@ -168,25 +169,34 @@ include "../templates/header.php";
         ?>
     </div>
     <div class="col-4" style=" padding: 10px">
-    <div class="container" style="background-color: white; width:300px;" >
+    <div class="container" style="background-color: white; width:280px; height: 210px;" >
 <div class="justify-contend-end" style="border-color: black; border:3px;">
             <div class="row">
-                <div class="col-12 text-right border-bottom">
+                <div class="col-12 text-center border-bottom">
                     <h3 class="text-black h4 text-upperccase">Total carrito</h3>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-6">
+                    <span class="text-black">Subtotal</span>
+                </div>
+                <div class="col-6 text-right">
+                    <strong id="total-container" class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
                     <span class="text-black">Total</span>
                 </div>
                 <div class="col-6 text-right">
-                    <strong class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                    <strong id="total-container" class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" style="text-align: center;">
+                <br> 
                 <form action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
     <button class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
@@ -197,98 +207,6 @@ include "../templates/header.php";
     </div>
 </div>
 
-    </div>
-</div>
-</div>
-
-<div class="table-responsive" style="margin-top: 100px ; width: 100%;">
-    <table class="table shadow-sm table-hover">
-        <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Remover</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $total = 0;
-            if(isset($_SESSION['carrito'])) {
-                $arregloCarrito=$_SESSION['carrito'];
-                for($i=0;$i<count($arregloCarrito);$i++){
-                    $total= $total+($arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad']);
-
-             ?>
-             
-            <tr>
-                <td ><img style="width: 200px; height: 300px" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no"></td>
-                <td><?php echo $arregloCarrito[$i]['Nombre'] ?> <?php echo isset($arregloCarrito[$i]['Color']) ?></td>
-                <td>$<?php echo $arregloCarrito[$i]['Precio'] ?></td>
-                <td>
-                    <div class="input-group mb-3" style="max-width: 120px;">
-                        <input style="width: 50px;" 
-           type="number" 
-           min="1" 
-           max="<?php echo $arregloCarrito[$i]['Maximo']?>"
-           class="form-control text-center txtCantidad"
-           data-precio="<?php echo $arregloCarrito[$i]['Precio']; ?>"
-           data-id="<?php echo $arregloCarrito[$i]['Id']; ?>"                        
-           value="<?php echo $arregloCarrito[$i]['Cantidad']; ?>"
-           placeholder="" aria-label="" aria-describedby="button-addon1">
-                    </div>
-            </td>
-                <td class="cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad'] ?></td>
-                <td><a href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id'];?>">X</a></td>
-            </tr>
-            <?php
-            }
-        }
-        //exit;
-            ?>
-        </tbody>
-    </table>
-    
-</div>
-<div class="container" style="margin-bottom: 200px;">
-<div class="col-md-6 pl-5" style="border-color: black; border:3px">
-    <div class="row justify-contend-end">
-        <div class="col-md-7">
-            <div class="row">
-                <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-upperccase">Total carrito</h3>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                </div>
-                <div class="col-md-6 text-right">
-                    <strong class="text-black"><?php echo $total ?></strong>
-                </div>
-            
-                
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                </div>
-                <div class="col-md-6 text-right">
-                    <strong class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>"><?php echo $total ?></strong>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                <form action="../scripts/generar_orden.php" method="post">
-    <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
-    <button class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
-</form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 </div>
@@ -311,7 +229,9 @@ include "../templates/header.php";
                     id:id
                 }
             }).done(function(respuesta){
-                boton.parent('td').parent('tr').remove();
+                boton.parent('a').parent('div').parent('div').remove();
+                document.getElementById('mensaje').innerText = "El producto se eliminó del  carrito.";
+                location.reload();
                 //window.location.href = '../views/carrito2.php';
 
             });
@@ -351,7 +271,29 @@ include "../templates/header.php";
     }
     });
 
+    function actualizarTotall() {
+        var total = 0;
+        // Recorre todos los elementos del carrito y suma los totales de cada producto
+        <?php
+        if(isset($arregloCarrito)) {
+            for($i=0; $i<count($arregloCarrito); $i++) {
+                echo "total += " . $arregloCarrito[$i]['Precio'] . " * " . $arregloCarrito[$i]['Cantidad'] . ";";
+            }
+        }
+        ?>
+        // Actualiza el valor del elemento en el DOM con el nuevo total
+        document.getElementById('total-container').innerText = "$" + total.toFixed(2);
+    }
 
+    // Llama a la función actualizarTotal al cargar la página
+    actualizarTotall();
+
+    // Ahora, utiliza la función actualizarTotal cada vez que se actualice la cantidad de un producto
+    $(document).ready(function() {
+        $(".txtCantidad").on('keyup input', function() {
+            actualizarTotall();
+        });
+    });
     
 </script>
 
