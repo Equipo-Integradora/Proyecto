@@ -100,18 +100,26 @@ if ($_POST) {
                             echo '<td>';
                             echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#productos-' . $reg->id_venta . '">Ver productos</button>';
                             echo '<div class="collapse" id="productos-' . $reg->id_venta . '">';
-                            $productos = explode(', ', $reg->productos);
+                            $productos = explode('| ', $reg->productos);
                             $colorr = explode(', ', $reg->color);
+                            $cantidadin = explode(', ', $reg->cantidades);
                             echo '<ul>';
                             for ($i = 0; $i < count($productos); $i++) {
                                 if (empty($productos[$i])) {
                                     echo "No hay productos";
                                 } else {
-                                    if (isset($colorr[$i])) {
-                                        echo '<li>' . $productos[$i] . ' <br> Color: <strong>' . $colorr[$i] .'</strong></li>';
-                                    } else {
-                                        echo '<li>' . $productos[$i] .'</li>';
+                                    echo '<li>' . $productos[$i];
+                            
+                                    if (isset($colorr[$i]) && !empty($colorr[$i])) {
+                                        echo ' <br> Color: <strong>' . $colorr[$i] . '</strong>';
                                     }
+                            
+                                    if (isset($cantidadin[$i]) && !empty($cantidadin[$i])) {
+                                        echo '<br> Cantidad: <strong>' . $cantidadin[$i] .'</strong>';
+                                    }
+                                    
+                                    echo '</li>';
+                                    echo '<br>';
                                 }
                             }
                             echo '</ul>';
