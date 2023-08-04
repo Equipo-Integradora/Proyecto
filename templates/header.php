@@ -169,6 +169,28 @@ if(!isset($totalcantidad)){
                       </li>
                         <li>
                             <?php
+                            if(!isset($_SESSION["admin"]))
+                            {
+                                if(isset($_SESSION["usuario"]))
+                                {
+                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Mis citas</a>";
+                                }
+                            }
+                              ?>
+                      </li>
+                        <li>
+                            <?php
+                            if(!isset($_SESSION["admin"]))
+                            {
+                                if(isset($_SESSION["usuario"]))
+                                {
+                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Mis ordenes </a>";
+                                }
+                            }
+                              ?>
+                      </li>
+                        <li>
+                            <?php
                                 if(isset($_SESSION["usuario"]))
                                 {
                                     echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Cerrar sesion</a>";
