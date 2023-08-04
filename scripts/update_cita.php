@@ -7,22 +7,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $db->conectarDB();
 
     $id_registro_cita = $_POST['id_registro_cita'];
-    $precios = $_POST['precio_registro_cita']; 
+    $precios = implode(', ', $_POST['precio_registro_cita']); 
     $estado_registro_cita = $_POST['estado_registro_cita'];
-    $ids = $_POST['id_detalle_cita'];
+    $ids = implode(', ', $_POST['id_detalle_cita']);
 
     $consulta1 = "CALL sweet_beauty.actualizar_estado_cita('$id_registro_cita', '$estado_registro_cita')";
     $resultado1 = $db->ejecuta($consulta1);
 
-    $consulta2 = "CALL sweet_beauty.nuevo_precio_servicio_cita('$ids', '$precios')";
+    $consulta2= "call sweet_beauty.nuevo_precio_servicio_cita('$ids', '$precios')";
     $resultado2 = $db->ejecuta($consulta2);
 
-    if ($resultado1 && $resultado2) 
-    {
+    if ($resultado1 && $resultado2) {
         echo "<script>alert('Cita actualizada exitosamente');</script>";
-    } 
-    else 
-    {
+    } else {
         echo "<script>alert('Error al actualizar la cita');</script>";
     }
 

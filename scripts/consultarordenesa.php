@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../templates/sidebar.php";
 $id_venta = isset($_POST['id_venta']) ? $_POST['id_venta'] : '';
 ?>
@@ -55,28 +56,31 @@ if ($_POST && !empty($id_venta))
                 <?php
                 foreach ($tablac as $reg) {
                     $imagenes = explode(', ', $reg->imagen_detalle_producto);
-                    $productos = explode(', ', $reg->productos);
+                    $productos = explode('| ', $reg->productos);
                     $cantidades = explode(', ', $reg->cantidad_producto_orden_venta);
                     $precios = explode(', ', $reg->precio_producto);
                     $colores = explode(', ', $reg->color);
                     $num_productos = count($productos);
-
+                
                     for ($i = 0; $i < $num_productos; $i++) {
                         echo "<tr>";
                         echo "<td class='text-center'><img class='w-25' src='../img/productos/" . $imagenes[$i] . "'></td>";
                         echo '<td>' . $productos[$i] . ' <br> ';
-                        if (!empty($colores[$i])) 
+                        foreach ($colores as $color) 
                         {
-                            echo 'Color: <strong>' . $colores[$i] . '</strong>';
+                            if (isset($color[$i])) {
+                                echo '<strong>Color: ' . $color . '</strong> ';
+                            }
                         }
                         echo '</td>';
                         echo "<td>" . $cantidades[$i] . "</td>";
                         echo "<td>$" . $precios[$i] * $cantidades[$i] . "</td>";
                         echo "</tr>";
-
+                
                         $totalPrecioDetalleOrden += (float)$precios[$i] * $cantidades[$i];
                     }
                 }
+                
                 echo "<h3 class='fw-bold text-center'>$reg->nombre_usuario</h3>";
                 ?>
                 </tbody>

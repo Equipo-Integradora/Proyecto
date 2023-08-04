@@ -79,6 +79,7 @@ if ($_POST) {
                                <th>ID cita</th>
                                <th>Cliente</th>
                                <th>Tipo de servicio</th>
+                               <th>Descripcion</th>
                                <th>Precio</th>
                                <th>Fecha de registro</th>
                                <th>Fecha de la cita</th>
@@ -101,22 +102,25 @@ if ($_POST) {
                                 echo "<td> $reg->id_registro_cita</td>";
                                 echo "<td> $reg->nombre_usuario</td>";
                                 echo '<td>';
-                                echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
+                                echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse"  data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
                                 echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
                                 $servicios = explode(', ', $reg->tipos_servicio);
                                 $precios = explode(', ', $reg->precio_cita);
+                                $id_detalle = explode(', ', $reg->id_detalle_registro_cita);
                                 echo '<ul>';
                                 for ($i = 0; $i < count($servicios); $i++) {
                                     echo '<li>' . $servicios[$i];
-                                    if (!empty($precios[$i])) 
-                                    {
-                                        echo '<strong><br> $' . $precios[$i] . '</strong></li>'; 
+                                    if (!empty($precios[$i])) {
+                                        echo '<strong><br> $' . $precios[$i] . '</strong>';
                                     }
                                     echo '</li>';
+                                    echo '<br>';
                                 }
                                 echo '</ul>';
                                 echo '</div>';
                                 echo '</td>';
+                                echo "<td><button type='button' class='btn btn-secondary btn-sm btn-desc' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                                Ver descripcion</button></td>";
                                 echo "<td> $$reg->precio_total_cita</td>";
                                 echo "<td> $reg->fecha_creacion_registro_cita</td>";
                                 echo "<td> $reg->fecha_cita_registro_cita</td>";
@@ -167,6 +171,26 @@ if ($_POST) {
 }
 ?>
 
+<!-- MODAL DE LA DESCRIPCION -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripcion</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="">
+       <form method="post" action="">
+       <input type="hidden" name="id_registro_cita" id="id_registro_cita">
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal de Edición -->
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -194,6 +218,7 @@ if ($_POST) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="hidden" name="precio_registro_cita" id="precio_registro_cita">
                     <button type="submit" class="btn boton">Guardar Cambios</button>
                 </div>
             </form>
@@ -248,9 +273,14 @@ $(document).ready(function () {
 
         $('#modalEditar form').submit(function (event) {
             event.preventDefault(); 
+
+            var precios = [];
+            $('input[name="precio_registro_cita[]"]').each(function () {
+                precios.push($(this).val());
+            });
+
             var id_registro_cita = $('#id_registro_cita').val();
             var id_detalle_registro_cita = $('#id_detalle_registro_cita').val();
-            var precio_registro_cita = $('#precio_registro_cita').val();
             var estado_registro_cita = $('#estado_registro_cita').val();
 
             $('#modalEditar').modal('hide');
@@ -263,14 +293,14 @@ $(document).ready(function () {
                 confirmButtonText: 'Guardar',
                 cancelButtonText: 'Cancelar',
             }).then((result) => {
-                if (result.isConfirmed) {
-                    $.post('update_cita.php', {
-                        id_registro_cita: id_registro_cita,
-                        id_detalle_registro_cita:id_detalle_registro_cita,
-                        precio_registro_cita: precio_registro_cita,
-                        estado_registro_cita: estado_registro_cita
-                    }, function (data) {
-                        Swal.fire({
+            if (result.isConfirmed) {
+                $.post('update_cita.php', {
+                    id_registro_cita: id_registro_cita,
+                    id_detalle_registro_cita: id_detalle_registro_cita,
+                    precio_registro_cita: precios, 
+                    estado_registro_cita: estado_registro_cita
+                }, function (data) {
+                    Swal.fire({
                             title: '¡Cita actualizada!',
                             text: 'Los datos se han actualizado exitosamente.',
                             icon: 'success',
