@@ -119,8 +119,7 @@ if ($_POST) {
                                 echo '</ul>';
                                 echo '</div>';
                                 echo '</td>';
-                                echo "<td><button type='button' class='btn btn-secondary btn-sm btn-desc' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                                Ver descripcion</button></td>";
+                                echo "<td><button type='button' class='btn btn-secondary btn-sm btn-desc' data-bs-toggle='modal' data-bs-target='#exampleModal' data-descripcion='$reg->Descripcion'>Ver descripción</button></td>";
                                 echo "<td> $$reg->precio_total_cita</td>";
                                 echo "<td> $reg->fecha_creacion_registro_cita</td>";
                                 echo "<td> $reg->fecha_cita_registro_cita</td>";
@@ -179,10 +178,7 @@ if ($_POST) {
         <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripcion</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" id="">
-       <form method="post" action="">
-       <input type="hidden" name="id_registro_cita" id="id_registro_cita">
-       </form>
+      <div class="modal-body" id="descripcionModalBody">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
@@ -190,6 +186,8 @@ if ($_POST) {
     </div>
   </div>
 </div>
+
+
 
 <!-- Modal de Edición -->
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
@@ -269,6 +267,15 @@ $(document).ready(function () {
         });
 
         $('#modalEditar').modal('show');
+    });
+
+    $('.btn-desc').on('click', function () {
+        var descripcion = $(this).data('descripcion');
+      if (descripcion && descripcion.trim().length > 0) {
+        $('#descripcionModalBody').text(descripcion);
+      } else {
+        $('#descripcionModalBody').text('No hay descripción de la cita');
+      }
     });
 
         $('#modalEditar form').submit(function (event) {

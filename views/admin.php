@@ -21,8 +21,7 @@ include "../templates/sidebar.php";
             <div class="table-responsive">
                 <!-- TABLA -->
                 <?php
-                $consulta = "SELECT *
-                FROM sweet_beauty.`citas recientes`";
+                $consulta = "SELECT * FROM sweet_beauty.citas_recientes";
 
                 $tablacitas = $conexion->seleccionar($consulta);
 
@@ -33,6 +32,7 @@ include "../templates/sidebar.php";
                                 <th>Cliente</th>
                                 <th>Tipo de servicio</th>
                                 <th>Fecha de la cita</th>
+                                <th>Hora de la cita</th>
                                 <th>Estatus</th>
                             </tr>
                         </thead>
@@ -53,6 +53,7 @@ include "../templates/sidebar.php";
                         echo '</div>';
                         echo '</td>';
                         echo "<td> $reg->fecha_cita_registro_cita</td>";
+                        echo "<td> $reg->hora_registro_cita</td>";
                         if ($reg->estado_registro_cita == "Aceptada") {
                             echo "<td><span class='badge text-bg-success'>$reg->estado_registro_cita</span></td>";
                         } else if ($reg->estado_registro_cita == "Cancelada") {
