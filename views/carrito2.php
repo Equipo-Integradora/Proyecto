@@ -120,7 +120,7 @@ include "../templates/header.php";
 <body style="background-color: #f4f4f4;">
 <div class="container" style="margin-top: 100px ; width: 100%;">
 <div class="row" >
-    <div class="col-8" style="padding: 10px;">
+    <div class="col-lg-8 col-12" style="padding: 10px;">
         <!--Ciclo-->
         <?php
                     $total = 0;
@@ -134,7 +134,7 @@ include "../templates/header.php";
 
         <div class="row" style="background-color: white; padding: 10px;">
             <div class="col-4" >
-            <img style="width: 180px; height: 180px" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no">
+            <img style="width: 140px; height: 180px" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no">
             </div>
             <div class="col">
                 <div class="row" >
@@ -195,7 +195,7 @@ include "../templates/header.php";
             </div>
 
             <div class="row">
-                <div class="col-12" style="text-align: center;">
+                <div class="col-lg-12" style="text-align: center;">
                 <br> 
                 <form action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
