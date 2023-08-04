@@ -21,7 +21,7 @@ include "../templates/sidebar.php";
             <div class="table-responsive">
                 <!-- TABLA -->
                 <?php
-                $consulta = "SELECT * FROM sweet_beauty.citas_recientes";
+                $consulta = "SELECT * FROM sweet_beauty.`citas recientes`";
 
                 $tablacitas = $conexion->seleccionar($consulta);
 

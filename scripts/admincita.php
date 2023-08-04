@@ -92,7 +92,7 @@ if ($_POST) {
                             <?php
                             if (empty($tablac)) 
                             {
-                               echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                               echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
                             }
                             else
                             {
