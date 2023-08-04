@@ -190,7 +190,7 @@ include "../templates/header.php";
                     <span class="text-black">Total</span>
                 </div>
                 <div class="col-6 text-right">
-                    <strong id="total-container" class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                    <strong id="total-container" class="txtCantidad text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
                 </div>
             </div>
 
@@ -273,7 +273,6 @@ include "../templates/header.php";
                 cantidad: cantidad
             }
         }).done(function (respuesta) {
-            // ... (otras partes de tu código) ...
         });
     }
     });
