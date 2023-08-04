@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(isset($_SESSION["admin"]))
+    {
+
+        
 include "../templates/sidebar.php";
 ?>
 
@@ -87,3 +92,9 @@ include "../templates/sidebar.php";
 </body>
 
 </html>
+
+<?php
+
+}
+
+?>
