@@ -33,11 +33,7 @@ for($i=0;$i<count($arreglo);$i++){
     $chi = "INSERT INTO detalle_orden_venta(orden_venta_detalle_orden_FK, producto_orden_venta_FK, cantidad_producto_orden_venta, precio_detalle_orden) VALUES ('$random', '$produ', {$arreglo[$i]->Cantidad}, {$arreglo[$i]->Precio})";
     $chi=$db->ejecuta($chi);
 
-    $edi= "UPDATE detalle_productos
-    set existencias_detalle_producto=existencias_detalle_producto - {$arreglo[$i]->Cantidad}
-    WHERE id_detalle_producto = " . $arreglo[$i]->Id;
-    
-    $edi=$db->ejecuta($edi);
+
 }
 header("refresh:3; ../views/mis_ordenes.php");
 
