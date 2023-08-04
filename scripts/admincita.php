@@ -187,26 +187,24 @@ if ($_POST) {
   </div>
 </div>
 
-
-
 <!-- Modal de Edición -->
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="">
-                    <input type="hidden" name="id_registro_cita" id="id_registro_cita">
-                    <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita">
-                    <input type="hidden" name="servicios" id="servicios">
-                    <div id="servicios_inputs" class="servicios_inputs">
-                    <input type="hidden" name="precio_cita" id="precio_cita">
+                <form method="post" action="update_cita.php">
+                    <input type="hidden" name="id_registro_cita" id="id_registro_cita"> 
+                    <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita"> 
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Servicios</label>
+                        <div id="servicios_editar">
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="edit_estado_registro_cita" class="form-label">Cambiar estado de la cita</label>
+                        <label for="edit_estado_registro_cita" class="form-label fw-bold">Cambiar estado de la cita</label>
                         <select name="estado_registro_cita" id="estado_registro_cita" class="form-control">
                             <option value="Aceptada">Aceptada</option>
                             <option value="Cancelada">Cancelada</option>
@@ -216,13 +214,13 @@ if ($_POST) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
-                    <input type="hidden" name="precio_registro_cita" id="precio_registro_cita">
-                    <button type="submit" class="btn boton">Guardar Cambios</button>
+                    <button type="submit" class="btn boton" id="btnGuardarCambios">Guardar Cambios</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
             
 <!-- SCRIPTS -->
 <script
@@ -244,29 +242,30 @@ if ($_POST) {
 $(document).ready(function () {
     $('.btn-editar').on('click', function () {
         var id_registro_cita = $(this).data('registro-id');
-        var id_detalle_cita= $(this).data('detalle-id');
-        var tipos_servicio = $(this).data('tipos-servicio').split(', ');
-        var precio_registro_cita = $(this).data('precio-registro-cita').split(', ');
+        var id_detalle_cita = $(this).data('detalle-id');
         var estado_registro_cita = $(this).data('estado-registro-cita');
+        var servicios = $(this).data('tipos-servicio').split(',');
+        var precios = $(this).data('precio-registro-cita').split(',');
+        
+        $('#modalEditar #id_registro_cita').val(id_registro_cita);
+        $('#modalEditar #id_detalle_registro_cita').val(id_detalle_cita);
+        $('#modalEditar #estado_registro_cita').val(estado_registro_cita);
 
-        $('#id_registro_cita').val(id_registro_cita);
-        $('#id_detalle_registro_cita').val(id_detalle_registro_cita);
-        $('#estado_registro_cita').val(estado_registro_cita);
+        var html = '';
+        for (var i = 0; i < servicios.length; i++) {
+            html += '<div class="mb-3">';
+            html += '<p>' + servicios[i] + '</p>';
+            html += '<input type="text" name="precios[]" class="form-control" value="' + precios[i] + '">';
+            html += '</div>';
+        }
 
-        $('#servicios_inputs').empty();
-
-        tipos_servicio.forEach(function (servicio, index) 
-        {
-            var precio = precio_registro_cita[index];
-            $('#servicios_inputs').append(`
-                <div class="mb-3">
-                    <label for="edit_precio_${servicio}" class="form-label">${servicio}</label>
-                    <input type="number" name="precio_registro_cita[]" id="edit_precio_${servicio}" class="form-control" value="${precio}">
-                </div>
-            `);
-        });
+        $('#modalEditar #servicios_editar').html(html);
 
         $('#modalEditar').modal('show');
+    });
+
+    $('#modalEditar').on('hidden.bs.modal', function () {
+        $('#modalEditar #servicios_editar').html('');
     });
 
     $('.btn-desc').on('click', function () {
@@ -277,49 +276,6 @@ $(document).ready(function () {
         $('#descripcionModalBody').text('No hay descripción de la cita');
       }
     });
-
-        $('#modalEditar form').submit(function (event) {
-            event.preventDefault(); 
-
-            var precios = [];
-            $('input[name="precio_registro_cita[]"]').each(function () {
-                precios.push($(this).val());
-            });
-
-            var id_registro_cita = $('#id_registro_cita').val();
-            var id_detalle_registro_cita = $('#id_detalle_registro_cita').val();
-            var estado_registro_cita = $('#estado_registro_cita').val();
-
-            $('#modalEditar').modal('hide');
-
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: '¿Deseas guardar los cambios?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Guardar',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                $.post('update_cita.php', {
-                    id_registro_cita: id_registro_cita,
-                    id_detalle_registro_cita: id_detalle_registro_cita,
-                    precio_registro_cita: precios, 
-                    estado_registro_cita: estado_registro_cita
-                }, function (data) {
-                    Swal.fire({
-                            title: '¡Cita actualizada!',
-                            text: 'Los datos se han actualizado exitosamente.',
-                            icon: 'success',
-                            didClose: () => 
-                            {
-                                window.location.reload();
-                            }
-                        });
-                    });
-                }
-            });
-        });
 
         $('.btn-eliminar').on('click', function () {
             var id_registro_cita = $(this).data('registro-id');
