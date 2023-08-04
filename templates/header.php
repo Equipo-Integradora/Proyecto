@@ -108,20 +108,29 @@ if(!isset($totalcantidad)){
               
               <div class="d-flex justify-content-center align-items-center gap-lg-1 icons">
                 
-                <a href="../views/carrito2.php" class="bi bi-bag-heart-fill icono1">
-              
-                <span class="count">
+              <a href="../views/carrito2.php" class="bi bi-bag-heart-fill icono1 position-relative">
+              <?php
+              if(isset($_SESSION['carrito']))
+              {
+                if($_SESSION['carrito'] >= 1)
+                {
+                ?>
+              <span style="font-size: 15px; background-color: #fcea74;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
+              <span class="count">
                   <?php
-                  if(isset($_SESSION['carrito'])){
-                    
                     echo count($_SESSION['carrito']);
-                  }else{
-                    echo 0;
-                  }
                   ?>
                 
                 </span>
-                <a>
+                <span class="visually-hidden">unread messages</span>
+              </span>
+              <?php
+                }
+            }
+              ?>
+                </a>
+              
+                
 
 
                     <div class="dropdown">
