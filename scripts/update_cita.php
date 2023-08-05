@@ -1,7 +1,13 @@
 <?php
 require_once "../class/database.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+    function isValidPrice($input) 
+    {
+        return preg_match('/^\d+(\.\d+)?$/', $input) && floatval($input) >= 0;
+    }
+
     $db = new database();
     $db->conectarDB();
 
@@ -9,6 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_detalle_registro_cita_texto = $_POST['id_detalle_registro_cita'];
     $estado_registro_cita = $_POST['estado_registro_cita'];
     $precios = $_POST['precios'];
+
+    foreach ($precios as $precio) 
+    {
+        if (!isValidPrice($precio)) 
+        {
+            session_start();
+            $_SESSION['message'] = "Invalid price format. Please enter a valid positive number.";
+            header("Location: error_page.php");
+            exit();
+        }
+    }
 
     $id_detalle_registro_cita = explode(',', $id_detalle_registro_cita_texto);
     $precios_texto = implode(',', $precios);
