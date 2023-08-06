@@ -19,7 +19,8 @@ if(isset($_SESSION["usuario"]))
     
 <!--Fin de consultas e incluciones-->
 
-
+<section class="section-padding">
+<div class="container container1">
 <div class="d-flex align-items-start">
   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width: 200px; height:400px">
   <div class="row">
@@ -43,14 +44,14 @@ if(isset($_SESSION["usuario"]))
             }
         ?>
   </div>
-  <div class="col-12" style="text-align: center;"><?php echo $reg->nombre_usuario ?></div>
+  <div class="col-12 fw-bold mb-2" style="text-align: center;"><?php echo $reg->nombre_usuario ?></div>
   </div>
   <div style="text-align: left; width:100%;">
     
-    <button style="width: 100%;" class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button>
-    <button style="width: 100%;" class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Editar perfil</button>
-    <button style="width: 100%;" class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Datos de la cuenta</button>
-    <button style="width: 100%;" class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+    <button style="width: 100%;" class="nav-link active tabsbotones fw-bold" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Perfil</button>
+    <button style="width: 100%;" class="nav-link tabsbotones fw-bold" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Editar perfil</button>
+    <button style="width: 100%;" class="nav-link tabsbotones fw-bold" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Datos de la cuenta</button>
+    <button style="width: 100%;" class="nav-link tabsbotones fw-bold" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
   
     </div>
 </div>
@@ -339,6 +340,8 @@ if(isset($_SESSION["usuario"]))
 
     <div class="card conteperfil" style="display:block;" >            
     </div>
+</div>
+</section>
 
 
 <!--Inicio de PHP y links-->

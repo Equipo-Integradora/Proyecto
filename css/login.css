@@ -193,9 +193,9 @@ i
         text-align: center;
     }
 
-    .logo p
+    .text p
     {
-        font-size: 1rem;
+        font-size: .8rem;
     }
 
     .row
