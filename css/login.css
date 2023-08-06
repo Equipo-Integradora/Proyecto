@@ -113,7 +113,9 @@ i
     outline: none;
     margin-bottom: 20px;
     color: #40414a;
+    font-size: 1rem;
 }
+
 
 .input-box .input-field label
 {
@@ -122,6 +124,7 @@ i
     left: 10px;
     pointer-events: none;
     transition: .5s;
+    font-size: 1rem;
 }
 
 .input-field .input:focus ~ label
@@ -182,6 +185,7 @@ i
 
 @media only screen and (max-width: 768px)
 {
+    
     .side-image
     {
         border-radius: 10px 10px 0 0;

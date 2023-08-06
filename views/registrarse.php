@@ -9,35 +9,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Registrarse</title>
     <style>
-        .hidden {
+        .hidden 
+        {
             display: none;
         }
         
-        .main {
-            padding-top: 30px;
-        }
-        
-        .logo 
+        .main 
         {
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
         
-        .content 
+        .form-group label 
         {
-            margin-top: 30px;
+            margin-bottom: 3px;
         }
         
-        .form-group label {
-            margin-bottom: 5px;
-        }
-        
-        .submit {
-            margin-top: 15px;
-        }
-        
-        .alert {
+        .alert 
+        {
             margin-top: 20px;
             text-align: center;
         }
@@ -48,16 +37,16 @@
     <div class="container main">
         <div class="row">
             <div class="col-md-6 col-12 image">
-                <div class="text">
-                    <p class="logo fs-1 m-auto"><span>Sweet</span> Beauty</p>
-                    <p>Maquillaje y peinados</p>
+                <div class="text text-center mt-md-5">
+                    <p class="logo fs-1 m-auto hidden1"><span>Sweet</span> Beauty</p>
+                    <p class="hidden1">Maquillaje y peinados</p>
                 </div>
             </div>
-            <div class="col-md-6 right">
+            <div class="col-md-6 col-12 right">
             <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarCamposLlenos(); cambiarTextoBoton();">
                     <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
                     <div class="input-box">
-                        <div class="form-group input-field mt-3">
+                        <div class="form-group input-field mt-5">
                             <input type="text" class="input" id="nombre" name="nombre" required autocomplete="off">
                             <label for="nombre" id="nombreText">Nombre completo</label>
                         </div>
@@ -99,10 +88,10 @@
                             <input type="password" class="input" name="passconf" id="passconf" required autocomplete="off">
                             <label for="passconf">Confirmar contraseña</label>
                         </div>
-                        <div class="input-field mt-3">
-                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();cambiarTextoBoton();validarFechaGenero();">
+                        <div class="input-field mt-4">
+                            <input type="submit" class="submit m-auto" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();cambiarTextoBoton();validarFechaGenero();">
                         </div>
-                        <div class="alert" style="margin-bottom:1rem;">
+                        <div class="alert">
                             <span>Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aqui</a></span>
                         </div>
                     </div>
@@ -111,7 +100,7 @@
         </div>
     </div>
 </div>
-<br><br>
+
 
 <!-- SCRIPTS -->
 <script src="../js/bootstrap.bundle.min.js"></script>

@@ -1,10 +1,6 @@
-:root {
-  --pink: #e84393;
-}
-
-body
+:root 
 {
-  background: #ececec;
+  --pink: #e84393;
 }
 
 * 
@@ -16,11 +12,13 @@ body
 
 .wrapper 
 {
+  background: #ececec;
   padding: 0 20px 0 20px;
 }
 
-.logo {
-  color: #fff;
+.logo 
+{
+  color: #ececec;
   font-weight: bolder;
 }
 
@@ -35,7 +33,8 @@ body
   min-height: 100vh;
 }
 
-.row {
+.row 
+{
   width: 900px;
   height: max-content;
   border-radius: 10px;
@@ -60,17 +59,20 @@ body
   transform: translate(-50%, -50%);
 }
 
-.text p {
+.text p 
+{
   color: #fff;
   font-size: 18px;
 }
 
-i {
+i 
+{
   font-weight: 400;
   font-size: 15px;
 }
 
-.right {
+.right 
+{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +92,8 @@ i {
   margin-bottom: 45px;
 }
 
-.input-field {
+.input-field 
+{
   display: flex;
   flex-direction: column;
   position: relative;
@@ -133,30 +136,34 @@ i {
 }
 
 .input-field .input:focus,
-.input-field .input:valid {
+.input-field .input:valid 
+{
   border-bottom: 1px solid var(--pink);
 }
 
-.submit {
+.submit 
+{
   font-weight: bold;
   border: none;
   outline: none;
-  height: 45px;
+  height: 2rem;
+  width: 10rem;
   background: #333;
   color: white;
   border-radius: 5px;
   transition: 0.4s;
 }
 
-.submit:hover {
+.submit:hover 
+{
   background: var(--pink);
   color: #fff;
 }
 
-.registro {
+.alert
+{
   text-align: center;
   font-size: small;
-  margin-top: 25px;
 }
 
 .alert span a 
@@ -167,13 +174,19 @@ i {
   transition: 0.5s;
 }
 
-.alert span a:hover {
+.alert span a:hover 
+{
   color: var(--pink);
 }
 
-@media only screen and (max-width: 768px)
+@media only screen and (max-width: 767px)
 {
-    .side-image
+  .hidden1
+  {
+    display: none;
+  }
+  
+  .side-image
     {
         border-radius: 10px 10px 0 0;
     }
@@ -182,17 +195,14 @@ i {
     {
         position: absolute;
         text-align: center;
-    }
-
-    .text
-    {
         font-size: 1 rem;
     }
 
     .row
     {
-        max-width: 420px;
-        width: 100%;
+        max-width: 720px;
+        width: 50rem;
     }
 }
+
 
