@@ -124,17 +124,30 @@ include "../templates/header.php";
         <!--Ciclo-->
         <?php
                     $total = 0;
+                    
+
+$boton="";
+
+if(empty($_SESSION['carrito']))
+{
+    $boton="disabled";
+}
+
 
         if(isset($_SESSION['carrito'])) {
                 $arregloCarrito=$_SESSION['carrito'];
                 for($i=0;$i<count($arregloCarrito);$i++){
                     $total= $total+($arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad']);
-
+                    if($arregloCarrito[$i]['Cantidad']>$arregloCarrito[$i]['Maximo']){
+                        $arregloCarrito[$i]['Cantidad']=$arregloCarrito[$i]['Maximo'];
+                    }
              ?>
 
         <div class="row" style="background-color: white; padding: 10px;">
             <div class="col-4" >
+            <a href="../views/verproducto.php?id=<?php echo $arregloCarrito[$i]['Id'] ?>">
             <img style="width: 140px; height: 180px" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no">
+            </a>
             </div>
             <div class="col">
                 <div class="row" >
@@ -166,6 +179,23 @@ include "../templates/header.php";
         <?php
         }
     }
+    else
+    { ?>
+      
+<div class="row" style="text-align: center; background-color:white">
+            <div class="col-12"><img src="../img/carrito/vacio.png" alt=""></div>
+            <div class="col-12"><p><b>TU BOLSA ESTÁ VACÍA</b></p></div>
+            <div class="col-12"><p style="text-transform: lowercase; color:gray">Vamos de compras a llenar tu bolsa</p></div>
+            <div class="col-12" style="text-align: center;">
+                <a href="../views/ver_producto_general.php" style="text-decoration: none;">
+                <button type="button" class="btn btn-lg" style="background-color: pink;">COMPRAR AHORA</button>
+    
+                
+                </a>
+            </div>
+        </div>
+      <?php
+    }
         ?>
     </div>
     <div class="col-4" style=" padding: 10px">
@@ -190,7 +220,7 @@ include "../templates/header.php";
                     <span class="text-black">Total</span>
                 </div>
                 <div class="col-6 text-right">
-                    <strong id="total-container" class="txtCantidad text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                    <strong id="total-container" class="txtCantidad text-black tot<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
                 </div>
             </div>
 
@@ -199,7 +229,7 @@ include "../templates/header.php";
                 <br> 
                 <form action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
-    <button id="si" class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
+    <button id="si" <?php echo $boton ?> class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
 </form>
                 </div>
             </div>
@@ -218,15 +248,35 @@ include "../templates/header.php";
     
     document.getElementById("si").addEventListener("click", function() {
   // Código que se ejecuta cuando se hace clic en el botón
-  alert("¡Hola! Has hecho clic en el botón.");
-  
-  $_SESSION['arregloCarrito']=array();
-        $_SESSION['carrito']=array();
+
+        var arreglo = <?php echo json_encode($_SESSION['carrito']); ?>;
+
+    for (var i = 0; i < arreglo.length; i++) {
+        var id = arreglo[i]['Id'];
+            var boton= $(this);
+            $.ajax({
+                method:'POST',
+                url:'../scripts/eliminarCarrito.php',
+                data:{
+                    id:id
+                }
+            }
+            ).done(function(respuesta){
+                boton.parent('a').parent('div').parent('div').remove();
+                //location.reload();
+                //window.location.href = '../views/carrito2.php';
+
+            });
+        }
     
 });
 
    $(document).ready(function(){
+    
+
         $(".btnEliminar").click(function(event){
+                alert("¡Hola! Has hecho clic en el botón.");
+
             event.preventDefault();
             var id=$(this).data('id');
             var boton= $(this);
@@ -264,7 +314,9 @@ include "../templates/header.php";
         var precio = parseFloat($(input).data('precio'));
         var id = $(input).data('id');
         var mult = cantidad * precio;
-        $(".cant" + id).text("$" + mult.toFixed(2));
+        var tot = tot+mult;
+        $(".cant" + id).text("Total por cantidad $" + mult.toFixed(2));
+        $(".tot" + id).text("$" + tot.toFixed(2));        
         $.ajax({
             method: 'POST',
             url: '../scripts/actualizar.php',

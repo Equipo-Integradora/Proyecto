@@ -35,9 +35,7 @@ for($i=0;$i<count($arreglo);$i++){
 
 
 }
-header("refresh:3; ../views/mis_ordenes.php");
-
-        echo "<div class='alert alert-success' style='margin-top: 5%'>SIIIIIIIIIIIII</div>";
+header("refresh:0; ../views/mis_ordenes.php");
         
 
 ?>

@@ -23,6 +23,4 @@ else{
     unset($_SESSION['carrito']);
 }
 echo "Listo";
-// NO USAR header("Location: ../views/carrito2.php");
-
 ?>
