@@ -183,12 +183,12 @@ if(empty($_SESSION['carrito']))
     { ?>
       
 <div class="row" style="text-align: center; background-color:white">
-            <div class="col-12"><img src="../img/carrito/vacio.png" alt=""></div>
+            <div class="col-12 m-2"><img src="../img/carrito/vacio.png" alt=""></div>
             <div class="col-12"><p><b>TU BOLSA ESTÁ VACÍA</b></p></div>
             <div class="col-12"><p style="text-transform: lowercase; color:gray">Vamos de compras a llenar tu bolsa</p></div>
             <div class="col-12" style="text-align: center;">
                 <a href="../views/ver_producto_general.php" style="text-decoration: none;">
-                <button type="button" class="btn btn-lg" style="background-color: pink;">COMPRAR AHORA</button>
+                <button type="button" class="btn btn-lg m-2 btnc" >COMPRAR AHORA</button>
     
                 
                 </a>
@@ -203,7 +203,7 @@ if(empty($_SESSION['carrito']))
 <div class="justify-contend-end" style="border-color: black; border:3px;">
             <div class="row">
                 <div class="col-12 text-center border-bottom">
-                    <h3 class="text-black h4 text-upperccase">Total carrito</h3>
+                    <h3 class="text-black h4 text-upperccase m-2">Total carrito</h3>
                 </div>
             </div>
             <br>

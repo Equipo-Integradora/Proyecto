@@ -41,7 +41,7 @@ include "../class/database.php";
                 <div id="carouselExampleAutoplaying" class="carousel slide col-lg-6" data-bs-ride="carousel">
                     <div class="carousel-inner imagenes">
                       <div class="carousel-item active">
-                        <img src="../img/home/portafolio/1.jpg" class="d-block img-fluid" alt="...">
+                        <img src="../img/home/portafolio/5.jpg" class="d-block img-fluid" alt="...">
                       </div>
                       <div class="carousel-item">
                         <img src="../img/home/portafolio/2.jpg" class="d-block img-fluid" alt="...">

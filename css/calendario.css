@@ -109,17 +109,20 @@ h2 {
 }
 
 /* Estilos para la sección de fecha */
-.date-input-container {
+.date-input-container 
+{
   margin-bottom: 15px;
 }
 
-.date-input-label {
+.date-input-label 
+{
   display: block;
   font-weight: bold;
   color: #555;
 }
 
-.date-input {
+.date-input 
+{
   width: 100%;
   padding: 5px;
   border: 1px solid #ccc;
@@ -127,56 +130,76 @@ h2 {
 }
 
 /* Estilos para la sección de hora */
-.time-input-container {
+.time-input-container 
+{
   margin-bottom: 15px;
 }
 
-.time-input-label {
+.time-input-label 
+{
   display: block;
   font-weight: bold;
   color: #555;
 }
 
-.time-input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
 /* Estilos para el botón */
-.submit-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.submit-button:hover {
-  background-color: #0056b3;
-}
-
-.submit-button:focus {
+.submit-button:focus 
+{
   outline: none;
 }
-.submit-button {
-  background-color: #007bff;
+
+.botonescita:hover 
+{
+  background: #e84393;
   color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
 }
 
-.submit-button:hover {
-  background-color: #0056b3;
+.info
+{
+  margin-top: 6rem;
+  align-items: center;
+  min-height: 100vh;
+  margin-bottom: 2rem;
 }
 
-.submit-button:focus {
-  outline: none;
+.botonescita
+{
+  display: inline-block;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
 }
+
+.botonescita2
+{
+  display: inline-block;
+  height: 2.5rem;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.botonescita2:hover 
+{
+  background: #e84393;
+  color: #fff;
+}
+
+.avisos 
+{
+  font-weight: bold;
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  padding: 1rem;
+  margin: 2rem 0;
+  background: rgba(255, 51, 153, 0.368);
+}
+
+
