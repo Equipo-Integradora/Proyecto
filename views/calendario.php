@@ -1,4 +1,11 @@
-<?php include "../templates/sidebar.php";?>
+<?php
+session_start();
+if(isset($_SESSION["admin"]))
+    {
+
+        
+include "../templates/sidebar.php";
+?>
     <form action="../scripts/editar_fechas.php" method="post">
         <label for="dia">Seleccione el día que quiere bloquear</label><br>
         <input type="date" name="dia" id="dia"><br>
@@ -24,3 +31,8 @@
 </body>
 
 </html>
+
+<?php
+
+}
+?>

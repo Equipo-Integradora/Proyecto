@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(isset($_SESSION["admin"]))
+    {
+
+        
 include "../templates/sidebar.php";
 ?>
 
@@ -30,11 +35,11 @@ include "../templates/sidebar.php";
                 </th>
                 <th>
                     <p class="fw-bold">Fecha Desde</p>
-                    <input type="date" name="fecha_desde" class="form-control mt-2">
+                    <input type="date" id="fecha_desde" name="fecha_desde" class="form-control mt-2">
                 </th>
                 <th>
                     <p class="fw-bold">Fecha Hasta</p>
-                    <input type="date" name="fecha_hasta" class="form-control mt-2">
+                    <input type="date" id="fecha_hasta" name="fecha_hasta" class="form-control mt-2">
                 </th>
                 <th>
                     <div class="d-grid gap-2 mx-auto">
@@ -227,7 +232,6 @@ if ($_POST) {
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
   crossorigin="anonymous"></script>
-<script src="../prueba/js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         var el = document.getElementById("wrapper");
@@ -306,4 +310,23 @@ $(document).ready(function () {
         });
     });
 </script>
+<script>
+        const fechaInicioInput = document.getElementById("fecha_desde");
+        const fechaFinInput = document.getElementById("fecha_hasta");
+
+
+
+        fechaInicioInput.addEventListener("change", function() {
+            fechaFinInput.setAttribute("min", fechaInicioInput.value);
+        });
+
+        fechaFinInput.addEventListener("change", function() {
+            fechaInicioInput.setAttribute("max", fechaFinInput.value);
+        });
+    </script>
 </body>
+
+<?php
+
+}
+?>

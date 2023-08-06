@@ -1,19 +1,26 @@
-const time = document.getElementById('time');
-const date = document.getElementById('date');
+const date = document.getElementById("date"),
+time = document.getElementById("time")
 
-const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-];
+function getCurrentDate () {
+  const currentDate = new Date(),
+  options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+  date.innerHTML = currentDate.toLocaleDateString('es', options)
+}
 
-const interval = setInterval(() => {
+function getCurrentTime () {
+  const currentDate = new Date(),
+  hours = currentDate.getHours(),
+  minutes = formatTime(currentDate.getMinutes()),
+  seconds = formatTime(currentDate.getSeconds()),
+  formatHours = formatTime(((hours + 11) % 12 + 1)),
+  format = (hours < 12) || (hours == 24)  ? 'AM' : 'PM'
+  time.innerHTML = `${formatHours}:${minutes}:${seconds} <small>${format}</small>`
+}
 
-    const local = new Date();
-    
-    let day = local.getDate(),
-        month = local.getMonth(),
-        year = local.getFullYear();
+function formatTime (value)  {
+  return value < 10 ? `0${value}` : value
+}
 
-    time.innerHTML = local.toLocaleTimeString();
-    date.innerHTML = `${day} ${monthNames[month]} ${year}`;
+setInterval(getCurrentTime, 1000)
 
-}, 1000);
+getCurrentDate()
