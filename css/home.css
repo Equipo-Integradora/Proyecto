@@ -290,7 +290,8 @@
     transform: scale(1.1);
   }
 
-  .card {
+  .card 
+  {
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
@@ -311,7 +312,8 @@
     border-radius: 0.5rem;
   }
   
-  .card-body {
+  .card-body 
+  {
     padding: 25px;
     margin-top: -15px;
   }
@@ -326,11 +328,12 @@
   .card .card-text a:hover {
     color: var( --rosaa);
   }
-  .price {
+  .price 
+  {
     font-size: 1.5rem;
     color: var( --rosaa);
     font-weight: bolder;
-    padding-top: 1rem;
+    padding-top: .2rem;
   }
   
   .price span {

@@ -1,6 +1,7 @@
-:root {
-    --pink: #ff00ff; /* o cualquier otro valor de color que desees */
-  }
+:root 
+{
+    --pink: #e84393; /* o cualquier otro valor de color que desees */
+}
 
 h1.titu
 {
@@ -9,9 +10,17 @@ h1.titu
 
 img.pro
 {
-    margin:auto; 
-    width: 100px;
-    height: 250px;
+    justify-content: center;
+    margin:1rem; 
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 250px;
+}
+
+img.pro:hover
+{
+    transform: scale(1.1);
 }
 
 .product-title 
@@ -32,6 +41,7 @@ div.precio
 {
     position: absolute;
     bottom: 0;
+    margin-bottom: 1rem;
     left: 50%; 
     transform: translate(-50%, 0);
 }
@@ -45,7 +55,12 @@ div.mar
 .tcategoria
 {
     text-decoration: none;
-    color: var(--pink);
+    color: #333;
+}
+
+.tcategoria:hover
+{
+    color: #e84393;
 }
 
 .categoria
@@ -53,3 +68,6 @@ div.mar
     color: #333;
     font-weight: bolder;
 }
+
+
+  
