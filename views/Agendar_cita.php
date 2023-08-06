@@ -42,7 +42,7 @@ if(isset($_SESSION["usuario"]))
                 foreach($tipo_servicio as $ts)
                 { 
                 ?>
-                <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
                     <div id="collapse<?php echo $conts;?>" class="accordion-collapse collapse" data-bs-parent="#accordionExample<?php echo $contt;?>">
                         <div class="accordion-body">
                             <div class="card custom-card-style h-100">
