@@ -227,8 +227,7 @@ if(empty($_SESSION['carrito']))
                 </div>
             </div>
             <div class="row">
-                
-                <div class="col-lg-12" style="text-align: center;">
+            <div class="col-lg-12" style="text-align: center;">
                 <br>
                 
                 <form action="../scripts/generar_orden.php" method="post">
@@ -316,10 +315,7 @@ if(empty($_SESSION['carrito']))
 
 
 <script>
-        document.getElementById("actu").addEventListener("click", function() {
-              location.reload();
-            
-        });
+        
     //BORRAR EL CARRITO EN CUANTOSE HACE UNA COMPRA
     document.getElementById("si").addEventListener("click", function() {
   //location.reload();
