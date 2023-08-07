@@ -185,7 +185,10 @@ i
 
 @media only screen and (max-width: 768px)
 {
-    
+    .hidden1
+  {
+    display: none;
+  }
     .side-image
     {
         border-radius: 10px 10px 0 0;
