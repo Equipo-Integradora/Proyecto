@@ -1,0 +1,63 @@
+.cabecera
+{
+    background-color: rgb(233, 233, 233);
+}
+h1
+{ 
+    color: #333;
+    font-weight: bolder;
+}
+
+span
+{
+    color: #e84393;
+}
+p
+{
+    display: inline-block;
+}
+
+.filtro
+{
+    display: inline-block;
+    margin-top: 0.1rem;
+    border-radius: 1rem;
+    background: #333;
+    color: #fff;
+    padding: 0.5rem .8rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.divres
+{
+    position: relative;
+}
+.pres
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+}
+
+.can
+{
+    width: 50%;
+}
+
+.historial
+{
+
+    display: inline-block;
+    margin-top: 0.1rem;
+    border-radius: 1rem;
+    background: #333;
+    color: #fff;
+    padding: 0.5rem .5rem;
+    font-size: .8rem;
+    font-weight: bold;
+    width: 3rem;
+    margin-right: .3rem ;
+}
