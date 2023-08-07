@@ -11,9 +11,10 @@ if(isset($_SESSION["usuario"]))
 <!--Contenido-->
 
         <!--Inicio Pagina 1-->
-        <link rel="stylesheet" href="../css/calendario.css">
-    <div class="container" style="margin-top: 73px;">
-                    <h1>Seleccione los servicios que quiere</h1>
+    <link rel="stylesheet" href="../css/calendario.css">
+<section class="section-padding">
+<div class="container info">
+<h1 class="text-center fw-bold m-3">Seleccione los servicios que quiere</h1>
     <!--Servicios-->
     <form action="../scripts/ingresar_cita.php" method="post" id="myForm">
         <div class="accordion" id="accordionExample">
@@ -41,7 +42,7 @@ if(isset($_SESSION["usuario"]))
                 foreach($tipo_servicio as $ts)
                 { 
                 ?>
-                <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
                     <div id="collapse<?php echo $conts;?>" class="accordion-collapse collapse" data-bs-parent="#accordionExample<?php echo $contt;?>">
                         <div class="accordion-body">
                             <div class="card custom-card-style h-100">
@@ -51,7 +52,7 @@ if(isset($_SESSION["usuario"]))
                                 <input type="hidden" name="precio" value="<?php echo $ts->precio_tipo_servicio?>">
                                 <input type="hidden" name="precio" value="<?php echo "$ts->precio_tipo_servicio"?>">
                                 <input type="checkbox" id="<?php echo $ts->id_tipo_servicio ?>" name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="d-none">
-                                <label for="<?php echo $ts->id_tipo_servicio ?>" class="card-title btn btn-outline-primary">Seleccionar</label>
+                                <label for="<?php echo $ts->id_tipo_servicio ?>" class="card-title btn botonescita mt-3">Seleccionar</label>
                             </div>
                         </div>
                     </div>
@@ -78,7 +79,7 @@ if(isset($_SESSION["usuario"]))
         ?>
         <div class="col-md-12" style="margin-top: 1rem;">
             <div class="card custom-card">
-             <h2>Selecciona la fecha y la hora</h2>
+             <h2 class="fw-bold">Selecciona la fecha y la hora</h2>
              <div class="date-input-container">
                 <label class="date-input-label" for="selectedDate">Seleccione el icono del calendario en el recuadro y seleecione la fecha:</label>
                 <input type="date" class="date-input" id="selectedDate" name="selectedDate" onkeydown="return false">
@@ -86,7 +87,7 @@ if(isset($_SESSION["usuario"]))
             <br>
             <div class="time-input-container">
                 <label class="time-input-label" for="selectedTime">Seleccionar hora:</label>
-                <select name="selectedTime" id="selectedTime" style="width: 100%;">
+                <select class="date-input" name="selectedTime" id="selectedTime" style="width: 100%;">
                     <option value="3:00:00">3:00</option>
                     <option value="4:00:00">4:00</option>
                     <option value="5:00:00">5:00</option>
@@ -98,14 +99,15 @@ if(isset($_SESSION["usuario"]))
             </div>
             <div class="date-input-container">
                 <label class="date-input-label" for="selectedDate">Puede ingreasar un comentario extra sobre su cita de su cita</label>
-                <textarea name="descripcion" id="descripcion" cols="" rows="" style="max-height: 9rem; width: 100%;"></textarea>
+                <textarea class="date-input" name="descripcion" id="descripcion" cols="" rows="" style="max-height: 9rem; width: 100%;"></textarea>
             </div>
-            <input class="submit-button" type="submit" value="Agendar Cita">
+            <input class="submit-button botonescita2" type="submit" value="Agendar Cita">
             </div>
     </form>
 
 <!-- Fin de la opción de selección de fecha y hora -->
     </div>
+</section>
     
 
   <!-- Botones de navegación -->

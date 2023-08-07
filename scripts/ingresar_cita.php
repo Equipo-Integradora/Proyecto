@@ -25,6 +25,7 @@ $db->desconectarDB();
 
 echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
 echo "<div class='alert alert-success'>Cita hecha</div>";
+header("refresh:1 ; ../views/home.php")
 
         ?>
     </div>

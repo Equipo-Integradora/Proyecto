@@ -41,16 +41,34 @@ include "../class/database.php";
                 <div id="carouselExampleAutoplaying" class="carousel slide col-lg-6" data-bs-ride="carousel">
                     <div class="carousel-inner imagenes">
                       <div class="carousel-item active">
-                        <img src="../img/home/ej10.jpg" class="d-block img-fluid" alt="...">
-                        <h3>Ejemplos</h3>
+                        <img src="../img/home/portafolio/5.jpg" class="d-block img-fluid" alt="...">
                       </div>
                       <div class="carousel-item">
-                        <img src="../img/home/ej3.jpg" class="d-block img-fluid" alt="...">
-                        <h3>Ejemplos</h3>
+                        <img src="../img/home/portafolio/2.jpg" class="d-block img-fluid" alt="...">
                       </div>
                       <div class="carousel-item">
-                        <img src="../img/home/ej2.jpg" class="d-block img-fluid" alt="...">
-                        <h3>Ejemplos</h3>
+                        <img src="../img/home/portafolio/3.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/4.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/1.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/6.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/7.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/8.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/9.jpg" class="d-block img-fluid" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../img/home/portafolio/10.jpg" class="d-block img-fluid" alt="...">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

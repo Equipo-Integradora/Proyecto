@@ -16,6 +16,7 @@
         <div class="container main">
             <div class="row">
                 <div class="col-md-6 side-image">
+                <button type="button" class="hidden1 btn-close m-3" aria-label="Close" onclick="redirectToHome()"></button>
                     <div class="text">
                         <p class="logo fs-1 m-auto"><span>Sweet </span>Beauty</p>
                         <p>Maquillaje y peinados</p>
@@ -23,7 +24,7 @@
                 </div>
                 <div class="col-md-6 right">
                      <div class="input-box">
-                        <header>Iniciar Sesión</header>
+                        <header class="fs-3">Iniciar Sesión</header>
                         <form action="../scripts/verificar_login.php" method="post">
                         <div class="input-field">
                             <input type="text" class="input" name="usuario" required autocomplete="off">
@@ -46,7 +47,12 @@
         </div>
     </div>
     
-      <!-- SCRIPTS -->
-      <script src="../js/bootstrap.bundle.min.js"></script>
+    <!-- SCRIPTS -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script>
+        function redirectToHome() {
+        window.location.href = "../views/home.php";
+        }
+    </script>
 </body>
 </html>

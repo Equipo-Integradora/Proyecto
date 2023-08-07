@@ -19,7 +19,7 @@ session_start();
 ?>
 
 
-<div class="container" style="margin-top: 100px ; width: 100%;">
+<div class="container mt-6" style="margin-top: 100px ; width: 100%;">
 <div class="row">
 
 <img class="col-xl-4 col-lg-4 col-md-4 col-sm-6  col-xs-1 " style="height: 700px;" src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">

@@ -27,7 +27,8 @@
     color: var( --rosaa);
   }
   
-  section {
+  section 
+  {
     padding: 1rem 9%;
   }
   
@@ -43,7 +44,8 @@
     transition: 0.2s linear;
   }
   
-  nav {
+  nav 
+  {
     background: #fff;
     padding: 2rem 9%;
     display: flex;
@@ -188,7 +190,8 @@
     padding: 0.1rem 0;
   }
   
-  .heading {
+  .heading 
+  {
     font-weight: bold;
     text-align: center;
     font-size: 2rem;
@@ -198,7 +201,8 @@
     background: rgba(255, 51, 153, 0.05);
   }
   
-  .heading span {
+  .heading span 
+  {
     color: var( --rosaa);
   }
   
@@ -290,7 +294,8 @@
     transform: scale(1.1);
   }
 
-  .card {
+  .card 
+  {
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
@@ -311,7 +316,8 @@
     border-radius: 0.5rem;
   }
   
-  .card-body {
+  .card-body 
+  {
     padding: 25px;
     margin-top: -15px;
   }
@@ -326,11 +332,12 @@
   .card .card-text a:hover {
     color: var( --rosaa);
   }
-  .price {
+  .price 
+  {
     font-size: 1.5rem;
     color: var( --rosaa);
     font-weight: bolder;
-    padding-top: 1rem;
+    padding-top: .2rem;
   }
   
   .price span {
@@ -427,6 +434,23 @@
   .credit span {
     color: var( --rosaa);
   }
+
+.btnc
+{
+  display: inline-block;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btnc:hover
+{
+  background-color: var(--rosaa);
+  color: #fff;
+}
   
   /* RESPONSIVE */
   @media (max-width: 991px) {

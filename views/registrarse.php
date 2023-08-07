@@ -9,33 +9,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Registrarse</title>
     <style>
-        .hidden {
+        .hidden 
+        {
             display: none;
         }
         
-        .main {
-            padding-top: 30px;
+        .main 
+        {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
         
-        .logo {
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 15px;
+        .form-group label 
+        {
+            margin-bottom: 3px;
         }
         
-        .content {
-            margin-top: 30px;
-        }
-        
-        .form-group label {
-            margin-bottom: 5px;
-        }
-        
-        .submit {
-            margin-top: 15px;
-        }
-        
-        .alert {
+        .alert 
+        {
             margin-top: 20px;
             text-align: center;
         }
@@ -45,29 +36,30 @@
 <div class="wrapper">
     <div class="container main">
         <div class="row">
-            <div class="col-md-6 image">
-                <div class="text">
-                    <p class="logo fs-1 m-auto"><span>Sweet</span> Beauty</p>
-                    <p>Maquillaje y peinados</p>
+            <div class="col-md-6 col-12 image">
+            <button type="button" class="hidden1 btn-close m-3" aria-label="Close" onclick="redirectToHome()"></button>
+                <div class="text text-center mt-md-5">
+                    <p class="logo fs-1 m-auto hidden1"><span>Sweet</span> Beauty</p>
+                    <p class="hidden1">Maquillaje y peinados</p>
                 </div>
             </div>
-            <div class="col-md-6 right">
+            <div class="col-md-6 col-12 right">
             <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarCamposLlenos(); cambiarTextoBoton();">
-                    <header style="text-align: center;font-size: 25px;">Registrarse</header>
-                    <div class="content">
-                        <div class="form-group input-field">
-                            <label for="nombre" id="nombreText">Nombre completo</label>
+                    <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
+                    <div class="input-box">
+                        <div class="form-group input-field mt-5">
                             <input type="text" class="input" id="nombre" name="nombre" required autocomplete="off">
+                            <label for="nombre" id="nombreText">Nombre completo</label>
                         </div>
-                        <div class="form-group input-field">
-                            <label for="correo" id="correoText">Correo</label>
+                        <div class="form-group input-field mt-3">
                             <input type="email" class="input" id="correo" name="correo" required autocomplete="off">
+                            <label for="correo" id="correoText">Correo</label>
                         </div>
-                        <div class="form-group input-field">
-                            <label for="correo" id="telefonoText">Teléfono</label>
+                        <div class="form-group input-field mt-3">
                             <input type="tel" class="input" id="telefono" name="telefono" required autocomplete="off">
+                            <label for="correo" id="telefonoText">Teléfono</label>
                         </div>
-                        <div class="form-group " id="genero-group">
+                        <div class="form-group mt-3" id="genero-group">
                             <label for="genero">Género</label>
                             <div class="genero-categoria">
                                 <div class="form-check">
@@ -84,23 +76,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" id="fecha-group">
+                        <div class="form-group mt-3" id="fecha-group">
                             <label for="fecha">Fecha de nacimiento</label>
                             <input type="date" class="form-control" name="fecha" id="fecha" required>
                         </div>
 
                         <div class="form-group hidden input-field" id="pass-group">
-                            <label for="pass">Contraseña</label>
                             <input type="password" class="input" name="pass" id="pass" required autocomplete="off">
+                            <label for="pass">Contraseña</label>
                         </div>
-                        <div class="form-group hidden input-field" id="passconf-group">
-                            <label for="passconf">Confirmar contraseña</label>
+                        <div class="form-group hidden input-field mt-3" id="passconf-group">
                             <input type="password" class="input" name="passconf" id="passconf" required autocomplete="off">
+                            <label for="passconf">Confirmar contraseña</label>
                         </div>
-                        <div class="input-field">
-                            <input type="submit" class="submit" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();cambiarTextoBoton();validarFechaGenero();">
+                        <div class="input-field mt-4">
+                            <input type="submit" class="submit m-auto" id="submitButton" value="Continuar" onclick="return validarCamposLlenos();cambiarTextoBoton();validarFechaGenero();">
                         </div>
-                        <div class="alert" style="margin-bottom:1rem;">
+                        <div class="alert">
                             <span>Ya tienes una cuenta? <a href="../views/login.php">Inicia sesión aqui</a></span>
                         </div>
                     </div>
@@ -109,6 +101,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- SCRIPTS -->
 <script src="../js/bootstrap.bundle.min.js"></script>
@@ -236,6 +229,10 @@
         document.getElementById('submitButton').value = 'Registrarse';
     }
 </script>
-    
+<script>
+        function redirectToHome() {
+        window.location.href = "../views/home.php";
+        }
+    </script>
 </body>
 </html>

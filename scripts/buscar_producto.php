@@ -41,15 +41,14 @@ $perfil = false;
     }
 </style>
 
-<div style="margin-left: 1rem;">
 <!--Inicio del Carusel-->
 <div style="margin-top: 5rem;" id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img style="width: 100%;" src="../img/productos/ban2.jpg" class="d-block w-100" alt="...">
+      <img style="width: 100%;" src="../img/productos/banner3.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img style="width: 100%;" src="../img/productos/ban1.jpg" class="d-block w-100" alt="...">
+      <img style="width: 100%;" src="../img/productos/banner4.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -64,7 +63,6 @@ $perfil = false;
 <!--Fin del Carusel-->
 
 <!--Inicio de los tipos de categoria-->
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <div class="right-align">
@@ -111,12 +109,14 @@ $perfil = false;
 <!--Fin de los tipos de categoria-->
 
 <!--Inicio de los productos-->
-<div style="width: 100%;">
+<section class="section-padding">
+    <div class="container">
+    <div style="width: 100%;">
     <div class="row">
         <?php
         foreach ($tabla as $reg) { ?>
             <div class="col-lg-3 col-sm-12 grande chico" style="margin-top: 5px; margin-top:2rem;">
-                <div class="card" style="height: 400px;">
+                <div class="card" style="height: 445px;">
                 <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?> "><img href class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" alt="..."></a>
                     <div class="card-body text-center">
                         <div class="icons card-title"></div>
@@ -138,6 +138,8 @@ $perfil = false;
 
 <!--Fin de los productos-->
 </div>
+</section>
+
     <?php
         include "../templates/footer.php"
     ?>

@@ -173,7 +173,7 @@ if(!isset($totalcantidad)){
                             {
                                 if(isset($_SESSION["usuario"]))
                                 {
-                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Mis citas</a>";
+                                    echo "<a class='dropdown-item fs-6 ' href='../views/mis_citas.php'><i class='fas fa-user-xmark me-2'></i>Mis citas</a>";
                                 }
                             }
                               ?>
@@ -184,7 +184,7 @@ if(!isset($totalcantidad)){
                             {
                                 if(isset($_SESSION["usuario"]))
                                 {
-                                    echo "<a class='dropdown-item fs-6 ' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Mis ordenes </a>";
+                                    echo "<a class='dropdown-item fs-6 ' href='../views/mis_ordenes.php'><i class='fas fa-user-xmark me-2'></i>Mis ordenes </a>";
                                 }
                             }
                               ?>
