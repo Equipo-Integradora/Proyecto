@@ -37,6 +37,7 @@
     <div class="container main">
         <div class="row">
             <div class="col-md-6 col-12 image">
+            <button type="button" class="hidden1 btn-close m-3" aria-label="Close" onclick="redirectToHome()"></button>
                 <div class="text text-center mt-md-5">
                     <p class="logo fs-1 m-auto hidden1"><span>Sweet</span> Beauty</p>
                     <p class="hidden1">Maquillaje y peinados</p>
@@ -228,6 +229,10 @@
         document.getElementById('submitButton').value = 'Registrarse';
     }
 </script>
-    
+<script>
+        function redirectToHome() {
+        window.location.href = "../views/home.php";
+        }
+    </script>
 </body>
 </html>
