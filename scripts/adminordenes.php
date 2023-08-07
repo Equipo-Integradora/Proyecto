@@ -192,7 +192,7 @@ if ($_POST) {
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
+                            <h5 class="modal-title" id="modalEditarLabel">Editar orden</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -272,7 +272,7 @@ if ($_POST) {
                         estado_orden_venta: estado_orden_venta
                     }, function (data) {
                         Swal.fire({
-                            title: '¡Cita actualizada!',
+                            title: '¡Orden actualizada!',
                             text: 'Los datos se han actualizado exitosamente.',
                             icon: 'success',
                             didClose: () => 

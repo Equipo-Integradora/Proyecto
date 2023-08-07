@@ -42,8 +42,6 @@ if (isset($_SESSION["admin"])) {
                 </form>
             </div>
 
-
-
             <div class="container-fluid px-4">
                 <div class="row g-3">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -205,6 +203,7 @@ if (isset($_SESSION["admin"])) {
                                                     <tr>
                                                         <th>Producto</th>
                                                         <th>Actualizacion de las exitencias</th>
+                                                        <th>Movimiento</th>
                                                         <th>Fecha del cambio</th>
                                                     </tr>
                                                 </thead>
@@ -215,9 +214,10 @@ if (isset($_SESSION["admin"])) {
                                                     } else {
                                                         foreach ($tablaexitencias as $reg) {
                                                             echo "<tr>";
-                                                            echo "<td> $reg->servicio_modificado</td>";
-                                                            echo "<td> $reg->existencias_cambiadas</td>";
+                                                            echo "<td> $reg->producto</td>";
+                                                            echo "<td> $reg->existencias_nuevas</td>";
                                                             echo "<td> $reg->movimiento</td>";
+                                                            echo "<td> $reg->fecha_cambio_inventario</td>";
                                                             echo "</tr>";
                                                         }
                                                     }
