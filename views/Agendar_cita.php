@@ -148,7 +148,7 @@ include "../templates/footer.php";
 <script>
     var fechaActual = new Date();
     var fechaMinima = new Date();
-    fechaMinima.setDate(fechaActual.getDate() + 3);
+    fechaMinima.setDate(fechaActual.getDate() + 2);
     var fechaMaxima = new Date();
     fechaMaxima.setMonth(fechaActual.getMonth() + 6);
 
@@ -165,7 +165,6 @@ include "../templates/footer.php";
       }
     });
 
-    const fechasBloqueadas = <?php echo json_encode($_SESSION['dias']); ?>;
 
     document.getElementById('selectedDate').addEventListener('input', function() {
       const selectedDate = new Date(this.value);
