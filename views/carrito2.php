@@ -202,7 +202,7 @@ if(empty($_SESSION['carrito']))
         ?>
     </div>
     <div class="col-4" style=" padding: 10px">
-    <div class="container" style="background-color: white; width:280px; height: 250px;" >
+    <div class="container" style="background-color: white; width:280px; height: 230px;" >
 <div class="justify-contend-end" style="border-color: black; border:3px;">
             <div class="row">
                 <div class="col-12 text-center border-bottom">
@@ -227,10 +227,7 @@ if(empty($_SESSION['carrito']))
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12" style="text-align: center;">
-                <br>
-                <button id="actu" class="btn boton">Actualizar cambios</button>
-                </div>
+                
                 <div class="col-lg-12" style="text-align: center;">
                 <br>
                 
