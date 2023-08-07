@@ -98,6 +98,7 @@ if(isset($_POST['id']))
         header("location: " .$_SERVER['HTTP_REFERER']."");
     
 }
+$perfil = false;
 include "../templates/header.php";
 
 ?>
@@ -105,6 +106,7 @@ include "../templates/header.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../css/carrito.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -158,7 +160,8 @@ if(empty($_SESSION['carrito']))
                     <div class="col-8 cant<?php echo $arregloCarrito[$i]['Id']; ?>">Total por cantidad $<?php echo $arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad'] ?></div>
                     <div class="col-4 ">
                         <div class="input-group mb-3" style="max-width: 120px;">
-                            <input style="width: 50px;" 
+                            <input style="width: 50px;"
+                            id="mm"
                             type="number" 
                             min="1" 
                             max="<?php echo $arregloCarrito[$i]['Maximo']?>"
@@ -170,7 +173,7 @@ if(empty($_SESSION['carrito']))
                         </div>
                     </div>
                     <div class="col-12">
-                        <a id="mensaje" href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id'];?>">Borrar</a>
+                        <a id="mensaje" href="#" class="btn boton btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id'];?>">Borrar</a>
                     </div>
                 </div>
             </div>
@@ -188,10 +191,10 @@ if(empty($_SESSION['carrito']))
             <div class="col-12"><p style="text-transform: lowercase; color:gray">Vamos de compras a llenar tu bolsa</p></div>
             <div class="col-12" style="text-align: center;">
                 <a href="../views/ver_producto_general.php" style="text-decoration: none;">
-                <button type="button" class="btn btn-lg" style="background-color: pink;">COMPRAR AHORA</button>
-    
-                
+                <button type="button" class="btn boton" style="margin-bottom: 20px;" >COMPRAR AHORA</button>                
                 </a>
+
+
             </div>
         </div>
       <?php
@@ -199,7 +202,7 @@ if(empty($_SESSION['carrito']))
         ?>
     </div>
     <div class="col-4" style=" padding: 10px">
-    <div class="container" style="background-color: white; width:280px; height: 210px;" >
+    <div class="container" style="background-color: white; width:280px; height: 250px;" >
 <div class="justify-contend-end" style="border-color: black; border:3px;">
             <div class="row">
                 <div class="col-12 text-center border-bottom">
@@ -212,7 +215,7 @@ if(empty($_SESSION['carrito']))
                     <span class="text-black">Subtotal</span>
                 </div>
                 <div class="col-6 text-right">
-                    <strong id="total-container" class="text-black cant<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                <strong  class="txtCantidad text-black tot">$<?php echo $total ?>.00</strong>
                 </div>
             </div>
             <div class="row">
@@ -220,16 +223,20 @@ if(empty($_SESSION['carrito']))
                     <span class="text-black">Total</span>
                 </div>
                 <div class="col-6 text-right">
-                    <strong id="total-container" class="txtCantidad text-black tot<?php echo $arregloCarrito[$i]['Id']; ?>">$<?php echo $total ?></strong>
+                    <strong  class="txtCantidad text-black tot">$<?php echo $total ?>.00</strong>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-12" style="text-align: center;">
-                <br> 
+                <br>
+                <button id="actu" class="btn boton">Actualizar cambios</button>
+                </div>
+                <div class="col-lg-12" style="text-align: center;">
+                <br>
+                
                 <form action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
-    <button id="si" <?php echo $boton ?> class="btn btn-primary btn-lg py-3 btn-block">Proceder compra</button>
+    <button id="si" <?php echo $boton ?> class="btn boton">Proceder compra</button>
 </form>
                 </div>
             </div>
@@ -238,6 +245,73 @@ if(empty($_SESSION['carrito']))
 </div>
 
     </div>
+<?php
+    $consulta = "SELECT productos.nombre_producto, productos.precio_producto, detalle_productos.imagen_detalle_producto, detalle_productos.id_detalle_producto
+    FROM orden_venta INNER JOIN detalle_orden_venta ON orden_venta.id_venta = detalle_orden_venta.orden_venta_detalle_orden_FK
+    INNER JOIN detalle_productos ON detalle_productos.id_detalle_producto = detalle_orden_venta.producto_orden_venta_FK
+    INNER JOIN productos ON detalle_productos.detalle_producto_detalle_producto_FK = productos.id_producto
+    GROUP BY productos.nombre_producto, productos.precio_producto
+    ORDER BY detalle_orden_venta.cantidad_producto_orden_venta DESC
+    LIMIT 3;";
+
+    $tabla = $db->seleccionar($consulta);
+?>
+
+    <section class="products section-padding">
+        <h1 class="heading m-5">Puedes llenar <span>tu bolsa con... </span></h1>
+        <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+              <!-- INICIO ITEM-->
+              <?php
+              foreach ($tabla as $reg) 
+              { ?>
+
+              <!-- INICIO ITEM-->
+              
+            <div class="col">
+              <div class="card h-100">
+                <div   style=" display: flex; align-content:center; align-items: center; padding-right:15%; padding-left: 15%">
+                <a style="margin: auto;" href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?>" id="<?php echo $reg->id_detalle_producto ?> "><img class="card-img-top pro" src="../img/productos/<?php echo $reg->imagen_detalle_producto; ?>" alt="..."></a>
+                </div>
+                        <div class="card-body text-center">
+                          <div class="icons card-title">
+                          </div>
+                          <div class="card-text">
+                          <a href="../views/verproducto.php?id=<?php echo $reg->id_detalle_producto ?>">
+                            <?php
+                            $max_caracteres = 20;
+                            $nombre_producto = $reg->nombre_producto;
+
+                            
+                             if (strlen($nombre_producto) > $max_caracteres) {
+                                 echo substr($nombre_producto, 0, $max_caracteres) . '...';
+                             } else {
+                                 echo $nombre_producto;
+                            }
+                           ?>    
+                          </a>
+                            <div class="price">
+                            <?php echo'$'.$reg->precio_producto; ?>
+                          </div>
+                          </div>
+                        </div>
+                  </div>
+            </div>
+                  <!-- END ITEM -->
+                <?php
+              }
+                  $db->desconectarDB();
+                  ?>
+
+            </div>
+        </div>
+    </div>
+        </section>
+
+        <?php
+        include "../templates/footer.php"
+    ?>
+
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -245,9 +319,14 @@ if(empty($_SESSION['carrito']))
 
 
 <script>
-    
+        document.getElementById("actu").addEventListener("click", function() {
+              location.reload();
+            
+        });
+    //BORRAR EL CARRITO EN CUANTOSE HACE UNA COMPRA
     document.getElementById("si").addEventListener("click", function() {
-  // Código que se ejecuta cuando se hace clic en el botón
+  //location.reload();
+
 
         var arreglo = <?php echo json_encode($_SESSION['carrito']); ?>;
 
@@ -263,19 +342,19 @@ if(empty($_SESSION['carrito']))
             }
             ).done(function(respuesta){
                 boton.parent('a').parent('div').parent('div').remove();
-                //location.reload();
+                
                 //window.location.href = '../views/carrito2.php';
 
             });
         }
-    
+        document.getElementById('si').submit();
 });
 
    $(document).ready(function(){
     
 
         $(".btnEliminar").click(function(event){
-                alert("¡Hola! Has hecho clic en el botón.");
+                //alert("¡Hola! Has hecho clic en el botón.");
 
             event.preventDefault();
             var id=$(this).data('id');
@@ -293,6 +372,21 @@ if(empty($_SESSION['carrito']))
 
             });
         });
+        function obtenerContenido() {
+  var si="";
+  var cantidad = parseInt($(input).val());
+  var arreglo = <?php echo json_encode($_SESSION['carrito']); ?>;
+  for (var i = 0; i < arreglo.length; i++) {
+    var idd = arreglo[i]['Id'];
+    var canti = arreglo[i]['Cantidad'];
+    var chec= $(".cant" + idd).text(cantidad.toFixed(2));
+    if(chec!=canti){
+        si=disabled;
+    }
+  }
+  return si;
+}
+
 
     $(".txtCantidad").on('keyup input', function () {
         var cantidad = parseInt($(this).val());
@@ -307,56 +401,47 @@ if(empty($_SESSION['carrito']))
             $(this).val(1);
         }
         actualizarTotal(this);
+        //obtenerContenido(this);
     });
 
     function actualizarTotal(input) {
-        var cantidad = parseInt($(input).val());
-        var precio = parseFloat($(input).data('precio'));
-        var id = $(input).data('id');
-        var mult = cantidad * precio;
-        var tot = tot+mult;
-        $(".cant" + id).text("Total por cantidad $" + mult.toFixed(2));
-        $(".tot" + id).text("$" + tot.toFixed(2));        
-        $.ajax({
-            method: 'POST',
-            url: '../scripts/actualizar.php',
-            data: {
-                id: id,
-                cantidad: cantidad
-            }
-        }).done(function (respuesta) {
-        });
+  var arreglo = <?php echo json_encode($_SESSION['carrito']); ?>;
+  var tot = 0;
+  var cantidad = parseInt($(input).val());
+  var precio = parseFloat($(input).data('precio'));
+  var id = $(input).data('id');
+  var mult = cantidad * precio;
+  arreglo.forEach(function (producto) {
+    var cantidad = parseInt($('.txtCantidad[data-id="' + producto.Id + '"]').val());
+    var subTotal = cantidad * producto.Precio;
+    tot += subTotal;
+    $(".cant" + producto.Id).text("Total por cantidad $" + subTotal.toFixed(2));
+  });
+
+  $(".tot").text("$" + tot.toFixed(2));
+
+  $.ajax({
+    method: 'POST',
+    url: '../scripts/actualizar.php',
+    data: {
+      id: id,
+      cantidad: cantidad
     }
+  }).done(function (respuesta) {
+    // Código adicional si es necesario
+  });
+}
+
+
+
+
+
     });
     function si(){
         alert(hola);
 
 
     }
-    function actualizarTotall() {
-        var total = 0;
-        // Recorre todos los elementos del carrito y suma los totales de cada producto
-        <?php
-        if(isset($arregloCarrito)) {
-            for($i=0; $i<count($arregloCarrito); $i++) {
-                echo "total += " . $arregloCarrito[$i]['Precio'] . " * " . $arregloCarrito[$i]['Cantidad'] . ";";
-            }
-        }
-        ?>
-        // Actualiza el valor del elemento en el DOM con el nuevo total
-        document.getElementById('total-container').innerText = "$" + total.toFixed(2);
-    }
-
-    // Llama a la función actualizarTotal al cargar la página
-    actualizarTotall();
-
-    // Ahora, utiliza la función actualizarTotal cada vez que se actualice la cantidad de un producto
-    $(document).ready(function() {
-        $(".txtCantidad").on('keyup input', function() {
-            actualizarTotall();
-        });
-    });
-    
 </script>
 
 <script>
