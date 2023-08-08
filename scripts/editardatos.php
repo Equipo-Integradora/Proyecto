@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
 </head>
 <body>
     
@@ -38,16 +43,27 @@ extract($_POST);
         WHERE id_usuario = '{$_SESSION["id"]}';";
         $resultado = $db->ejecuta($con);
 
-
-        echo "<div class='alert alert-succes'>";
-                echo "<h2 align='center'> Cambio realizado</h2>";
-                echo "</div>";    
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'success',";
+                echo "  title: 'Cambio realizado',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 2000";
+                echo "});";
+                echo "</script>";
                 header("refresh:2, ../views/perfil.php");
         }
         else{
-            echo "<div class='alert alert-danger'>";
-                echo "<h2 align='center'> Cambio NO realizado</h2>";
-                echo "</div>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'error',";
+                echo "  title: 'Cambio NO realizado',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 2000";
+                echo "});";
+                echo "</script>";
                 header("refresh:2, ../views/perfil.php");
         }
     }
@@ -64,16 +80,27 @@ extract($_POST);
         WHERE id_usuario = '{$_SESSION["id"]}';";
         $resultado = $db->ejecuta($con);
 
-
-        echo "<div class='alert alert-succes'>";
-                echo "<h2 align='center'> Cambio realizado</h2>";
-                echo "</div>";    
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'success',";
+                echo "  title: 'Cambio realizado',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 2000";
+                echo "});";
+                echo "</script>";
                 header("refresh:2, ../views/perfil.php");
         }
         else{
-            echo "<div class='alert alert-danger'>";
-                echo "<h2 align='center'> Cambio NO realizado</h2>";
-                echo "</div>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'error',";
+                echo "  title: 'Cambio NO realizado',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 2000";
+                echo "});";
+                echo "</script>";
                 header("refresh:2, ../views/perfil.php");
         }
     }
@@ -90,20 +117,21 @@ extract($_POST);
         
         $db->cambio($passn,$usuario, $pass);
         }
-        else{
-            echo "<div class='alert alert-danger'>";
-                echo "<h2 align='center'> Cambio NOoooooooooo realizado</h2>";
-                echo "</div>";
+        else
+        {
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'error',";
+                echo "  title: 'Cambio NO realizado',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 2000";
+                echo "});";
+                echo "</script>";
+                header("refresh:2, ../views/perfil.php");
         }
 
     }
-
-
-
-
-
-
-
         $db->desconectarDB();
 
         ?>

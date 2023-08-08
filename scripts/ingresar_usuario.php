@@ -22,7 +22,15 @@
         $db->ejecuta($query);
         $db->desconectarDB();
 
-        echo "<div class='alert alert-success'>Usuario Registrado</div>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
+        echo "Swal.fire({";
+        echo "  icon: 'success',";
+        echo "  title: 'Usuario Registrado',";
+        echo "  showConfirmButton: false,";
+        echo "  timer: 2000";
+        echo "});";
+        echo "</script>";
         header("refresh:2 ; ../views/login.php")
         ?>
     </div>
