@@ -15,18 +15,37 @@ include '../class/database.php';
 $db = new database();
 $db->conectarDB();
 include "../templates/header.php";
-
+    
     if(isset($_SESSION["usuario"]))
     {
         ?>
-    <h2>Aqui el usuario verá sus ordenes</h2>
+<div class="container" style="margin-top: 100px ; width: 100%;">
+        <h2>Aqui el usuario verá sus ordenes</h2>
+
+        
+
+
+
+
+
+        
+    
+    
+    
     <?php
     
     }
     else
     {
+
         header("Location: ../views/login.php");
     }
+
     ?>
+  </div>  
+    <?php
+//include "../templates/footer.php";
+?>
 </body>
+
 </html>

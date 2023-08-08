@@ -161,7 +161,7 @@ if(empty($_SESSION['carrito']))
                     <div class="col-4 ">
                         <div class="input-group mb-3" style="max-width: 120px;">
                             <input style="width: 50px;"
-                            id="mm"
+                            
                             type="number" 
                             min="1" 
                             max="<?php echo $arregloCarrito[$i]['Maximo']?>"
@@ -230,7 +230,7 @@ if(empty($_SESSION['carrito']))
             <div class="col-lg-12" style="text-align: center;">
                 <br>
                 
-                <form action="../scripts/generar_orden.php" method="post">
+                <form id="aaaa" action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
     <button id="si" <?php echo $boton ?> class="btn boton">Proceder compra</button>
 </form>
@@ -314,12 +314,19 @@ if(empty($_SESSION['carrito']))
 
 
 
+
+
+<!-- ... (resto del código) ... -->
+
+
+<!-- ... (resto del código) ... -->
+
+
+
 <script>
         
     //BORRAR EL CARRITO EN CUANTOSE HACE UNA COMPRA
     document.getElementById("si").addEventListener("click", function() {
-  //location.reload();
-
 
         var arreglo = <?php echo json_encode($_SESSION['carrito']); ?>;
 
@@ -421,6 +428,8 @@ if(empty($_SESSION['carrito']))
       cantidad: cantidad
     }
   }).done(function (respuesta) {
+    location.reload();
+
     // Código adicional si es necesario
   });
 }
@@ -453,19 +462,6 @@ function decrementarValor() {
 
     }
     
-}
-function validarMaximo(event, input) {
- var valor = parseInt(input.value);
-  var min = parseInt(input.getAttribute('min'));
-  var max = parseInt(input.getAttribute('max'));
-
-  if (!isNaN(valor)) {
-    if (!isNaN(min) && valor < min) {
-      input.value = min; // Restringe el valor al mínimo permitido
-    } else if (!isNaN(max) && valor > max) {
-      input.value = max; // Restringe el valor al máximo permitido
-    }
-  }
 }
 
 function Actualizar(){

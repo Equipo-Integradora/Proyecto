@@ -17,3 +17,10 @@
   background: var(--main-bg-color);
   color: #fff;
 }
+.can {
+  background-color: hsla(0, 0%, 100%, 0.9);
+  text-align: center;
+  color: #fa6338;
+  position: absolute;
+  width: 100%;
+}
