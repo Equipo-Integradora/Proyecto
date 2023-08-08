@@ -82,7 +82,7 @@ if ($_POST) {
             <table class="table shadow-sm table-hover">
                 <thead>
                     <tr>
-                        <th>ID venta</th>
+                        <th>Código del pedido</th>
                         <th>Cliente</th>
                         <th>Productos</th>
                         <th>Cantidad</th>

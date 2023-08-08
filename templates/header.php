@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/home/logo1.png" type="logo1/png">
+    <link rel="icon" href="../img/home/logo.png" type="logo/png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/productos_gene.css">
@@ -71,6 +71,7 @@ if(!isset($totalcantidad)){
         <div class="container">
         <!-- LOGO -->
         <!-- DURAAAANNNNNNNNNNNNNn -->
+          <img src="../img/home/logo.png" class="logooo">
           <a class="navbar-brand logo fs-2 " href="../views/home.php"><span>Sweet </span>Beauty</a>
         <!-- Toggle btn-->
           <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
