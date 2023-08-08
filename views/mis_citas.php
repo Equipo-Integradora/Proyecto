@@ -93,14 +93,14 @@ if ($_POST) {
     $citas .= " AND id_usuario = '{$_SESSION["id"]}'";
     $citas .= " GROUP BY id_registro_cita";
     $citas .= " ORDER BY fecha_cita_registro_cita DESC";
-    if (empty($tablac)) 
-    {
         $con = 1;
-       echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se econtraron coincidencias .</p></td></tr>";
-    }
     }
 }
     $tablac = $conexion->seleccionar($citas);
+    if (empty($tablac) && $con == 1) 
+    {
+       echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se econtraron coincidencias .</p></td></tr>";
+    }   
     if (empty($tablac) && $con == 0) 
     {
        echo "<tr><td colspan='12'><p class='fw-bold text-center'>Aún no cuentas con citas.</p></td></tr>";
@@ -124,23 +124,20 @@ if ($_POST) {
             <div class="col-lg-3 col-sm-6 grande chico" style="margin-top: 5px; margin-top:2rem;">
                 <div class="card" style="height: 230px;">
                 
-                <div class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}
-                ?>">
-                    <p style="white-space: nowrap; display: inline; margin-top: .2rem;">Cita: <?php echo $reg->fecha_cita_registro_cita?></p>
-                    <?php 
-                    if ($reg->estado_registro_cita == "Aceptada" OR $reg->estado_registro_cita == "Pendiente")
+                <div style="width: 100%;"" class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}?>">
+                <div class="modal-header">
+                   <h1 class="modal-title fs-5" id="staticBackdropLabel">Cita: <?php echo $reg->fecha_cita_registro_cita?></h1>
+                   <?php
+                   if ($reg->estado_registro_cita == "Aceptada" OR $reg->estado_registro_cita == "Pendiente")
                     {?>
-                    <form style="white-space: nowrap; display: inline;" action="../scripts/cancelar_cita.php" method="post">
+                    <form  action="../scripts/cancelar_cita.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $reg->id_registro_cita?>">
-                    <button type="submit" class="can">
-                    <i class="bi bi-x-circle"></i>
-                    </button>
+                   <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </form>
-
-                       <?php
-                       }
-                       ?>
-
+                    <?php
+                    }
+                    ?>
+                 </div>  
                 </div>
                 
                 <div>
@@ -198,14 +195,13 @@ if ($_POST) {
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 </div>
                 <div>
-                Total a Pagar: <?php echo $reg->precio_total_cita?>
+                Total a Pagar: $<?php echo $reg->precio_total_cita?>
                 </div>
                 <div>
                     Hora: <?php echo $reg->hora_registro_cita?>
