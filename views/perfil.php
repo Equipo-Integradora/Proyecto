@@ -319,17 +319,22 @@ if(isset($_SESSION["usuario"]))
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   function validarContrasenaIgual() {
     var passnueva = document.getElementById('passn').value;
     var confirmarContrasena = document.getElementById('passcn').value;
 
     if (passnueva !== confirmarContrasena) {
-      alert("Las contraseñas no coinciden. Por favor, verifica y vuelve a intentarlo.");
-      return false; // Evita el envío del formulario si las contraseñas no coinciden
+      Swal.fire({
+        icon: 'error',
+        title: 'Las contraseñas no coinciden',
+        text: 'Por favor, verifica y vuelve a intentarlo.'
+      });
+      return false;
     }
 
-    return true; // Permite el envío del formulario si las contraseñas coinciden
+    return true;
   }
 </script>
 

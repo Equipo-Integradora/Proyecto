@@ -81,7 +81,6 @@ if ($_POST) {
                     <table class="table shadow-sm table-hover">
                         <thead>
                         <tr>
-                               <th>ID cita</th>
                                <th>Cliente</th>
                                <th>Tipo de servicio</th>
                                <th>Descripcion</th>
@@ -104,7 +103,6 @@ if ($_POST) {
                                 foreach($tablac as $reg)
                             {
                                 echo "<tr>";
-                                echo "<td> $reg->id_registro_cita</td>";
                                 echo "<td> $reg->nombre_usuario</td>";
                                 echo '<td>';
                                 echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse"  data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
@@ -274,7 +272,8 @@ $(document).ready(function () {
 
     $('.btn-desc').on('click', function () {
         var descripcion = $(this).data('descripcion');
-      if (descripcion && descripcion.trim().length > 0) {
+      if (descripcion && descripcion.trim().length > 0) 
+      {
         $('#descripcionModalBody').text(descripcion);
       } else {
         $('#descripcionModalBody').text('No hay descripción de la cita');

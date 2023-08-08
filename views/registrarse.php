@@ -104,6 +104,7 @@
 
 
 <!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script>
           function validarCamposLlenos() {
@@ -114,33 +115,63 @@
 
 
         if (nombre === '') {
-            alert("Ingrese su nombre.");
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese su nombre.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
         if (correo === '') {
-            alert("Ingrese un correo.");
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese un correo.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
         if (telefono === '') {
-            alert("Ingrese su teléfono.");
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese su teléfono.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
         if (fecha === '') {
-            alert("Ingrese la fecha de nacimiento")
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese la fecha de nacimiento.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
 
         const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
         const isValid = expresion.test(correo);
         if (!isValid) {
-            alert("Ingrese un correo válido.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Ingrese un correo válido.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
 
         const expresionTelefono = /^[0-9]{10}$/;
         const isValidTelefono = expresionTelefono.test(telefono);
         if (!isValidTelefono) {
-            alert("Ingrese un número de teléfono de 10 dígitos.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Ingrese un número de teléfono de 10 dígitos.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
 
@@ -149,7 +180,6 @@
             return false;
         }
 
-        // Validación de contraseñas
         if (!validarContrasenaIgual()) {
             return false;
         }
@@ -162,7 +192,12 @@
         
     function validarFechaNacimiento(fecha) {
         if (!fecha) {
-            alert("Seleccione una fecha de nacimiento.");
+            Swal.fire({
+                icon: 'info',
+                title: 'Seleccione una fecha de nacimiento.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
 
@@ -181,19 +216,34 @@
       {;
           if (fechaSeleccionada >= fechaMin) 
         {;
-          alert("Solo se permiten mayores de edad.");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Solo se permiten mayores de edad.',
+                showConfirmButton: false,
+                timer: 1500
+            });
           return false;
         }
         
       }else{
-          alert("Ingrese una fecha adecuada.");
+        Swal.fire({
+                icon: 'info',
+                title: 'Ingrese una fecha adecuada.',
+                showConfirmButton: false,
+                timer: 1500
+            });
           return false;
         }
 
         var genero = document.querySelector('input[name="genero"]:checked');
 
         if (!genero) {
-            alert("Defina su género.");
+            Swal.fire({
+                icon: 'info',
+                title: 'Defina su género.',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
 
@@ -205,7 +255,12 @@
         var passconf = document.getElementById('passconf').value;
         
         if (pass !== passconf) {
-            alert("Las contraseñas no coinciden");
+            Swal.fire({
+                icon: 'error',
+                title: 'Las contraseñas no coinciden',
+                showConfirmButton: false,
+                timer: 1500
+            });
             return false;
         }
         
@@ -230,7 +285,8 @@
     }
 </script>
 <script>
-        function redirectToHome() {
+        function redirectToHome() 
+        {
         window.location.href = "../views/home.php";
         }
     </script>

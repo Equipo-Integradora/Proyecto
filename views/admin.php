@@ -35,6 +35,7 @@ if (isset($_SESSION["admin"])) {
                             <tr>
                                 <th>Cliente</th>
                                 <th>Tipo de servicio</th>
+                                <th>Descripción</th>
                                 <th>Fecha de la cita</th>
                                 <th>Hora de la cita</th>
                                 <th>Estatus</th>
@@ -56,6 +57,7 @@ if (isset($_SESSION["admin"])) {
                             echo '</ul>';
                             echo '</div>';
                             echo '</td>';
+                            echo "<td></td>";
                             echo "<td> $reg->fecha_cita_registro_cita</td>";
                             echo "<td> $reg->hora_registro_cita</td>";
                             if ($reg->estado_registro_cita == "Aceptada") {
@@ -75,9 +77,9 @@ if (isset($_SESSION["admin"])) {
                     <!-- FIN TABLA -->
                 </div>
             </div>
-
         </div>
     </div>
+              
     <!-- SCRIPTS -->
     <script src="../js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
