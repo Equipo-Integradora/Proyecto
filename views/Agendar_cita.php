@@ -177,10 +177,7 @@ include "../templates/footer.php";
       } else if (this.value > fechaMaximaFormateada) {
         this.value = ''; 
         alert('Solo puedes seleccionar fechas dentro de los próximos 6 meses.');
-      } else if (fechasBloqueadas.includes(this.value)) {
-        this.value = ''; 
-        alert('Esta fecha está bloqueada. Por favor, selecciona otra fecha.');
-      }
+      } 
     });
 
     function formatDate(date) {
@@ -190,6 +187,24 @@ include "../templates/footer.php";
       return `${year}-${month}-${day}`;
     }
 </script>
+<script>
+    var fechasBloqueadas = <?php echo json_encode($_SESSION['dias']); ?>;
+  
+    var fechaInput = document.getElementById("selectedDate");
+
+    fechaInput.addEventListener("input", function() {
+      var fechaSeleccionada = new Date(this.value);
+      var fechaEnTexto = fechaSeleccionada.toISOString().split("T")[0];
+
+      if (fechasBloqueadas.includes(fechaEnTexto)) {
+        this.setCustomValidity("Esta fecha está bloqueada.");
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+</script>
+
+
 <?php
 } else 
 {
