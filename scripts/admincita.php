@@ -103,7 +103,13 @@ if ($_POST) {
                                 foreach($tablac as $reg)
                             {
                                 echo "<tr>";
-                                echo "<td> $reg->nombre_usuario</td>";
+                                echo "<td>  <button type='button' class='btn btn-sm btn-cliente' 
+                                data-nombre='$reg->nombre_usuario>'
+                                data-telefono='$reg->telefono'
+                                data-correo='$reg->email'
+                                data-bs-toggle='modal' data-bs-target='#clienteModal'>
+                                $reg->nombre_usuario
+                                </button></td>";
                                 echo '<td>';
                                 echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse"  data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
                                 echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
@@ -173,15 +179,39 @@ if ($_POST) {
 }
 ?>
 
+<!-- MODAL DE LOS DATOS -->
+<div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clienteModalLabel">Datos de contacto del cliente</h5>
+            </div>
+            <div class="modal-body">
+            <div class="mb-3">
+                    <label for="modalTelefono" class="form-label"><strong>Teléfono:</strong></label>
+                    <span id="modalTelefono">
+                </div>
+                <div class="mb-3">
+                    <label for="modalCorreo" class="form-label"><strong>Correo:</strong></label>
+                    <span id="modalCorreo"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- MODAL DE LA DESCRIPCION -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripcion</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripción</h1>
       </div>
-      <div class="modal-body" id="descripcionModalBody">
+      <div class="modal-body">
+        <textarea id="descripcionModalBody" cols="48" rows="10" readonly></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
@@ -242,6 +272,16 @@ if ($_POST) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function () {
+    $('.btn-cliente').on('click', function () {
+            var nombre = $(this).data('nombre');
+            var telefono = $(this).data('telefono');
+            var correo = $(this).data('correo');
+            
+            $('#modalNombre').text(nombre);
+            $('#modalTelefono').text(telefono);
+            $('#modalCorreo').text(correo);
+        });
+
     $('.btn-editar').on('click', function () {
         var id_registro_cita = $(this).data('registro-id');
         var id_detalle_cita = $(this).data('detalle-id');

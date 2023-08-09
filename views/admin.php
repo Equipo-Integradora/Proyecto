@@ -45,7 +45,13 @@ if (isset($_SESSION["admin"])) {
 
                         foreach ($tablacitas as $reg) {
                             echo "<tr>";
-                            echo "<td> $reg->nombre_usuario</td>";
+                            echo "<td>  <button type='button' class='btn btn-sm btn-cliente' 
+                                data-nombre='$reg->nombre_usuario>'
+                                data-telefono='$reg->telefono'
+                                data-correo='$reg->email'
+                                data-bs-toggle='modal' data-bs-target='#clienteModal'>
+                                $reg->nombre_usuario
+                                </button></td>";
                             echo '<td>';
                             echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
                             echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
@@ -57,7 +63,7 @@ if (isset($_SESSION["admin"])) {
                             echo '</ul>';
                             echo '</div>';
                             echo '</td>';
-                            echo "<td></td>";
+                            echo "<td><button type='button' class='btn btn-secondary btn-sm btn-desc' data-bs-toggle='modal' data-bs-target='#exampleModal' data-descripcion='$reg->Descripcion'>Ver descripción</button></td>";
                             echo "<td> $reg->fecha_cita_registro_cita</td>";
                             echo "<td> $reg->hora_registro_cita</td>";
                             if ($reg->estado_registro_cita == "Aceptada") {
@@ -79,8 +85,53 @@ if (isset($_SESSION["admin"])) {
             </div>
         </div>
     </div>
+
+    <!-- MODAL DE LOS DATOS -->
+<div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clienteModalLabel">Datos de contacto del cliente</h5>
+            </div>
+            <div class="modal-body">
+            <div class="mb-3">
+                    <label for="modalTelefono" class="form-label"><strong>Teléfono:</strong></label>
+                    <span id="modalTelefono">
+                </div>
+                <div class="mb-3">
+                    <label for="modalCorreo" class="form-label"><strong>Correo:</strong></label>
+                    <span id="modalCorreo"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE LA DESCRIPCION -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripción</h1>
+      </div>
+      <div class="modal-body">
+        <textarea id="descripcionModalBody" cols="48" rows="10" readonly></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
               
     <!-- SCRIPTS -->
+    <script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
     <script src="../js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -91,6 +142,29 @@ if (isset($_SESSION["admin"])) {
             el.classList.toggle("toggled");
         };
     </script>
+    <script>
+    $(document).ready(function () {
+        $('.btn-cliente').on('click', function () {
+            var nombre = $(this).data('nombre');
+            var telefono = $(this).data('telefono');
+            var correo = $(this).data('correo');
+            
+            $('#modalNombre').text(nombre);
+            $('#modalTelefono').text(telefono);
+            $('#modalCorreo').text(correo);
+        });
+
+        $('.btn-desc').on('click', function () {
+        var descripcion = $(this).data('descripcion');
+      if (descripcion && descripcion.trim().length > 0) 
+      {
+        $('#descripcionModalBody').text(descripcion);
+      } else {
+        $('#descripcionModalBody').text('No hay descripción de la cita');
+      }
+    });
+    });
+</script>
     </body>
 
     </html>

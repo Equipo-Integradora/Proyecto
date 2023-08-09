@@ -33,7 +33,17 @@
                 if (!isValidPrice($precio)) 
                 {
                     $hasInvalidPrice = true;
-                    echo "<div class='alert alert-danger'>Formato de precio inválido. Por favor ingrese el precio correctamente.</div>";
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                    echo "<script>";
+                    echo "Swal.fire({";
+                    echo "  icon: 'error',";
+                    echo "  title: 'Formato de precio inválido',";
+                    echo "  text: 'Por favor ingrese el precio correctamente.',";
+                    echo "  showConfirmButton: false,";
+                    echo "  timer: 3000";
+                    echo "});";
+                    echo "</script>";
+                    header("refresh:3 ; admincita.php");
                     break;
                 }
             }
@@ -51,10 +61,17 @@
 
                 $db->desconectarDB();
 
-                echo "<div class='alert alert-success'>Cita actualizada con éxito.</div>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'success',";
+                echo "  title: 'Cita actualizada con éxito',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 3000";
+                echo "});";
+                echo "</script>";
+                header("refresh:3 ; admincita.php");
             }
-
-            header("refresh:3 ; admincita.php");
         }
         ?>
     </div>
