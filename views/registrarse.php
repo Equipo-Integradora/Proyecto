@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION["usuario"]))
+{
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -292,3 +297,11 @@
     </script>
 </body>
 </html>
+<?php
+}
+else
+{
+    echo "Apoco shi tilin";
+    header("refresh:1 ; ../views/home.php");
+}
+?>

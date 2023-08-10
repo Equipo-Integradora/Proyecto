@@ -1,14 +1,18 @@
-
 <?php
-
+session_start();
 include "../class/database.php";
-    $instancia = new database();
-    
-    $dias=$instancia->Expreso;
+$conexion = new database();
+
+if (!isset($_SESSION['dias'])) {
+    $_SESSION['dias'] = array(); 
+}
+
+$dias = $_SESSION['dias'];
 
 $longitud = count($dias);
-extract($_POST);
+
 if (isset($_POST['bloquear'])) {
+    extract($_POST);
 
     if (!in_array($dia, $dias)) {
         $dias[] = $dia;
@@ -21,9 +25,7 @@ if (isset($_POST['bloquear'])) {
     echo "<div class='alert alert-danger'>La fecha ya está bloqueada</div>";
     }
 
-    $instancia->Expreso = $dias; 
 
-    header("refresh:2; ../views/calendario.php");
 }
 
 if (isset($_POST['desbloquear'])) {
@@ -33,14 +35,15 @@ if (isset($_POST['desbloquear'])) {
     if (($key = array_search($fechaDesbloquear, $dias)) !== false) {
 
         unset($dias[$key]);
-        $instancia->Expreso = $dias; 
         echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
         echo "<div class='alert alert-success'>Fecha desbloqueada</div>";
     } else {
         echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>"; 
         echo "<div class='alert alert-danger'>La fecha seleccionada no está bloqueada</div>";
     }
-    echo $instancia->Expreso;
-    header("refresh:2; ../views/calendario.php");
 }
+
+
+$_SESSION['dias'] = $dias; 
+header("refresh:2; ../views/calendario.php");
 ?>
