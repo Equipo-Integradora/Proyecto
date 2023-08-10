@@ -480,6 +480,14 @@ footer {
   }
 }
 
+.imagenescarrito
+{
+  width: auto;
+  height: auto;
+  max-width: 140px;
+  max-height: 180px;
+}
+
 @media (max-width: 768px) {
   .banner h3 {
     margin-top: 5rem;

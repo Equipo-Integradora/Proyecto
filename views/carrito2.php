@@ -162,7 +162,7 @@ if(empty($_SESSION['carrito']))
         <div class="row" style="background-color: white; padding: 10px;">
             <div class="col-4" >
             <a href="../views/verproducto.php?id=<?php echo $arregloCarrito[$i]['Id'] ?>">
-            <img style="width: 140px; height: 180px" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no">
+            <img class="imagenescarrito" src="../img/productos/<?php echo $arregloCarrito[$i]['Imagen'] ?>" alt="no">
             </a>
             </div>
             <div class="col">
