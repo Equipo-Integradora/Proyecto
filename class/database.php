@@ -312,6 +312,23 @@
             echo $e->getMessage();
         }
     }
+    
+    function dias($query)
+    {
+            try {
+                $stmt = $this->PDOLocal->query($query);
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $shi = array();
+        foreach ($resultados as $fila) {
+            $shi[] = $fila['fecha_cita_registro_cita'];
+        }
+        return $shi;
+            } catch (PDOException $e) {
+
+                echo $e->getMessage();
+            }   
+
+    }
 
 
 }
