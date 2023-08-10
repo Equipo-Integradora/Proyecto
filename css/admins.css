@@ -199,3 +199,26 @@
 {
     color: #333;
 }
+
+.pagina-link 
+{
+  color: #333;
+}
+
+.pagina-link:hover
+{
+  background-color: #e84393;
+  color: #fff;
+}
+
+.fondo-paginacion 
+{
+  background-color: #e84393;
+}
+
+.pagination .page-item.active .pagina-link
+{
+  background-color: #e84393;
+  color: #fff;
+  border-color: #e84393;
+}

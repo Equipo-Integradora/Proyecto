@@ -12,7 +12,7 @@ if (isset($_SESSION["admin"])) {
     <div class="container-fluid px-4">
         <div class="row g-3 my-2">
 
-            <div class="col-md-12">
+            <div class="col-md-12 justify-content-center">
                 <div class="container-clock">
                     <h1 id="time">00:00:00</h1>
                     <p id="date">fecha</p>
@@ -29,7 +29,17 @@ if (isset($_SESSION["admin"])) {
 
                     $tablacitas = $conexion->seleccionar($consulta);
 
+                    $itemsPerPage = 5;
+
                     if (!empty($tablacitas)) {
+
+                        $totalItems = count($tablacitas);
+                        $totalPages = ceil($totalItems / $itemsPerPage);
+
+                        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                        $startIndex = ($currentPage - 1) * $itemsPerPage;
+
                         echo "<table class='table shadow-sm table-hover'>
                         <thead>
                             <tr>
@@ -43,7 +53,8 @@ if (isset($_SESSION["admin"])) {
                         </thead>
                         <tbody class='table-border-bottom-0'>";
 
-                        foreach ($tablacitas as $reg) {
+                        for ($i = $startIndex; $i < min($startIndex + $itemsPerPage, $totalItems); $i++) {
+                            $reg = $tablacitas[$i];
                             echo "<tr>";
                             echo "<td>  <button type='button' class='btn btn-sm btn-cliente' 
                                 data-nombre='$reg->nombre_usuario>'
@@ -76,6 +87,17 @@ if (isset($_SESSION["admin"])) {
                         }
                         echo "</tbody>
                     </table>";
+
+                    echo "<nav aria-label='Page navigation'>";
+                    echo "<ul class='pagination justify-content-center'>";
+
+                    for ($page = 1; $page <= $totalPages; $page++) {
+                        echo "<li class='page-item" . ($currentPage == $page ? ' active' : '') . "'>";
+                        echo "<a class='page-link pagina-link' href='?page=$page'>$page</a>";
+                        echo "</li>";
+                    }
+
+                    echo "</ul></nav>";
                     } else {
                         echo "<p class='fw-bold text-center'>No se encontraron citas recientes.</p>";
                     }
@@ -118,7 +140,7 @@ if (isset($_SESSION["admin"])) {
         <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripción</h1>
       </div>
       <div class="modal-body">
-        <textarea id="descripcionModalBody" cols="48" rows="10" readonly></textarea>
+        <textarea id="descripcionModalBody" style="width: 100%;" class="text-left" cols="0" rows="10" readonly></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
