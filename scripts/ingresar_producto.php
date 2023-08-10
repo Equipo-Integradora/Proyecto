@@ -16,7 +16,7 @@
         extract($_POST);
       
         $query  = "INSERT INTO productos(nombre_producto, descripcion_producto, precio_producto, categoria_producto_FK) VALUES 
-        ('$producto', '$descripcion', '$precio', '$cat')";
+        ('$producto', '$descripcion', '$precio', '$tipocat')";
 
         $db->ejecuta($query);
         $db->desconectarDB();

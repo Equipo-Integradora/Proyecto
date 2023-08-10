@@ -50,9 +50,13 @@ if(isset($_SESSION["usuario"]))
                                 <div class="descripcion"><?php echo $ts->descripcion_tipo_servicio?></div>
                                 <div class="price"><?php echo $ts->precio_tipo_servicio?> <span style="font-size: 10px; color:black; text-decoration:none; margin-left:2rem">Time aprox:<?php echo $ts->tiempo_aproximado_servicio?></span></div>
                                 <input type="hidden" name="precio" value="<?php echo $ts->precio_tipo_servicio?>">
-                                <input type="hidden" name="precio" value="<?php echo "$ts->precio_tipo_servicio"?>">
+                                  <?php if (strstr($ts->nombre_tipo_servicio, "Uñas")) { ?>
+                                    <input type="radio" id="<?php echo $ts->id_tipo_servicio ?>"name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="">
+                                    <label for="<?php echo $ts->id_tipo_servicio ?>" class="card-title btn botonescita mt-3" onclick="deseleccionarRadio()">Seleccionar</label>
+                                    <?php }else{?>
                                 <input type="checkbox" id="<?php echo $ts->id_tipo_servicio ?>" name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="d-none">
                                 <label for="<?php echo $ts->id_tipo_servicio ?>" class="card-title btn botonescita mt-3">Seleccionar</label>
+                                <?php }?>
                             </div>
                         </div>
                     </div>
@@ -74,9 +78,6 @@ if(isset($_SESSION["usuario"]))
         
         <!--Fin Pagina 1-->
         <!--Inicio Fecha y Hora-->
-        <?php
-        $pdo = new PDO('mysql:host=localhost:3309;dbname=sweet_beauty', 'admin', '1234');
-        ?>
         <div class="col-md-12" style="margin-top: 1rem;">
             <div class="card custom-card">
              <h2 class="fw-bold">Selecciona la fecha y la hora</h2>
