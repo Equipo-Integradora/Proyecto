@@ -19,15 +19,15 @@ session_start();
 ?>
 
 
-<div class="container mt-6" style="margin-top: 100px ; width: 100%;">
+<div class="container margindiv" style="margin-top: 7.5rem ; width: 100%;">
 <div class="row">
 
-<img class="col-xl-4 col-lg-4 col-md-4 col-sm-6  col-xs-1 " style="height: 700px;" src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
-<div class="col-8 .offset-sm-4 .offset-xs-11 "><h1><?php echo $pro->nombre_producto?></h1>
+<img class="col-xl-4 col-lg-4 col-md-4 col-sm-6  col-xs-1 verproductoimagen " src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
+<div class="col-12 col-lg-8 .offset-sm-4 .offset-xs-11 mt-4 "><h1 class="fw-bold"><?php echo $pro->nombre_producto?></h1>
 <?php 
-if(!empty($pro->nombre_color)){
+if(!empty($pro->nombre_color) && ($pro->nombre_color!='Sin color')){
 ?>
-<div class="col-12"><h2>Color: <?php echo $pro->nombre_color?></h2></div>
+<div class="col-12 mt-2"><h2>Color: <?php echo $pro->nombre_color?></h2></div>
 <?php
 }
 ?>
@@ -35,19 +35,18 @@ if(!empty($pro->nombre_color)){
 <h2><?php echo '$'.$pro->precio_producto?></h2>
 <br>
 <div class="row" >
-<div class="col-xl-4 col-xs-12"><h4>Existencias(<?php echo $pro->existencias_detalle_producto ?>)</h4></div>
+<div class="col-xl-4 col-xs-12"><h4>Existencias (<?php echo $pro->existencias_detalle_producto ?>)</h4></div>
 
 <div class="col-xl-3 col-xs-12">
     <form method="post" action="../views/carrito2.php">
-        <!-- Input oculto para almacenar la cantidad actual -->
+    <div class="botonescantidad">
         <input type="hidden" name="cantidad" id="cantidad" value="1">
-        <!--para que no pueda tomar mas de lo que hay-->
         <input type="hidden" name="maximo" id="maximo" value="<?php echo $pro->existencias_detalle_producto?>">   
-        <button type="button" class="btn btn-outline-danger" style="width: 30%;" onclick="decrementarCantidad()">-</button>
+        <button type="button" class="btn btncantidad"  onclick="decrementarCantidad()">–</button>
         <span id="cantidad_actual" style="width: 30%;" >1</span>
-        <button type="button" class="btn btn-outline-success"style="width: 30%;"  onclick="incrementarCantidad()">+</button>
+        <button type="button" class="btn btncantidad"   onclick="incrementarCantidad()">+</button>
         </div>
-        <br><br><br>
+        <br><br>
         <input type="hidden" name="si" value="<?php echo $pro->existencias_detalle_producto ?>">
         <input type="hidden" name="id" value="<?php echo $pro->id_detalle_producto ?>">
         <input type="hidden" name="nombre" value="<?php echo $pro->nombre_producto ?>">
@@ -65,16 +64,13 @@ if(!empty($pro->nombre_color)){
             $empty="Sin existencias";
         }
         ?>
-         <button type="submit" <?php echo $desactivar ?> class=" btn btn-outline-<?php echo $color ?>"><?php echo $empty ?></button>
+         <button type="submit" <?php echo $desactivar ?> class="boton1 btn m-auto <?php echo $color ?>"><?php echo $empty ?></button>
     </form>
 </div>
 <br>
 <p>
-    <?php echo $pro->descripcion_producto?>
+            <?php echo $pro->descripcion_producto?>
 </p>
-
-
-
 </div> 
 </div>
 
@@ -118,7 +114,7 @@ group by productos.nombre_producto;";
                 
                 alt="..."></a>
                 <div class="card-body text-center">
-                <div class="icons card-title"> </div>
+                <div class="icons card-title"></div>
                 <div class="card-text">
                 
                 <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title"><p><?php echo $am->nombre_producto;?></p></h4><p>Color <?php echo $am->colorn;?></p></a>
