@@ -6,16 +6,37 @@ if(isset($_SESSION["admin"]))
         
 include "../templates/sidebar.php";
 ?>
-    <form action="../scripts/editar_fechas.php" method="post">
-        <label for="dia">Seleccione el día que quiere bloquear</label><br>
-        <input type="date" name="dia" id="dia"><br>
-        <input type="submit" name="bloquear" class="submit" value="Bloquar día"> 
-    </form><br><br>
-    <form action="../scripts/editar_fechas.php" method="post">
-        <label for="dia">Seleccione el día que quiere desbloquear</label><br>
-        <input type="date" name="diant" id="diant"><br>
-        <input type="submit" name="desbloquear" class="submit" value="Desbloquar día"> 
+   <div class="container-fluid px-4 p-3">
+   <form action="../scripts/editar_fechas.php" method="post">
+   <div class="col-6 table-responsive">
+   <label  class="form-label"><h3 class="fw-bold">Seleccione el día que quiere bloquear</h3></label>
+   <table class="table">
+    <tr>
+        <th>
+        <input type="date" name="dia" id="dia" class="m-2">
+        <input type="submit" name="bloquear" class="submit btn btn-sm boton" value="Bloquar día"> 
+        </th>
+    </tr>
+   </table>
+   </div>
     </form>
+    </div>
+
+    <div class="container-fluid px-4 p-3">
+    <form action="../scripts/editar_fechas.php" method="post">
+   <div class="col-6 table-responsive">
+   <label  class="form-label"><h3 class="fw-bold">Seleccione el día que quiere desbloquear</h3></label>
+   <table class="table">
+    <tr>
+        <th>
+        <input type="date" name="diant" id="diant" class="m-2">
+        <input type="submit" name="desbloquear" class="submit btn btn-sm boton" value="Desbloquar día"> 
+        </th>
+    </tr>
+   </table>
+   </div>
+    </form>
+    </div>
     
 <!-- SCRIPTS -->
 <script src="../js/clock.js"></script>

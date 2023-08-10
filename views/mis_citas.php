@@ -92,10 +92,10 @@ if ($_POST) {
    
     $citas .= " AND id_usuario = '{$_SESSION["id"]}'";
     $citas .= " GROUP BY id_registro_cita";
-    $citas .= " ORDER BY fecha_cita_registro_cita DESC";
         $con = 1;
     }
 }
+    $citas .= " ORDER BY fecha_cita_registro_cita ASC";
     $tablac = $conexion->seleccionar($citas);
     if (empty($tablac) && $con == 1) 
     {
@@ -124,9 +124,9 @@ if ($_POST) {
             <div class="col-lg-3 col-sm-6 grande chico" style="margin-top: 5px; margin-top:2rem;">
                 <div class="card" style="height: 230px;">
                 
-                <div style="width: 100%;"" class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}?>">
+                <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; width: 100%;" class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}?>">
                 <div class="modal-header">
-                   <h1 class="modal-title fs-5" id="staticBackdropLabel">Cita: <?php echo $reg->fecha_cita_registro_cita?></h1>
+                   <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white;" class="modal-title fs-5" id="staticBackdropLabel">Cita: <?php echo $reg->fecha_cita_registro_cita?></h1>
                    <?php
                    if ($reg->estado_registro_cita == "Aceptada" OR $reg->estado_registro_cita == "Pendiente")
                     {?>
@@ -142,10 +142,9 @@ if ($_POST) {
                 
                 <div>
                 <!-- Button trigger modal -->
-                <button type="button" data-bs-toggle="modal" data-bs-target="#modal<?php echo $modal?>">
+                <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; background-color: transparent;" type="button" data-bs-toggle="modal" data-bs-target="#modal<?php echo $modal?>">
                 Ver mis servicios
                 </button>
-                
                 <!-- Modal -->
                 <div class="modal fade" id="modal<?php echo $modal?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -175,7 +174,7 @@ if ($_POST) {
                 </div>
                 <div>
                     
-                <button type="button" data-bs-toggle="modal" data-bs-target="#desc<?php echo $modal?>">
+                <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" type="button" data-bs-toggle="modal" data-bs-target="#desc<?php echo $modal?>">
                 Descripcion
                 </button>
                 <!-- Modal -->
@@ -188,10 +187,8 @@ if ($_POST) {
                       </div>
                       <div class="modal-body">
                         
-
-
-                    <?php echo $reg->Descripcion;
-                    ?>
+                        <textarea class="text-left" style="width: 100%;" name="" id="" cols="0" rows="10" disabled><?php echo $reg->Descripcion;?></textarea>
+                    
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -200,14 +197,19 @@ if ($_POST) {
                   </div>
                 </div>
                 </div>
-                <div>
-                Total a Pagar: $<?php echo $reg->precio_total_cita?>
+                <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                Total a Pagar: $<div style="display: inline; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-decoration: underline;"><?php echo $reg->precio_total_cita?></div>
                 </div>
-                <div>
+                <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
                     Hora: <?php echo $reg->hora_registro_cita?>
                 </div>
-                <div>
-                    Estado: <?php echo $reg->estado_registro_cita?>
+                <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                    Estado: <span class="
+                    <?php if ($reg->estado_registro_cita == "Aceptada") { echo ' text-success';}else 
+                    if ($reg->estado_registro_cita == "Cancelada"){ echo ' text-danger';}else 
+                    if ($reg->estado_registro_cita == "Pendiente"){echo ' text-secondary';}?>">
+                        <?php echo $reg->estado_registro_cita?>
+                    </span>
                 </div>                
                 </div>
                 </div>

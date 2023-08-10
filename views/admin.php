@@ -12,7 +12,7 @@ if (isset($_SESSION["admin"])) {
     <div class="container-fluid px-4">
         <div class="row g-3 my-2">
 
-            <div class="col-md-12">
+            <div class="col-md-12 justify-content-center">
                 <div class="container-clock">
                     <h1 id="time">00:00:00</h1>
                     <p id="date">fecha</p>
@@ -29,7 +29,17 @@ if (isset($_SESSION["admin"])) {
 
                     $tablacitas = $conexion->seleccionar($consulta);
 
+                    $itemsPerPage = 5;
+
                     if (!empty($tablacitas)) {
+
+                        $totalItems = count($tablacitas);
+                        $totalPages = ceil($totalItems / $itemsPerPage);
+
+                        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                        $startIndex = ($currentPage - 1) * $itemsPerPage;
+
                         echo "<table class='table shadow-sm table-hover'>
                         <thead>
                             <tr>
@@ -43,9 +53,16 @@ if (isset($_SESSION["admin"])) {
                         </thead>
                         <tbody class='table-border-bottom-0'>";
 
-                        foreach ($tablacitas as $reg) {
+                        for ($i = $startIndex; $i < min($startIndex + $itemsPerPage, $totalItems); $i++) {
+                            $reg = $tablacitas[$i];
                             echo "<tr>";
-                            echo "<td> $reg->nombre_usuario</td>";
+                            echo "<td>  <button type='button' class='btn btn-sm btn-cliente' 
+                                data-nombre='$reg->nombre_usuario>'
+                                data-telefono='$reg->telefono'
+                                data-correo='$reg->email'
+                                data-bs-toggle='modal' data-bs-target='#clienteModal'>
+                                $reg->nombre_usuario
+                                </button></td>";
                             echo '<td>';
                             echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
                             echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
@@ -57,7 +74,7 @@ if (isset($_SESSION["admin"])) {
                             echo '</ul>';
                             echo '</div>';
                             echo '</td>';
-                            echo "<td></td>";
+                            echo "<td><button type='button' class='btn btn-secondary btn-sm btn-desc' data-bs-toggle='modal' data-bs-target='#exampleModal' data-descripcion='$reg->Descripcion'>Ver descripción</button></td>";
                             echo "<td> $reg->fecha_cita_registro_cita</td>";
                             echo "<td> $reg->hora_registro_cita</td>";
                             if ($reg->estado_registro_cita == "Aceptada") {
@@ -70,6 +87,17 @@ if (isset($_SESSION["admin"])) {
                         }
                         echo "</tbody>
                     </table>";
+
+                    echo "<nav aria-label='Page navigation'>";
+                    echo "<ul class='pagination justify-content-center'>";
+
+                    for ($page = 1; $page <= $totalPages; $page++) {
+                        echo "<li class='page-item" . ($currentPage == $page ? ' active' : '') . "'>";
+                        echo "<a class='page-link pagina-link' href='?page=$page'>$page</a>";
+                        echo "</li>";
+                    }
+
+                    echo "</ul></nav>";
                     } else {
                         echo "<p class='fw-bold text-center'>No se encontraron citas recientes.</p>";
                     }
@@ -79,8 +107,53 @@ if (isset($_SESSION["admin"])) {
             </div>
         </div>
     </div>
+
+    <!-- MODAL DE LOS DATOS -->
+<div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clienteModalLabel">Datos de contacto del cliente</h5>
+            </div>
+            <div class="modal-body">
+            <div class="mb-3">
+                    <label for="modalTelefono" class="form-label"><strong>Teléfono:</strong></label>
+                    <span id="modalTelefono">
+                </div>
+                <div class="mb-3">
+                    <label for="modalCorreo" class="form-label"><strong>Correo:</strong></label>
+                    <span id="modalCorreo"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE LA DESCRIPCION -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripción</h1>
+      </div>
+      <div class="modal-body">
+        <textarea id="descripcionModalBody" style="width: 100%;" class="text-left" cols="0" rows="10" readonly></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
               
     <!-- SCRIPTS -->
+    <script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
     <script src="../js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -91,6 +164,29 @@ if (isset($_SESSION["admin"])) {
             el.classList.toggle("toggled");
         };
     </script>
+    <script>
+    $(document).ready(function () {
+        $('.btn-cliente').on('click', function () {
+            var nombre = $(this).data('nombre');
+            var telefono = $(this).data('telefono');
+            var correo = $(this).data('correo');
+            
+            $('#modalNombre').text(nombre);
+            $('#modalTelefono').text(telefono);
+            $('#modalCorreo').text(correo);
+        });
+
+        $('.btn-desc').on('click', function () {
+        var descripcion = $(this).data('descripcion');
+      if (descripcion && descripcion.trim().length > 0) 
+      {
+        $('#descripcionModalBody').text(descripcion);
+      } else {
+        $('#descripcionModalBody').text('No hay descripción de la cita');
+      }
+    });
+    });
+</script>
     </body>
 
     </html>

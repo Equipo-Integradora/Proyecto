@@ -115,7 +115,8 @@ if ($_POST) {
                                 } else {
                                     echo '<li>' . $productos[$i];
                             
-                                    if (isset($colorr[$i]) && !empty($colorr[$i])) {
+                                    if (isset($colorr[$i]) && !empty($colorr[$i]) && ($colorr[$i]!='Sin color')) 
+                                    {
                                         echo ' <br> Color: <strong>' . $colorr[$i] . '</strong>';
                                     }
                             
