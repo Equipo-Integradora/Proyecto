@@ -71,8 +71,10 @@ if(!isset($totalcantidad)){
         <div class="container">
         <!-- LOGO -->
         <!-- DURAAAANNNNNNNNNNNNNn -->
+        <a class="navbar-brand logo fs-2 " href="../views/home.php">
           <img src="../img/home/logo.png" class="logooo">
-          <a class="navbar-brand logo fs-2 " href="../views/home.php"><span>Sweet </span>Beauty</a>
+          <span>Sweet </span>Beauty
+        </a>
         <!-- Toggle btn-->
           <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

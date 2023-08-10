@@ -44,7 +44,7 @@ if(isset($_SESSION['carrito'])){
                 'Precio'=>$precio,
                 'Color'=>$color,
                 'Imagen'=>$imagen,
-                'Cantidad'=>1,
+                'Cantidad'=>$cantidad,
                 'Maximo'=>$maximo,
                 'Si'=>$si
             );
@@ -127,7 +127,7 @@ include "../templates/header.php";
         <?php
                     $total = 0;
                     
-
+                    $cancela="";
 $boton="";
 
 if(empty($_SESSION['carrito']))
@@ -138,11 +138,25 @@ if(empty($_SESSION['carrito']))
 
         if(isset($_SESSION['carrito'])) {
                 $arregloCarrito=$_SESSION['carrito'];
+                
+
+                   
+                
                 for($i=0;$i<count($arregloCarrito);$i++){
                     $total= $total+($arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad']);
+                    $hidden="number";
+
+                    $consulta = "SELECT * FROM detalle_productos WHERE id_detalle_producto = '" . $arregloCarrito[$i]['Id'] . "';";
+                    $no=$db->ejecuta($consulta);
+                $arregloCarrito[$i]['Maximo']=$no->existencias_detalle_producto; 
+
                     if($arregloCarrito[$i]['Cantidad']>$arregloCarrito[$i]['Maximo']){
                         $arregloCarrito[$i]['Cantidad']=$arregloCarrito[$i]['Maximo'];
-                    }
+                    }   
+                    if($arregloCarrito[$i]['Maximo']<=0){
+                        $cancela="disabled";
+                        $hidden="hidden";
+                    }                 
              ?>
 
         <div class="row" style="background-color: white; padding: 10px;">
@@ -162,7 +176,7 @@ if(empty($_SESSION['carrito']))
                         <div class="input-group mb-3" style="max-width: 120px;">
                             <input style="width: 50px;"
                             
-                            type="number" 
+                            type=<?php echo $hidden ?> 
                             min="1" 
                             max="<?php echo $arregloCarrito[$i]['Maximo']?>"
                             class="form-control text-center txtCantidad"
@@ -232,7 +246,7 @@ if(empty($_SESSION['carrito']))
                 
                 <form id="aaaa" action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
-    <button id="si" <?php echo $boton ?> class="btn boton">Proceder compra</button>
+    <button id="si" <?php echo $boton ?> <?php echo $cancela ?> class="btn boton">Proceder compra</button>
 </form>
                 </div>
             </div>
@@ -324,7 +338,7 @@ if(empty($_SESSION['carrito']))
 
 
 <script>
-        
+
     //BORRAR EL CARRITO EN CUANTOSE HACE UNA COMPRA
     document.getElementById("si").addEventListener("click", function() {
 
@@ -333,7 +347,7 @@ if(empty($_SESSION['carrito']))
     for (var i = 0; i < arreglo.length; i++) {
         var id = arreglo[i]['Id'];
             var boton= $(this);
-            $.ajax({
+        $.ajax({
                 method:'POST',
                 url:'../scripts/eliminarCarrito.php',
                 data:{
@@ -342,13 +356,17 @@ if(empty($_SESSION['carrito']))
             }
             ).done(function(respuesta){
                 boton.parent('a').parent('div').parent('div').remove();
-                
+
                 //window.location.href = '../views/carrito2.php';
 
-            });
+    });
         }
         document.getElementById('si').submit();
 });
+
+
+
+            
 
    $(document).ready(function(){
     
