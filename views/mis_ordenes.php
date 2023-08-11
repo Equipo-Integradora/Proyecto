@@ -43,19 +43,22 @@
                     }else{
                      
                     ?>
-                    <div class="col-12" style="background-color: white; width:800px; height:60px">
+                    <div class="col-12" style="margin-left:10px; background-color: white; width:800px; height:60px">
                     <div class="col-5 " style="margin-top: 9px; ">
                 <form action="../scripts/buscar_orge.php" method="post">
-                  <input style="width: 290px;" placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
+                  <input style="width: 290px; " placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
                 </form>
                 
               </div>
                     </div>
+                    <div style="overflow-y:auto; max-width:850px; width:800px; max-height: 500px;">
+
+                    
                     <?php
                     foreach($tablac as $reg) {
                         $imagenes = explode('| ', $reg->imagen_detalle_producto);
                     ?>
-                    <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:200px">
+                    <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:200px; padding:8px">
                         <div class="row">
                             <!-- Order Details -->
                             <div class="col-3" style="margin-top: 15px;">
@@ -98,6 +101,7 @@
                     }
                     }
                     ?>
+                    </div>
                 </div>
             </div>
         </div>
