@@ -1,48 +1,40 @@
-
 <?php
 session_start();
+include "../class/diasbloc.php";
+$conexion = new Admin();
 
-if (!isset($_SESSION['dias'])) {
-    $_SESSION['dias'] = array(); 
-}
+$dias = array();
+$dias = $conexion->obtenerFechas();
 
-$dias = $_SESSION['dias'];
-
-$longitud = count($dias);
 
 if (isset($_POST['bloquear'])) {
-    extract($_POST);
+    $dia1 = $_POST['dia'];  
 
-    if (!in_array($dia, $dias)) {
-        $dias[] = $dia;
+    if (!in_array($dia1, $dias)) {
+        $conexion->agregarFecha($dia1);
         echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
         echo "<div class='alert alert-success'>Fecha bloqueada</div>";
+    } else {
+        echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
+        echo "<div class='alert alert-danger'>La fecha ya está bloqueada</div>";
     }
-    else
-    {   
-    echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
-    echo "<div class='alert alert-danger'>La fecha ya está bloqueada</div>";
-    }
-
-    $_SESSION['dias'] = $dias; 
-
-    header("refresh:2; ../views/calendario.php");
 }
+
 
 if (isset($_POST['desbloquear'])) {
 
-    $fechaDesbloquear = $_POST['diant'];
+    $dia2 = $_POST['diant'];
+    if (($key = array_search($dia2, $dias)) !== false) {
 
-    if (($key = array_search($fechaDesbloquear, $dias)) !== false) {
-
-        unset($dias[$key]);
-        $_SESSION['dias'] = $dias; 
+        $conexion->borrarFecha($dia2);
         echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
         echo "<div class='alert alert-success'>Fecha desbloqueada</div>";
     } else {
         echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>"; 
         echo "<div class='alert alert-danger'>La fecha seleccionada no está bloqueada</div>";
     }
-    header("refresh:2; ../views/calendario.php");
 }
+
+
+header("refresh:2; ../views/calendario.php");
 ?>

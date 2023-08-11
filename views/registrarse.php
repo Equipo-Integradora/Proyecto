@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION["usuario"]))
+{
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,7 +49,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-12 right">
-            <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarCamposLlenos(); cambiarTextoBoton();">
+            <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarFormulario(); cambiarTextoBoton(); verificarValor();">
                     <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
                     <div class="input-box">
                         <div class="form-group input-field mt-5">
@@ -102,7 +107,16 @@
     </div>
 </div>
 
+<?php
+    include "../class/database.php";
+    $conexion = new database();
+    $conexion->conectarDB();
+    $ver = "SELECT usuarios.email_usuario
+    FROM usuarios;";
+    $chi = $conexion->correos($ver);
 
+$blockedDatesJSONE = json_encode($chi);
+?>
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
@@ -163,12 +177,12 @@
             return false;
         }
 
-        const expresionTelefono = /^[0-9]{10}$/;
+        const expresionTelefono = /^871(?!(\d)\1{6})\d{7}$/;
         const isValidTelefono = expresionTelefono.test(telefono);
         if (!isValidTelefono) {
             Swal.fire({
                 icon: 'error',
-                title: 'Ingrese un número de teléfono de 10 dígitos.',
+                title: 'Ingrese un número de teléfono valido.',
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -283,6 +297,19 @@
     function cambiarTextoBoton() {
         document.getElementById('submitButton').value = 'Registrarse';
     }
+
+    var valoresPermitidos = <?php echo $blockedDatesJSONE; ?>;
+
+    
+    function verificarValor() {
+        var inputValor = document.getElementById("correo").value;
+        if (valoresPermitidos.includes(inputValor)) {
+            
+            alert("Este correo ya está en la lista.");
+            return false; 
+        }
+        return true; 
+    }
 </script>
 <script>
         function redirectToHome() 
@@ -290,5 +317,16 @@
         window.location.href = "../views/home.php";
         }
     </script>
+    
+       
+       
 </body>
 </html>
+<?php
+}
+else
+{
+    echo "Apoco shi tilin";
+    header("refresh:1 ; ../views/home.php");
+}
+?>

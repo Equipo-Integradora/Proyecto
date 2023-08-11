@@ -190,13 +190,13 @@ if(isset($_SESSION["usuario"]))
       <div class="modal-body">
 
       <label for="email">Correo</label>
-      <input type="email" class="input" name="email" required>
+      <input type="email" class="input" name="email" id="correo" required>
 
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="sumbit" class="btn btn-primary">Guardar cambios</button>
+        <input type="submit" class="submit m-auto" id="submitButton" value="Guardar cambios" onclick="return validarCorreo();">
       </div>
       
       </form>
@@ -248,13 +248,13 @@ if(isset($_SESSION["usuario"]))
       <div class="modal-body">
 
       <label for="usuario">Telefono</label>
-      <input type="tel" class="input" name="tel" required>
+      <input type="tel" class="input" name="tel" id="telefono" required>
 
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" >Guardar cambios</button>
+        <input type="submit" class="submit m-auto" id="submitButton" value="Guardar cambios" onclick="return validarTelefono();">
         </form>
       </div>
       
@@ -336,6 +336,57 @@ if(isset($_SESSION["usuario"]))
 
     return true;
   }
+</script>
+<script>
+function validarTelefono() {
+    var telefono = document.getElementById('telefono').value;
+    if (telefono === '') {
+        Swal.fire({
+            icon: 'info',
+            title: 'Ingrese su teléfono.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
+    const expresionTelefono = /^871(?!(\d)\1{6})\d{7}$/;
+    const isValidTelefono = expresionTelefono.test(telefono);
+    if (!isValidTelefono) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ingrese un número de teléfono válido.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
+    return true; // Devolver true si la validación es exitosa
+}
+</script>
+<script>
+  function validarCorreo(){
+  var correo = document.getElementById('correo').value;
+  if (correo === '') {
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese un correo.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+        const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
+        const isValid = expresion.test(correo);
+        if (!isValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ingrese un correo válido.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+      }
 </script>
 
 

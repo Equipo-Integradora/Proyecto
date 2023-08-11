@@ -21,7 +21,7 @@ if (isset($_SESSION["admin"])) {
 
             <!-- CITAS RECIENTEMENTE AGENDADAS -->
             <div class="row my-5">
-                <h3 class="fs-4 mb-3 fw-bold">Citas agendadas recientemente</h3>
+                <h3 class="fs-4 mb-3 fw-bold">Proximas citas</h3>
                 <div class="table-responsive">
                     <!-- TABLA -->
                     <?php

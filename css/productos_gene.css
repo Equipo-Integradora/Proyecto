@@ -18,6 +18,14 @@ img.pro
     max-height: 250px;
 }
 
+img.verproductoimagen
+{
+    width: auto;
+    height: auto;
+  max-width: 300px;
+  max-height: 500px;
+}
+
 img.pro:hover
 {
     transform: scale(1.1);
@@ -69,5 +77,38 @@ div.mar
     font-weight: bolder;
 }
 
+.margindiv
+{
+    margin-top: 5rem;
+}
 
+.boton1
+{
+  display: inline-block;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 18rem;
+  height: 3rem;
+}
+
+.boton1:hover 
+{
+  background: #e84393;
+  color: #fff;
+}
+
+.botonescantidad
+{
+    width: fit-content;
+    border: 0.8px solid #333;
+}
+
+.btncantidad
+{
+    font-weight: bold;
+}
   

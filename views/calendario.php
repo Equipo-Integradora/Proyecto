@@ -3,17 +3,20 @@ session_start();
 if(isset($_SESSION["admin"]))
     {
 
-        
-include "../templates/sidebar.php";
+        include "../class/diasbloc.php";
+        include "../templates/sidebar.php";
 ?>
+<div class="row">
+    
+   <div class="col-8">
    <div class="container-fluid px-4 p-3">
    <form action="../scripts/editar_fechas.php" method="post">
-   <div class="col-6 table-responsive">
+   <div style="width: 100%;" class="col-6 table-responsive">
    <label  class="form-label"><h3 class="fw-bold">Seleccione el día que quiere bloquear</h3></label>
    <table class="table">
     <tr>
         <th>
-        <input type="date" name="dia" id="dia" class="m-2">
+        <input id="selectedDate" type="date" name="dia" id="dia" class="m-2">
         <input type="submit" name="bloquear" class="submit btn btn-sm boton" value="Bloquar día"> 
         </th>
     </tr>
@@ -24,12 +27,12 @@ include "../templates/sidebar.php";
 
     <div class="container-fluid px-4 p-3">
     <form action="../scripts/editar_fechas.php" method="post">
-   <div class="col-6 table-responsive">
+   <div style="width: 100%;" class="col-6 table-responsive">
    <label  class="form-label"><h3 class="fw-bold">Seleccione el día que quiere desbloquear</h3></label>
    <table class="table">
     <tr>
         <th>
-        <input type="date" name="diant" id="diant" class="m-2">
+        <input id="selectedDate" type="date" name="diant" id="dia" class="m-2">
         <input type="submit" name="desbloquear" class="submit btn btn-sm boton" value="Desbloquar día"> 
         </th>
     </tr>
@@ -37,6 +40,41 @@ include "../templates/sidebar.php";
    </div>
     </form>
     </div>
+   </div>
+
+    <div class="col-4">
+        <?php
+        if(!empty($_SESSION["dias"]))
+        {?>
+          
+        <table>
+            <thead>
+                <tr>
+                <th>Días Bloqueados</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            
+        <?php
+        $dias = new Admin();
+        $dia = $dias->obtenerFechas();
+        
+
+            foreach($dia as $d)
+            {   echo "<tr>";
+                echo "<td> $d </td>";
+                echo "</td>";
+            }
+        ?>
+        </tbody>
+        </table>  
+        <?php
+        }
+        ?>
+    </div>
+</div>
+    
     
 <!-- SCRIPTS -->
 <script src="../js/clock.js"></script>
@@ -48,6 +86,22 @@ include "../templates/sidebar.php";
     toggleButton.onclick = function () {
         el.classList.toggle("toggled");
     };
+</script>
+<script>
+window.onload = function() {
+    var inputDate = document.getElementById("selectedDate"); 
+
+    var today = new Date();
+
+    inputDate.setAttribute("min", today.toISOString().split('T')[0]);
+
+    function isDateBlocked(date) {
+        return blockedDates.includes(date);
+    }
+
+    
+    
+};
 </script>
 </body>
 

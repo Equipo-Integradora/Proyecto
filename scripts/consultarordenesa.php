@@ -68,7 +68,7 @@ if ($_POST && !empty($id_venta))
                         echo '<td>' . $productos[$i] . ' <br> ';
                         foreach ($colores as $color) 
                         {
-                            if (isset($color[$i])) {
+                            if (isset($color[$i]) && ($colores[$i]!='Sin color')) {
                                 echo '<strong>Color: ' . $color . '</strong> ';
                             }
                         }

@@ -7,7 +7,7 @@ if(isset($_SESSION["usuario"]))
     include "../class/database.php";
     $conexion = new database();
     $conexion->conectarDB();
-?>
+    ?>
 <!--Contenido-->
 
         <!--Inicio Pagina 1-->
@@ -48,11 +48,20 @@ if(isset($_SESSION["usuario"]))
                             <div class="card custom-card-style h-100">
                                 <div class="servicio"><?php echo $ts->nombre_tipo_servicio?></div>
                                 <div class="descripcion"><?php echo $ts->descripcion_tipo_servicio?></div>
-                                <div class="price"><?php echo $ts->precio_tipo_servicio?> <span style="font-size: 10px; color:black; text-decoration:none; margin-left:2rem">Time aprox:<?php echo $ts->tiempo_aproximado_servicio?></span></div>
+                                <div class="price">$<?php echo $ts->precio_tipo_servicio?> <span style="font-size: 10px; color:black; text-decoration:none; margin-left:2rem">Time aprox:<?php echo $ts->tiempo_aproximado_servicio?></span></div>
                                 <input type="hidden" name="precio" value="<?php echo $ts->precio_tipo_servicio?>">
                                 <input type="hidden" name="precio" value="<?php echo "$ts->precio_tipo_servicio"?>">
-                                <input type="checkbox" id="<?php echo $ts->id_tipo_servicio ?>" name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="d-none">
+                                <input type="hidden" name="precio" value="<?php echo $ts->precio_tipo_servicio?>">
+                                <?php if (strstr($ts->nombre_tipo_servicio, "Uñas")) 
+                                { ?>
+                                    <input type="checkbox" id="<?php echo $ts->id_tipo_servicio ?>" name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="option-checkbox d-none option-checkboxx">
+                                    <label for="<?php echo $ts->id_tipo_servicio ?>" class="option-checkbox card-title btn botonescita mt-3">Seleccionar</label><?php 
+                                }else
+                                {?>
+                                <input type="checkbox" id="<?php echo $ts->id_tipo_servicio ?>" name="servicio[]" value="<?php echo $ts->id_tipo_servicio ?>" class="d-none option-checkboxx">
                                 <label for="<?php echo $ts->id_tipo_servicio ?>" class="card-title btn botonescita mt-3">Seleccionar</label>
+                                <?php 
+                                }?>
                             </div>
                         </div>
                     </div>
@@ -102,7 +111,7 @@ if(isset($_SESSION["usuario"]))
                 <textarea class="date-input" name="descripcion" id="descripcion" cols="" rows="" style="max-height: 9rem; width: 100%;"></textarea>
             </div>
             <input class="submit-button botonescita2" type="submit" value="Agendar Cita" <?php
-            if (isset($_SESSION["admin"])) { echo ' disabled';}?> 
+            if (isset($_SESSION["admin"])) { echo ' ';}?> 
             >
             </div>
     </form>
@@ -122,10 +131,32 @@ if(isset($_SESSION["usuario"]))
 <?php
 include "../templates/footer.php";
 $blockedDates = $_SESSION['dias'];
+
+$ver = "SELECT registros_cita.fecha_cita_registro_cita 
+    FROM registros_cita
+    WHERE registros_cita.cliente_registro_cita_FK = '{$_SESSION["id"]}'";
+$chi = $conexion->dias($ver);
+
+$blockedDatesJSONE = json_encode($chi);
+
 $blockedDatesJSON = json_encode($blockedDates);
 ?>
    
 <!--Scripts-->
+<script>
+  const checkboxes = document.querySelectorAll('.option-checkbox');
+
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      checkboxes.forEach(function(otherCheckbox) {
+        if (otherCheckbox !== checkbox) {
+          otherCheckbox.checked = false;
+        }
+      });
+    });
+  });
+</script>
+
 <script>
   document.getElementById('myForm').addEventListener('submit', function(event) {
     
@@ -151,11 +182,16 @@ $blockedDatesJSON = json_encode($blockedDates);
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 window.onload = function() {
-    var inputDate = document.getElementById("selectedDate"); // Cambiado a "selectedDate"
+    var inputDate = document.getElementById("selectedDate");
     var blockedDates = <?php echo $blockedDatesJSON; ?>;
+    var blockedDate = <?php echo $blockedDatesJSONE; ?>;
+
+
 
     var today = new Date();
     var maxDate = new Date();
+    
+    today.setDate(today.getDate() + 2);
     maxDate.setMonth(maxDate.getMonth() + 6);
 
     inputDate.setAttribute("min", today.toISOString().split('T')[0]);
@@ -172,7 +208,37 @@ window.onload = function() {
             inputDate.value = "";
         }
     });
+
+    function isnDateBlocked(date) {
+        return blockedDate.includes(date);
+    }
+
+    inputDate.addEventListener("input", function() {
+        var selectedDate = inputDate.value;
+        if (isnDateBlocked(selectedDate)) {
+        alert("Ya tienes una cita para este día.");
+        inputDate.value = "";
+        }
+    });
 };
+</script>
+<script src="checkbox_limit.js"></script>
+<script>
+function limitCheckboxes(maxChecked) {
+  const checkboxes = document.querySelectorAll('.option-checkboxx');
+  
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      const checkedCheckboxes = document.querySelectorAll('.option-checkboxx:checked').length;
+
+      if (checkedCheckboxes > maxChecked) {
+        checkbox.checked = false;  
+      }
+    });
+  });
+}
+
+limitCheckboxes(3);
 </script>
 
 
