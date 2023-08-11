@@ -18,7 +18,7 @@
                         <h2>Extra links</h2>
                     <ul>
                         <li><a href="../views/perfil.php">Mi cuenta</a></li>
-                        <li><a href="../views/carrito.php">Mis ordenes</a></li>
+                        <li><a href="../views/mis_ordenes.php">Mis ordenes</a></li>
                         <li><a href="../views/mis_citas.php">Mis citas</a></li>
                     </ul>
                     </div>                    

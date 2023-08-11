@@ -56,7 +56,7 @@ for($i=0;$i<count($arreglo);$i++){
     $no=$db->ejecuta($si);
     $produ=$no->detalle_producto_detalle_producto_FK;
 
-    $chi = "INSERT INTO detalle_orden_venta(orden_venta_detalle_orden_FK, producto_orden_venta_FK, cantidad_producto_orden_venta, precio_detalle_orden) VALUES ('$random', '$produ', {$arreglo[$i]->Cantidad}, {$arreglo[$i]->Precio})";
+    $chi = "INSERT INTO detalle_orden_venta(orden_venta_detalle_orden_FK, producto_orden_venta_FK, cantidad_producto_orden_venta) VALUES ('$random', '$produ', {$arreglo[$i]->Cantidad})";
     $chi=$db->ejecuta($chi);
 
 
