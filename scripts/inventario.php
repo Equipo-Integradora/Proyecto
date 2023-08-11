@@ -92,7 +92,7 @@ $conexion->conectarDB();
                     </div>
 
                     <div class="input-field" style="margin-top: 1rem;">
-                        <input type="submit" class="submit" value="Ingresar Producto">
+                        <input style="margin-bottom: .5rem;" type="submit" class="submit" value="Ingresar Producto">
                     </div>
                 </form>
             </div>
@@ -116,7 +116,7 @@ $conexion->conectarDB();
                                 <option value="exitencias">Con existencias </option>
                                 <option value="notexistencias">Sin existencias </option>
                                 <option value="sindetalle">Sin detalle </option>
-                                <option value="Masdetalle">Mas detalles </option>
+                                <option value="MasDetalles">Mas detalles </option>
                             </select>
                         </th>
                         <th>
@@ -145,7 +145,7 @@ if ($_POST) {
     }else if($produc== "sindetalle"){
         $productos = "SELECT * FROM `sweet_beauty`.`productos sin detalle`;";
     }else if($produc=="MasDetalles"){
-        $productos="SELECT * FROM ";
+        $productos="SELECT * FROM sweet_beauty.`productos para seguir detallando`; ";
     }
         $tablap = $conexion->seleccionar($productos);  
         if(empty($tablap))
@@ -158,12 +158,17 @@ if ($_POST) {
                 <table class="table shadow-sm table-hover">
                     <thead>
                         <tr>
-                       <?php if($produc== "sindetalle"){  ?>
+                       <?php if($produc== "sindetalle" || $produc== "MasDetalles"){  ?>
                             <th>Producto</th>
                             <th>Decripción</th>
                             <th>Precio</th>
                             <th>Categoria</th>
+                            <?php 
+                            if( $produc != "MasDetalles")
+                            {?>
                             <th>Detallar Producto</th>
+                            <?php
+                            }?>
                            <?php }else{?>
                             <th>Producto</th>
                             <th>Color</th>
@@ -180,11 +185,14 @@ if ($_POST) {
                     </thead>
                     <tbody class="table-border-bottom-0">
                    <?php foreach ($tablap as $reg) { ?>
-                    <?php if($produc== "sindetalle"){  
+                    <?php if($produc== "sindetalle" || $produc== "MasDetalles"){  
 
                     echo "<tr>";
                     echo "<td> $reg->nombre_producto</td>";
+                    if( $produc != "MasDetalles")
+                    {
                     echo "<td> $reg->descripcion_producto</td>";
+                    }
                     echo "<td> $reg->precio_producto</td>";
                     echo "<td> $reg->nombre_tipo_categoria</td>";
                     echo "<td>"; ?>
@@ -205,7 +213,7 @@ if ($_POST) {
 
                             <!-- Button trigger modal -->
                             <?php
-                            if($produc == "sindetalle"){
+                            if($produc == "sindetalle"  || $produc== "MasDetalles"){
                             ?>
              <button type="button" class="bot btn-detallar" 
              data-bs-toggle="modal" data-bs-target="#detalleModal"
@@ -302,7 +310,7 @@ if ($_POST) {
                         <input type="file" name="ima" id="ima">
                     </div>
                     <div class="input-field" style="margin-top: 1rem;">
-                        <input type="submit" class="submit" value="Ingresar Producto">
+                        <input style="margin-bottom: .5rem;" type="submit" class="submit" value="Ingresar Producto">
                     </div>
                 </form>
           
@@ -347,7 +355,7 @@ if ($_POST) {
                         </div>
                 </div>
                 <div class="input-field" style="margin-top: 1rem;">
-                    <input type="submit" class="submit" value="Ingresar Producto">
+                    <input style="margin-bottom: .5rem;" type="submit" class="submit" value="Ingresar Producto">
                 </div>
                 </form>
             </div>
@@ -432,7 +440,7 @@ $('#detalleModal').modal('show');
     function actualizarsub(categoria){
         $.ajax({
       type: 'POST',
-      url: '../class/tipocats.php', // Archivo PHP que procesará la solicitud
+      url: '../class/tipocats.php',
       data: { categoria: categoria }, // Enviar el valor de la categoría seleccionada
       dataType: 'json',
       success: function(data) {

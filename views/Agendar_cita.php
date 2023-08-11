@@ -83,9 +83,6 @@ if(isset($_SESSION["usuario"]))
         
         <!--Fin Pagina 1-->
         <!--Inicio Fecha y Hora-->
-        <?php
-        $pdo = new PDO('mysql:host=localhost:3309;dbname=sweet_beauty', 'admin', '1234');
-        ?>
         <div class="col-md-12" style="margin-top: 1rem;">
             <div class="card custom-card">
              <h2 class="fw-bold">Selecciona la fecha y la hora</h2>
@@ -111,7 +108,7 @@ if(isset($_SESSION["usuario"]))
                 <textarea class="date-input" name="descripcion" id="descripcion" cols="" rows="" style="max-height: 9rem; width: 100%;"></textarea>
             </div>
             <input class="submit-button botonescita2" type="submit" value="Agendar Cita" <?php
-            if (isset($_SESSION["admin"])) { echo ' ';}?> 
+            if (isset($_SESSION["admin"])) { echo ' disabled ';}?> 
             >
             </div>
     </form>
