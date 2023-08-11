@@ -3,8 +3,8 @@ session_start();
 if(isset($_SESSION["admin"]))
     {
 
-        
-include "../templates/sidebar.php";
+        include "../class/diasbloc.php";
+        include "../templates/sidebar.php";
 ?>
 <div class="row">
     
@@ -32,7 +32,7 @@ include "../templates/sidebar.php";
    <table class="table">
     <tr>
         <th>
-        <input id="selectedDate" type="date" name="dia" id="dia" class="m-2">
+        <input id="selectedDate" type="date" name="diant" id="dia" class="m-2">
         <input type="submit" name="desbloquear" class="submit btn btn-sm boton" value="Desbloquar día"> 
         </th>
     </tr>
@@ -57,11 +57,13 @@ include "../templates/sidebar.php";
 
             
         <?php
-        $dias = $_SESSION["dias"];
+        $dias = new Admin();
+        $dia = $dias->obtenerFechas();
+        
 
-            foreach($dias as $dias)
+            foreach($dia as $d)
             {   echo "<tr>";
-                echo "<td> $dias </td>";
+                echo "<td> $d </td>";
                 echo "</td>";
             }
         ?>
