@@ -330,6 +330,23 @@
 
     }
 
+    function correos($query)
+    {
+            try {
+                $stmt = $this->PDOLocal->query($query);
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $shi = array();
+        foreach ($resultados as $fila) {
+            $shi[] = $fila['email_usuario'];
+        }
+        return $shi;
+            } catch (PDOException $e) {
+
+                echo $e->getMessage();
+            }   
+
+    }
+
 
 }
 
