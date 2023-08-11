@@ -29,15 +29,15 @@
 
                 <a href="../views/home.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>Inicio</a>            
 
-                <a href="../views/mis_ordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>Todas las ordenes</a>
+                <a href="../views/mis_ordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box-seam-fill"></i> Todas las ordenes</a>
 
-                <a href="../views/admin.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-house-heart-fill me-2"></i>Pendiente</a>
+                <a href="../views/mis_ordenes_pe.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-hourglass-split"></i> Pendiente</a>
                 
-                <a href="../scripts/admincita.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Pagado</span></a>
+                <a href="../views/mis_ordenes_pa.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard2-check-fill"></i><span> Pagado</span></a>
                 
-                <a href="../views/calendario.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-week me-2"></i><span>Cancelado</span></a>
+                <a href="../views/mis_ordenes_can.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-xbox"></i><span> Cancelado</span></a>
 
-                <a href="../scripts/adminordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-tags-fill me-2"></i><span>Caducado</span></a>
+                <a href="../views/mis_ordenes_cad.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-hourglass-bottom"></i><span> Caducado</span></a>
 
             </div>
         </div>

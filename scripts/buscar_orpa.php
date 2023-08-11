@@ -18,35 +18,20 @@
         ?>
         <div class="container" style=" width: 100%;">
             <?php 
+                extract($_POST);
+                $busca=  $_POST['buscar'];
+                
             $citas = "SELECT *
                       FROM mis_ordenes
-                      WHERE id_usuario= '{$_SESSION["id"]}'";
+                      WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Pagado'  AND (productos  like '%$busca%' or id_venta like '%$busca%') ";
             $tablac = $conexion->seleccionar($citas);
             ?>
             <div class="container" style="margin-top: 20px;">
                 <div class="row">
-                <?php	
-                    if(count($tablac)===0){
-                        ?>
-                        <div class="container text-center">
-                        <div class="row">
-                        <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:400px">
-                        <div class="col-12 align-self-center" style="margin-top: 50px;">
-                            <img style="width: 250px; height:250px" src="../img/carrito/orden.png" alt="">
-                        </div>
-                        <div class="col-12">
-                            <p>Se encuentra vacío :c </p>
-                        </div>
-                        </div>
-                        </div>
-                        <?php
-                    }else{
-                     
-                    ?>
                     <div class="col-12" style="background-color: white; width:800px; height:60px">
-                    <div class="col-5 " style="margin-top: 9px; ">
+                    <div class="col-5 group d-flex justify-content-center align-items-center mx-auto" style="margin-top: 9px; ">
                 <form action="../scripts/buscar_orge.php" method="post">
-                  <input style="width: 290px;" placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
+                  <input style="width: 280px;" placeholder="No. de orden o  Artículo" type="search" class="input" name="buscar">
                 </form>
                 
               </div>
@@ -95,7 +80,6 @@
                         </div>
                     </div>
                     <?php
-                    }
                     }
                     ?>
                 </div>

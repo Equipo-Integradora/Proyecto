@@ -18,14 +18,16 @@
         ?>
         <div class="container" style=" width: 100%;">
             <?php 
+                extract($_POST);
+                
             $citas = "SELECT *
                       FROM mis_ordenes
-                      WHERE id_usuario= '{$_SESSION["id"]}'";
+                      WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Cancelado'";
             $tablac = $conexion->seleccionar($citas);
             ?>
             <div class="container" style="margin-top: 20px;">
                 <div class="row">
-                <?php	
+                    <?php	
                     if(count($tablac)===0){
                         ?>
                         <div class="container text-center">
@@ -96,7 +98,7 @@
                     </div>
                     <?php
                     }
-                    }
+                }
                     ?>
                 </div>
             </div>
