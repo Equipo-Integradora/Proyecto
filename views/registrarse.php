@@ -300,16 +300,6 @@ $blockedDatesJSONE = json_encode($chi);
 
     var valoresPermitidos = <?php echo $blockedDatesJSONE; ?>;
 
-    
-    function verificarValor() {
-        var inputValor = document.getElementById("correo").value;
-        if (valoresPermitidos.includes(inputValor)) {
-            
-            alert("Este correo ya está en la lista.");
-            return false; 
-        }
-        return true; 
-    }
 </script>
 <script>
         function redirectToHome() 
@@ -317,16 +307,12 @@ $blockedDatesJSONE = json_encode($chi);
         window.location.href = "../views/home.php";
         }
     </script>
-    
-       
-       
 </body>
 </html>
 <?php
 }
 else
 {
-    echo "Apoco shi tilin";
     header("refresh:1 ; ../views/home.php");
 }
 ?>
