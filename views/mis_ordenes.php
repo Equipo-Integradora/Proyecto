@@ -43,20 +43,26 @@
                     }else{
                      
                     ?>
-                    <div class="col-12" style="margin-left:10px; background-color: white; width:800px; height:60px">
+                    <div class="col-12" style="margin-left:10px; background-color: white;border:2px solid;  border-color:#e84393; width:800px; height:60px">
                     <div class="col-5 " style="margin-top: 9px; ">
-                <form action="../scripts/buscar_orge.php" method="post">
+                <form action="../scripts/buscar_orge.php" method="post" >
                   <input style="width: 290px; " placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
                 </form>
                 
               </div>
                     </div>
-                    <div style="overflow-y:auto; max-width:850px; width:800px; max-height: 500px;">
+                    <div class="row">
+                    <div class="col-12 col-lg-12" style="overflow-y:auto; max-width:850px;  max-height: 500px;">
 
                     
                     <?php
                     foreach($tablac as $reg) {
                         $imagenes = explode('| ', $reg->imagen_detalle_producto);
+                        $nombre= explode('| ', $reg->productos);
+                        $color= explode(', ', $reg->color);
+                        $precios=explode('| ',$reg->Precios);
+                        $cantidad=explode(', ', $reg->cantidades);
+                        $ids=explode('| ',$reg->id_productos);
                     ?>
                     <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:200px; padding:8px">
                         <div class="row">
@@ -73,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="col-4" style=" text-align:right;margin-top: 15px;">
-                                <a href="" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
+                                <a data-bs-toggle="modal" data-bs-target="#deta<?php echo $reg->id_venta?>" href="#" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
                             </div>
                         </div>
                         <hr style="margin: 0;">
@@ -97,10 +103,59 @@
                             </div>
                         </div>
                     </div>
+
+<div class="modal fade" id="deta<?php echo $reg->id_venta?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Orden #<?php echo $reg->id_venta ?></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <?php
+          for($i=0; $i<count($imagenes); $i++){
+       ?>
+       <div class="row" style="margin-bottom: 15px; height:90px">
+        <div class="col-3" style="margin-top:5px;" >
+        <a href="../views/verproducto.php?id=<?php echo $ids[$i] ?>"><img style=' height:80px; width:80px;' src='../img/productos/<?php echo $imagenes[$i] ?>' alt="no"></a>
+        </div>
+        <div class="col-9"  >
+            <div class="col-12 mb-0">
+                <p class="mb-0" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis; font-size: 15px;"><?php echo $nombre[$i] ?></p>
+            </div>
+            <?php 
+            if($color!='Sin color' and $color!= 'Multicolor'){
+
+            
+            ?>
+            <div class="col-12 mb-0">
+                <p class="mb-0" style="font-size: 15px; color:gray">Color: <?php echo $color[$i] ?></p>
+            </div>
+            <?php
+            }
+            ?>
+            <div class="col-5 mb-0">
+                <p class="mb-0" style="font-size: 15px;">Mx $<?php echo $precios[$i] ?></p>
+            </div>
+            <div class="col-5 mb-0">
+                <p class="mb-0" style="font-size: 15px; color:gray">x<?php echo $cantidad[$i] ?></p>
+            </div>
+        </div>
+        </div>
+        <?php }
+        ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>
                     <?php
                     }
                     }
                     ?>
+                    </div>
                     </div>
                 </div>
             </div>
