@@ -1,6 +1,8 @@
 
 <?php
 session_start();
+$citas = false;
+$ordenes = false;
 $perfil = false;
 include "../templates/header.php";
 include "../class/database.php";

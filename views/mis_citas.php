@@ -3,6 +3,8 @@
 session_start();
 if(isset($_SESSION["usuario"]))
 {
+    $citas = true;
+    $ordenes = false;
     $perfil = false;
     include "../templates/header.php";
     include "../class/database.php";
