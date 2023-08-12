@@ -308,6 +308,22 @@ $blockedDatesJSONE = json_encode($chi);
         window.location.href = "../views/home.php";
         }
     </script>
+    <script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún no te has registrado");
+        });
+    </script>
 </body>
 </html>
 <?php

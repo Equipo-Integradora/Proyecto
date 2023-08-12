@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/home/logo.png" type="logo/png">
     <link rel="icon" href="../img/home/logo1.png" type="logo1/png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">

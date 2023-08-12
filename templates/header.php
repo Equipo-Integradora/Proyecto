@@ -117,7 +117,7 @@ if(!isset($totalcantidad)){
                 if($_SESSION['carrito'] >= 1)
                 {
                 ?>
-              <span style="font-size: 15px; background-color: #fcea74;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
+              <span style="font-size: 15px; background-color: #e84393;" class="position-absolute top-0 start-100 translate-middle badge rounded-circle">
               <span class="count">
                   <?php
                     echo count($_SESSION['carrito']);

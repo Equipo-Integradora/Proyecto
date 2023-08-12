@@ -57,6 +57,22 @@ if(!isset($_SESSION["usuario"]))
         window.location.href = "../views/home.php";
         }
     </script>
+    <script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún no has iniciado sesión");
+        });
+    </script>
 </body>
 </html>
 <?php 
