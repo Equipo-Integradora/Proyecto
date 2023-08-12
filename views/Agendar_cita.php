@@ -163,15 +163,27 @@ $blockedDatesJSON = json_encode($blockedDates);
     if (selectedDate === '' && checkboxes.length === 0) 
     {
       event.preventDefault(); 
-      alert('Ingrese todos los datos por favor.');
+      Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ingrese todos los datos por favor.'
+        });
     } else if (selectedDate === '') 
     {
       event.preventDefault(); 
-      alert('Seleccione una fecha.');
+      Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Seleccione una fecha.'
+        });
     } else if (checkboxes.length === 0) 
     {
       event.preventDefault(); 
-      alert('Seleccione un servicio.');
+      Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Seleccione un servicio.'
+        });
     }
 
   });

@@ -1,4 +1,14 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Realizar cita</title>
+</head>
+<body>
+    <div class="container">
+    <?php
 session_start();
 
 include "../class/database.php";
@@ -23,12 +33,17 @@ extract($_POST);
 
 $db->desconectarDB();
 
-echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
-echo "<div class='alert alert-success'>Cita hecha</div>";
-header("refresh:1 ; ../views/home.php")
-
-        ?>
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+echo "<script>";
+echo "Swal.fire({";
+echo "  icon: 'success',";
+echo "  title: 'Cita realizada con éxito',";
+echo "  showConfirmButton: false,";
+echo "  timer: 3000";
+echo "});";
+echo "</script>";
+header("refresh:3 ; ../views/home.php")
+?>
     </div>
-    
 </body>
 </html>
