@@ -86,7 +86,10 @@
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
                 echo "<script>";
                 echo "Swal.fire({";
-                echo "  icon: 'success',";
+                echo "  imageUrl: 'https://i.postimg.cc/tThCPDxt/Sweet-Beauty.png',";
+                echo "imageWidth: 300,";
+                echo "imageHeight: 130,";
+                echo "imageAlt: 'Custom image',";
                 echo "  title: 'Bienvenido " . $_SESSION["usuario"] . "',";
                 echo "  showConfirmButton: false,";
                 echo "  timer: 2000";
