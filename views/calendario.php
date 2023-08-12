@@ -2,7 +2,6 @@
 session_start();
 if(isset($_SESSION["admin"]))
     {
-
         include "../class/diasbloc.php";
         include "../templates/sidebar.php";
 ?>
@@ -10,13 +9,13 @@ if(isset($_SESSION["admin"]))
     
    <div class="col-8">
    <div class="container-fluid px-4 p-3">
-   <form action="../scripts/editar_fechas.php" method="post">
+   <form method="post" id="myForm">
    <div style="width: 100%;" class="col-6 table-responsive">
    <label  class="form-label"><h3 class="fw-bold">Seleccione el día que quiere bloquear</h3></label>
    <table class="table">
     <tr>
         <th>
-        <input id="selectedDate" type="date" name="dia" id="dia" class="m-2">
+        <input id="selectedDate" type="date" name="dia" class="m-2">
         <input type="submit" name="bloquear" class="submit btn btn-sm boton" value="Bloquar día"> 
         </th>
     </tr>
@@ -25,14 +24,15 @@ if(isset($_SESSION["admin"]))
     </form>
     </div>
 
+
     <div class="container-fluid px-4 p-3">
-    <form action="../scripts/editar_fechas.php" method="post">
+    <form method="post" id="myForm">
    <div style="width: 100%;" class="col-6 table-responsive">
    <label  class="form-label"><h3 class="fw-bold">Seleccione el día que quiere desbloquear</h3></label>
    <table class="table">
     <tr>
         <th>
-        <input id="selectedDate" type="date" name="diant" id="dia" class="m-2">
+        <input id="selectedDate" type="date" name="diant" class="m-2">
         <input type="submit" name="desbloquear" class="submit btn btn-sm boton" value="Desbloquar día"> 
         </th>
     </tr>
@@ -41,12 +41,15 @@ if(isset($_SESSION["admin"]))
     </form>
     </div>
    </div>
-
-    <div class="col-4">
-        <?php
-        if(!empty($_SESSION["dias"]))
-        {?>
-          
+   <?php 
+   
+   $admin = new Admin();
+   $fechas = $admin->obtenerFechas();
+   $largotote = count($fechas);
+   if($largotote > 0)
+   {
+   ?>
+   <div class="col-4">
         <table>
             <thead>
                 <tr>
@@ -57,11 +60,7 @@ if(isset($_SESSION["admin"]))
 
             
         <?php
-        $dias = new Admin();
-        $dia = $dias->obtenerFechas();
-        
-
-            foreach($dia as $d)
+            foreach($fechas as $d)
             {   echo "<tr>";
                 echo "<td> $d </td>";
                 echo "</td>";
@@ -69,12 +68,42 @@ if(isset($_SESSION["admin"]))
         ?>
         </tbody>
         </table>  
-        <?php
-        }
+        <?php   
         ?>
     </div>
-</div>
+
+   <?php
+   }
+    extract($_POST);
+    if ($_POST) 
+    {
+        echo "<link rel='stylesheet' href='../css/bootstrap.min.css'>";
+
+        if(!empty($dia))
+        {
+            if (!in_array($dia, $fechas)) {
+                $admin->agregarFecha("$dia");
+                echo "<div class='alert alert-success'>Fecha bloqueada</div>";
+            } else {
+                echo "<div class='alert alert-danger'>La fecha ya está bloqueada</div>";
+            }
+        }
+
+        if(!empty($diant))
+        {
+            if (($key = array_search($diant, $fechas)) !== false) {
+                $admin->borrarFecha("$diant");
+                echo "<div class='alert alert-success'>Fecha desbloqueada</div>";
+            } else {
+                echo "<div class='alert alert-danger'>La fecha seleccionada no está bloqueada</div>";
+            }
+        }
+    }   
     
+    ?>
+
+    
+</div>
     
 <!-- SCRIPTS -->
 <script src="../js/clock.js"></script>
@@ -89,19 +118,17 @@ if(isset($_SESSION["admin"]))
 </script>
 <script>
 window.onload = function() {
-    var inputDate = document.getElementById("selectedDate"); 
+    const inputDates = document.querySelectorAll("input[type='date']");
 
-    var today = new Date();
+    const today = new Date();
+    const todayISO = today.toISOString().split('T')[0];
 
-    inputDate.setAttribute("min", today.toISOString().split('T')[0]);
-
-    function isDateBlocked(date) {
-        return blockedDates.includes(date);
-    }
-
-    
-    
+    inputDates.forEach(function(inputDate) {
+        inputDate.setAttribute("min", todayISO);
+        
+    });
 };
+
 </script>
 </body>
 
