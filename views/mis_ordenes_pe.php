@@ -72,7 +72,9 @@
                                 <div style="font-size: 12px; text-align:right; margin-top: 10px;">
                                     <div class="col-12">
                                         <p style="margin: 0;">Pedido efectuado el <?php echo $reg->fecha_creacion_orden_venta ?></p>
-                                        <p style="margin: 0;">No. de pedido: #<?php echo $reg->id_venta ?> <a href="">Copiar</a></p>
+                                        <p style="margin: 0;">No. de pedido: #<?php echo $reg->id_venta ?>
+                                        <a href="" onclick="copyTextToClipboard('<?php echo $reg->id_venta ?>')">Copiar</a>
+                                    </p>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +123,7 @@
                 <p class="mb-0" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis; font-size: 15px;"><?php echo $nombre[$i] ?></p>
             </div>
             <?php 
-            if($color!='Sin color' and $color!= 'Multicolor'){
+            if($color[$i]!='Sin Color' or $color[$i]!= 'Multicolor'){
 
             
             ?>
@@ -176,6 +178,18 @@
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+        function copyTextToClipboard(text) {
+  var textarea = document.createElement("textarea");
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);  
+  event.preventDefault(); // Evitar recarga de la página
+
+}
+
     </script>
+    
 </body>
 </html>

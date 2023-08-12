@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../img/home/logo1.png" type="logo1/png">
+    <link rel="stylesheet" href="../css/perfil.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -17,6 +18,13 @@
     include "../class/database.php";
     $conexion = new database();
     $conexion->conectarDB();
+
+
+    $conexion->perfil();
+    $query = "SELECT * FROM usuarios WHERE id_usuario = '{$_SESSION["id"]}'";
+    $pro=$conexion->usr($query);
+
+    foreach($pro as $reg)
     ?>
 </head>
 
@@ -24,24 +32,42 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
+
+        <div class="row">
+  <div style="text-align: center; margin:1rem;" class="col-12">
+  <?php
+            if($reg->sexo_usuario == "Femenino")
+            {
+                ?>
+                <img class="iconperfil" src="../img/productos/icono_mujer.png" alt="mujer foto">
+                <?php
+            }if($reg->sexo_usuario == "Masculino")
+            {
+                ?>
+                <img class="iconperfil" src="../img/productos/icono_hombre.webp" alt="hombre foto">
+                <?php
+            }if($reg->sexo_usuario == "Otro")
+            {
+                ?>
+                <img class="iconperfil" src="../img/productos/icono_otro.jpg" alt="otro foto">
+                <?php
+            }
+        ?>
+  </div>
+  </div>
+
             <div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom"><span>Sweet </span>Beauty</div>
             <div class="list-group list-group-flush my-3">
 
                 <a href="../views/home.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>página principal</a>
 
-                <a href="../views/admin.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-house-heart-fill me-2"></i>Inicio</a>
+                <a href="../views/perfil2.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-house-heart-fill me-2"></i>Perfil</a>
                 
-                <a href="../scripts/admincita.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Citas</span></a>
+                <a href="../views/editar_perfil.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Editar Perfil</span></a>
                 
-                <a href="../views/calendario.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-week me-2"></i><span>Calendario</span></a>
+                <a href="../views/Datos_cuenta.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-week me-2"></i><span>Datos de la cuenta</span></a>
 
-                <a href="../scripts/adminordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-tags-fill me-2"></i><span>Ordenes</span></a>
 
-                <a href="../scripts/consultarordenesa.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-search-heart-fill me-2"></i><span>Consultar orden</span></a>
-
-                <a href="../scripts/inventario.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box2-heart-fill me-2"></i><span>Inventario</span></a>
-                
-                <a href="../scripts/admin_reportes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Reportes</span></a>
 
             </div>
         </div>
@@ -54,39 +80,5 @@
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                
-                                <i class="fas fa-user me-2"></i><?php echo $_SESSION["usuario"]?>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                <?php
-                                if(isset($_SESSION["usuario"]))
-                                {
-                                    echo "<a class='dropdown-item' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
-                                }
-                                ?>
-                                </li>
-                                <li>
-                                <?php 
-                                if(isset($_SESSION["usuario"]))
-                                {    
-                                    echo "<a class='dropdown-item' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Cerrar sesion</a>";
-                                }
-                                ?>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                
             </nav>

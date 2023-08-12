@@ -154,7 +154,7 @@ if(!isset($totalcantidad)){
                                  {
                                   if(!$perfil)
                                   {
-                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
+                                    echo "<a class='dropdown-item fs-6' href='../views/perfil2.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
                                   }else
                                   {
                                   }

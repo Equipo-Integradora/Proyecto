@@ -1,5 +1,4 @@
-.ima 
-{
+.ima {
   width: 150px; /* Ancho de la imagen circular */
   height: 150px; /* Altura de la imagen circular */
   border-radius: 50%; /* Hace que la imagen tenga bordes redondeados para formar un círculo */
@@ -7,48 +6,73 @@
   border: 2px solid #6e6e6e; /* Agrega un borde de 2px sólido con color #333 (puedes cambiar el color) */
 }
 
-.imacon img 
-{
+.imacon img {
   width: 100%; /* Asegura que la imagen ocupe todo el espacio del contenedor circular */
   height: 100%; /* Asegura que la imagen ocupe todo el espacio del contenedor circular */
   object-fit: cover; /* Ajusta la imagen para que cubra todo el contenedor sin deformarse */
 }
-.iconperfil
-{
-    border-radius: 1000px;
-    width: 140px;
-    height: auto;
-    margin-right: 30px;
+.iconperfil {
+  border-radius: 1000px;
+  width: 70px;
+  height: auto;
+  margin-right: 30px;
 }
 
-.conteperfil
-{
-    width: 200px;
-    height: auto;
+.conteperfil {
+  width: 200px;
+  height: auto;
 }
 
-p
-{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+p {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.container1
-{
+.container1 {
   margin-top: 2rem;
 }
 
 .nav-pills .nav-link.active,
-.show>.nav-pills .nav-link
-{
-    background: #e84393 !important
+.show > .nav-pills .nav-link {
+  background: #e84393 !important;
 }
 
-.tabsbotones
-{
-    color: #333;
+.tabsbotones {
+  color: #333;
 }
 
-.tabsbotones:hover
-{
-    color: #333;
+.tabsbotones:hover {
+  color: #333;
+}
+.boton {
+  display: inline-block;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.boton:hover {
+  background: var(--main-bg-color);
+  color: #fff;
+}
+.radio {
+  background-color: #e84393;
+  border-color: black;
+}
+.form-check-inputt:not(:checked) {
+  background-color: #f1f1f1; /* Cambia el color de fondo no seleccionado */
+  border-color: #ccc; /* Cambia el color del borde no seleccionado */
+}
+
+/* Estilos para los input radio seleccionados */
+.form-check-inputt:checked {
+  background-color: #e57373; /* Cambia el color de fondo seleccionado */
+  border-color: #d32f2f; /* Cambia el color del borde seleccionado */
+}
+
+/* Cambia el color del punto interior del input radio seleccionado */
+.form-check-inputt:checked::before {
+  background-color: #d32f2f; /* Cambia el color del punto interior */
 }

@@ -4,20 +4,25 @@ session_start();
 if(isset($_SESSION["usuario"]))
 {
   $perfil = true;
-  include "../templates/header.php";
-  include "../class/database.php";
-  $conexion = new database();
-  $conexion->conectarDB();
+  include "../templates/perfil_sidebar.php";
+ 
+
+
+  
   $conexion->perfil();
   $query = "SELECT * FROM usuarios WHERE id_usuario = '{$_SESSION["id"]}'";
   $pro=$conexion->usr($query);
   ?>
+  
   <div class="container" style="margin-top: 80px;">
   <?php
   foreach($pro as $reg)
 ?>
     
 <!--Fin de consultas e incluciones-->
+
+
+
 
 <section class="section-padding">
 <div class="container container1">
@@ -318,7 +323,14 @@ if(isset($_SESSION["usuario"]))
   </div>
 </div>
 
-
+<script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
+    <script src="../js/clock.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   function validarContrasenaIgual() {
@@ -403,7 +415,6 @@ function validarTelefono() {
 <!--Inicio de PHP y links-->
 <link rel="stylesheet" href="../css/perfil.css">
 <?php
-include "../templates/footer.php";
 }
 else
 {
