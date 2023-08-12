@@ -57,25 +57,14 @@ include "../templates/sidebar.php";
 <?php
 extract($_POST);
 if ($_POST) {
-    if (empty($nombre_usuario) && empty($estado) && empty($fecha_desde) && empty($fecha_hasta)) {
+    if (empty($nombre_usuario) && empty($estado) && empty($fecha_desde) && empty($fecha_hasta)) 
+    {
         echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
-    } else {
-        $ordenes = "SELECT *
-        FROM sweet_beauty.`todas las ordenes`
-        WHERE 1 = 1";
+    } 
+    else 
+    {
+        $ordenes = "call sweet_beauty.Filtros_ordenes('$fecha_desde', '$fecha_hasta', '$estado', '$nombre_usuario')";
 
-        if (!empty($estado)) {
-            $ordenes .= " AND estado_orden_venta = '$estado'";
-        }
-
-        if (!empty($fecha_desde) && !empty($fecha_hasta)) {
-            $ordenes .= " AND fecha_creacion_orden_venta BETWEEN '$fecha_desde' AND '$fecha_hasta'";
-        }
-
-        if (!empty($nombre_usuario)) {
-            $ordenes .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
-        }
-        $ordenes .= " GROUP BY id_venta";
         $tablac = $conexion->seleccionar($ordenes);
         ?>
         <div class="table-responsive container-fluid">
@@ -256,8 +245,6 @@ if ($_POST) {
             var fecha_entrega_orden_venta = $('#fecha_entrega_orden_venta').val();
             var estado_orden_venta = $('#estado_orden_venta').val();
 
-            $('#modalEditar').modal('hide');
-
             Swal.fire({
                 title: '¿Estás seguro?',
                 text: '¿Deseas guardar los cambios?',
@@ -267,6 +254,7 @@ if ($_POST) {
                 cancelButtonText: 'Cancelar',
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $('#modalEditar').modal('hide');
                     $.post('update_ordenes.php', {
                         id_venta: id_venta,
                         fecha_entrega_orden_venta: fecha_entrega_orden_venta,
@@ -287,7 +275,7 @@ if ($_POST) {
                 {
                     Swal.fire({
                         title: '¡Error!',
-                        text: 'Ha ocurrido un error al procesar la solicitud.',
+                        text: 'Hubo un error al guardar los cambios.',
                         icon: 'error',
                     });
                 }
