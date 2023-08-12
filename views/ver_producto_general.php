@@ -1,6 +1,8 @@
 
 <?php
 session_start();
+$citas = false;
+$ordenes = false;
 $perfil = false;
 include "../templates/header.php";
 include "../class/database.php";
@@ -61,7 +63,7 @@ $c_p = $conexion->cate_pro($consulta3);
 <!--Inicio de los tipos de categoria-->
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+  <div class="container-fluid" style="display: flex; flex-wrap: wrap;  ">
     <div class="right-align">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
     <i class="bi bi-funnel-fill"></i>

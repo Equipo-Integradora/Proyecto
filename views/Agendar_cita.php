@@ -2,6 +2,8 @@
 session_start();
 if(isset($_SESSION["usuario"]))
 {
+    $ordenes = false;
+    $citas = false;
     $perfil = false;
     include "../templates/header.php";
     include "../class/database.php";
@@ -127,8 +129,12 @@ if(isset($_SESSION["usuario"]))
 <!--Fin Contenido-->
 <?php
 include "../templates/footer.php";
-$blockedDates = $_SESSION['dias'];
+include "../class/diasbloc.php";
 
+$admin = new Admin();
+$fechas = $admin->obtenerFechas();
+
+$blockedDates = $fechas;
 $ver = "SELECT registros_cita.fecha_cita_registro_cita 
     FROM registros_cita
     WHERE registros_cita.cliente_registro_cita_FK = '{$_SESSION["id"]}'";
@@ -163,15 +169,27 @@ $blockedDatesJSON = json_encode($blockedDates);
     if (selectedDate === '' && checkboxes.length === 0) 
     {
       event.preventDefault(); 
-      alert('Ingrese todos los datos por favor.');
+      Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ingrese todos los datos por favor.'
+        });
     } else if (selectedDate === '') 
     {
       event.preventDefault(); 
-      alert('Seleccione una fecha.');
+      Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Seleccione una fecha.'
+        });
     } else if (checkboxes.length === 0) 
     {
       event.preventDefault(); 
-      alert('Seleccione un servicio.');
+      Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Seleccione un servicio.'
+        });
     }
 
   });
@@ -201,7 +219,11 @@ window.onload = function() {
     inputDate.addEventListener("input", function() {
         var selectedDate = inputDate.value;
         if (isDateBlocked(selectedDate)) {
-            alert("Esta fecha está bloqueada.");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Aviso',
+                text: 'Este día se encuentra bloqueado.'
+            });
             inputDate.value = "";
         }
     });
@@ -213,29 +235,15 @@ window.onload = function() {
     inputDate.addEventListener("input", function() {
         var selectedDate = inputDate.value;
         if (isnDateBlocked(selectedDate)) {
-        alert("Ya tienes una cita para este día.");
+        Swal.fire({
+                icon: 'warning',
+                title: 'Aviso',
+                text: 'Ya cuentas con una cita para este día.'
+            });
         inputDate.value = "";
         }
     });
 };
-</script>
-<script src="checkbox_limit.js"></script>
-<script>
-function limitCheckboxes(maxChecked) {
-  const checkboxes = document.querySelectorAll('.option-checkboxx');
-  
-  checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-      const checkedCheckboxes = document.querySelectorAll('.option-checkboxx:checked').length;
-
-      if (checkedCheckboxes > maxChecked) {
-        checkbox.checked = false;  
-      }
-    });
-  });
-}
-
-limitCheckboxes(3);
 </script>
 
 

@@ -56,26 +56,14 @@ include "../templates/sidebar.php";
 <?php
 extract($_POST);
 if ($_POST) {
-    if (empty($estado) && empty($fecha_desde) && empty($fecha_hasta) && empty($nombre_usuario)) {
+    if (empty($estado) && empty($fecha_desde) && empty($fecha_hasta) && empty($nombre_usuario)) 
+    {
         echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
-    } else {
-        $citas = "SELECT *
-        FROM sweet_beauty.`todas las citas`
-        WHERE 1 = 1";
-
-    if (!empty($estado)) {
-        $citas .= " AND estado_registro_cita = '$estado'";
-    }
-
-    if (!empty($fecha_desde) && !empty($fecha_hasta)) {
-        $citas .= " AND fecha_creacion_registro_cita BETWEEN '$fecha_desde' AND '$fecha_hasta'";
-    }
-
-    if (!empty($nombre_usuario)) {
-        $citas .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
-    }
-    $citas .= " GROUP BY id_registro_cita";
-    $tablac = $conexion->seleccionar($citas);
+    } 
+    else 
+    {
+        $citas = "call sweet_beauty.Filtros_citas('$fecha_desde', '$fecha_hasta', '$estado', '$nombre_usuario')";
+        $tablac = $conexion->seleccionar($citas);
     ?>
                     <div class="table-responsive container-fluid">
                     <table class="table shadow-sm table-hover">
@@ -114,7 +102,7 @@ if ($_POST) {
                                 echo '<button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse"  data-bs-target="#servicios-' . $reg->id_registro_cita . '">Ver servicios</button>';
                                 echo '<div class="collapse" id="servicios-' . $reg->id_registro_cita . '">';
                                 $servicios = explode(', ', $reg->tipos_servicio);
-                                $precios = explode(', ', $reg->precio_cita);
+                                $precios = explode(',', $reg->precio_cita);
                                 $id_detalle = explode(', ', $reg->id_detalle_registro_cita);
                                 echo '<ul>';
                                 for ($i = 0; $i < count($servicios); $i++) {
@@ -211,7 +199,7 @@ if ($_POST) {
         <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Descripción</h1>
       </div>
       <div class="modal-body">
-        <textarea id="descripcionModalBody" cols="48" rows="10" readonly></textarea>
+        <textarea id="descripcionModalBody" style="width: 100%;" class="text-left" cols="0" rows="10" readonly></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
@@ -228,7 +216,7 @@ if ($_POST) {
                 <h5 class="modal-title" id="modalEditarLabel">Editar Cita</h5>
             </div>
             <div class="modal-body">
-                <form method="post" action="update_cita.php">
+                <form method="post" action="update_cita.php" id="editarCitaForm">
                     <input type="hidden" name="id_registro_cita" id="id_registro_cita"> 
                     <input type="hidden" name="id_detalle_registro_cita" id="id_detalle_registro_cita"> 
                     <div class="mb-3">
@@ -282,29 +270,73 @@ $(document).ready(function () {
             $('#modalCorreo').text(correo);
         });
 
-    $('.btn-editar').on('click', function () {
-        var id_registro_cita = $(this).data('registro-id');
-        var id_detalle_cita = $(this).data('detalle-id');
-        var estado_registro_cita = $(this).data('estado-registro-cita');
-        var servicios = $(this).data('tipos-servicio').split(',');
-        var precios = $(this).data('precio-registro-cita').split(',');
-        
-        $('#modalEditar #id_registro_cita').val(id_registro_cita);
-        $('#modalEditar #id_detalle_registro_cita').val(id_detalle_cita);
-        $('#modalEditar #estado_registro_cita').val(estado_registro_cita);
+        $('.btn-editar').on('click', function () {
+    var id_registro_cita = $(this).data('registro-id');
+    var id_detalle_cita = $(this).data('detalle-id');
+    var estado_registro_cita = $(this).data('estado-registro-cita');
+    var servicios = $(this).data('tipos-servicio').split(',');
+    var precios = $(this).data('precio-registro-cita').split(',');
 
-        var html = '';
-        for (var i = 0; i < servicios.length; i++) {
-            html += '<div class="mb-3">';
-            html += '<p>' + servicios[i] + '</p>';
-            html += '<input type="text" name="precios[]" class="form-control" value="' + precios[i] + '">';
-            html += '</div>';
+    $('#modalEditar #id_registro_cita').val(id_registro_cita);
+    $('#modalEditar #id_detalle_registro_cita').val(id_detalle_cita);
+    $('#modalEditar #estado_registro_cita').val(estado_registro_cita);
+
+    var html = '';
+    for (var i = 0; i < servicios.length; i++) 
+    {
+        var precio = precios[i].trim();
+
+        html += '<div class="mb-3">';
+        html += '<p>' + servicios[i] + '</p>';
+        html += '<input type="text" name="precios[]" class="form-control" value="'+ precio +'">';
+        html += '</div>';
+    }
+
+    $('#modalEditar #servicios_editar').html(html);
+
+    $('#modalEditar').modal('show');
+});
+
+
+$('#btnGuardarCambios').on('click', function (event) {
+    event.preventDefault();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Deseas guardar los cambios?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Guardar Cambios',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) 
+        {
+            $('#modalEditar').modal('hide');
+            
+            const formData = $('#editarCitaForm').serialize();
+
+            $.post('update_cita.php', formData, function (data) {
+                if (data.error) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un error al guardar los cambios.',
+                        icon: 'error'
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        title: '¡Cita actualizada!',
+                        text: 'Los datos se han actualizado exitosamente.',
+                        icon: 'success'
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            });
         }
-
-        $('#modalEditar #servicios_editar').html(html);
-
-        $('#modalEditar').modal('show');
     });
+});
+
 
     $('#modalEditar').on('hidden.bs.modal', function () {
         $('#modalEditar #servicios_editar').html('');

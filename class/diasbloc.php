@@ -1,26 +1,51 @@
 <?php
 class Admin {
-    protected static $fechas = array();
-    
-    public static function agregarFecha($fecha) {
-        array_push(self::$fechas, $fecha);
+    private $fechas = array();
+
+    public function __construct() 
+    {
+        // Cargar fechas desde el archivo al crear una nueva instancia de Admin
+        $this->cargarFechas();
+    }
+
+    public function agregarFecha($fecha) 
+    {
+        array_push($this->fechas, $fecha);
         
-        return error_log("Fecha agregada: " . $fecha);
+        $this->guardarFechas();
     }
 
-    public static function obtenerFechas() {
-        return self::$fechas;
+    public function obtenerFechas() 
+    {
+        return $this->fechas;
     }
 
-    public static function borrarFecha($fecha) {
-        if (($key = array_search($fecha, self::$fechas)) !== false) {
-            unset(self::$fechas[$key]);
+    public function borrarFecha($fecha) 
+    {
+        $key = array_search($fecha, $this->fechas);
+        if ($key !== false) 
+        {
+            unset($this->fechas[$key]);
             
-            error_log("Fecha borrada: " . $fecha);
-        } else {
-
-            error_log("No se encontró la fecha para borrar: " . $fecha);
+            $this->guardarFechas();
         }
+    }
+
+    private function cargarFechas() 
+    {
+        $archivo = 'fechas.txt';
+        if (file_exists($archivo)) 
+        {
+            $contenido = file_get_contents($archivo);
+            $this->fechas = unserialize($contenido);
+        }
+    }
+
+    private function guardarFechas() 
+    {
+        $archivo = 'fechas.txt';
+        $contenido = serialize($this->fechas);
+        file_put_contents($archivo, $contenido);
     }
 }
 

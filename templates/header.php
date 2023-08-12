@@ -7,13 +7,12 @@
     <link rel="icon" href="../img/home/logo.png" type="logo/png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/productos_gene.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.10.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.10.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@5.10.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <script>
 
@@ -118,7 +117,7 @@ if(!isset($totalcantidad)){
                 if($_SESSION['carrito'] >= 1)
                 {
                 ?>
-              <span style="font-size: 15px; background-color: #fcea74;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
+              <span style="font-size: 15px; background-color: #e84393;" class="position-absolute top-0 start-100 translate-middle badge rounded-circle">
               <span class="count">
                   <?php
                     echo count($_SESSION['carrito']);
@@ -176,7 +175,10 @@ if(!isset($totalcantidad)){
                             {
                                 if(isset($_SESSION["usuario"]))
                                 {
+                                  if(!$citas)
+                                  {
                                     echo "<a class='dropdown-item fs-6 ' href='../views/mis_citas.php'><i class='fas fa-user-xmark me-2'></i>Mis citas</a>";
+                                  }
                                 }
                             }
                               ?>
@@ -187,7 +189,10 @@ if(!isset($totalcantidad)){
                             {
                                 if(isset($_SESSION["usuario"]))
                                 {
+                                  if(!$ordenes)
+                                  {
                                     echo "<a class='dropdown-item fs-6 ' href='../views/mis_ordenes.php'><i class='fas fa-user-xmark me-2'></i>Mis ordenes </a>";
+                                  }
                                 }
                             }
                               ?>

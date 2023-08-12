@@ -7,11 +7,12 @@ if(!isset($_SESSION["usuario"]))
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../img/home/logo.png" type="logo1/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <title>Inicio de sesion</title>
+    <title>Iniciar sesion</title>
 </head>
 <body>
     <div class="wrapper">
@@ -55,6 +56,22 @@ if(!isset($_SESSION["usuario"]))
         function redirectToHome() {
         window.location.href = "../views/home.php";
         }
+    </script>
+    <script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún no has iniciado sesión");
+        });
     </script>
 </body>
 </html>

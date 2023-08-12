@@ -3,6 +3,8 @@
 session_start();
 if(isset($_SESSION["usuario"]))
 {
+  $citas = false;
+  $ordenes = false;
   $perfil = true;
   include "../templates/perfil_sidebar.php";
  
