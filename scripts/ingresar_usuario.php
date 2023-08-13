@@ -4,29 +4,14 @@ $db = new database();
 $db->conectarDB();
 
 extract($_POST);
+$ver = "SELECT usuarios.email_usuario
+FROM usuarios
+WHERE usuarios.email_usuario = '$correo'";
+$corra = $db->seleccionar($ver);
 
-$hash = password_hash($pass, PASSWORD_DEFAULT);        
-$query  = "INSERT INTO usuarios(nombre_usuario, contraseña_usuario, email_usuario, telefono_usuario, fecha_nacimiento_usuario, sexo_usuario) 
-            VALUES ('$nombre', '$hash', '$correo', '$telefono', '$fecha', '$genero')";
-
-$resultado = $db->ejecuta($query);
-
-if ($resultado === true) 
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+if (!empty($corra))
 {
-    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-    echo "<script>";
-    echo "Swal.fire({";
-    echo "  icon: 'success',";
-    echo "  title: 'Usuario Registrado',";
-    echo "  showConfirmButton: false,";
-    echo "  timer: 2000";
-    echo "});";
-    echo "</script>";
-    header("refresh:2 ; ../views/login.php");
-} 
-else 
-{
-    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
     echo "<script>";
     echo "Swal.fire({";
     echo "  icon: 'error',";
@@ -37,6 +22,22 @@ else
     echo "});";
     echo "</script>";
     header("refresh:3 ; ../views/registrarse.php");
+}else
+{
+    $hash = password_hash($pass, PASSWORD_DEFAULT);        
+    $query  = "INSERT INTO usuarios(nombre_usuario, contraseña_usuario, email_usuario, telefono_usuario, fecha_nacimiento_usuario, sexo_usuario) 
+            VALUES ('$nombre', '$hash', '$correo', '$telefono', '$fecha', '$genero')";
+
+    $resultado = $db->ejecuta($query);
+    echo "<script>";
+    echo "Swal.fire({";
+    echo "  icon: 'success',";
+    echo "  title: 'Usuario Registrado',";
+    echo "  showConfirmButton: false,";
+    echo "  timer: 2000";
+    echo "});";
+    echo "</script>";
+    header("refresh:2 ; ../views/login.php");
 }
 
 $db->desconectarDB();

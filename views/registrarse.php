@@ -107,17 +107,6 @@ if(!isset($_SESSION["usuario"]))
         </div>
     </div>
 </div>
-
-<?php
-    include "../class/database.php";
-    $conexion = new database();
-    $conexion->conectarDB();
-    $ver = "SELECT usuarios.email_usuario
-    FROM usuarios;";
-    $chi = $conexion->correos($ver);
-
-$blockedDatesJSONE = json_encode($chi);
-?>
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
@@ -298,8 +287,6 @@ $blockedDatesJSONE = json_encode($chi);
     function cambiarTextoBoton() {
         document.getElementById('submitButton').value = 'Registrarse';
     }
-
-    var valoresPermitidos = <?php echo $blockedDatesJSONE; ?>;
 
 </script>
 <script>
