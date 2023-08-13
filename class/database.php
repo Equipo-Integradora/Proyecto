@@ -101,7 +101,7 @@
                 }else
                 {
                     unset($_SESSION["admin"]);
-                    header("refresh:2, ../views/home.php");
+                    header("refresh:2, ../index.php");
                 }
             }else
             {
@@ -171,7 +171,7 @@
             
              session_start();
              session_destroy();
-              header("Location: ../views/home.php");
+              header("Location: ../index.php");
 
         }    
 

@@ -52,7 +52,7 @@ extract($_POST);
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2, ../views/perfil.php");
+                header("refresh:2, ../views/perfil2.php");
         }
         else{
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
@@ -64,7 +64,7 @@ extract($_POST);
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2, ../views/perfil.php");
+                header("refresh:2, ../views/perfil2.php");
         }
     }
         if(empty($tel))
@@ -89,7 +89,7 @@ extract($_POST);
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2, ../views/perfil.php");
+                header("refresh:2, ../views/perfil2.php");
         }
         else{
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
@@ -101,7 +101,7 @@ extract($_POST);
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2, ../views/perfil.php");
+                header("refresh:2, ../views/perfil2.php");
         }
     }
     
@@ -128,7 +128,7 @@ extract($_POST);
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2, ../views/perfil.php");
+                header("refresh:2, ../views/perfil2.php");
         }
 
     }

@@ -44,7 +44,7 @@
         echo "<div class='alert alert-succes'>";
                 echo "<h2 align='center'> Cambio realizado</h2>";
                 echo "</div>";    
-                header("refresh:1, ../views/perfil.php");
+                header("refresh:0, ../views/perfil2.php");
         ?>
 </div>
 </body>

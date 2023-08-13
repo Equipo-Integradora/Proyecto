@@ -70,7 +70,7 @@ if(!isset($totalcantidad)){
         <div class="container">
         <!-- LOGO -->
         <!-- DURAAAANNNNNNNNNNNNNn -->
-        <a class="navbar-brand logo fs-2 " href="../views/home.php">
+        <a class="navbar-brand logo fs-2 " href="../index.php">
           <img src="../img/home/logo.png" class="logooo">
           <span>Sweet </span>Beauty
         </a>
@@ -89,7 +89,7 @@ if(!isset($totalcantidad)){
             <div class="offcanvas-body d-flex flex-column flex-lg-row">
               <ul class="navbar-nav justify-content-center flex-grow-0 pe-3 align-items-center fa-bars">
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="../views/home.php">Inicio</a>
+                  <a class="nav-link" href="../index.php">Inicio</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="../views/Agendar_cita.php">Agendar cita</a>
@@ -117,7 +117,7 @@ if(!isset($totalcantidad)){
                 if($_SESSION['carrito'] >= 1)
                 {
                 ?>
-              <span style="font-size: 15px; background-color: #fcea74;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
+              <span style="font-size: 15px; background-color: #e84393;" class="position-absolute top-0 start-100 translate-middle badge rounded-circle">
               <span class="count">
                   <?php
                     echo count($_SESSION['carrito']);
@@ -153,7 +153,9 @@ if(!isset($totalcantidad)){
                                  {
                                   if(!$perfil)
                                   {
-                                    echo "<a class='dropdown-item fs-6' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
+                                    echo "<a class='dropdown-item fs-6' href='../views/perfil2.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
+                                  }else
+                                  {
                                   }
                                  }
                               ?>

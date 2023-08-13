@@ -25,7 +25,7 @@
                       WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Caducado'";
             $tablac = $conexion->seleccionar($citas);
             ?>
-            <div class="container" style="margin-top: 20px;">
+             <div class="container" style="margin-top: 20px;">
                 <div class="row">
                 <?php	
                     if(count($tablac)===0){
@@ -47,7 +47,7 @@
                     ?>
                     <div class="col-12" style="background-color: white; width:800px; height:60px">
                     <div class="col-5 " style="margin-top: 9px; ">
-                <form action="../scripts/buscar_orge.php" method="post">
+                <form action="../scripts/buscar_orcad.php" method="post">
                   <input style="width: 290px;" placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
                 </form>
                 
@@ -56,6 +56,11 @@
                     <?php
                     foreach($tablac as $reg) {
                         $imagenes = explode('| ', $reg->imagen_detalle_producto);
+                        $nombre= explode('| ', $reg->productos);
+                        $color= explode(', ', $reg->color);
+                        $precios=explode('| ',$reg->Precios);
+                        $cantidad=explode(', ', $reg->cantidades);
+                        $ids=explode('| ',$reg->id_productos);
                     ?>
                     <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:200px">
                         <div class="row">
@@ -67,12 +72,14 @@
                                 <div style="font-size: 12px; text-align:right; margin-top: 10px;">
                                     <div class="col-12">
                                         <p style="margin: 0;">Pedido efectuado el <?php echo $reg->fecha_creacion_orden_venta ?></p>
-                                        <p style="margin: 0;">No. de pedido: #<?php echo $reg->id_venta ?> <a href="">Copiar</a></p>
+                                        <p style="margin: 0;">No. de pedido: #<?php echo $reg->id_venta ?>
+                                        <a href="" onclick="copyTextToClipboard('<?php echo $reg->id_venta ?>')">Copiar</a>
+                                    </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4" style=" text-align:right;margin-top: 15px;">
-                                <a href="" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
+                            <a data-bs-toggle="modal" data-bs-target="#deta<?php echo $reg->id_venta?>" href="#" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
                             </div>
                         </div>
                         <hr style="margin: 0;">
@@ -96,6 +103,53 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="deta<?php echo $reg->id_venta?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Orden #<?php echo $reg->id_venta ?></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <?php
+          for($i=0; $i<count($imagenes); $i++){
+       ?>
+       <div class="row" style="margin-bottom: 15px; height:90px">
+        <div class="col-3" style="margin-top:5px;" >
+        <a href="../views/verproducto.php?id=<?php echo $ids[$i] ?>"><img style=' height:80px; width:80px;' src='../img/productos/<?php echo $imagenes[$i] ?>' alt="no"></a>
+        </div>
+        <div class="col-9"  >
+            <div class="col-12 mb-0">
+                <p class="mb-0" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis; font-size: 15px;"><?php echo $nombre[$i] ?></p>
+            </div>
+            <?php 
+            if($color[$i]!='Sin Color' and $color[$i]!= 'Multicolor'){
+
+            
+            ?>
+            <div class="col-12 mb-0">
+                <p class="mb-0" style="font-size: 15px; color:gray">Color: <?php echo $color[$i] ?></p>
+            </div>
+            <?php
+            }
+            ?>
+            <div class="col-5 mb-0">
+                <p class="mb-0" style="font-size: 15px;">Mx $<?php echo $precios[$i] ?></p>
+            </div>
+            <div class="col-5 mb-0">
+                <p class="mb-0" style="font-size: 15px; color:gray">x<?php echo $cantidad[$i] ?></p>
+            </div>
+        </div>
+        </div>
+        <?php }
+        ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>
                     <?php
                     }
                 }
@@ -124,6 +178,18 @@
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+        function copyTextToClipboard(text) {
+  var textarea = document.createElement("textarea");
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);  
+  event.preventDefault(); // Evitar recarga de la página
+
+}
+
     </script>
+    
 </body>
 </html>

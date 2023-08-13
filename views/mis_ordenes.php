@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="col-4" style=" text-align:right;margin-top: 15px;">
-                                <a data-bs-toggle="modal" data-bs-target="#deta<?php echo $reg->id_venta?>" href="#" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
+                                <a data-bs-toggle="modal" data-bs-target="#deta<?php echo $reg->id_venta?>" href="" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
                             </div>
                         </div>
                         <hr style="margin: 0;">

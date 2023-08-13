@@ -54,8 +54,24 @@ if(!isset($_SESSION["usuario"]))
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script>
         function redirectToHome() {
-        window.location.href = "../views/home.php";
+        window.location.href = "../index.php";
         }
+    </script>
+    <script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún no has iniciado sesión");
+        });
     </script>
 </body>
 </html>
@@ -63,6 +79,6 @@ if(!isset($_SESSION["usuario"]))
 }else
 {
     echo "Ya estas registrado tilin";
-    header("refresh:1 ; ../views/home.php");
+    header("refresh:1 ; ../index.php");
 }
 ?>
