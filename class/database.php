@@ -86,7 +86,7 @@
                 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
                 echo "<script>";
                 echo "Swal.fire({";
-                echo "  imageUrl: 'https://i.postimg.cc/tThCPDxt/Sweet-Beauty.png',";
+                echo "  imageUrl: 'https://i.postimg.cc/DyhkvCt7/logo2.png',";
                 echo "imageWidth: 300,";
                 echo "imageHeight: 130,";
                 echo "imageAlt: 'Custom image',";
