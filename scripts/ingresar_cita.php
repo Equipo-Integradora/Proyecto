@@ -42,7 +42,7 @@ echo "  showConfirmButton: false,";
 echo "  timer: 3000";
 echo "});";
 echo "</script>";
-header("refresh:3 ; ../views/home.php")
+header("refresh:3 ; ../index.php")
 ?>
     </div>
 </body>

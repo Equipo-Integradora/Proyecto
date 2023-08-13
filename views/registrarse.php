@@ -107,17 +107,6 @@ if(!isset($_SESSION["usuario"]))
         </div>
     </div>
 </div>
-
-<?php
-    include "../class/database.php";
-    $conexion = new database();
-    $conexion->conectarDB();
-    $ver = "SELECT usuarios.email_usuario
-    FROM usuarios;";
-    $chi = $conexion->correos($ver);
-
-$blockedDatesJSONE = json_encode($chi);
-?>
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
@@ -299,13 +288,11 @@ $blockedDatesJSONE = json_encode($chi);
         document.getElementById('submitButton').value = 'Registrarse';
     }
 
-    var valoresPermitidos = <?php echo $blockedDatesJSONE; ?>;
-
 </script>
 <script>
         function redirectToHome() 
         {
-        window.location.href = "../views/home.php";
+        window.location.href = "../index.php";
         }
     </script>
     <script>
@@ -330,6 +317,6 @@ $blockedDatesJSONE = json_encode($chi);
 }
 else
 {
-    header("refresh:1 ; ../views/home.php");
+    header("refresh:1 ; ../index.php");
 }
 ?>

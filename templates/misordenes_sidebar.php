@@ -24,10 +24,10 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
-            <a href="../views/home.php" style="text-decoration: none; color:black"><div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom"><span>Sweet </span>Beauty</div></a>
+            <a href="../index.php" style="text-decoration: none; color:black"><div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom"><span>Sweet </span>Beauty</div></a>
             <div class="list-group list-group-flush my-3">
 
-                <a href="../views/home.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>Inicio</a>            
+                <a href="../index.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>Inicio</a>            
 
                 <a href="../views/mis_ordenes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-box-seam-fill"></i> Todas las ordenes</a>
 
