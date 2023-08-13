@@ -41,7 +41,6 @@ if ($cero==1){
 
 //var_dump($existenciasArray);
 
-echo json_encode($existenciasArray);
 
 
 $random = $db->aleatorio();

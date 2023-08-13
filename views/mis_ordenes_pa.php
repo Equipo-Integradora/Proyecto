@@ -47,7 +47,7 @@
                     ?>
                     <div class="col-12" style="background-color: white; width:800px; height:60px">
                     <div class="col-5 " style="margin-top: 9px; ">
-                <form action="../scripts/buscar_orge.php" method="post">
+                <form action="../scripts/buscar_orpa.php" method="post">
                   <input style="width: 290px;" placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
                 </form>
                 

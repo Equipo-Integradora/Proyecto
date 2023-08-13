@@ -47,7 +47,7 @@
                     ?>
                     <div class="col-12" style="background-color: white; width:800px; height:60px">
                     <div class="col-5 " style="margin-top: 9px; ">
-                <form action="../scripts/buscar_orge.php" method="post">
+                <form action="../scripts/buscarorpe.php" method="post">
                   <input style="width: 290px;" placeholder="No. de orden o  Artículo..." type="search" class="input" name="buscar">
                 </form>
                 
@@ -123,7 +123,7 @@
                 <p class="mb-0" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis; font-size: 15px;"><?php echo $nombre[$i] ?></p>
             </div>
             <?php 
-            if($color[$i]!='Sin Color' or $color[$i]!= 'Multicolor'){
+            if($color[$i]!='Sin Color' and $color[$i]!= 'Multicolor'){
 
             
             ?>

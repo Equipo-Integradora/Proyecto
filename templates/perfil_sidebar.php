@@ -59,13 +59,13 @@
             <div class="sidebar-heading text-center py-4 fs-4 fw-bold border-bottom"><span>Sweet </span>Beauty</div>
             <div class="list-group list-group-flush my-3">
 
-                <a href="../views/home.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i>página principal</a>
+                <a href="../views/home.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i> Página principal</a>
 
-                <a href="../views/perfil2.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-house-heart-fill me-2"></i>Perfil</a>
+                <a href="../views/perfil2.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-person-fill"></i> Perfil</a>
                 
-                <a href="../views/editar_perfil.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-heart-fill me-2"></i><span>Editar Perfil</span></a>
+                <a href="../views/editar_perfil.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-pencil"></i><span> Editar Perfil</span></a>
                 
-                <a href="../views/Datos_cuenta.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-calendar-week me-2"></i><span>Datos de la cuenta</span></a>
+                <a href="../views/Datos_cuenta.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-gear-wide"></i><span> Datos de la cuenta</span></a>
 
 
 
