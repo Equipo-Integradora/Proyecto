@@ -305,7 +305,7 @@ $blockedDatesJSONE = json_encode($chi);
 <script>
         function redirectToHome() 
         {
-        window.location.href = "../views/home.php";
+        window.location.href = "../index.php";
         }
     </script>
     <script>
@@ -330,6 +330,6 @@ $blockedDatesJSONE = json_encode($chi);
 }
 else
 {
-    header("refresh:1 ; ../views/home.php");
+    header("refresh:1 ; ../index.php");
 }
 ?>

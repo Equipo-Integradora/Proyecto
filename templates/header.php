@@ -70,7 +70,7 @@ if(!isset($totalcantidad)){
         <div class="container">
         <!-- LOGO -->
         <!-- DURAAAANNNNNNNNNNNNNn -->
-        <a class="navbar-brand logo fs-2 " href="../views/home.php">
+        <a class="navbar-brand logo fs-2 " href="../index.php">
           <img src="../img/home/logo.png" class="logooo">
           <span>Sweet </span>Beauty
         </a>
@@ -89,7 +89,7 @@ if(!isset($totalcantidad)){
             <div class="offcanvas-body d-flex flex-column flex-lg-row">
               <ul class="navbar-nav justify-content-center flex-grow-0 pe-3 align-items-center fa-bars">
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="../views/home.php">Inicio</a>
+                  <a class="nav-link" href="../index.php">Inicio</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="../views/Agendar_cita.php">Agendar cita</a>
