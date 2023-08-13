@@ -1,6 +1,8 @@
 <?php 
 
 session_start();
+$citas = false;
+$ordenes = false;
 include '../class/database.php';
 $db = new database();
 $db->conectarDB();
@@ -318,9 +320,7 @@ if(empty($_SESSION['carrito']))
     </div>
         </section>
 
-        <?php
-        include "../templates/footer.php"
-    ?>
+        
 
 </div>
 </div>
@@ -493,6 +493,8 @@ function Actualizar(){
     </script>
 
 
-
+<?php
+        include "../templates/footer.php"
+    ?>
 </body>
 </html>
