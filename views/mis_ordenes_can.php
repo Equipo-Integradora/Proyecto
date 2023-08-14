@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/pruebatexto.css">
+    <link rel="icon" href="../img/home/logo.png" type="logo/png">
     <link rel="stylesheet" href="../css/home.css">
-    <title>Document</title>
+    <title>Sweet Beauty</title>
 </head>
 <body style="background-color:#f5f5f5">
 <?php
