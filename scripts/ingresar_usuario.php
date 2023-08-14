@@ -21,17 +21,20 @@ $corra = $db->seleccionar($ver);
 
 echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
 if (!empty($corra))
-{
-    echo "<script>";
-    echo "Swal.fire({";
-    echo "  icon: 'error',";
-    echo "  title: 'Error en el Registro',";
-    echo "  text: 'El correo electrónico ya está registrado.',";
-    echo "  showConfirmButton: false,";
-    echo "  timer: 3000";
-    echo "});";
-    echo "</script>";
-    header("refresh:3 ; ../views/registrarse.php");
+{?>
+    <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Error en el Registro',
+      text: 'El correo electrónico ya está registrado.',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    setTimeout(function() {
+    window.location.href = "../views/registrarse.php";;
+}, 3000);
+    </script>
+    <?php
 }else
 {
     $hash = password_hash($pass, PASSWORD_DEFAULT);        
@@ -39,15 +42,19 @@ if (!empty($corra))
             VALUES ('$nombre', '$hash', '$correo', '$telefono', '$fecha', '$genero')";
 
     $resultado = $db->ejecuta($query);
-    echo "<script>";
-    echo "Swal.fire({";
-    echo "  icon: 'success',";
-    echo "  title: 'Usuario Registrado',";
-    echo "  showConfirmButton: false,";
-    echo "  timer: 2000";
-    echo "});";
-    echo "</script>";
-    header("refresh:2 ; ../views/login.php");
+    ?>
+    <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Usuario Registrado',
+      showConfirmButton: false,
+      timer: 2000
+    });
+    setTimeout(function() {
+    window.location.href = "../views/login.php";
+}, 2000);
+    </script>
+    <?php
 }
 
 $db->desconectarDB();
