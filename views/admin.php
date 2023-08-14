@@ -46,8 +46,8 @@ if (isset($_SESSION["admin"])) {
                                 <th>Cliente</th>
                                 <th>Tipo de servicio</th>
                                 <th>Descripción</th>
-                                <th>Fecha de la cita</th>
-                                <th>Hora de la cita</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
                                 <th>Estatus</th>
                             </tr>
                         </thead>

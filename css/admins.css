@@ -228,3 +228,31 @@
   box-shadow: 0 0 5px #e84393;
   border-color: #e84393; 
 }
+
+.pruebaa
+{
+  background-color: transparent;
+}
+
+select:focus,
+select:hover
+{
+ outline: none;
+border-color: #e84393;
+background-color: #fff;
+box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+.form-select:focus 
+{
+  box-shadow: 0 0 5px #e84393;
+  border-color: #e84393; 
+}
+
+div.dropdown-menu a:active 
+{
+  background-color: #e84393;
+  color: white;
+}
+
+

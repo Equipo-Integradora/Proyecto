@@ -19,6 +19,7 @@ $conexion->conectarDB();
     .bot {
         color: #e84393;
         padding: 1rem;
+        background-color: transparent;
     }
 
         .sexarea
@@ -150,7 +151,7 @@ if ($_POST) {
         $tablap = $conexion->seleccionar($productos);  
         if(empty($tablap))
         {
-            echo "No se encontraron resultados";
+            echo "<p class='text-center'>No se encontraron resultados</p>";
         }else
         {
         ?>

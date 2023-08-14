@@ -17,6 +17,7 @@ if(isset($_SESSION["usuario"]))
 <section class="section-padding">
 <div class="container info">
 <h1 class="text-center fw-bold m-3">Seleccione los servicios que quiere</h1>
+<h5 class="text-center mb-3"><i class="bi bi-info-square aviso"></i> El precio de los servicios está sujeto a variaciones según determinadas condiciones y solo se permite la programación de una cita por usuario.</h5>
     <!--Servicios-->
     <form action="../scripts/ingresar_cita.php" method="post" id="myForm">
         <div class="accordion" id="accordionExample">

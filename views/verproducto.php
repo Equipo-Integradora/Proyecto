@@ -67,7 +67,8 @@ if(!empty($pro->nombre_color) && ($pro->nombre_color!='Sin color')){
     </form>
 </div>
 <br>
-<p>
+<p class="mt-4">
+    <span class="fw-bold">Descripción:</span>
             <?php echo $pro->descripcion_producto?>
 </p>
 </div> 
