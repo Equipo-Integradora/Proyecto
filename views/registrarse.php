@@ -84,7 +84,7 @@ if(!isset($_SESSION["usuario"]))
                         </div>
                         <div class="form-group mt-3" id="fecha-group">
                             <label for="fecha">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" name="fecha" id="fecha" required>
+                            <input type="date" class="form-control nose" name="fecha" id="fecha" required>
                         </div>
 
                         <div class="form-group hidden input-field" id="pass-group">

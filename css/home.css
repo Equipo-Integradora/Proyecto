@@ -159,6 +159,12 @@ input:hover {
   line-height: 1.5;
 }
 
+ul.dropdown-menu li a:active 
+{
+  background-color: #e84393;
+  color: white;
+}
+
 .banner p {
   font-size: 0.9rem;
   color: white;
@@ -184,6 +190,12 @@ input:hover {
 
 .banner .boton:hover {
   background: var(--rosaa);
+}
+
+input[type="radio"]:checked + label 
+{
+  background-color: #e84393;
+  color: white;
 }
 
 /* PORTAFOLIO */
