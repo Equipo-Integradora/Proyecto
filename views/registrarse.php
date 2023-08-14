@@ -54,15 +54,15 @@ if(!isset($_SESSION["usuario"]))
                     <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
                     <div class="input-box">
                         <div class="form-group input-field mt-5">
-                            <input type="text" class="input" min="10" max="70" id="nombre" name="nombre" required autocomplete="off">
+                            <input type="text" class="input" minlength="10" maxlength="70" id="nombre" name="nombre" required autocomplete="off">
                             <label for="nombre" id="nombreText">Nombre completo</label>
                         </div>
                         <div class="form-group input-field mt-3">
-                            <input type="email" class="input" id="correo" min="6" max="50" name="correo" required autocomplete="off">
+                            <input type="email" class="input" id="correo" maxlength="50" name="correo" required autocomplete="off">
                             <label for="correo" id="correoText">Correo</label>
                         </div>
                         <div class="form-group input-field mt-3">
-                            <input type="tel" class="input" id="telefono" min="10" max="10" name="telefono" required autocomplete="off">
+                            <input type="tel" class="input" id="telefono" maxlength="10"  name="telefono" required autocomplete="off">
                             <label for="correo" id="telefonoText">Teléfono</label>
                         </div>
                         <div class="form-group mt-3" id="genero-group">
@@ -310,6 +310,15 @@ if(!isset($_SESSION["usuario"]))
         window.addEventListener("blur", function() {
           cambiarTituloPestana("Aún no te has registrado");
         });
+    </script>
+    <script>
+        const inputNumero = document.getElementById("telefono");
+
+    inputNumero.addEventListener("input", function() {
+  
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
     </script>
 </body>
 </html>
