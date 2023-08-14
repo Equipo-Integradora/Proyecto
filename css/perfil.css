@@ -57,10 +57,7 @@ p {
   background: var(--main-bg-color);
   color: #fff;
 }
-.radio {
-  background-color: #e84393;
-  border-color: black;
-}
+
 .form-check-inputt:not(:checked) {
   background-color: #f1f1f1; /* Cambia el color de fondo no seleccionado */
   border-color: #ccc; /* Cambia el color del borde no seleccionado */
@@ -75,4 +72,18 @@ p {
 /* Cambia el color del punto interior del input radio seleccionado */
 .form-check-inputt:checked::before {
   background-color: #d32f2f; /* Cambia el color del punto interior */
+}
+
+input[type="radio"]:checked
+{
+  background-color: #e84393;
+  color: white;
+  border-color: #e84393;
+  box-shadow: 0 0 4px #e84393;
+}
+
+input[type="radio"]:active
+{
+  border-color: #e84393;
+  box-shadow: 0 0 4px #e84393;
 }

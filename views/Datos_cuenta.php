@@ -86,7 +86,7 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn boton" id="submitButton"  onclick="return validarCorreo();">Guardar cambios</button>
       </div>
       
@@ -115,7 +115,7 @@
     <input type="password" class="input" name="passcn" id="passcn" required>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
     <button type="submit" class="btn boton">Guardar cambios</button>
   </div>
 </form>
@@ -144,7 +144,7 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn boton" id="submitButton" onclick="return validarTelefono();">Guardar cambios</button>
         </form>
       </div>

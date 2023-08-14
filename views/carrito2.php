@@ -119,10 +119,16 @@ include "../templates/header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Document</title>
+    <style>
+        i{
+            color: #e84393;
+        }
+    </style>
 </head>
 <body style="background-color: #f4f4f4;">
 <div class="container mb-4" style="margin-top: 100px ; width: 100%;">
 <div class="row" >
+<h5 class="text-center mb-3 mt-3"><i class="bi bi-info-square fw-bold"></i> Tu pedido se pagará en el local junto al numero de la orden de esta misma, si no pasas por tu compra en un maximo de 3 días se cancelará.</h5>
     <div class="col-lg-8 col-12" style="padding: 10px;">
         <!--Ciclo-->
         <?php

@@ -21,7 +21,15 @@
         $db->ejecuta($query);
         $db->desconectarDB();
 
-        echo "<div class='alert alert-success'>Producto Registrado</div>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
+        echo "Swal.fire({";
+        echo "  icon: 'success',";
+        echo "  title: 'Producto Registrado.',";
+        echo "  showConfirmButton: false,";
+        echo "  timer: 3000";
+        echo "});";
+        echo "</script>";
         header("refresh:2; ../scripts/inventario.php")
         ?>
     </div>
