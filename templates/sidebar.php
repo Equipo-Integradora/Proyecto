@@ -72,7 +72,7 @@
                                 <?php
                                 if(isset($_SESSION["usuario"]))
                                 {
-                                    echo "<a class='dropdown-item' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
+                                    echo "<a class='dropdown-item' href='../views/perfil2.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
                                 }
                                 ?>
                                 </li>
