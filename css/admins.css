@@ -125,9 +125,10 @@
   border: none;
 }
 
-.dropdown-menu a:hover
+.cmabiop ul.dropdown-menu li a:active 
 {
-  color: var(--main-text-color);
+  background-color: #e84393;
+  color: white;
 }
 
 /* RESPONSIVE */
