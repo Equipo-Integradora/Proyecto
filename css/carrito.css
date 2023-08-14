@@ -24,3 +24,12 @@
   position: absolute;
   width: 100%;
 }
+
+.nose:focus,
+.nose:hover 
+{
+  outline: none;
+  border-color: #e84393;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
