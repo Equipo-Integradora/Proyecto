@@ -5,6 +5,8 @@ if(isset($_SESSION["admin"]))
 
         
 include "../templates/sidebar.php";
+$conexion = new database();
+$conexion->conectarDB();
 ?>
 
     <div class="text-center">
@@ -60,10 +62,24 @@ if ($_POST) {
     {
         echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
     } 
-    else 
-    {
-        $citas = "call sweet_beauty.Filtros_citas('$fecha_desde', '$fecha_hasta', '$estado', '$nombre_usuario')";
-        $tablac = $conexion->seleccionar($citas);
+    else {
+        $citas = "SELECT *
+        FROM sweet_beauty.`todas las citas`
+        WHERE 1 = 1";
+
+    if (!empty($estado)) {
+        $citas .= " AND estado_registro_cita = '$estado'";
+    }
+
+    if (!empty($fecha_desde) && !empty($fecha_hasta)) {
+        $citas .= " AND fecha_creacion_registro_cita BETWEEN '$fecha_desde' AND '$fecha_hasta'";
+    }
+
+    if (!empty($nombre_usuario)) {
+        $citas .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
+    }
+    $citas .= " GROUP BY id_registro_cita";
+    $tablac = $conexion->seleccionar($citas);
     ?>
                     <div class="table-responsive container-fluid">
                     <table class="table shadow-sm table-hover">
@@ -328,7 +344,8 @@ $('#btnGuardarCambios').on('click', function (event) {
                         title: '¡Cita actualizada!',
                         text: 'Los datos se han actualizado exitosamente.',
                         icon: 'success'
-                    }).then(() => {
+                    }).then(() => 
+                    {
                         window.location.reload();
                     });
                 }
@@ -336,7 +353,6 @@ $('#btnGuardarCambios').on('click', function (event) {
         }
     });
 });
-
 
     $('#modalEditar').on('hidden.bs.modal', function () {
         $('#modalEditar #servicios_editar').html('');

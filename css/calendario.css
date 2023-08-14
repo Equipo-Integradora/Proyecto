@@ -202,4 +202,33 @@ h2 {
   background: rgba(255, 51, 153, 0.368);
 }
 
+.accordion-item:active .accordion-button 
+{
+  background-color: rgba(255, 51, 153, 0.368);
+  border-color: #e84393;
+  color: #fff;
+}
 
+.accordion-item .accordion-button:not(.collapsed) 
+{
+  background-color: #e84393;
+  border-color: #e84393;
+  color: #fff;
+}
+
+.accordion-item .accordion-button:active,
+.accordion-item .accordion-button:focus 
+{
+  border-color: #e84393;
+}
+
+.accordion-button:focus,
+.accordion-button:active {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem  rgba(255, 51, 153, 0.368);;
+}
+
+.aviso
+{
+  color: #e84393;
+}

@@ -13,9 +13,9 @@ if(isset($_SESSION["usuario"]))
 ?>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/mis_citas.css">
-<div style="margin-top: 4.5rem;">
+<div>
 <div class="cabecera">
-<h1 style="float: left;  width: 50%;">Mis <span>Citas</span></h1>
+<h1 class="mb-4" style="float: left;  width: 50%; margin-top: 7rem;">Mis <span>Citas</span></h1>
 
 
 <!-- 
@@ -113,7 +113,7 @@ if ($_POST) {
 
 ?>
 <section class="section-padding">
-  <div class="container">
+  <div class="container mb-4">
     <!--Inicio de los productos-->
 <div style="width: 100%;">
     <div class="row">
@@ -123,7 +123,7 @@ if ($_POST) {
             $servicios = explode(', ', $reg->tipos_servicio);
             $precios = explode(', ', $reg->precio_cita);
             ?>
-            <div class="col-lg-3 col-sm-6 grande chico" style="margin-top: 5px; margin-top:2rem;">
+            <div class="col-lg-3 col-sm-6 grande chico">
                 <div class="card" style="height: 230px;">
                 
                 <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; width: 100%;" class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}?>">

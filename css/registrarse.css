@@ -138,7 +138,36 @@ i
 .input-field .input:focus,
 .input-field .input:valid 
 {
-  border-bottom: 1px solid var(--pink);
+  border-bottom: 1px solid #e84393;
+}
+
+input[type="radio"]:checked
+{
+  background-color: #e84393;
+  color: white;
+  border-color: #e84393;
+  box-shadow: 0 0 4px #e84393;
+}
+
+input[type="radio"]:active
+{
+  border-color: #e84393;
+  box-shadow: 0 0 4px #e84393;
+}
+
+.nose:focus,
+.nose:hover 
+{
+  outline: none;
+  border-color: #e84393;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+input[type="date"]:focus 
+{
+  border-color: #e84393;
+  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
 
 .submit 

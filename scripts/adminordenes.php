@@ -5,6 +5,8 @@ if(isset($_SESSION["admin"]))
 
         
 include "../templates/sidebar.php";
+$conexion = new database();
+$conexion->conectarDB();
 ?>
 
     <div class="text-center">
@@ -61,10 +63,23 @@ if ($_POST) {
     {
         echo "<p class='fw-bold text-center'>Ingresa algún criterio de búsqueda para ver resultados.</p>";
     } 
-    else 
-    {
-        $ordenes = "call sweet_beauty.Filtros_ordenes('$fecha_desde', '$fecha_hasta', '$estado', '$nombre_usuario')";
+    else {
+        $ordenes = "SELECT *
+        FROM sweet_beauty.`todas las ordenes`
+        WHERE 1 = 1";
 
+        if (!empty($estado)) {
+            $ordenes .= " AND estado_orden_venta = '$estado'";
+        }
+
+        if (!empty($fecha_desde) && !empty($fecha_hasta)) {
+            $ordenes .= " AND fecha_creacion_orden_venta BETWEEN '$fecha_desde' AND '$fecha_hasta'";
+        }
+
+        if (!empty($nombre_usuario)) {
+            $ordenes .= " AND nombre_usuario LIKE '%$nombre_usuario%'";
+        }
+        $ordenes .= " GROUP BY id_venta";
         $tablac = $conexion->seleccionar($ordenes);
         ?>
         <div class="table-responsive container-fluid">
