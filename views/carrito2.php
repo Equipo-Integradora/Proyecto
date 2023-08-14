@@ -122,7 +122,7 @@ include "../templates/header.php";
     <title>Document</title>
 </head>
 <body style="background-color: #f4f4f4;">
-<div class="container" style="margin-top: 100px ; width: 100%;">
+<div class="container mb-4" style="margin-top: 100px ; width: 100%;">
 <div class="row" >
     <div class="col-lg-8 col-12" style="padding: 10px;">
         <!--Ciclo-->

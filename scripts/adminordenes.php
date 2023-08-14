@@ -5,6 +5,8 @@ if(isset($_SESSION["admin"]))
 
         
 include "../templates/sidebar.php";
+$conexion = new database();
+$conexion->conectarDB();
 ?>
 
     <div class="text-center">

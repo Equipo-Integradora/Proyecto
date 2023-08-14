@@ -1,4 +1,14 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>registro exitoso</title>
+</head>
+<body>
+    <div class="container">
+    <?php
 include '../class/database.php';
 $db = new database();
 $db->conectarDB();
@@ -42,3 +52,7 @@ if (!empty($corra))
 
 $db->desconectarDB();
 ?>
+
+    </div>
+</body>
+</html>
