@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/pruebatexto.css">
     <link rel="stylesheet" href="../css/home.css">
-    <title>Document</title>
+    <link rel="icon" href="../img/home/logo.png" type="logo/png">
+    <title>Sweet Beauty</title>
 </head>
 <body style="background-color:#f5f5f5">
 <?php
@@ -22,7 +23,8 @@
                 
             $citas = "SELECT *
                       FROM mis_ordenes
-                      WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Pagado'";
+                      WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Pagado'
+                      order by fecha_creacion_orden_venta desc;";
             $tablac = $conexion->seleccionar($citas);
             ?>
             <div class="container" style="margin-top: 20px;">
@@ -124,6 +126,22 @@
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+    </script>
+    <script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún puedes hacer más cosas");
+        });
     </script>
 </body>
 </html>
