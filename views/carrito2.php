@@ -1,6 +1,8 @@
 <?php 
 
 session_start();
+$citas = false;
+$ordenes = false;
 include '../class/database.php';
 $db = new database();
 $db->conectarDB();
@@ -244,7 +246,7 @@ if(empty($_SESSION['carrito']))
             <div class="col-lg-12" style="text-align: center;">
                 <br>
                 
-                <form id="aaaa" action="../scripts/generar_orden.php" method="post">
+                <form  action="../scripts/generar_orden.php" method="post">
     <input type="hidden" name="arregloCarrito" value="<?php echo htmlspecialchars(json_encode($arregloCarrito)); ?>">
     <button id="si" <?php echo $boton ?> <?php echo $cancela ?> class="btn boton">Proceder compra</button>
 </form>
@@ -318,9 +320,7 @@ if(empty($_SESSION['carrito']))
     </div>
         </section>
 
-        <?php
-        include "../templates/footer.php"
-    ?>
+        
 
 </div>
 </div>
@@ -330,10 +330,10 @@ if(empty($_SESSION['carrito']))
 
 
 
-<!-- ... (resto del código) ... -->
 
 
-<!-- ... (resto del código) ... -->
+
+
 
 
 
@@ -493,6 +493,8 @@ function Actualizar(){
     </script>
 
 
-
+<?php
+        include "../templates/footer.php"
+    ?>
 </body>
 </html>

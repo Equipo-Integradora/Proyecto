@@ -154,6 +154,7 @@
     </div>
 
 
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
 
 <script
   src="https://code.jquery.com/jquery-3.7.0.js"
@@ -161,7 +162,6 @@
   crossorigin="anonymous"></script>
     <script src="../js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script>
         var el = document.getElementById("wrapper");
@@ -196,9 +196,21 @@
         }
       }
 </script>
+
 <script>
 function validarTelefono() {
     var telefono = document.getElementById('telefono').value;
+    if(telefono.length !=10 ){
+        
+        Swal.fire({
+            icon: 'info',
+            title: 'Numero de caracteres debe ser 10.',
+            showConfirmButton: false,
+            timer: 1500
+
+        });
+        return false;
+    }
     if (telefono === '') {
         Swal.fire({
             icon: 'info',
