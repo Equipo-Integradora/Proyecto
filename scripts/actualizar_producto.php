@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" S>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -14,13 +15,13 @@
         include '../class/database.php';
         $db = new database();
         $db->conectarDB();
-        $con = 0;
         $exito=false;
         extract($_POST);
 
 
-        $query  = "UPDATE productos
-            SET nombre_producto = '$nombre',descripcion_producto = '$descripcion',precio_producto = '$precio'
+
+
+        $query  = "UPDATE productos SET nombre_producto = '$nombre',descripcion_producto = '$descripcion',precio_producto = '$precio'
             ,categoria_producto_FK = '$categoria'
             WHERE id_producto = '$producto' ";
             
@@ -64,11 +65,42 @@
             }
         }
         $db->ejecuta($query);
+
         $db->ejecuta($queryx);
         $db->desconectarDB();
+        ?>
+
+<script>
+    Swal.fire({
+  icon: 'success',
+  title: 'Tu producto ha sido Actualizado',
+  showConfirmButton: false,
+  timer:1500
+  
+  
+}).then((result)=>{
+    window.location.href="inventario.php";
+});
+</script>
 
 
+
+<?php
         header("refresh 3; ../scripts/inventario.php");
+        ?>
+
+
+<script>
+    Swal.fire({
+  title: 'Error!',
+  text: 'Do you want to continue',
+  icon: 'error',
+  confirmButtonText: 'Cool'
+})
+</script>
+
+
+<?php
         exit;
         ?>
     </div>

@@ -1,6 +1,6 @@
 <?php
-require 'database.php';
-$conectar=new database();
+include 'database.php';
+$conectar= new database();
 $conectar->conectarDB();
 
 extract($_POST);

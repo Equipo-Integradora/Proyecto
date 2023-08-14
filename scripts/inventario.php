@@ -102,8 +102,11 @@ $conexion->conectarDB();
 
 <div class="container-fluid px-4 p-3">
     <form method="post">
-
-
+            <div class="col-6">
+                <label for="buscar"><h3 class="fw-bold">Buscar Producto</h3></label> <br>
+                    <input type="text" name="busqueda" placeholder="buscar..." class="form-control mt-2 ">
+            </div>
+                                <br>
         <div class="col-12">
             <label class="form-label">
                 <h3 class="fw-bold">Filtros por <a href=""><span class="bi bi-info-square"></span></a></h3>
@@ -135,17 +138,21 @@ $conexion->conectarDB();
 extract($_POST);
 if ($_POST) {
     if ($produc == "exitencias") {
-        $productos = "SELECT * FROM sweet_beauty.`productos generales`left join 
-        (select id_producto as id, id_detalle_producto as idetalle, id_color as id_color, `descripcion_producto` as descripcion,
+        $productos = " SELECT * FROM sweet_beauty.`productos generales`right join 
+        (select id_detalle_producto as idetalle, id_color as id_color, `descripcion_producto` as descripcion,
          `categoria_producto_FK` as id_tipo_cat from
-        productos inner join detalle_productos on id_producto=`detalle_producto_detalle_producto_FK` left join
-        colores on id_color= `color_detalle_producto_FK`) as luk on luk.id=id_producto";
+        productos inner join detalle_productos on id_producto=`detalle_producto_detalle_producto_FK` inner join
+        colores on id_color= `color_detalle_producto_FK`) as luk on luk.idetalle=id_detalle_producto";
     }else if($produc == "notexistencias"){
-        $productos = "SELECT * FROM sweet_beauty.productos_sin_existencias;";
+        $productos = "SELECT * FROM sweet_beauty.productos_sin_existencias";
     }else if($produc== "sindetalle"){
-        $productos = "SELECT * FROM `sweet_beauty`.`productos sin detalle`;";
+        $productos = "SELECT * FROM `sweet_beauty`.`productos sin detalle`";
     }else if($produc=="MasDetalles"){
-        $productos="SELECT * FROM sweet_beauty.`productos para seguir detallando`; ";
+        $productos="SELECT * FROM sweet_beauty.`productos para seguir detallando` ";
+    }
+    $ostia=" WHERE nombre_producto like '$busqueda%'";
+    if(isset($busqueda)){
+        $productos=$productos.$ostia;
     }
         $tablap = $conexion->seleccionar($productos);  
         if(empty($tablap))
@@ -163,12 +170,7 @@ if ($_POST) {
                             <th>Decripción</th>
                             <th>Precio</th>
                             <th>Categoria</th>
-                            <?php 
-                            if( $produc != "MasDetalles")
-                            {?>
                             <th>Detallar Producto</th>
-                            <?php
-                            }?>
                            <?php }else{?>
                             <th>Producto</th>
                             <th>Color</th>
@@ -189,10 +191,7 @@ if ($_POST) {
 
                     echo "<tr>";
                     echo "<td> $reg->nombre_producto</td>";
-                    if( $produc != "MasDetalles")
-                    {
                     echo "<td> $reg->descripcion_producto</td>";
-                    }
                     echo "<td> $reg->precio_producto</td>";
                     echo "<td> $reg->nombre_tipo_categoria</td>";
                     echo "<td>"; ?>
