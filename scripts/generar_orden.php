@@ -78,8 +78,16 @@ for($i=0;$i<count($arreglo);$i++){
 
 
 }
-header("refresh:0; ../views/mis_ordenes.php");
-        
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'success',";
+                echo "  title: 'Compra realizada con exito.',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 3000";
+                echo "});";
+                echo "</script>";
+header("refresh:3; ../views/mis_ordenes.php");     
 }
 ?>
   </div>
