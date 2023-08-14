@@ -53,17 +53,17 @@ if(!isset($_SESSION["usuario"]))
             <form action="../scripts/ingresar_usuario.php" method="post" onsubmit="return validarFormulario(); cambiarTextoBoton(); verificarValor();">
                     <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
                     <div class="input-box">
-                        <div class="form-group input-field mt-5">
-                            <input type="text" class="input" id="nombre" name="nombre" required autocomplete="off">
+                    <div class="form-group input-field">
                             <label for="nombre" id="nombreText">Nombre completo</label>
+                            <input type="text" min="10" max="70" class="input" id="nombre" name="nombre" required autocomplete="off">
                         </div>
-                        <div class="form-group input-field mt-3">
-                            <input type="email" class="input" id="correo" name="correo" required autocomplete="off">
+                        <div class="form-group input-field">
                             <label for="correo" id="correoText">Correo</label>
+                            <input type="email" min="6" max="50" class="input" id="correo" name="correo" required autocomplete="off">
                         </div>
-                        <div class="form-group input-field mt-3">
-                            <input type="tel" class="input" id="telefono" name="telefono" required autocomplete="off">
+                        <div class="form-group input-field">
                             <label for="correo" id="telefonoText">Teléfono</label>
+                            <input type="tel" min="10" max="10" class="input" id="telefono" name="telefono" required autocomplete="off">
                         </div>
                         <div class="form-group mt-3" id="genero-group">
                             <label for="genero">Género</label>
