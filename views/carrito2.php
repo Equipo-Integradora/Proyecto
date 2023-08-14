@@ -115,7 +115,6 @@ include "../templates/header.php";
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="ruta/a/main.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -326,7 +325,9 @@ if(empty($_SESSION['carrito']))
     </div>
         </section>
 
-        
+        <?php
+        include "../templates/footer.php"
+    ?>
 
 </div>
 </div>
@@ -336,10 +337,10 @@ if(empty($_SESSION['carrito']))
 
 
 
+<!-- ... (resto del código) ... -->
 
 
-
-
+<!-- ... (resto del código) ... -->
 
 
 
@@ -396,21 +397,7 @@ if(empty($_SESSION['carrito']))
 
             });
         });
-        function obtenerContenido() {
-  var si="";
-  var cantidad = parseInt($(input).val());
-  var arreglo = <?php echo json_encode($_SESSION['carrito']); ?>;
-  for (var i = 0; i < arreglo.length; i++) {
-    var idd = arreglo[i]['Id'];
-    var canti = arreglo[i]['Cantidad'];
-    var chec= $(".cant" + idd).text(cantidad.toFixed(2));
-    if(chec!=canti){
-        si=disabled;
-    }
-  }
-  return si;
-}
-
+        
 
     $(".txtCantidad").on('keyup input', function () {
         var cantidad = parseInt($(this).val());
@@ -499,8 +486,6 @@ function Actualizar(){
     </script>
 
 
-<?php
-        include "../templates/footer.php"
-    ?>
+
 </body>
 </html>
