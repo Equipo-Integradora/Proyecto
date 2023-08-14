@@ -23,7 +23,8 @@
                 
             $citas = "SELECT *
                       FROM mis_ordenes
-                      WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Pagado'";
+                      WHERE id_usuario= '{$_SESSION["id"]}' and estado_orden_venta='Pagado'
+                      order by fecha_creacion_orden_venta desc;";
             $tablac = $conexion->seleccionar($citas);
             ?>
             <div class="container" style="margin-top: 20px;">
@@ -125,6 +126,22 @@
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+    </script>
+    <script>
+        
+        function cambiarTituloPestana(nuevoTitulo) {
+          document.title = nuevoTitulo;
+        }
+
+
+        window.addEventListener("focus", function() {
+          cambiarTituloPestana("Sweet Beauty");
+        });
+
+
+        window.addEventListener("blur", function() {
+          cambiarTituloPestana("Aún puedes hacer más cosas");
+        });
     </script>
 </body>
 </html>

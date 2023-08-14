@@ -21,7 +21,8 @@
             <?php 
             $citas = "SELECT *
                       FROM mis_ordenes
-                      WHERE id_usuario= '{$_SESSION["id"]}'";
+                      WHERE id_usuario= '{$_SESSION["id"]}'
+                      order by fecha_creacion_orden_venta desc;";
             $tablac = $conexion->seleccionar($citas);
             ?>
             <div class="container" style="margin-top: 20px;">
