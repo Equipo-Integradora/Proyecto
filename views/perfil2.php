@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/pruebatexto.css">
-    <link rel="stylesheet" href="../css/home.css">
     <title>Document</title>
 </head>
 <body style="background-color:#f5f5f5">

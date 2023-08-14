@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+        *
+        {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+</style>
 <body>
 <div class="container">
         <?php
@@ -41,10 +47,16 @@
         $resultado = $db->ejecuta($con);
         
 
-        echo "<div class='alert alert-succes'>";
-                echo "<h2 align='center'> Cambio realizado</h2>";
-                echo "</div>";    
-                header("refresh:0, ../views/perfil2.php");
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
+        echo "Swal.fire({";
+        echo "  icon: 'success',";
+        echo "  title: 'Cambio realizado.',";
+        echo "  showConfirmButton: false,";
+        echo "  timer: 3000";
+        echo "});";
+        echo "</script>";
+                header("refresh:3, ../views/perfil2.php");
         ?>
 </div>
 </body>
