@@ -54,7 +54,7 @@ if(!isset($_SESSION["usuario"]))
                     <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
                     <div class="input-box">
                         <div class="form-group input-field mt-5">
-                            <input type="text" class="input" minlength="10" maxlength="70" id="nombre" name="nombre" required autocomplete="off">
+                            <input type="text" class="input" minlength="5" maxlength="70" id="nombre" name="nombre" required autocomplete="off">
                             <label for="nombre" id="nombreText">Nombre completo</label>
                         </div>
                         <div class="form-group input-field mt-3">
@@ -319,6 +319,20 @@ if(!isset($_SESSION["usuario"]))
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 
+    </script>
+    <script>
+        const inputTexto = document.getElementById("nombre");
+
+        inputTexto.addEventListener("input", function() {
+            this.value = this.value.replace(/[^a-zA-Z\sàèìòùáéíóúñÀÈÌÒÙÁÉÍÓÚÑ]/g, '');
+        });
+    </script>
+    <script>
+        const correo = document.getElementById("correo");
+
+        correo.addEventListener("input", function() {
+            this.value = this.value.replace(/[^a-zA-Z0-9/\.@_]/g, '');
+        });
     </script>
 </body>
 </html>
