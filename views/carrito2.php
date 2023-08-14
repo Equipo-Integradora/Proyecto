@@ -179,6 +179,16 @@ if(empty($_SESSION['carrito']))
                     <div class="col-12"></div>
                     <div class="col-12"><b>$MXN<?php echo $arregloCarrito[$i]['Precio'] ?></b></div>
                     <div class="col-8 cant<?php echo $arregloCarrito[$i]['Id']; ?>">Total por cantidad $<?php echo $arregloCarrito[$i]['Precio']*$arregloCarrito[$i]['Cantidad'] ?></div>
+                    <?php
+                    if($hidden=="hidden"){
+
+                        ?>
+                        <div class="col-lg-4">
+                            <p style="color: red;"><b>Sin existencias</b></p>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <div class="col-4 ">
                         <div class="input-group mb-3" style="max-width: 120px;">
                             <input style="width: 50px;"
