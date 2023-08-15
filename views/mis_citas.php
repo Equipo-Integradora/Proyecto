@@ -153,7 +153,8 @@ if ($_POST) {
                     {?>
                     <form  action="../scripts/cancelar_cita.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $reg->id_registro_cita?>">
-                   <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   <button style="background-color: transparent;" type="submit" data-bs-dismiss="modal" aria-label="Close">
+                    <i style="color: white;" class="bi bi-x-lg"></i></button>
                     </form>
                     <?php
                     }

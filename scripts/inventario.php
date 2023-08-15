@@ -61,15 +61,15 @@ $conexion->conectarDB();
                 <form action="../scripts/ingresar_producto.php" method="post">
                     <div class="input-field">
                         <label for="producto">Nombre del Producto</label>
-                        <input type="text" class="input" name="producto" required autocomplete="off">
+                        <input type="text" class="input" name="producto" maxLength="100" required autocomplete="off">
                     </div>
                     <div class="input-field">
                         <label for="descripcion">Descripción del Producto</label>
-                        <textarea name="descripcion" class="sexarea" id="miTextarea" cols="30" rows="5" required></textarea>
+                        <textarea name="descripcion" class="sexarea" id="miTextarea" maxLength="1000" cols="30" rows="5" required></textarea>
                     </div>
                     <div class="input-field">
                         <label for="precio">Precio del Producto</label>
-                        <input type="text" class="input" name="precio" required>
+                        <input type="number" class="input" name="precio" required>
                     </div>
                     <div class="input-field">
                         <label for="categoria" class="form-label">Categoria</label>
@@ -93,7 +93,7 @@ $conexion->conectarDB();
                     </div>
 
                     <div class="input-field" style="margin-top: 1rem;">
-                        <input style="margin-bottom: .5rem;" type="submit" class="submit" value="Ingresar Producto">
+                        <input style="margin-bottom: .5rem;" type="submit" class="submit" value="Agregar Producto">
                     </div>
                 </form>
             </div>
