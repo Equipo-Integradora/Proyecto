@@ -12,9 +12,29 @@
 </head>
 <body style="background-color:#f5f5f5">
 <?php
+
     session_start();
     include "../templates/misordenes_sidebar.php";
     
+    $fechita=date("y-m-d");
+    $consulta = "SELECT * 
+    FROM orden_venta
+    where estado_orden_venta='Pendiente'";
+    $no=$conexion->seleccionar($consulta);
+    foreach($no as $sis){
+        $orden=$sis->id_venta;
+        $fechabd=$sis->fecha_creacion_orden_venta;
+        $diferenciaDias = round((strtotime($fechita) - strtotime($fechabd)) / (60 * 60 * 24));
+    if($diferenciaDias>=3){
+    $caducar="update orden_venta
+    set
+    estado_orden_venta='Caducado'
+    where id_venta='$orden'";
+    $resultado=$conexion->ejecuta($caducar);
+    }
+    
+    }
+
     if(isset($_SESSION["usuario"])) {
         ?>
         <div class="container" style=" width: 100%;">
