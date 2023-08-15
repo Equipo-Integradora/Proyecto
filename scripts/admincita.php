@@ -80,7 +80,14 @@ if ($_POST) {
     }
     $citas .= " GROUP BY id_registro_cita";
     $tablac = $conexion->seleccionar($citas);
+    if (empty($tablac)) 
+                            {
+                               echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                            }
+                            else
+                            {
     ?>
+    
                     <div class="table-responsive container-fluid">
                     <table class="table shadow-sm table-hover">
                         <thead>
@@ -98,12 +105,6 @@ if ($_POST) {
                         </thead>
                         <tbody class="table-border-bottom-0">
                             <?php
-                            if (empty($tablac)) 
-                            {
-                               echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                            }
-                            else
-                            {
                                 foreach($tablac as $reg)
                             {
                                 echo "<tr>";
@@ -415,5 +416,34 @@ $('#btnGuardarCambios').on('click', function (event) {
 
 <?php
 
+}else
+{
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+<script>
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sitio solo para personal autorizado',
+      showConfirmButton: false,
+      timer: 5000
+    });
+    setTimeout(function() {
+    window.location.href = "../index.php";
+}, 2000);
+    </script>
+</body>
+</html>
+
+<?php
 }
+
 ?>
