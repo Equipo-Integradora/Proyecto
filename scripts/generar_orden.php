@@ -1,4 +1,14 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <title>Producto agotado</title>
+</head>
+<body>
+  <div class="container">
+  <?php
 session_start();
 include '../class/database.php';
 $db = new database();
@@ -33,10 +43,18 @@ break;
 }
 }
 
-if ($cero==1){
-
-  header("refresh:0; ../views/carrito2.php");
-
+if ($cero==1)
+{
+  echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'error',";
+                echo "  title: 'Tienes un artículo sin existencias.',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 3000";
+                echo "});";
+                echo "</script>";
+  header("refresh:3; ../views/carrito2.php");
 }else{
 
 //var_dump($existenciasArray);
@@ -60,7 +78,18 @@ for($i=0;$i<count($arreglo);$i++){
 
 
 }
-header("refresh:0; ../views/mis_ordenes.php");
-        
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>";
+                echo "Swal.fire({";
+                echo "  icon: 'success',";
+                echo "  title: 'Compra realizada con exito.',";
+                echo "  showConfirmButton: false,";
+                echo "  timer: 3000";
+                echo "});";
+                echo "</script>";
+header("refresh:3; ../views/mis_ordenes.php");     
 }
 ?>
+  </div>
+</body>
+</html>

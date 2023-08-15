@@ -186,7 +186,7 @@ if(empty($_SESSION['carrito']))
                             type=<?php echo $hidden ?> 
                             min="1" 
                             max="<?php echo $arregloCarrito[$i]['Maximo']?>"
-                            class="form-control text-center txtCantidad"
+                            class="form-control text-center txtCantidad nose"
                             data-precio="<?php echo $arregloCarrito[$i]['Precio']; ?>"
                             data-id="<?php echo $arregloCarrito[$i]['Id']; ?>"                        
                             value="<?php echo $arregloCarrito[$i]['Cantidad']; ?>"

@@ -163,7 +163,7 @@ if(!isset($totalcantidad)){
                              if(!isset($_SESSION["usuario"]))
                              {
                           ?>
-                          <li><a class="dropdown-item fs-6" href="views/login.php">Iniciar sesion</a></li>
+                          <li><a class="dropdown-item fs-6" href="views/login.php">Iniciar sesión</a></li>
                           <li><a class="dropdown-item fs-6 " href="views/registrarse.php">Registrarse</a></li>
                           <?php
                             }
