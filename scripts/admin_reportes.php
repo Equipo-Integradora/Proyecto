@@ -84,6 +84,9 @@ if (isset($_SESSION["admin"])) {
                                         }
 
                                         $tablacambios = $conexion->seleccionar($cambios2);
+                                        if (empty($tablacambios)) {
+                                            echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                        } else {
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -97,9 +100,6 @@ if (isset($_SESSION["admin"])) {
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
-                                                    if (empty($tablacambios)) {
-                                                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                                                    } else {
                                                         foreach ($tablacambios as $reg) {
                                                             echo "<tr>";
                                                             echo "<td> $reg->producto_modificado</td>";
@@ -140,6 +140,10 @@ if (isset($_SESSION["admin"])) {
                                         }
 
                                         $tablacambiosS = $conexion->seleccionar($cambios1);
+                                        
+                                        if (empty($tablacambiosS)) {
+                                            echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                        } else {
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -153,9 +157,6 @@ if (isset($_SESSION["admin"])) {
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
-                                                    if (empty($tablacambiosS)) {
-                                                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                                                    } else {
                                                         foreach ($tablacambiosS as $reg) {
                                                             echo "<tr>";
                                                             echo "<td> $reg->servicio_modificado</td>";
@@ -196,6 +197,12 @@ if (isset($_SESSION["admin"])) {
                                         }
 
                                         $tablaexitencias = $conexion->seleccionar($cambios3);
+                                        if (empty($tablac)) 
+                                        {
+                                           echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                        }
+                                        else
+                                        {
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -209,9 +216,6 @@ if (isset($_SESSION["admin"])) {
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
-                                                    if (empty($tablaexitencias)) {
-                                                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                                                    } else {
                                                         foreach ($tablaexitencias as $reg) {
                                                             echo "<tr>";
                                                             echo "<td> $reg->producto</td>";
