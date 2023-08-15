@@ -124,7 +124,7 @@ if ($_POST) {
             $precios = explode(', ', $reg->precio_cita);
             ?>
             <div class="col-lg-3 col-sm-6 grande chico">
-                <div class="card" style="height: 230px;">
+                <div class="card mb-4" style="height: 230px;">
                 
                 <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; width: 100%;" class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}?>">
                 <div class="modal-header">
