@@ -21,7 +21,7 @@ if(isset($_SESSION['carrito'])){
             }
         }
         if($encontro==true){
-            $arreglo[$numero]['Cantidad']= $arreglo[$numero]['Cantidad']+1;
+            $arreglo[$numero]['Cantidad']= $arreglo[$numero]['Cantidad']+$_POST['cantidad'];
             $_SESSION['carrito']=$arreglo;
             
         }else{
