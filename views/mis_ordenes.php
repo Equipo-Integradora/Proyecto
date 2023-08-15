@@ -129,7 +129,7 @@
             </div>
             <?php 
             $total=$total+$precios[$i]*$cantidad[$i];
-            if($color!='Sin color' and $color!= 'Multicolor'){
+            if($color[$i]!='Sin color' and $color[$i]!= 'Multicolor'){
 
             
             ?>
