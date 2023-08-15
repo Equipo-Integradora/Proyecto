@@ -1,4 +1,7 @@
 <?php
+session_start();
+$citas = false;
+$ordenes = false;
 $perfil = false;
 include "../templates/header.php";
 include "../class/database.php";
@@ -59,46 +62,45 @@ $c_p = $conexion->cate_pro($consulta3);
 
 <!--Inicio de los tipos de categoria-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-<div class="container-fluid">
-<div class="right-align">
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-<i class="bi bi-funnel-fill"></i>
-</button>
-</div>
-<?php
-            foreach ($cat as $index => $ca) { ?>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php echo $ca->nombre_categoria ?>
-                    </a>
-                    <?php
-                    $consulta2 = "SELECT tipo_categorias.nombre_tipo_categoria
-                    FROM tipo_categorias INNER JOIN categorias ON categorias.id_categoria = tipo_categorias.categoria_tipo_catergoria_FK
-                    WHERE categorias.id_categoria = '$ca->id_categoria';";
-                    $cat_ti = $conexion->cat_tip($consulta2);
-                    ?>
-                    <form action="../scripts/verproductos_cat.php" method="post">
-                    <ul class="dropdown-menu">
-                    <?php foreach ($cat_ti as $c) { ?>
+  <div class="container-fluid" style="display: flex; flex-wrap: wrap;  ">
+    <div class="right-align">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="bi bi-funnel-fill"></i>
+    </button>
+    </div>
+    <?php
+                foreach ($cat as $index => $ca) { ?>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo $ca->nombre_categoria ?>
+                        </a>
+                        <?php
+                        $consulta2 = "SELECT tipo_categorias.nombre_tipo_categoria
+                        FROM tipo_categorias INNER JOIN categorias ON categorias.id_categoria = tipo_categorias.categoria_tipo_catergoria_FK
+                        WHERE categorias.id_categoria = '$ca->id_categoria';";
+                        $cat_ti = $conexion->cat_tip($consulta2);
+                        ?>
+                        <form action="../scripts/verproductos_cat.php" method="post">
+                        <ul class="dropdown-menu">
+                        <?php foreach ($cat_ti as $c) { ?>
+                        
+                              <li>
+                              <?php echo "<a class='tcategoria dropdown-item'href='../scripts/verproductos_cat.php'>".$c->nombre_tipo_categoria."</a>"?>
+                              </li>  
+                   <?php } ?> 
+                   
+                   </ul>
+                        </form>
                     
-                          <li>
-                          <?php echo "<a class='tcategoria dropdown-item'href='../scripts/verproductos_cat.php'>".$c->nombre_tipo_categoria."</a>"?>
-                          </li>  
-               <?php } ?> 
-               
-               </ul>
-                    </form>
-                
-                  </li>
-                </ul>
-            </div>
-                <?php
-            }
-            ?>
-
-</div>
+                      </li>
+                    </ul>
+                </div>
+                    <?php
+                }
+                ?>
+  </div>
 </nav>
 <!--Fin de los tipos de categoria-->
 <section class="section-padding">

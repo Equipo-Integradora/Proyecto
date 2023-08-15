@@ -59,6 +59,7 @@
                     
                     <?php
                     foreach($tablac as $reg) {
+                        $total=0;
                         $imagenes = explode('| ', $reg->imagen_detalle_producto);
                         $nombre= explode('| ', $reg->productos);
                         $color= explode(', ', $reg->color);
@@ -116,6 +117,7 @@
       <div class="modal-body">
       <?php
           for($i=0; $i<count($imagenes); $i++){
+            
        ?>
        <div class="row" style="margin-bottom: 15px; height:90px">
         <div class="col-3" style="margin-top:5px;" >
@@ -126,7 +128,8 @@
                 <p class="mb-0" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis; font-size: 15px;"><?php echo $nombre[$i] ?></p>
             </div>
             <?php 
-            if($color!='Sin color' and $color!= 'Multicolor'){
+            $total=$total+$precios[$i]*$cantidad[$i];
+            if($color[$i]!='Sin color' and $color[$i]!= 'Multicolor'){
 
             
             ?>
@@ -148,6 +151,9 @@
         ?>
       </div>
       <div class="modal-footer">
+      <div>
+            <p>Total $ <?php echo $total?></p>
+        </div>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
       </div>
     </div>
