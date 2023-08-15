@@ -26,10 +26,10 @@
         <?php
         foreach($pro as $re)
         {
-           echo "<p>Usuario: $re->nombre_usuario</p>";
-           echo "<p>Correo: $re->email_usuario</p>";
-           echo "<p>Telefono: $re->telefono_usuario</p>";
-           echo "<p>Sexo: $re->sexo_usuario</p>";
+           echo "<h3>Usuario</h3><p> $re->nombre_usuario</p>";
+           echo "<h3>Correo</h3><p> $re->email_usuario</p>";
+           echo "<h3>Telefono</h3><p> $re->telefono_usuario</p>";
+           echo "<h3>Sexo </h3><p>$re->sexo_usuario</p>";
         }
         ?>
     </div>
@@ -43,7 +43,6 @@
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
   crossorigin="anonymous"></script>
-    <script src="../js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>

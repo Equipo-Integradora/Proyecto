@@ -56,25 +56,10 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
                             
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                <?php
-                                if(isset($_SESSION["usuario"]))
-                                {
-                                    echo "<a class='dropdown-item' href='../views/perfil.php'><i class='fas fa-user me-2'></i>Mi perfil</a>";
-                                }
-                                ?>
-                                </li>
-                                <li>
-                                <?php 
-                                if(isset($_SESSION["usuario"]))
-                                {    
-                                    echo "<a class='dropdown-item' href='../scripts/cerrar_sesion.php'><i class='fas fa-user-xmark me-2'></i>Cerrar sesion</a>";
-                                }
-                                ?>
-                                </li>
-                            </ul>
+                            
                         </li>
                     </ul>
                 </div>
+                
             </nav>
+        
