@@ -1,3 +1,10 @@
+
+<?php  
+session_start();
+if(!isset($_SESSION["usuario"]))
+{
+  header("Location: ../views/login.php");
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +36,24 @@
            echo "<h3 class='fw-bold'>Usuario <i class='bi bi-person'></i></h3><p> $re->nombre_usuario</p>";
            echo "<h3 class='fw-bold'>Correo <i class='bi bi-envelope-heart'></i></h3><p> $re->email_usuario</p>";
            echo "<h3 class='fw-bold'>Teléfono <i class='bi bi-phone'></i></h3><p> $re->telefono_usuario</p>";
-           echo "<h3 class='fw-bold'>Sexo <i class='bi bi-rainbow'></i></h3><p>$re->sexo_usuario</p>";
+           echo "<h3 class='fw-bold'>Sexo";
+           if($reg->sexo_usuario == "Femenino")
+           {
+               ?>
+               <i class="bi bi-gender-female"></i>
+               <?php
+           }if($reg->sexo_usuario == "Masculino")
+           {
+               ?>
+               <i class="bi bi-gender-male"></i>
+               <?php
+           }if($reg->sexo_usuario == "Otro")
+           {
+               ?>
+              <i class='bi bi-rainbow'></i>
+               <?php
+           }
+           echo "</h3><p>$re->sexo_usuario</p>";
         }
         ?>
     </div>
