@@ -10,6 +10,25 @@ if(isset($_SESSION["usuario"]))
     include "../class/database.php";
     $conexion = new database();
     $conexion->conectarDB();
+    
+
+    $fechita=date("y-m-d");
+    $consulta = "SELECT * 
+    FROM registros_cita
+    where estado_registro_cita='Aceptada'";
+    $no=$conexion->seleccionar($consulta);
+    foreach($no as $sis){
+        $orden=$sis->id_registro_cita;
+        $fechabd=$sis->fecha_creacion_registro_cita;
+        $diferenciaDias = floor((strtotime($fechita) - strtotime($fechabd)) / (60 * 60 * 24));
+    if($diferenciaDias>=1){
+        $caducar="update registros_cita
+        set
+        estado_registro_cita='Cancelada'
+        where id_registro_cita='$orden'";
+        $resultado=$conexion->ejecuta($caducar);
+    }
+    }
 ?>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/mis_citas.css">
@@ -124,7 +143,7 @@ if ($_POST) {
             $precios = explode(', ', $reg->precio_cita);
             ?>
             <div class="col-lg-3 col-sm-6 grande chico">
-                <div class="card" style="height: 230px;">
+                <div class="card mb-4" style="height: 230px;">
                 
                 <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; width: 100%;" class="<?php if ($reg->estado_registro_cita == "Aceptada") { echo 'badge text-bg-success';}else if ($reg->estado_registro_cita == "Cancelada"){ echo 'badge text-bg-danger';}else if ($reg->estado_registro_cita == "Pendiente"){echo 'badge text-bg-secondary';}?>">
                 <div class="modal-header">
@@ -134,7 +153,8 @@ if ($_POST) {
                     {?>
                     <form  action="../scripts/cancelar_cita.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $reg->id_registro_cita?>">
-                   <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   <button style="background-color: transparent;" type="submit" data-bs-dismiss="modal" aria-label="Close">
+                    <i style="color: white;" class="bi bi-x-lg"></i></button>
                     </form>
                     <?php
                     }

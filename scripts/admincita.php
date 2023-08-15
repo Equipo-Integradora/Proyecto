@@ -7,6 +7,26 @@ if(isset($_SESSION["admin"]))
 include "../templates/sidebar.php";
 $conexion = new database();
 $conexion->conectarDB();
+
+
+$fechita=date("y-m-d");
+    $consulta = "SELECT * 
+    FROM registros_cita
+    where estado_registro_cita='Aceptada'";
+    $no=$conexion->seleccionar($consulta);
+    foreach($no as $sis){
+        $orden=$sis->id_registro_cita;
+        $fechabd=$sis->fecha_creacion_registro_cita;
+        $diferenciaDias = floor((strtotime($fechita) - strtotime($fechabd)) / (60 * 60 * 24));
+    if($diferenciaDias>=1){
+        $caducar="update registros_cita
+        set
+        estado_registro_cita='Cancelada'
+        where id_registro_cita='$orden'";
+        $resultado=$conexion->ejecuta($caducar);
+    }
+    }
+
 ?>
 
     <div class="text-center">
@@ -80,7 +100,14 @@ if ($_POST) {
     }
     $citas .= " GROUP BY id_registro_cita";
     $tablac = $conexion->seleccionar($citas);
+    if (empty($tablac)) 
+                            {
+                               echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                            }
+                            else
+                            {
     ?>
+    
                     <div class="table-responsive container-fluid">
                     <table class="table shadow-sm table-hover">
                         <thead>
@@ -98,12 +125,6 @@ if ($_POST) {
                         </thead>
                         <tbody class="table-border-bottom-0">
                             <?php
-                            if (empty($tablac)) 
-                            {
-                               echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                            }
-                            else
-                            {
                                 foreach($tablac as $reg)
                             {
                                 echo "<tr>";
@@ -415,5 +436,34 @@ $('#btnGuardarCambios').on('click', function (event) {
 
 <?php
 
+}else
+{
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+<script>
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sitio solo para personal autorizado',
+      showConfirmButton: false,
+      timer: 5000
+    });
+    setTimeout(function() {
+    window.location.href = "../index.php";
+}, 2000);
+    </script>
+</body>
+</html>
+
+<?php
 }
+
 ?>

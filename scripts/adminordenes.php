@@ -7,6 +7,26 @@ if(isset($_SESSION["admin"]))
 include "../templates/sidebar.php";
 $conexion = new database();
 $conexion->conectarDB();
+
+$fechita=date("y-m-d");
+$consulta = "SELECT * 
+FROM orden_venta
+where estado_orden_venta='Pendiente'";
+$no=$conexion->seleccionar($consulta);
+foreach($no as $sis){
+    $orden=$sis->id_venta;
+    $fechabd=$sis->fecha_creacion_orden_venta;
+    $diferenciaDias = round((strtotime($fechita) - strtotime($fechabd)) / (60 * 60 * 24));
+if($diferenciaDias>=3){
+$caducar="update orden_venta
+set
+estado_orden_venta='Caducado'
+where id_venta='$orden'";
+$resultado=$conexion->ejecuta($caducar);
+}
+
+}
+
 ?>
 
     <div class="text-center">
@@ -81,6 +101,12 @@ if ($_POST) {
         }
         $ordenes .= " GROUP BY id_venta";
         $tablac = $conexion->seleccionar($ordenes);
+        if (empty($tablac)) 
+                            {
+                               echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                            }
+                            else
+                            {
         ?>
         <div class="table-responsive container-fluid">
             <table class="table shadow-sm table-hover">
@@ -99,9 +125,6 @@ if ($_POST) {
                 </thead>
                 <tbody class="table-border-bottom-0">
                     <?php
-                    if (empty($tablac)) {
-                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                    } else {
                         foreach ($tablac as $reg) {
                             echo "<tr>";
                             echo "<td> $reg->id_venta</td>";
@@ -344,5 +367,34 @@ if ($_POST) {
 </body>
 
 <?php
+}else
+{
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+<script>
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sitio solo para personal autorizado',
+      showConfirmButton: false,
+      timer: 5000
+    });
+    setTimeout(function() {
+    window.location.href = "../index.php";
+}, 2000);
+    </script>
+</body>
+</html>
+
+<?php
 }
+
 ?>
