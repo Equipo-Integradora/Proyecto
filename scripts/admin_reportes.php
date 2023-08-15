@@ -62,7 +62,11 @@ if (isset($_SESSION["admin"])) {
                         </li>
                     </ul>
 
-                    <!-- TABLAS -->
+                    <!-- TABLAS --><?php
+                    $productos = true;
+                    $servicios = true;
+                    $existencias = true;;
+                    ?>
                     <div class="tab-content" id="pills-tabContent">
 
                         <!-- TABLA 1 -->
@@ -85,8 +89,15 @@ if (isset($_SESSION["admin"])) {
 
                                         $tablacambios = $conexion->seleccionar($cambios2);
                                         if (empty($tablacambios)) {
+                                            $productos = false;
+                                            if($servicios && $existencias)
+                                            {
                                             echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                            }
+                                            $existencias = true;
+                                            $servicios = true;
                                         } else {
+                                            $productos = true;
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -142,7 +153,13 @@ if (isset($_SESSION["admin"])) {
                                         $tablacambiosS = $conexion->seleccionar($cambios1);
                                         
                                         if (empty($tablacambiosS)) {
+                                            $servicios = false;
+                                            if($productos && $existencias)
+                                            {
                                             echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                            }
+                                            $productos = true;
+                                            $existencias = true;
                                         } else {
                                         ?>
                                         <div class="table-responsive container-fluid">
@@ -199,7 +216,13 @@ if (isset($_SESSION["admin"])) {
                                         $tablaexitencias = $conexion->seleccionar($cambios3);
                                         if (empty($tablac)) 
                                         {
-                                           echo "<tr><td colspan='12'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                            $existencias = false;
+                                            if($productos && $servicios)
+                                            {
+                                            echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                            }
+                                            $productos = true;
+                                            $servicios = true;
                                         }
                                         else
                                         {
