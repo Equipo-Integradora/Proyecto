@@ -250,17 +250,6 @@ if(!isset($totalcantidad)){
       </section>
       <!-- FIN DE BANNER -->
 
-      <!--Ubicación-->
-      <section class="portafolio section-padding">
-        <h1 class="heading m-5"><span> Encuentranos </span> en... <span><i class="bi bi-geo-alt-fill"></i></span></h1>
-        <div class="container">
-            <div class="row">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3598.0597182579218!2d-103.37461222460487!3d25.60293177745201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDM2JzEwLjYiTiAxMDPCsDIyJzE5LjMiVw!5e0!3m2!1ses-419!2smx!4v1692073736768!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-      </section>
-      <!--Fin de ubicación-->
-
       <!-- PORTAFOLIO -->
       <section class="portafolio section-padding">
         <h1 class="heading m-5"><span> Mi </span> portafolio </h1>
@@ -320,6 +309,17 @@ if(!isset($totalcantidad)){
         </div>
       </section>
       <!-- FIN DE PORTAFOLIO -->
+
+      <!--Ubicación-->
+      <section class="portafolio section-padding">
+        <h1 class="heading m-5"><span> Encuentranos </span> en... <span><i class="bi bi-geo-alt-fill"></i></span></h1>
+        <div class="container">
+            <div class="row">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3598.0597182579218!2d-103.37461222460487!3d25.60293177745201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDM2JzEwLjYiTiAxMDPCsDIyJzE5LjMiVw!5e0!3m2!1ses-419!2smx!4v1692073736768!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+      </section>
+      <!--Fin de ubicación-->
 
       <!-- PRODUCTOS -->
     <section class="products section-padding">
@@ -417,7 +417,12 @@ if(!isset($totalcantidad)){
                 </div>
             </div>
         </div>
-        <div class="credit text-center">Creado por <span>Carlos, José, Erick, Lizeth, Fernando</span> | all rigth reserve.</div>
+        <div class="credit text-center">Creado por <span>
+          <a style="color:#e84393;text-decoration: none;"" href="https://instagram.com/soycharlyca?igshid=MzRlODBiNWFlZA==" target="_blank">Carlos</a>, 
+          <a style="color:#e84393;text-decoration: none;"" href="https://www.instagram.com/jose_durann_/?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D" target="_blank">José</a>, 
+          <a style="color:#e84393;text-decoration: none;"" href="https://instagram.com/elrick_mayhem?igshid=MzRlODBiNWFlZA==" target="_blank">Erick</a>, 
+          <a style="color:#e84393;text-decoration: none;"" href="https://instagram.com/_icelii_?igshid=MzRlODBiNWFlZA==" target="_blank">Lizeth</a>, 
+          <a style="color:#e84393;text-decoration: none;"" href="https://instagram.com/fernando_yael_93?igshid=MzRlODBiNWFlZA==" target="_blank">Fernando</a></span> | all rigth reserve.</div>
         <div style="font-size: 9px;" class="m-1 text-center"><i class="bi bi-c-circle"></i>2023-2023, SweetBeauty.com, Inc. o sus afiliados.</div>
     </footer>
       <!-- FIN DE FOOTER -->
