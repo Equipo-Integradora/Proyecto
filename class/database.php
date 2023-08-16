@@ -61,7 +61,7 @@
         try
         {
             $pase = false;
-            $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario' OR telefono_usuario  = '$usuario';";
+            $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario';";
             $consulta = $this->PDOLocal->query($query);
 
             while($renglon = $consulta->fetch(PDO::FETCH_ASSOC))
