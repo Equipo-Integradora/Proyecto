@@ -18,7 +18,6 @@ if(!isset($_SESSION["usuario"]))
 </head>
 <body style="background-color:#f5f5f5">
 <?php
-    session_start();
     include "../templates/perfil_sidebar.php";
     
 
