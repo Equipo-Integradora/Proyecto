@@ -7,10 +7,30 @@ if(isset($_SESSION["admin"]))
 include "../templates/sidebar.php";
 $conexion = new database();
 $conexion->conectarDB();
+
+
+$fechita=date("y-m-d");
+    $consulta = "SELECT * 
+    FROM registros_cita
+    where estado_registro_cita='Aceptada'";
+    $no=$conexion->seleccionar($consulta);
+    foreach($no as $sis){
+        $orden=$sis->id_registro_cita;
+        $fechabd=$sis->fecha_creacion_registro_cita;
+        $diferenciaDias = floor((strtotime($fechita) - strtotime($fechabd)) / (60 * 60 * 24));
+    if($diferenciaDias>=1){
+        $caducar="update registros_cita
+        set
+        estado_registro_cita='Cancelada'
+        where id_registro_cita='$orden'";
+        $resultado=$conexion->ejecuta($caducar);
+    }
+    }
+
 ?>
 
     <div class="text-center">
-        <h3 class="m-0">Citas</h3>
+        <h3 class="m-0">Citas </h3>
     </div>
     
     <div class="container-fluid px-4 p-3">
