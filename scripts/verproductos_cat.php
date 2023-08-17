@@ -109,6 +109,7 @@ $c_p = $conexion->cate_pro($consulta3);
 <div style="width: 100%;">
 <div class="row">
     <?php
+        shuffle($tabla);
     foreach ($tabla as $reg) { ?>
         <div class="col-lg-3 col-sm-6 grande chico" style="margin-top: 5px; margin-top:2rem;">
             <div class="card" style="height: 445px;">

@@ -15,6 +15,22 @@ $db->conectarDB();
 
 extract($_POST);
 
+if($db->duplas($producto,$color))
+{
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+    echo "<script>";
+    echo "Swal.fire({";
+    echo "  icon: 'error',";
+    echo "  title: 'No es posible agregar otro producto igual',";
+    echo "  showConfirmButton: false,";
+    echo "  timer: 3000";
+    echo "});";
+    echo "</script>";
+    header("refresh:2; ../scripts/inventario.php");
+    exit;
+
+}else{
+
 if (isset($_FILES['ima']) && $_FILES['ima']['error'] === UPLOAD_ERR_OK) {
     $carpetaDestino = '../img/productos/';
 
@@ -34,32 +50,13 @@ if (isset($_FILES['ima']) && $_FILES['ima']['error'] === UPLOAD_ERR_OK) {
         $db->ejecuta($query);
         $db->desconectarDB();
 
-        $response = array(
-            'success' => true,
-            'message' => 'El producto se ha registrado exitosamente.'
-        );
-
-        echo json_encode($response);
-    } else {
-        $response = array(
-            'success' => false,
-            'message' => 'Error al subir la imagen.'
-        );
-
-        echo json_encode($response);
     }
-} else {
-    $response = array(
-        'success' => false,
-        'message' => 'Debes seleccionar una imagen válida.'
-    );
+}else{
 
-    echo json_encode($response);
+}
 }
 ?>
-        
-        ?>
-    </div>
+</div>
     
 </body>
 </html>
