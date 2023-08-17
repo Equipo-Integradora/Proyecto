@@ -146,7 +146,7 @@ $todoserv=$conexion->seleccionar($Servicios);
       <div class="modal-body">
             <div class="input-field">
                 <label for="nameser">Nombre servicio</label> <br>
-                <input type="text" class="input" name="nameserv" id="seer" placeholder="Nombre de servicio">
+                <input type="text" class="input" name="nameserv" id="nameserv" placeholder="Nombre de servicio">
             </div>
             <br>
             <div class="input-field">
@@ -162,12 +162,12 @@ $todoserv=$conexion->seleccionar($Servicios);
             <br>
             <div class="input-field">
                 <label for="price">precio</label> <br>
-                <input type="number" class="input" name="price" id="seer" placeholder="Coloque precio Max en caso de variaciones">
+                <input type="number" class="input" name="price" id="price" placeholder="Coloque precio Max en caso de variaciones">
             </div>
             <br>
             <div class="input-field">
                 <label for="time">Tiempo estimado de servicio</label> <br>
-                <input type="text" class="input" name="time" id="time" placeholder="00:00:00" oninput="formatTime()" maxlength="8">
+                <input type="text" class="input" name="time" id="time" placeholder="00:00:00" oninput="formatTi()" maxlength="8">
             </div>
             <div class="input-field">
                 <label for="desc">Descripcion</label> <br>
@@ -207,7 +207,7 @@ $todoserv=$conexion->seleccionar($Servicios);
 
 
 <script>
-        function formatTime() {
+        function formatTi() {
             const input = document.getElementById("time");
             let value = input.value.replace(/\D/g, ""); // Elimina caracteres no numéricos
             
