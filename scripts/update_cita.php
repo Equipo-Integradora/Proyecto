@@ -1,6 +1,6 @@
 <?php
 require_once "../class/database.php";
-
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function isValidPrice($input) {
         return is_numeric($input) && floatval($input) >= 0;
