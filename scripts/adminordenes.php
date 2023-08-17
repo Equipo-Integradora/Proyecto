@@ -7,26 +7,6 @@ if(isset($_SESSION["admin"]))
 include "../templates/sidebar.php";
 $conexion = new database();
 $conexion->conectarDB();
-
-$fechita=date("y-m-d");
-$consulta = "SELECT * 
-FROM orden_venta
-where estado_orden_venta='Pendiente'";
-$no=$conexion->seleccionar($consulta);
-foreach($no as $sis){
-    $orden=$sis->id_venta;
-    $fechabd=$sis->fecha_creacion_orden_venta;
-    $diferenciaDias = round((strtotime($fechita) - strtotime($fechabd)) / (60 * 60 * 24));
-if($diferenciaDias>=3){
-$caducar="update orden_venta
-set
-estado_orden_venta='Caducado'
-where id_venta='$orden'";
-$resultado=$conexion->ejecuta($caducar);
-}
-
-}
-
 ?>
 
     <div class="text-center">

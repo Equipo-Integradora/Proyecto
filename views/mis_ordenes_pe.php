@@ -57,7 +57,6 @@
                     </div>
                     <?php
                     foreach($tablac as $reg) {
-                        
                         $total=0;
                         $imagenes = explode('| ', $reg->imagen_detalle_producto);
                         $nombre= explode('| ', $reg->productos);
@@ -66,7 +65,7 @@
                         $cantidad=explode(', ', $reg->cantidades);
                         $ids=explode('| ',$reg->id_productos);
                     ?>
-                    <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:280px; padding:8px">
+                    <div class="col-lg-12 col-12" style="background-color: white; margin-top:30px; width:800px; height:200px">
                         <div class="row">
                             <!-- Order Details -->
                             <div class="col-3" style="margin-top: 15px;">
@@ -76,12 +75,14 @@
                                 <div style="font-size: 12px; text-align:right; margin-top: 10px;">
                                     <div class="col-12">
                                         <p style="margin: 0;">Pedido efectuado el <?php echo $reg->fecha_creacion_orden_venta ?></p>
-                                        <p style="margin: 0;">No. de pedido: #<?php echo $reg->id_venta ?> <a href="" onclick="copyTextToClipboard('<?php echo $reg->id_venta ?>')">Copiar</a></p>
+                                        <p style="margin: 0;">No. de pedido: #<?php echo $reg->id_venta ?>
+                                        <a href="" onclick="copyTextToClipboard('<?php echo $reg->id_venta ?>')">Copiar</a>
+                                    </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4" style=" text-align:right;margin-top: 15px;">
-                                <a data-bs-toggle="modal" data-bs-target="#deta<?php echo $reg->id_venta?>" href="" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
+                            <a data-bs-toggle="modal" data-bs-target="#deta<?php echo $reg->id_venta?>" href="#" style="text-decoration: none; color:black; "><p><b>Detalles del pedido > </b></p></a>
                             </div>
                         </div>
                         <hr style="margin: 0;">
@@ -104,18 +105,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <form  action="../scripts/cancelar_orden.php" method="post">
-                                <input type="hidden" name="id" value="<?php echo $reg->id_venta; ?>">
-                                <button class="btn boton">Cancelar orden</button>
-                                
-                            </form>
-                        </div>
-                        
                     </div>
-
-<div class="modal fade" id="deta<?php echo $reg->id_venta?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deta<?php echo $reg->id_venta?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -125,7 +116,6 @@
       <div class="modal-body">
       <?php
           for($i=0; $i<count($imagenes); $i++){
-            
        ?>
        <div class="row" style="margin-bottom: 15px; height:90px">
         <div class="col-3" style="margin-top:5px;" >
@@ -138,7 +128,6 @@
             <?php 
             $total=$total+$precios[$i]*$cantidad[$i];
             if($color[$i]!='Sin color' and $color[$i]!= 'Multicolor'){
-
             
             ?>
             <div class="col-12 mb-0">
@@ -169,10 +158,8 @@
 </div>
                     <?php
                     }
-                    }
+                }
                     ?>
-                    </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -206,6 +193,7 @@
   event.preventDefault(); // Evitar recarga de la página
 
 }
+
     </script>
     <script>
         

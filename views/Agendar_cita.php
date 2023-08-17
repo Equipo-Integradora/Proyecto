@@ -137,8 +137,8 @@ $fechas = $admin->obtenerFechas();
 
 $blockedDates = $fechas;
 $ver = "SELECT registros_cita.fecha_cita_registro_cita 
-FROM registros_cita
-WHERE registros_cita.estado_registro_cita <> 'Cancelada' AND registros_cita.cliente_registro_cita_FK = '{$_SESSION["id"]}'";
+    FROM registros_cita
+    WHERE registros_cita.estado_registro_cita <> ´Cancelada' AND registros_cita.cliente_registro_cita_FK = '{$_SESSION["id"]}'";
 $chi = $conexion->dias($ver);
 
 $blockedDatesJSONE = json_encode($chi);

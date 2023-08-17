@@ -54,7 +54,7 @@ if(!isset($_SESSION["usuario"]))
                     <header class="text-center m-3 fw-bold fs-3">Registrarse</header>
                     <div class="input-box">
                         <div class="form-group input-field mt-5">
-                            <input type="text" class="input" minlength="5" maxlength="70" id="nombre" name="nombre" required autocomplete="off">
+                            <input type="text" class="input" minlength="9" maxlength="70" id="nombre" name="nombre" required autocomplete="off">
                             <label for="nombre" id="nombreText">Nombre completo</label>
                         </div>
                         <div class="form-group input-field mt-3">
@@ -88,11 +88,11 @@ if(!isset($_SESSION["usuario"]))
                         </div>
 
                         <div class="form-group hidden input-field" id="pass-group">
-                            <input type="password" class="input" name="pass" id="pass" required autocomplete="off">
+                            <input type="password" class="input" minlength="7" name="pass" id="pass" required autocomplete="off">
                             <label for="pass">Contraseña</label>
                         </div>
                         <div class="form-group hidden input-field mt-3" id="passconf-group">
-                            <input type="password" class="input" name="passconf" id="passconf" required autocomplete="off">
+                            <input type="password" minlength="7" class="input" name="passconf" id="passconf" required autocomplete="off">
                             <label for="passconf">Confirmar contraseña</label>
                         </div>
                         <div class="input-field mt-4">
@@ -127,6 +127,15 @@ if(!isset($_SESSION["usuario"]))
             });
             return false;
         }
+        if (nombre.length <8) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Nombre muy corto.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
         if (correo === '') {
             Swal.fire({
                 icon: 'info',
@@ -155,7 +164,7 @@ if(!isset($_SESSION["usuario"]))
             return false;
         }
 
-        const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
+        const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud|live|utt\.edu)\.(com|es|mx|org|net)$/;
         const isValid = expresion.test(correo);
         if (!isValid) {
             Swal.fire({
@@ -167,7 +176,7 @@ if(!isset($_SESSION["usuario"]))
             return false;
         }
 
-        const expresionTelefono = /^871(?!(\d)\1{6})\d{7}$/;
+        const expresionTelefono = /(?!(\d)\1{6})\d{7}$/;
         const isValidTelefono = expresionTelefono.test(telefono);
         if (!isValidTelefono) {
             Swal.fire({
@@ -267,6 +276,7 @@ if(!isset($_SESSION["usuario"]))
             });
             return false;
         }
+        
         
         return true;
     }

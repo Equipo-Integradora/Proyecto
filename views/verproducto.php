@@ -21,7 +21,7 @@ session_start();
 <div class="container margindiv" style="margin-top: 7.5rem ; width: 100%;">
 <div class="row">
 
-<img class="col-xl-4 col-lg-4 col-md-4 col-sm-6  col-xs-1 verproductoimagen " src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
+<img class="col-xl-5 col-lg-5 col-md-5 col-sm-6  col-xs-1 verproductoimagen " src="../img/productos/<?php echo $pro->imagen_detalle_producto?>" alt="...">
 <div class="col-12 col-lg-8 .offset-sm-4 .offset-xs-11 mt-4 "><h1 class="fw-bold"><?php echo $pro->nombre_producto?></h1>
 <?php 
 if(!empty($pro->nombre_color) && ($pro->nombre_color!='Sin color')){

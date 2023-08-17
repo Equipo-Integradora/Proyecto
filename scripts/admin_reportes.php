@@ -62,11 +62,7 @@ if (isset($_SESSION["admin"])) {
                         </li>
                     </ul>
 
-                    <!-- TABLAS --><?php
-                    $productos = true;
-                    $servicios = true;
-                    $existencias = true;;
-                    ?>
+                    <!-- TABLAS -->
                     <div class="tab-content" id="pills-tabContent">
 
                         <!-- TABLA 1 -->
@@ -88,16 +84,6 @@ if (isset($_SESSION["admin"])) {
                                         }
 
                                         $tablacambios = $conexion->seleccionar($cambios2);
-                                        if (empty($tablacambios)) {
-                                            $productos = false;
-                                            if($servicios && $existencias)
-                                            {
-                                            echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                                            }
-                                            $existencias = true;
-                                            $servicios = true;
-                                        } else {
-                                            $productos = true;
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -111,6 +97,9 @@ if (isset($_SESSION["admin"])) {
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
+                                                    if (empty($tablacambios)) {
+                                                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                                    } else {
                                                         foreach ($tablacambios as $reg) {
                                                             echo "<tr>";
                                                             echo "<td> $reg->producto_modificado</td>";
@@ -151,16 +140,6 @@ if (isset($_SESSION["admin"])) {
                                         }
 
                                         $tablacambiosS = $conexion->seleccionar($cambios1);
-                                        
-                                        if (empty($tablacambiosS)) {
-                                            $servicios = false;
-                                            if($productos && $existencias)
-                                            {
-                                            echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                                            }
-                                            $productos = true;
-                                            $existencias = true;
-                                        } else {
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -174,6 +153,9 @@ if (isset($_SESSION["admin"])) {
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
+                                                    if (empty($tablacambiosS)) {
+                                                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                                    } else {
                                                         foreach ($tablacambiosS as $reg) {
                                                             echo "<tr>";
                                                             echo "<td> $reg->servicio_modificado</td>";
@@ -214,18 +196,6 @@ if (isset($_SESSION["admin"])) {
                                         }
 
                                         $tablaexitencias = $conexion->seleccionar($cambios3);
-                                        if (empty($tablac)) 
-                                        {
-                                            $existencias = false;
-                                            if($productos && $servicios)
-                                            {
-                                            echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
-                                            }
-                                            $productos = true;
-                                            $servicios = true;
-                                        }
-                                        else
-                                        {
                                         ?>
                                         <div class="table-responsive container-fluid">
                                             <table class="table shadow-sm table-hover">
@@ -239,6 +209,9 @@ if (isset($_SESSION["admin"])) {
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     <?php
+                                                    if (empty($tablaexitencias)) {
+                                                        echo "<tr><td colspan='9'><p class='fw-bold text-center'>No se encontraron resultados.</p></td></tr>";
+                                                    } else {
                                                         foreach ($tablaexitencias as $reg) {
                                                             echo "<tr>";
                                                             echo "<td> $reg->producto</td>";

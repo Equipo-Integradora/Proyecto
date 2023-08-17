@@ -7,7 +7,7 @@
                     <div class="single-box">
                         <h2>Acceso rápido</h2>
                     <ul>
-                        <li><a href="../index.php">Inicio</a></li>
+                        <li><a href="#">Inicio</a></li>
                         <li><a href="../views/Agendar_cita.php">Agendar cita</a></li>
                         <li><a href="../views/ver_producto_general.php">Productos</a></li>
                     </ul>
