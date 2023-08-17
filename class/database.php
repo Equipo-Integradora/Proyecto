@@ -349,6 +349,32 @@
             }   
 
     }
+    function duplas( $productoo, $colors) {
+        $consulta = "SELECT COUNT(*) FROM detalle_productos WHERE detalle_producto_detalle_producto_FK=$productoo
+        and color_detalle_producto_FK=$colors;";
+        $stmt = $this->PDOLocal->prepare($consulta);
+        $stmt->execute();
+        $cantidad = $stmt->fetchColumn();
+        
+        return ($cantidad > 0);
+    }
+    function productdobl( $productor) {
+        $consulta = "SELECT COUNT(*) FROM productos WHERE nombre_producto='$productor';";
+        $stmt = $this->PDOLocal->prepare($consulta);
+        $stmt->execute();
+        $cantidad = $stmt->fetchColumn();
+        
+        
+        return ($cantidad > 0);
+    }
+    function color( $color) {
+        $consulta = "SELECT COUNT(*) FROM colores WHERE nombre_color='$color';";
+        $stmt = $this->PDOLocal->prepare($consulta);
+        $stmt->execute();
+        $cantidad = $stmt->fetchColumn();
+        return ($cantidad > 0);
+        
+    }
 
 
 }
