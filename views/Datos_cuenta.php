@@ -88,7 +88,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn boton" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn boton" id="submitButton"  onclick="return validarCorreo();">Guardar cambios</button>
+        <button type="submit" class="btn boton" onclick="return validarCorreo();">Guardar cambios</button>
       </div>
       
       </form>
@@ -140,7 +140,7 @@
       <div class="modal-body">
 
       <label for="usuario">Telefono</label>
-      <input type="tel" class="input" name="tel" id="telefono" required>
+      <input type="tel" class="input" maxlength="10" name="tel" id="telefono" required>
 
       
       </div>
@@ -244,6 +244,14 @@ function validarTelefono() {
       Swal.fire({
         icon: 'error',
         title: 'Las contraseñas no coinciden',
+        text: 'Por favor, verifica y vuelve a intentarlo.'
+      });
+      return false;
+    }
+    if (passnueva.length <7  || confirmarContrasena.length < 7) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Contraseña minimo 7 caracteres',
         text: 'Por favor, verifica y vuelve a intentarlo.'
       });
       return false;

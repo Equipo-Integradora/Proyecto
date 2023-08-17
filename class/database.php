@@ -246,7 +246,7 @@
                 echo "  timer: 4000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2; ../views/perfil.php");
+                header("refresh:2; ../views/perfil2.php");
             }
             else
             {
@@ -259,7 +259,7 @@
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2; ../views/perfil.php");
+                header("refresh:2; ../views/perfil2.php");
             }
 
 
