@@ -164,7 +164,7 @@ if(!isset($_SESSION["usuario"]))
             return false;
         }
 
-        const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud)\.(com|es|mx|org)$/;
+        const expresion = /^[a-zA-Z0-9._-]+@(uttcampus\.edu|gmail|outlook|hotmail|icloud|live|utt\.edu)\.(com|es|mx|org|net)$/;
         const isValid = expresion.test(correo);
         if (!isValid) {
             Swal.fire({
@@ -176,7 +176,7 @@ if(!isset($_SESSION["usuario"]))
             return false;
         }
 
-        const expresionTelefono = /^871(?!(\d)\1{6})\d{7}$/;
+        const expresionTelefono = /(?!(\d)\1{6})\d{7}$/;
         const isValidTelefono = expresionTelefono.test(telefono);
         if (!isValidTelefono) {
             Swal.fire({
