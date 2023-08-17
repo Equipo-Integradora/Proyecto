@@ -1,14 +1,15 @@
 <?php
 session_start();
-include "../templates/sidebar.php";
+if(isset($_SESSION["admin"]))
+    { 
+
+    
+        include "../templates/sidebar.php";
 
 $conexion = new database();
 $conexion->conectarDB();
-if(!isset($_SESSION["admin"])){
 
-    header("../index.php");
-    exit;
- }
+
 ?>
 <style>
     .productito {
@@ -588,3 +589,35 @@ function guardarInformacion(informacion) {
 }
 </script>
 </body>
+<?php
+}
+else
+{
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+<script>
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sitio solo para personal autorizado',
+      showConfirmButton: false,
+      timer: 5000
+    });
+    setTimeout(function() {
+    window.location.href = "../index.php";
+}, 2000);
+    </script>
+</body>
+</html>
+
+<?php
+}
+?>

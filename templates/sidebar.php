@@ -42,7 +42,7 @@
                 
                 <a href="../scripts/admin_reportes.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-clipboard-heart-fill me-2"></i><span>Reportes</span></a>
 
-                <a href="../scripts/serviciosadmin.php" class="list-group-item list-group-item-action second-text fw-bold"><span>Servicios</span></a>
+                <a href="../scripts/serviciosadmin.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-ev-station-fill me-2"></i><span>Servicios</span></a>
 
             </div>
         </div>
