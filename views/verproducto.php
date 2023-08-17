@@ -66,6 +66,10 @@ if(!empty($pro->nombre_color) && ($pro->nombre_color!='Sin color')){
          <button type="submit" <?php echo $desactivar ?> class="boton1 btn m-auto <?php echo $color ?>"><?php echo $empty ?></button>
     </form>
 </div>
+<div style="margin-top: 5px;" class="offset-lg-4 col-lg-12 col-12">
+<a href="../views/ver_producto_general.php"><button type="button" class="boton1 btn m-auto">Seguir comprando</button></a>
+
+</div>
 <br>
 <p class="mt-4">
     <span class="fw-bold">Descripción:</span>
