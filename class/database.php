@@ -61,7 +61,7 @@
         try
         {
             $pase = false;
-            $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario' OR telefono_usuario  = '$usuario';";
+            $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario';";
             $consulta = $this->PDOLocal->query($query);
 
             while($renglon = $consulta->fetch(PDO::FETCH_ASSOC))
@@ -246,7 +246,7 @@
                 echo "  timer: 4000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2; ../views/perfil.php");
+                header("refresh:2; ../views/perfil2.php");
             }
             else
             {
@@ -259,7 +259,7 @@
                 echo "  timer: 2000";
                 echo "});";
                 echo "</script>";
-                header("refresh:2; ../views/perfil.php");
+                header("refresh:2; ../views/perfil2.php");
             }
 
 

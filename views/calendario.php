@@ -16,7 +16,7 @@ if(isset($_SESSION["admin"]))
     <tr>
         <th>
         <input id="selectedDate" type="date" name="dia" class="m-2">
-        <input type="submit" name="bloquear" class="submit btn btn-sm boton" value="Bloquar día"> 
+        <input type="submit" name="bloquear" class="submit btn btn-sm boton" value="Bloquear día"> 
         </th>
     </tr>
    </table>
@@ -33,7 +33,7 @@ if(isset($_SESSION["admin"]))
     <tr>
         <th>
         <input id="selectedDate" type="date" name="diant" class="m-2">
-        <input type="submit" name="desbloquear" class="submit btn btn-sm boton" value="Desbloquar día"> 
+        <input type="submit" name="desbloquear" class="submit btn btn-sm boton" value="Desbloquear día"> 
         </th>
     </tr>
    </table>
@@ -83,51 +83,68 @@ if(isset($_SESSION["admin"]))
         {
             if (!in_array($dia, $fechas)) {
                 $admin->agregarFecha("$dia");
-                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-                echo "<script>";
-                echo "Swal.fire({";
-                echo "  icon: 'success',";
-                echo "  title: 'Fecha bloqueada',";
-                echo "  showConfirmButton: false,";
-                echo "  timer: 3000";
-                echo "});";
-                echo "</script>";
-            } else {
-                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-                echo "<script>";
-                echo "Swal.fire({";
-                echo "  icon: 'success',";
-                echo "  title: 'La fecha ya está bloqueada',";
-                echo "  showConfirmButton: false,";
-                echo "  timer: 3000";
-                echo "});";
-                echo "</script>";
+                ?>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Fecha bloqueada',
+                  showConfirmButton: false,
+                  timer: 3000
+                });
+                setTimeout(function() {
+                window.location.href = '../views/calendario.php'
+                }, 1300);
+                </script>
+                <?php
+            } else {?>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'La fecha ya está bloqueada',
+                  showConfirmButton: false,
+                  timer: 3000
+                });
+                setTimeout(function() {
+                window.location.href = '../views/calendario.php'
+                }, 1300);
+                </script>
+                <?php
             }
         }
 
         if(!empty($diant))
         {
             if (($key = array_search($diant, $fechas)) !== false) {
-                $admin->borrarFecha("$diant");
-                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-                echo "<script>";
-                echo "Swal.fire({";
-                echo "  icon: 'success',";
-                echo "  title: 'Fecha desbloqueada',";
-                echo "  showConfirmButton: false,";
-                echo "  timer: 3000";
-                echo "});";
-                echo "</script>";
-            } else {
-                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-                echo "<script>";
-                echo "Swal.fire({";
-                echo "  icon: 'success',";
-                echo "  title: 'La fecha seleccionada no está bloqueada',";
-                echo "  showConfirmButton: false,";
-                echo "  timer: 3000";
-                echo "});";
-                echo "</script>";
+                $admin->borrarFecha("$diant");?>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Fecha desbloqueada',
+                  showConfirmButton: false,
+                  timer: 3000
+                });
+                setTimeout(function() {
+                window.location.href = '../views/calendario.php'
+                }, 1300);
+                </script>
+                <?php
+            } else {?>
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                  icon: 'warning',
+                  title: 'La fecha seleccionada no está bloqueada',
+                  showConfirmButton: false,
+                  timer: 3000
+                });
+                setTimeout(function() {
+                window.location.href = '../views/calendario.php'
+                }, 1300);
+                </script>
+                <?php
             }
         }
     }   

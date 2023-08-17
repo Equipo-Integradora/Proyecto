@@ -33,14 +33,14 @@
 
                         <div class=" col-12 input-field">
                             <label for="usuario">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" value="<?php echo $reg->nombre_usuario;?>"
+                            <input type="text" class="form-control" id="nombre" name="nombre" maxlength="70" value="<?php echo $reg->nombre_usuario;?>"
                              required autocomplete="off">
                         </div>
                         <br>
                         
                         <div class="col-12 input-field">
                         <label for="usuario">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" name="fecha"  value="<?php echo $reg->fecha_nacimiento_usuario;?>" required>
+                            <input type="date" class="form-control" id="fecha" name="fecha"  value="<?php echo $reg->fecha_nacimiento_usuario;?>" required>
                         </div>
 <br>
                         <div class="col-12 form-group " id="genero-group">
@@ -64,7 +64,7 @@
 
 
                         <div class="col-12 input-field">
-                        <button type="submit" class="btn boton">Guardar cambios</button>
+                        <button type="submit" class="btn boton" onclick="return validarCamposLlenos();validarFechaGenero();">Guardar cambios</button>
                         </div>
                         </form>
     </div>
@@ -75,10 +75,10 @@
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
   crossorigin="anonymous"></script>
-    <script src="../js/clock.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
@@ -86,6 +86,115 @@
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+    </script>
+
+    <script>
+        function validarCamposLlenos() {
+        var nombre = document.getElementById('nombre').value;
+        var fecha = document.getElementById('fecha').value;
+
+
+        if (nombre === '') {
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese su nombre.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+        
+        if (nombre.length <8) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Nombre muy corto.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+        if (fecha === '') {
+            Swal.fire({
+                icon: 'info',
+                title: 'Ingrese la fecha de nacimiento.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+
+
+
+      
+        if (!validarFechaNacimiento(fecha)) {
+            return false;
+        }
+
+        
+
+        return true;
+
+
+        function validarFechaNacimiento(fecha) {
+        if (!fecha) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Seleccione una fecha de nacimiento.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+
+        
+        var fechaSeleccionada = new Date(fecha);
+        var fechaActual = new Date();
+
+      
+      var fechaMin = new Date();
+      var fechaMax = new Date();
+      fechaMin.setFullYear(fechaActual.getFullYear() - 18);
+      fechaMax.setFullYear(fechaActual.getFullYear() - 100);
+
+      
+      if (fechaSeleccionada >= fechaMax) 
+      {;
+          if (fechaSeleccionada >= fechaMin) 
+        {;
+            Swal.fire({
+                icon: 'warning',
+                title: 'Solo se permiten mayores de edad.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+          return false;
+        }
+        
+      }else{
+        Swal.fire({
+                icon: 'info',
+                title: 'Ingrese una fecha adecuada.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+          return false;
+        }
+
+        var genero = document.querySelector('input[name="genero"]:checked');
+
+        if (!genero) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Defina su género.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return false;
+        }
+
+        return true;
+    }
+    }
     </script>
     <script>
         
