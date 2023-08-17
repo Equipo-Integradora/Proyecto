@@ -336,44 +336,44 @@ $(document).ready(function () {
 
 
 $('#btnGuardarCambios').on('click', function (event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¿Deseas guardar los cambios?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Guardar Cambios',
-        cancelButtonText: 'Cancelar',
-    }).then((result) => {
-        if (result.isConfirmed) 
-        {
-            $('#modalEditar').modal('hide');
-            
-            const formData = $('#editarCitaForm').serialize();
+        event.preventDefault();
+        
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Deseas guardar los cambios?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar Cambios',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#modalEditar').modal('hide');
 
-            $.post('update_cita.php', formData, function (data) {
-                if (data.error) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Hubo un error al guardar los cambios.',
-                        icon: 'error'
-                    }).then(() => {
-                        window.location.reload();
-                    });
-                } else {
-                    Swal.fire({
-                        title: '¡Cita actualizada!',
-                        text: 'Los datos se han actualizado exitosamente.',
-                        icon: 'success'
-                    }).then(() => 
-                    {
-                        window.location.reload();
-                    });
-                }
-            });
-        }
+                const formData = $('#editarCitaForm').serialize();
+
+                $.post('update_cita.php', formData, function (data) {
+                    if (data.includes("Error")) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Hubo un error al guardar los cambios o el formato del precio es incorrecto.',
+                            icon: 'error'
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: '¡Cita actualizada!',
+                            text: 'Los datos se han actualizado exitosamente.',
+                            icon: 'success'
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    }
+                });
+            }
+        });
     });
-});
+
 
     $('#modalEditar').on('hidden.bs.modal', function () {
         $('#modalEditar #servicios_editar').html('');
