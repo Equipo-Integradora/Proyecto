@@ -4,6 +4,11 @@ include "../templates/sidebar.php";
 
 $conexion = new database();
 $conexion->conectarDB();
+if(!isset($_SESSION["admin"])){
+
+    header("../index.php");
+    exit;
+ }
 ?>
 <style>
     .productito {
@@ -565,11 +570,13 @@ function guardarInformacion(informacion) {
     xhr.onload = function() {
         if (xhr.status === 200) {
             const respuesta = xhr.responseText; // Obtener la respuesta del servidor
-            if (respuesta === 'exito') {
-                Swal.fire('¡Guardado!', 'Color guardado correctamente', 'success');
+            if (respuesta==="error") {
+
+                Swal.fire('Error', 'Ya existe ese color', 'error');
                 
             } else{
-                Swal.fire('Error', 'Ya existe ese color', 'error');
+
+                Swal.fire('¡Guardado!', 'Color guardado correctamente', 'success');
                 
             }
         } else {

@@ -16,12 +16,14 @@
         extract($_POST);
         if(isset($informacion)){
             if($db->color($informacion)){
-            echo "error";
+            echo "error" ;
+
             }else{
                 $nuevo="INSERT INTO colores (nombre_color) values ('$informacion')";
                 $db->ejecuta($nuevo);
                 $db->desconectarDB();
             echo "exito";
+
             }
         }else{
        if($db->productdobl($producto)){

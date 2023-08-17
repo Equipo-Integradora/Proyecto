@@ -4,6 +4,14 @@ session_start();
 include "../templates/sidebar.php";
 $Servicios="SELECT * FROM `sweet_beauty`.`servicios`;";
 $todoserv=$conexion->seleccionar($Servicios);
+
+if(!isset($_SESSION["admin"])){
+
+    header("../index.php");
+    exit;
+ }
+
+
 ?>
 <style>
         .sexarea
