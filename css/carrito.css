@@ -1,0 +1,35 @@
+:root {
+  --main-bg-color: #e84393;
+  --main-text-color: #e84393;
+  --second-text-color: #333;
+  --second-bg-color: #c1efde;
+}
+.boton {
+  display: inline-block;
+  margin-top: 0.1rem;
+  border-radius: 1rem;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.boton:hover {
+  background: var(--main-bg-color);
+  color: #fff;
+}
+.can {
+  background-color: hsla(0, 0%, 100%, 0.9);
+  text-align: center;
+  color: #fa6338;
+  position: absolute;
+  width: 100%;
+}
+
+.nose:focus,
+.nose:hover 
+{
+  outline: none;
+  border-color: #e84393;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
