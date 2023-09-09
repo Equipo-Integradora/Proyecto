@@ -37,22 +37,44 @@ if (isset($_FILES['ima']) && $_FILES['ima']['error'] === UPLOAD_ERR_OK) {
     $nombreArchivo = $_FILES['ima']['name'];
 
     $rutaDestino = $carpetaDestino . $nombreArchivo;
+    if (file_exists($rutaDestino)) {
+        $fileInfo = pathinfo($nombreArchivo);
+        $fileExtension = $fileInfo['extension'];
+        $baseFileName = $fileInfo['filename'];
 
-    if (move_uploaded_file($_FILES['ima']['tmp_name'], $rutaDestino)) {
-        if (empty($color)) {
-            $query = "INSERT INTO detalle_productos (detalle_producto_detalle_producto_FK, existencias_detalle_producto, imagen_detalle_producto) VALUES
-            ('$producto', '$existencias', '$nombreArchivo')";
-        } else {
-            $query = "INSERT INTO detalle_productos (detalle_producto_detalle_producto_FK, color_detalle_producto_FK, existencias_detalle_producto, imagen_detalle_producto) VALUES
-            ('$producto', '$color', '$existencias', '$nombreArchivo')";
+        $counter = 1;
+        
+        while (file_exists($targetFilePath)) {
+            $nuevonombre = $baseFileName . '(' . $counter . ').' . $fileExtension;
+            $targetFilePath = $carpetaDestino . $newFileName;
+            $counter++;
         }
 
-        $db->ejecuta($query);
-        $db->desconectarDB();
+        $rutaDestino=$targetFilePath;
 
     }
-}else{
 
+    
+    if (move_uploaded_file($_FILES['ima']['tmp_name'], $rutaDestino)) {
+     
+            $query = "INSERT INTO detalle_productos (detalle_producto_detalle_producto_FK, color_detalle_producto_FK, existencias_detalle_producto, imagen_detalle_producto) VALUES
+            ('$producto', '$color', '$existencias', '$nombreArchivo')";
+
+    }
+        $db->ejecuta($query);
+        $db->desconectarDB();
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>";
+        echo "Swal.fire({";
+        echo "  icon: 'success',";
+        echo "  title: 'Producto agregado con exito',";
+        echo "  showConfirmButton: false,";
+        echo "  timer: 1500";
+        echo "});";
+        echo "</script>";
+        header("refresh:2; ../scripts/inventario.php");
+        exit;
+    
 }
 }
 ?>

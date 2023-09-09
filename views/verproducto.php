@@ -66,10 +66,6 @@ if(!empty($pro->nombre_color) && ($pro->nombre_color!='Sin color')){
          <button type="submit" <?php echo $desactivar ?> class="boton1 btn m-auto <?php echo $color ?>"><?php echo $empty ?></button>
     </form>
 </div>
-<div style="margin-top: 5px;" class="offset-lg-4 col-lg-12 col-12">
-<a href="../views/ver_producto_general.php"><button type="button" class="boton1 btn m-auto">Seguir comprando</button></a>
-
-</div>
 <br>
 <p class="mt-4">
     <span class="fw-bold">Descripción:</span>
@@ -121,14 +117,12 @@ group by productos.nombre_producto;";
                 <div class="icons card-title"></div>
                 <div class="card-text">
                 
-                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title"><p><?php echo $am->nombre_producto;?></p></h4><p>Color <?php echo $am->colorn;?></p></a>
+                <a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title"><p><?php echo $am->nombre_producto;?></p></h4><p style="font-size: small;"">Color <?php echo $am->colorn;?></p></a>
                 <!--<a  href="../views/verproducto.php?id=<?php echo $am->id ?>"><h4 class="product-title">Color <?php echo $am->colorn;?></h4></a>-->
                 
 
 
-                <div class="price precio">
-            <?php echo'$'.$am->precio_producto; ?>
-                </div>
+               
                 </div>
                 </div>
                 </div>

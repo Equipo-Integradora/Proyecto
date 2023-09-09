@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"S>
+    <title>Ingresar producto</title>
 </head>
 <body>
     <div class="container">
-        <?php
+    <?php
         include '../class/database.php';
         $db = new database();
         $db->conectarDB();
@@ -44,20 +43,38 @@
         ('$producto', '$descripcion', '$precio', '$tipocat')";
 
         $db->ejecuta($query);
+        
         $productos=$db->ultimaid();
+
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             $carpetaDestino = '../img/productos/';
         
             $nombreArchivo = $_FILES['imagen']['name'];
         
             $rutaDestino = $carpetaDestino . $nombreArchivo;
+            if (file_exists($rutaDestino)) {
+                $fileInfo = pathinfo($nombreArchivo);
+                $fileExtension = $fileInfo['extension'];
+                $baseFileName = $fileInfo['filename'];
         
+                $counter = 1;
+                
+                while (file_exists($targetFilePath)) {
+                    $nuevonombre = $baseFileName . '(' . $counter . ').' . $fileExtension;
+                    $targetFilePath = $carpetaDestino . $newFileName;
+                    $counter++;
+                }
+        
+                $rutaDestino=$targetFilePath;
+        
+            }
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
                     $querry = "INSERT INTO detalle_productos (detalle_producto_detalle_producto_FK, color_detalle_producto_FK, existencias_detalle_producto, imagen_detalle_producto) VALUES
                     ('$productos', '$colors', '$existenciass', '$nombreArchivo')";
                 
             }
         }
+        
         $db->ejecuta($querry);
         $db->desconectarDB();
 
@@ -76,6 +93,6 @@
     }
         ?>
     </div>
-    
 </body>
 </html>
+

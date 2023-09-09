@@ -11,11 +11,73 @@ if(isset($_SESSION["usuario"]))
     $conexion = new database();
     $conexion->conectarDB();
 ?>
+ <!--Estilo para la informacion-->
+    <style>
+       .infoicon
+       {
+        color:black;
+       }
+
+       .infoicon:hover
+       {
+        color:#e84393;
+       }
+    </style>
+    <!--Fin del estilo-->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/mis_citas.css">
 <div>
 <div class="cabecera">
-<h1 class="mb-4" style="float: left;  width: 50%; margin-top: 7rem;">Mis <span>Citas</span></h1>
+<h1 class="mb-4" style="float: left;  width: 50%; margin-top: 7rem;">Mis <span>Citas</span>
+<a class="infoicon" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    <i class="bi bi-info-circle"></i>
+</a>
+</h1>
+<!--Inicio de la guia-->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><span style="color:#e84393;">Sweet</span> Beauty</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+        <div>
+            <h5 class="offcanvas-title">Avisos</h5>
+            <ul>
+                <li>Aquí podrá ver sus citas.</li>
+                <li>Podrá cancelar sus citas Pendientes y Aceptadas.</li>
+                <li>Si cancela una cita, no la podrá activar y tendrá que agendar otra.</li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="offcanvas-title">Guia</h5>
+            Se puede filtrar sus citas:
+            <ul>
+                <li>Filtrar por fecha</li>
+                <ol>
+                    <li>Ingrese una fecha inicial</li>
+                    <li>Ingrese una fecha final</li>
+                    <li>Seleccione el boton de ver para filtrar por las fechas ingresadas</li>
+                </ol>
+                <li>Filtrar por estados:</li>
+                <ol>
+                    <li>Seleccione el estado por el que quiere ver sus citas</li>
+                    <li>Seleccione el boton de ver para filtrar por las fechas ingresadas</li>
+                </ol>
+                <li>Se pueden filtrar sus citas usando los dos metodos mencionados</li>
+            </ul>
+            Se puede cancelar citas:
+            <ol>
+                <li>Busque las cita que quiere cancelar</li>
+                <li>Seleccionar el icono de la tacha (<i class="bi bi-x"></i>)</li>
+            </ol>
+        </div>
+      
+    </div>
+  </div>
+</div>
+<!--Fin de la guia-->
 
 
 <!-- 

@@ -1,13 +1,15 @@
 
 <?php
 session_start();
-if(isset($_SESSION["admin"]))
-    { 
-
 include "../templates/sidebar.php";
 $Servicios="SELECT * FROM `sweet_beauty`.`servicios`;";
 $todoserv=$conexion->seleccionar($Servicios);
 
+if(!isset($_SESSION["admin"])){
+
+    header("../index.php");
+    exit;
+ }
 
 
 ?>
@@ -33,9 +35,7 @@ $todoserv=$conexion->seleccionar($Servicios);
             <div class="col-lg-6 col-6">
             <h3 class="m-0">Servicios</h3> 
             </div>
-            <div class="col-lg-3 col-2">
-            <button type="button" class="btn boton" data-bs-toggle="modal" data-bs-target="#nuevotipo" >Agregar Categoria</button>
-            </div>
+
         </div>
 
     </div>
@@ -77,30 +77,6 @@ $todoserv=$conexion->seleccionar($Servicios);
 <?php }?>
     </div>
 </div>
-<!--Modal para insertar categorias-->
-<div class="modal fade" id="nuevotipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar servicios</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>    
-      <form action="" id="categoris">
-      <div class="modal-body">
-            <div class="input-field">
-                <label for="tiposer">Servicio</label> <br>
-                <input type="text" class="input" name="cates" id="cates">
-            </div>
-            <br>
-      </div>
-      <div class="input-field text-center" style="margin-top: 1rem;">
-         <input style="margin-bottom: .5rem;" type="submit" class="submit btn boton" value="Cambiar">
-    </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <!--MODAL PARA EDITAR SERVICIOS-->
     <div class="modal fade" id="tiposervicos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -109,31 +85,31 @@ $todoserv=$conexion->seleccionar($Servicios);
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Editar servicios</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>    
-      <form action="">
+      <form action="ingresoservicios.php" id="edicion" method="post">
       <div class="modal-body">
-        <input type="hidden" id="id_serv">
+        <input type="hidden" id="id_serv" name="id_serv">
             <div class="input-field">
                 <label for="tiposer">Servicio</label> <br>
-                <input type="text" class="input" name="tiposer" id="tiposer">
+                <input type="text" class="input" name="tiposer" required id="tiposer">
             </div>
             <br>
             <div class="input-field">
         <label for="desc">Descripcion</label> <br>
-        <textarea name="desc" id="desc" cols="40" class="sexarea" rows="5"></textarea>
+        <textarea name="desc" id="desc" cols="40" class="sexarea"required rows="5"></textarea>
             </div>
             <br>
             <div class="input-field">
             <label for="precio">Precio</label> <br>
-                <input type="text" class="input" name="precio" id="precio">
+                <input type="number" class="input" required name="precio" id="precio">
             </div>
             <br>
             <div class="input-field">
             <label for="tiempo">Tiempo Aproximado</label> <br>
-                <input type="text" class="input" name="tiempo" id="tiempo" oninput="formatTime()" maxlength="8">
+                <input type="text" class="input" required name="tiempo" id="tiempo" oninput="formatTime()" maxlength="8">
             </div>
       </div>
       <div class="input-field text-center" style="margin-top: 1rem;">
-         <input style="margin-bottom: .5rem;" type="submit" class="submit btn boton" value="Cambiar">
+         <input style="margin-bottom: .5rem;" type="submit" id="edt" name="cambiar" class="submit btn boton" value="Cambiar">
     </div>
       </form>
     </div>
@@ -148,16 +124,16 @@ $todoserv=$conexion->seleccionar($Servicios);
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar sevicio</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>    
-      <form action="">
+      <form action="ingresoservicios.php" method="post">
       <div class="modal-body">
             <div class="input-field">
                 <label for="nameser">Nombre servicio</label> <br>
-                <input type="text" class="input" name="nameserv" id="nameserv" placeholder="Nombre de servicio">
+                <input type="text" class="input" name="nameserv" required id="nameserv" placeholder="Nombre de servicio">
             </div>
             <br>
             <div class="input-field">
                 <label for="service">Categoria</label> <br>
-                <select name="service" class="form-select form-select-md" id="">
+                <select name="service" class="form-select form-select-md" required id="">
                 <?php foreach($todoserv as $ni){
                 ?>
                     <option value="<?php echo $ni->id_servicio?>"><?php echo $ni->nombre_servicio?></option>
@@ -168,20 +144,20 @@ $todoserv=$conexion->seleccionar($Servicios);
             <br>
             <div class="input-field">
                 <label for="price">precio</label> <br>
-                <input type="number" class="input" name="price" id="price" placeholder="Coloque precio Max en caso de variaciones">
+                <input type="number" class="input" required name="price"  id="price" placeholder="Coloque precio Max en caso de variaciones">
             </div>
             <br>
             <div class="input-field">
                 <label for="time">Tiempo estimado de servicio</label> <br>
-                <input type="text" class="input" name="time" id="time" placeholder="00:00:00" oninput="formatTi()" maxlength="8">
+                <input type="text" class="input" required name="time" id="time" placeholder="00:00:00" oninput="formatTi()" maxlength="8">
             </div>
             <div class="input-field">
                 <label for="desc">Descripcion</label> <br>
-                <textarea name="discr" id="discr" class="sexarea" rows="10" placeholder="Describa el servicio"></textarea>
+                <textarea name="discr" id="discr" required class="sexarea" rows="10" placeholder="Describa el servicio"></textarea>
             </div>
             <br>
       <div class="input-field text-center" style="margin-top: 1rem;">
-         <input style="margin-bottom: .5rem;" type="submit" class="submit btn boton" value="Agregar">
+         <input style="margin-bottom: .5rem;" type="submit" name="agregar" id="agregar" class="submit btn boton" value="agregar">
     </div>
       </form>
     </div>
@@ -210,6 +186,8 @@ $todoserv=$conexion->seleccionar($Servicios);
             $('#tiposervicos').modal('show');
         });
 </script>
+
+
 
 
 <script>
@@ -255,34 +233,3 @@ $todoserv=$conexion->seleccionar($Servicios);
 
 </body>
 </html>
-<?php
-}else
-{
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-<script>
-    Swal.fire({
-      icon: 'warning',
-      title: 'Sitio solo para personal autorizado',
-      showConfirmButton: false,
-      timer: 5000
-    });
-    setTimeout(function() {
-    window.location.href = "../index.php";
-}, 2000);
-    </script>
-</body>
-</html>
-
-<?php
-}
-?>

@@ -235,6 +235,41 @@ if(!isset($totalcantidad)){
       </nav>
       <!-- FIN DE LA BARRA DE NAVEGACION -->
 
+      <!--Mensaje flotante-->  
+      <style>
+       .infoicon
+       {
+        color:black;
+       }
+
+       .infoicon:hover
+       {
+        color:#e84393;
+       }
+    </style>
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+          <link rel="stylesheet" href="../css/bootstrap.min.css">
+          <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var toastElement = document.querySelector('.toast');
+          var toast = new bootstrap.Toast(toastElement, { autohide: false }); // Deshabilita el cierre automático
+          toast.show();
+        });
+      </script>  
+          <div style="margin-top: 5rem; position: absolute; top: 0; right: 0; padding: 20px; z-index: 1;" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000"> <!-- Establece un retraso de 5 segundos (5000 ms) -->
+          <div class="toast-header">
+            <img src="img/home/logo.png" style="height: 1rem; width:1rem;" alt="SW">
+            <strong class="me-auto">Sweet <span style="color: #e84393;">Beauty</span></strong>
+            <small><i class="bi bi-emoji-smile"></i></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body" style="background-color: width;">
+            Hola!!!
+            Si tienes alguna duda sobre el funcionamiento de alguna página, siempre puedes seleccionar nuestros iconos de información <i class="bi bi-info-circle infoicon"></i> que te podrán guiar.
+          </div>
+      </div>
+      <!--Fin mensaje flotante-->
+
       <!-- BANNER -->
       <section class="banner">
         <div class="container">

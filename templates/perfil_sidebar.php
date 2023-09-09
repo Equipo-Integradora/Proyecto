@@ -29,6 +29,21 @@
 </head>
 
 <body>
+<style>
+       .infoicon
+       {
+        color:black;
+       }
+
+       .infoicon:hover
+       {
+        color:#e84393;
+       }
+       .infoicon:hover button
+       {
+        color: #e84393;
+       }
+    </style>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
@@ -68,10 +83,51 @@
 
                 <a href="../index.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="bi bi-door-open-fill me-2"></i> Página principal</a>
 
+                <div style="font-weight: bold;" class="infoicon list-group-item list-group-item-action second-text fw-bold">
+                <i style="font-weight: bold; margin-right: .2rem;" class="bi bi-info-circle"></i>
+                <button style="font-weight: bold;" class="infoicon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                Ayuda
+                </button>
+                </div>
+
 
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
+
+        <!--Inicio de la ayuda-->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel"><span style="color:#e84393;">Sweet</span> Beauty</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+  <div>
+        <div>
+            <h5 class="offcanvas-title">Avisos</h5>
+            <ul>
+                <li>Aquí podrá ver su perfil.</li>
+                <li>Podrá editar sus datos y verlos.</li>
+                <li>Si cambia un dato y no se acuerda, no nos hacemos responsables.</li>
+                <li>Para cambiar la contraseña, debe recordar su contraseña.</li>
+                <li>Pudes regresar al inicio con el bóton de "Página principal" o seleccionando "<span style="font-weight: bold;"><span style="color:#e84393;">Sweet</span> Beauty</span>", que se encuentra abajo de la foto.</li>
+                <li>Las fotos son predeterminadas, no se pueden cambiar.</li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="offcanvas-title">Guia</h5>
+            <ul>
+                <li>En la parte de editar datos, puede cambiar sus datos personales (nombre, fecha de nacimiento y genero).</li>
+            </ul>
+            <ul>
+                <li>En la parte de datos de la cuenta, puede cambiar los datos de identificación (correo, contraseña y telefono).</li>
+            </ul>
+        </div>
+      
+    </div>
+  </div>
+</div>
+        <!--Fin de la ayuda-->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">

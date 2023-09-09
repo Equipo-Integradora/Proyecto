@@ -1,15 +1,14 @@
 <?php
 session_start();
-if(isset($_SESSION["admin"]))
-    { 
-
-    
-        include "../templates/sidebar.php";
+include "../templates/sidebar.php";
 
 $conexion = new database();
 $conexion->conectarDB();
+if(!isset($_SESSION["admin"])){
 
-
+    header("../index.php");
+    exit;
+ }
 ?>
 <style>
     .productito {
@@ -308,15 +307,15 @@ if ($_POST) {
                     <input type="hidden" name="detallproducto" id="id_detallepro">
                     <div class="input-field">
                         <label for="nombre">Nombre del producto</label>
-                        <input type="text" class="input" name="nombre" id="nombre" maxlength="100">
+                        <input type="text" class="input" name="nombre" id="nombre" maxlength="100"required>
                     </div>
                     <div class="input-field">
                         <label for="descripcion">Descripción del Producto</label>
-                        <textarea name="descripcion" class="sexarea" id="descripcion" cols="30" rows="5"></textarea>
+                        <textarea name="descripcion" class="sexarea" id="descripcion" cols="30" rows="5" required></textarea>
                     </div>
                     <div class="input-field">
                         <label for="precio">Precio del producto</label>
-                        <input type="number" class="input" name="precio" id="precio">
+                        <input type="number" class="input" name="precio" id="precio"required>
                     </div>
                     <div class="input-field">
                         <label for="categoria">Tipo de Categoria</label>
@@ -325,7 +324,7 @@ if ($_POST) {
                         $tabla = $conexion->seleccionar($cat);
                         ?>
 
-                        <select class="form-select form-select-md" name="categoria" id="categoria">
+                        <select class="form-select form-select-md" name="categoria" id="categoria"required>
                             <option value="" disabled selected>Selecciona una opción</option>
                             <?php foreach ($tabla as $cate) { ?>
                                 <option value="<?php echo $cate->id_tipo_categoria ?>"> <?php echo $cate->nombre_tipo_categoria ?></option>
@@ -339,7 +338,7 @@ if ($_POST) {
                         $tabla = $conexion->seleccionar($cat);
                         ?>
 
-                        <select class="form-select form-select-md" name="color" id="color">
+                        <select class="form-select form-select-md" name="color" id="color"required>
                             <option value="" disabled selected>Selecciona una opción</option>
                             <?php foreach ($tabla as $cate) { ?>
                                 <option value="<?php echo $cate->id_color ?>"> <?php echo $cate->nombre_color ?></option>
@@ -349,7 +348,7 @@ if ($_POST) {
                 
                     <div class="input-field">
                         <label for="existencias">Existencias</label>
-                        <input type="number" class="input" name="existencias" min="0" id="existencias">
+                        <input type="number" class="input" name="existencias" min="0" id="existencias" required>
                     </div>
                    
                     <div class="input-field">
@@ -589,35 +588,3 @@ function guardarInformacion(informacion) {
 }
 </script>
 </body>
-<?php
-}
-else
-{
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-<script>
-    Swal.fire({
-      icon: 'warning',
-      title: 'Sitio solo para personal autorizado',
-      showConfirmButton: false,
-      timer: 5000
-    });
-    setTimeout(function() {
-    window.location.href = "../index.php";
-}, 2000);
-    </script>
-</body>
-</html>
-
-<?php
-}
-?>

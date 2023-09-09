@@ -11,7 +11,6 @@ if(isset($_SESSION["usuario"]))
     $conexion->conectarDB();
     ?>
 <!--Contenido-->
-
         <!--Inicio Pagina 1-->
     <link rel="stylesheet" href="../css/calendario.css">
 <section class="section-padding">
@@ -136,9 +135,15 @@ $admin = new Admin();
 $fechas = $admin->obtenerFechas();
 
 $blockedDates = $fechas;
+
+foreach($blockedDates as $dia)
+{
+    $blockedDates .= $dia . ", "; 
+}
+
 $ver = "SELECT registros_cita.fecha_cita_registro_cita 
     FROM registros_cita
-    WHERE registros_cita.estado_registro_cita <> ´Cancelada' AND registros_cita.cliente_registro_cita_FK = '{$_SESSION["id"]}'";
+    WHERE registros_cita.estado_registro_cita <> 'Cancelada' AND registros_cita.cliente_registro_cita_FK = '{$_SESSION["id"]}'";
 $chi = $conexion->dias($ver);
 
 $blockedDatesJSONE = json_encode($chi);

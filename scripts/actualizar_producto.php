@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,10 +35,28 @@ if(isset($actualizar)){
     
                 $borrarimagenantigua = $carpetaDestino . $ar->imagen_detalle_producto;
 
+                 unlink($borrarimagenantigua);
+
                 $nombreArchivo = $_FILES['ima']['name'];
     
                 $rutaDestino = $carpetaDestino . $nombreArchivo;
-    
+                
+                if (file_exists($rutaDestino)) {
+                    $fileInfo = pathinfo($nombreArchivo);
+                    $fileExtension = $fileInfo['extension'];
+                    $baseFileName = $fileInfo['filename'];
+            
+                    $counter = 1;
+                    
+                    while (file_exists($targetFilePath)) {
+                        $nuevonombre = $baseFileName . '(' . $counter . ').' . $fileExtension;
+                        $targetFilePath = $carpetaDestino . $newFileName;
+                        $counter++;
+                    }
+            
+                    $rutaDestino=$targetFilePath;
+            
+                }    
                 if (move_uploaded_file($_FILES['ima']['tmp_name'], $rutaDestino)) {
     
                     $queryl  = "UPDATE detalle_productos
@@ -62,7 +79,7 @@ if(isset($actualizar)){
             echo "</script>";
             header("refresh:2; ../scripts/inventario.php");
             exit;
-        }else if ( isset($surtir)){
+        }else if (isset($surtir)){
 
             $queryx  = "UPDATE detalle_productos
             SET existencias_detalle_producto = '$surt'
@@ -81,25 +98,6 @@ if(isset($actualizar)){
             exit;
         }
 ?>
-<script>
-    Swal.fire({
-  icon: 'success',
-  title: 'Tu producto ha sido Actualizado',
-  showConfirmButton: false,
-  timer:1500
-}).then((result)=>{
-
-    window.location.href="inventario.php";
-    exit;
-});
-</script>
-
-
-
-
-<?php
-        exit;
-        ?>
     </div>
 
 </body>
